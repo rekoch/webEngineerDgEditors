@@ -9,7 +9,6 @@
   text-wrap-style: pretty;
   overflow-wrap: break-word;
   color-scheme: light;
-  letter-spacing: 0.09px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -23,11 +22,19 @@ body {
   height: 100%;
 }
 
+.content-max-width {
+  max-width: calc(640px + (80px * 2));
+  padding: 0 80px;
+  margin: 0 auto;
+}
+
 iframe {
-  width: 100%;
+  min-width: 992px;
+  max-width: 1839px;
   aspect-ratio: 16 / 9;
   height: auto;
   display: block;
+  margin: 0 auto 80px auto;
 }
 
 img {
@@ -61,4 +68,5 @@ p {
   font-stretch: normal;
   line-height: 28px;
   font-size: 18px;
+  letter-spacing: 0.005em
 }
