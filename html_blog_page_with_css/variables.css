@@ -1,0 +1,25 @@
+:root {
+
+}
+
+button {
+  --background: #eee;
+  --background-active-primary: #444;
+  --background-focusvisible: #ddd;
+  --background-focusvisibile-primary: #000;
+  --background-focus-primary: #444;
+  --background-hover: #ddd;
+  --background-hover-primary: #000;
+  --background-primary: #444;
+  --border: 1px solid #0003;
+  --border-radius: 3px;
+  --text: #000;
+  --text-active-primary: #fff;
+  --text-focus: #000;
+  --text-focus-primary: #fff;
+  --text-hover: #000;
+  --text-hover-primary: #fff;
+  --text-primary: #fff;
+  --padding: 7px 15px;
+  --width: 100%;
+}

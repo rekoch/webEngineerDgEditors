@@ -1,3 +1,5 @@
+@import url("variables.css");
+
 @font-face {
   font-family: "Galactica";
   src: url("https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2")
@@ -17,6 +19,11 @@ body {
   font-family: Galactica, Arial, sans-serif;
 }
 
+.content-category {
+  color: rgb(147, 83, 185);
+  text-transform: uppercase;
+}
+
 .full-ratio {
   width: 100%;
   height: 100%;
@@ -26,6 +33,24 @@ body {
   max-width: calc(640px + (80px * 2));
   padding: 0 80px;
   margin: 0 auto;
+}
+
+button {
+  background-color: var(--background);
+  color: var(--text);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  text-align: center;
+  padding: var(--padding);
+  font-family: inherit;
+  font-size: inherit;
+  width: var(--width);
+
+  &.primary {
+    background-color: var(--background-primary);
+    color: var(--text);
+  }
 }
 
 iframe {
@@ -68,5 +93,5 @@ p {
   font-stretch: normal;
   line-height: 28px;
   font-size: 18px;
-  letter-spacing: 0.005em
+  letter-spacing: 0.005em;
 }
