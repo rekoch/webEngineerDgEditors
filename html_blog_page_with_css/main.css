@@ -1,5 +1,6 @@
 @import url("variables.css");
 @import url("buttons.css");
+@import url("utilities.css");
 
 @font-face {
   font-family: "Galactica";
