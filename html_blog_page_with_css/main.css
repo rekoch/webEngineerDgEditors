@@ -1,12 +1,7 @@
 @import url("variables.css");
 @import url("buttons.css");
 @import url("utilities.css");
-
-@font-face {
-  font-family: "Galactica";
-  src: url("https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2")
-    format("woff2");
-}
+@import url("fonts.css");
 
 * {
   text-wrap-mode: wrap;
