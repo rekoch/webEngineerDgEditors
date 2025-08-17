@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Galactica";
+  src: url("https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2")
+    format("woff2");
+}
+
+.font-small {
+  font-size: 14px;
+  line-height: 20px;
+}
