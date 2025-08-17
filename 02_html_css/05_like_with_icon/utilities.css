@@ -1,0 +1,123 @@
+/* margin-top utilities */
+.mt-0{
+    margin-top: 0;
+}
+.mt-s {
+    margin-top: 16px;
+}
+.mt-m {
+  margin-top: 24px;
+}
+.mt-l {
+  margin-top: 32px;
+}
+.mt-xl {
+  margin-top: 40px;
+}
+.mt-xxl {
+  margin-top: 64px;
+}
+
+/* margin-bottom utilities */
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-s {
+  margin-bottom: 16px;
+}
+.mb-m {
+  margin-bottom: 24px;
+}
+.mb-l {
+  margin-bottom: 32px;
+}
+.mb-xl {
+  margin-bottom: 40px;
+}
+.mb-xxl {
+  margin-bottom: 64px;
+}
+
+/* margin-right utilities */
+.mr-0 {
+  margin-right: 0;
+}
+.mr-xs {
+  margin-right: 12px;
+}
+.mr-s {
+  margin-right: 16px;
+}
+.mr-m {
+  margin-right: 24px;
+}
+.mr-l {
+  margin-right: 32px;
+}
+.mr-xl {
+  margin-right: 40px;
+}
+.mr-xxl {
+  margin-right: 64px;
+}
+
+ /* margin-top and bottom utilities */
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.my-s {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.my-m {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.my-l {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.my-xl {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.my-xxl {
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+/* text utilities */
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+/* Flexbox utilities */
+.d-flex {
+  display: flex;
+}
+.d-inline-flex {
+  display: inline-flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.align-items-center {
+  align-items: center;
+}
+
+/* svg icon */
+.svg-icon {
+  fill: currentColor;
+  vertical-align: middle;
+  transform: translateZ(0);
+}
