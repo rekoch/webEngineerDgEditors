@@ -1,8 +1,9 @@
-@import url("spaces.css")
+@import url("spaces.css");
 
 .d-flex {
   display: flex;
 }
+
 .d-inline-flex {
   display: inline-flex;
 }
