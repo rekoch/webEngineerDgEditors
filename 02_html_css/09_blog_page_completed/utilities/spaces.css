@@ -256,56 +256,88 @@
   padding-bottom: var(--space-xxl);
 }
 
-/* text utilities */
-.text-center {
-  text-align: center;
+/* padding-right utilities */
+.pr-0 {
+  padding-right: 0;
 }
-.text-left {
-  text-align: left;
+.pr-xxs {
+  padding-right: var(--space-xxs);
 }
-.text-right {
-  text-align: right;
+.pr-xs {
+  padding-right: var(--space-xs);
 }
-.text-justify {
-  text-align: justify;
+.pr-s {
+  padding-right: var(--space-s);
 }
-
-/* Flexbox utilities */
-.d-flex {
-  display: flex;
+.pr-m {
+  padding-right: var(--space-m);
 }
-.d-inline-flex {
-  display: inline-flex;
+.pr-l {
+  padding-right: var(--space-l);
 }
-.flex-column {
-  flex-direction: column;
+.pr-xl {
+  padding-right: var(--space-xl);
 }
-.align-items-center {
-  align-items: center;
-}
-.flex-row {
-  flex-direction: row;
-}
-.justify-content-center {
-  justify-content: center;
-}
-.flex-image-aside {
-  flex: 0 1 30%;
-  max-width: 144px;
-  object-fit: cover;
+.pr-xxl {
+  padding-right: var(--space-xxl);
 }
 
-/*borders */
-.border-top {
-  border-top: 1px solid #ddd;
+/* padding-left utilities */
+.pl-0 {
+  padding-left: 0;
 }
-.border-bottom {
-  border-bottom: 1px solid #ddd;
+.pl-xxs {
+  padding-left: var(--space-xxs);
+}
+.pl-xs {
+  padding-left: var(--space-xs);
+}
+.pl-s {
+  padding-left: var(--space-s);
+}
+.pl-m {
+  padding-left: var(--space-m);
+}
+.pl-l {
+  padding-left: var(--space-l);
+}
+.pl-xl {
+  padding-left: var(--space-xl);
+}
+.pl-xxl {
+  padding-left: var(--space-xxl);
 }
 
-/* svg icon */
-.svg-icon {
-  fill: currentColor;
-  vertical-align: middle;
-  transform: translateZ(0);
+/* padding right and left utilities */
+.px-0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.px-xxs {
+  padding-right: var(--space-xxs);
+  padding-left: var(--space-xxs); 
+}
+.px-xs {
+  padding-right: var(--space-xs);
+  padding-left: var(--space-xs);
+}
+.px-s {
+  padding-right: var(--space-s);
+  padding-left: var(--space-s); 
+}
+.px-m {
+  padding-right: var(--space-m);
+  padding-left: var(--space-m);
+}
+.px-l {
+  padding-right: var(--space-l);
+  padding-left: var(--space-l);
+}
+.px-xl {
+  padding-right: var(--space-xl);
+  padding-left: var(--space-xl);
+}
+.px-xxl {
+  padding-right: var(--space-xxl);
+  padding-left: var(--space-xxl);
 }
