@@ -1,0 +1,44 @@
+@import url("buttons.css");
+@import url("utilities.css");
+@import url("fonts.css");
+
+@font-face {
+  font-family: "Galactica";
+  src: url("https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2")
+    format("woff2");
+}
+
+* {
+  text-wrap-mode: wrap;
+  text-wrap-style: pretty;
+  overflow-wrap: break-word;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 20px;
+  font-family: Galactica, Arial, sans-serif;
+}
+
+h1 {
+  font-weight: 650;
+  font-stretch: normal;
+  line-height: 36px;
+  font-size: 30px;
+}
+
+h2 {
+  font-weight: 400;
+  font-stretch: 100%;
+  line-height: 36px;
+  font-size: 24px;
+}
+
+p {
+  font-weight: 400;
+  font-stretch: normal;
+  line-height: 28px;
+  font-size: 18px;
+  letter-spacing: 0.005em;
+}
