@@ -32,6 +32,7 @@ body {
 }
 
 iframe {
+  min-width: 100%;
   max-width: 1839px;
   aspect-ratio: 16 / 9;
   height: auto;
