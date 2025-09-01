@@ -20,10 +20,6 @@ Alle Seiten sind über Firebase Hosting erreichbar. Die Links führen direkt zu 
   - [08 blog page preview completed](https://web-eng-dg.web.app/02_html_css/08_blog_page_preview/index.html)
   - [09 blog page completed](https://web-eng-dg.web.app/02_html_css/09_blog_page_completed/index.html)
 
-- **HTML, CSS und Javascript:**
-- [01 table improvements](https://web-eng-dg.web.app/03_javascript/01_tableImprovements/index.html)
-- [02 buttons reactive](https://web-eng-dg.web.app/03_javascript/02_buttonReactive/index.html)
-
 
 ## Hinweise
 

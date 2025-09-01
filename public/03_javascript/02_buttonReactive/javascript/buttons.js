@@ -26,8 +26,7 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.getAttribute("data-button")) {
       case "like_article":
-        toggleButtonState(button, likePageText, unlikePageText);
-        updateLikeCounter(button);
+        toggleLikeButtonState(button);
         break;
       case "follow_author_michelle":
         toggleButtonState(button, followAuthorText, unfollowAuthorText);
@@ -44,28 +43,35 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
   });
 });
 
+function toggleLikeButtonState(button) {
+  const currentState = button.getAttribute("data-button-state");
+  const likeCounter = document.querySelector("span[data-like-counter]");
+  let currentCount = parseInt(likeCounter.textContent);
+  if (currentState == "inactive") {
+    button.textContent = unlikePageText;
+    button.setAttribute("data-button-state", "active");
+    button.classList.remove("primary");
+    button.prepend(breakingHeart);
+    currentCount++;
+  } else {
+    button.textContent = likePageText;
+    button.setAttribute("data-button-state", "inactive");
+    button.classList.add("primary");
+    button.prepend(filledHeart);
+    currentCount--;
+  }
+  likeCounter.textContent = currentCount;
+}
+
 function toggleButtonState(button, activationText, inactivatingText) {
   const currentState = button.getAttribute("data-button-state");
   if (currentState == "active") {
     button.textContent = activationText;
     button.setAttribute("data-button-state", "inactive");
     button.classList.add("primary");
-    button.prepend(filledHeart);
   } else {
     button.textContent = inactivatingText;
     button.setAttribute("data-button-state", "active");
     button.classList.remove("primary");
-    button.prepend(breakingHeart);
   }
-}
-
-function updateLikeCounter(button) {
-  const likeCounter = document.querySelector("span[data-like-counter]");
-  let currentCount = parseInt(likeCounter.textContent);
-  if (button.getAttribute("data-button-state") === "active") {
-    currentCount++;
-  } else {
-    currentCount--;
-  }
-  likeCounter.textContent = currentCount;
 }
