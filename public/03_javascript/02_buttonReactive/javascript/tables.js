@@ -1,7 +1,7 @@
-document.querySelectorAll("[data-table-name]").forEach((element) => {
-  const tableType = element.dataset.tableName;
+document.querySelectorAll("[data-table-name]").forEach((table) => {
+  const tableType = table.dataset.tableName;
   if (tableType === "benchmark") {
-    const columns = element.querySelectorAll("[data-table-column]");
+    const columns = table.querySelectorAll("[data-table-column]");
 
     // working but not optimized solution
     let columnWidest = 0;
