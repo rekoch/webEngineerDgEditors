@@ -1,5 +1,5 @@
 document.querySelectorAll("[data-table-name]").forEach((element) => {
-  const tableType = element.getAttribute("data-table-name");
+  const tableType = element.dataset.tableName;
   if (tableType === "benchmark") {
     const columns = element.querySelectorAll("[data-table-column]");
 

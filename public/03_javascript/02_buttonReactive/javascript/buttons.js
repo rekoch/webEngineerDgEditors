@@ -44,18 +44,18 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 });
 
 function toggleLikeButtonState(button) {
-  const currentState = button.getAttribute("data-button-state");
+  const currentState = button.dataset.buttonState;
   const likeCounter = document.querySelector("span[data-like-counter]");
   let currentCount = parseInt(likeCounter.textContent);
   if (currentState == "inactive") {
     button.textContent = unlikePageText;
-    button.setAttribute("data-button-state", "active");
+    button.dataset.buttonState = "active";
     button.classList.remove("primary");
     button.prepend(breakingHeart);
     currentCount++;
   } else {
     button.textContent = likePageText;
-    button.setAttribute("data-button-state", "inactive");
+    button.dataset.buttonState = "inactive";
     button.classList.add("primary");
     button.prepend(filledHeart);
     currentCount--;
@@ -64,14 +64,14 @@ function toggleLikeButtonState(button) {
 }
 
 function toggleButtonState(button, activationText, inactivatingText) {
-  const currentState = button.getAttribute("data-button-state");
+  const currentState = button.dataset.buttonState;
   if (currentState == "active") {
     button.textContent = activationText;
-    button.setAttribute("data-button-state", "inactive");
+    button.dataset.buttonState = "inactive";
     button.classList.add("primary");
   } else {
     button.textContent = inactivatingText;
-    button.setAttribute("data-button-state", "active");
+    button.dataset.buttonState = "active";
     button.classList.remove("primary");
   }
 }
