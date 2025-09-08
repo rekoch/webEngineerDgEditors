@@ -24,7 +24,7 @@ breakingHeart.classList.add("mr-s");
 
 document.querySelectorAll("button[data-button]").forEach((button) => {
   button.addEventListener("click", () => {
-    switch (button.getAttribute("data-button")) {
+    switch (button.dataset.button) {
       case "like_article":
         toggleLikeButtonState(button);
         break;
@@ -37,7 +37,7 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 
       default:
         console.warn(
-          `Unbekannter Button-Typ: ${button.getAttribute("data-button")}`
+          `Unbekannter Button-Typ: ${button.dataset.button}`
         );
     }
   });
