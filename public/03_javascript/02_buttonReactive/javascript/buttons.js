@@ -13,50 +13,45 @@ filledHeart.innerHTML = `<svg
  class="svg-icon"><path fill="#fff" fill-rule="evenodd" d="M13.971 3.029a3.53 3.53 0 0 0-4.983 0L8 4.018l-.988-.989a3.53 3.53 0 0 0-4.983 0 3.54 3.54 0 0 0 0 4.991L8 14l5.972-5.98a3.54 3.54 0 0 0 0-4.991" clip-rule="evenodd"></path></svg>`;
 filledHeart.classList.add("mr-s");
 
-const breakingHeart = document.createElement("span");
-breakingHeart.innerHTML = `<svg
+const brokenHeart = document.createElement("span");
+brokenHeart.innerHTML = `<svg
     fill="none" viewBox="0 0 16 16" width="16" height="16"
     class="svg-icon">
     <path fill="#000" fill-rule="evenodd" d="M13.971 3.029a3.53 3.53 0 0 0-4.983 0L8 4.018l-.988-.989a3.53 3.53 0 0 0-4.983 0 3.54 3.54 0 0 0 0 4.991L8 14l5.972-5.98a3.54 3.54 0 0 0 0-4.991" clip-rule="evenodd"></path>
     <polyline points="6,4 8,8 7,10 9,12" stroke="#fff" stroke-width="1" fill="none"/>
 </svg>`;
-breakingHeart.classList.add("mr-s");
+brokenHeart.classList.add("mr-s");
 
 document.querySelectorAll("button[data-button]").forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.dataset.button) {
       case "like_article":
-        toggleLikeButtonState(button);
+        toggleLikeButtonState(button, likePageText, unlikePageText);
         break;
-      case "follow_author_michelle":
+      case "follow_author":
         toggleButtonState(button, followAuthorText, unfollowAuthorText);
         break;
-      case "follow_topic_tablet":
+      case "follow_topic":
         toggleButtonState(button, followTopicText, unfollowTopicText);
         break;
 
       default:
-        console.warn(
-          `Unbekannter Button-Typ: ${button.dataset.button}`
-        );
+        console.warn(`Unbekannter Button-Typ: ${button.dataset.button}`);
     }
   });
 });
 
-function toggleLikeButtonState(button) {
+function toggleLikeButtonState(button, activationText, inactivatingText) {
   const currentState = button.dataset.buttonState;
-  const likeCounter = document.querySelector("span[data-like-counter]");
+  const likeCounter = document.getElementById("data-like-counter");
   let currentCount = parseInt(likeCounter.textContent);
+
+  toggleButtonState(button, activationText, inactivatingText);
+
   if (currentState == "inactive") {
-    button.textContent = unlikePageText;
-    button.dataset.buttonState = "active";
-    button.classList.remove("primary");
-    button.prepend(breakingHeart);
+    button.prepend(brokenHeart);
     currentCount++;
   } else {
-    button.textContent = likePageText;
-    button.dataset.buttonState = "inactive";
-    button.classList.add("primary");
     button.prepend(filledHeart);
     currentCount--;
   }
@@ -65,13 +60,12 @@ function toggleLikeButtonState(button) {
 
 function toggleButtonState(button, activationText, inactivatingText) {
   const currentState = button.dataset.buttonState;
+  button.classList.toggle("primary");
   if (currentState == "active") {
     button.textContent = activationText;
     button.dataset.buttonState = "inactive";
-    button.classList.add("primary");
   } else {
     button.textContent = inactivatingText;
     button.dataset.buttonState = "active";
-    button.classList.remove("primary");
   }
 }
