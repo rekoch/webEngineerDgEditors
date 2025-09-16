@@ -1,3 +1,5 @@
+import { likeBlogPage, unlikeBlogPage } from "../../services/blogPageLikes.js";
+
 const likePageText = "Dieser Artikel gefällt mir!";
 const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
 
@@ -51,9 +53,11 @@ function toggleLikeButtonState(button, activationText, inactivatingText) {
   if (currentState == "inactive") {
     button.prepend(brokenHeart);
     currentCount++;
+    handleBlogPageLike();
   } else {
     button.prepend(filledHeart);
     currentCount--;
+    handleUnlikeBlogPage();
   }
   likeCounter.textContent = currentCount;
 }
@@ -68,4 +72,20 @@ function toggleButtonState(button, activationText, inactivatingText) {
     button.textContent = inactivatingText;
     button.dataset.buttonState = "active";
   }
+}
+
+async function handleBlogPageLike() {
+  await likeBlogPage(37832, document.getElementById("data-user-id").textContent).then((res) => {
+    console.log("Blog page liked successfully:", res);
+  }).catch((error) => {
+    console.error("Error liking the blog page:", error);
+  });
+}
+
+async function handleUnlikeBlogPage() {
+  await unlikeBlogPage(37832, document.getElementById("data-user-id").textContent).then((res) => {
+    console.log("Blog page unliked successfully:", res);
+  }).catch((error) => {
+    console.error("Error unliking the blog page:", error);
+  });
 }
