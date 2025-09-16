@@ -1,11 +1,9 @@
-import { Observer, ObserverEvents } from "../services/observer.js";
-const observer = new Observer();
+import { appObserver, ObserverEvents } from "../services/observer.js";
 
 function handleUserIdChange() {
     const userIdReadonly = document.getElementById('userIdReadonly');
     const userIdSet = document.getElementById('userIdSet');
     const newUserIdInput = document.getElementById('new-user-id');
-    const dataUserId = document.getElementById('data-user-id');
 
     userIdReadonly.addEventListener('click', function() {
         userIdReadonly.classList.add('invisible');
@@ -17,10 +15,9 @@ function handleUserIdChange() {
         clearTimeout(saveTimeout);
         saveTimeout = setTimeout(function() {
             const newUserId = newUserIdInput.value;
-            dataUserId.textContent = newUserId;
             userIdReadonly.classList.remove('invisible');
             userIdSet.classList.add('invisible');
-            observer.emit(ObserverEvents.USER_ID_CHANGED, newUserId);
+            appObserver.emit(ObserverEvents.USER_ID_CHANGED, { userId: newUserId });
         }, 3000); // waits 3 seconds after user stops typing
     });
 
@@ -28,20 +25,26 @@ function handleUserIdChange() {
         if (e.key === 'Enter') {
             clearTimeout(saveTimeout);
             const newUserId = newUserIdInput.value;
-            dataUserId.textContent = newUserId;
             userIdReadonly.classList.remove('invisible');
             userIdSet.classList.add('invisible');
-            observer.emit(ObserverEvents.USER_ID_CHANGED, newUserId);
+            appObserver.emit(ObserverEvents.USER_ID_CHANGED, { userId: newUserId });
         }
     });
 }
 
 function observeUserIdChange() {
-  observer.subscribe(ObserverEvents.USER_ID_CHANGED, (newUserId) => {
-    console.log("User ID changed to:", newUserId);
-    userIdSet.textContent = newUserId;
+  appObserver.subscribe(ObserverEvents.USER_ID_CHANGED, (data) => {
+    const userIdElement = document.getElementById('data-user-id');
+    if (userIdElement) {
+      userIdElement.textContent = data.userId;
+    }
   });
 }
 
-handleUserIdChange();
-observeUserIdChange();
+// Error-sichere Initialisierung
+try {
+  handleUserIdChange();
+  observeUserIdChange();
+} catch (error) {
+  console.error('Error initializing pageHead:', error);
+}

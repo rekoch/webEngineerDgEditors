@@ -11,6 +11,7 @@ var {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogPag
 /* GET likes count for a blog page */
 router.get("/:blogPageId", async function (req, res, next) {
   const blogPageId = req.params.blogPageId;
+  
   try {
     const likeCount = await getCountOfLikesByBlogPageId(blogPageId);
     res.send({ likeCount });

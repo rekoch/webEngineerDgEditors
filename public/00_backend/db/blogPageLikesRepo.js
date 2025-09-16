@@ -27,11 +27,13 @@ function getLikeStateByUserIdAndBlogPageId(userId, blogPageId) {
 
 function getCountOfLikesByBlogPageId(blogPageId) {
     return new Promise((resolve, reject) => {
-        db.get('SELECT COUNT(DISTINCT userId) as likeCount FROM blogPagesLikes WHERE blogPageId = ?', [blogPageId], (err, row) => {
+        const query = 'SELECT COUNT(DISTINCT userId) as likeCount FROM blogPagesLikes WHERE blogPageId = ?';       
+        db.get(query, [blogPageId], (err, row) => {
             if (err) {
+                console.error("Database error in getCountOfLikesByBlogPageId:", err);
                 reject(err);
             } else {
-                resolve(row.likeCount);
+                resolve(row ? row.likeCount : 0);
             }
         });
     });

@@ -9,9 +9,7 @@ export function getLikeStatePerBlogPage(blogPageId, userId) {
 }
 
 export function likeBlogPage(blogPageId, userId) {
-    return httpPost(`likes/${blogPageId}`, { blogPageId, userId }).then(() => {
-        return getLikesPerBlogPage(blogPageId);
-    });
+    return httpPost(`likes/${blogPageId}`, { blogPageId, userId });
 }
 
 export function unlikeBlogPage(blogPageId, userId) {
