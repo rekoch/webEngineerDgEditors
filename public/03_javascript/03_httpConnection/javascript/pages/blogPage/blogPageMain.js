@@ -1,17 +1,36 @@
-import './buttons.js';
-import './tables.js';
-import {getLikesPerBlogPage} from '../../services/blogPageLikes.js';
+import "./buttons.js";
+import "./tables.js";
+import {
+  getLikesPerBlogPage,
+  getLikeStatePerBlogPage,
+} from "../../services/blogPageLikes.js";
 
-const blogPageId = 37832; // Beispiel Blog-Seiten-ID
+import { Observer, ObserverEvents } from "../../services/observer.js";
+const observer = new Observer();
 
 function initBlogPage() {
-  getLikesPerBlogPage(blogPageId)
-    .then((data) => {
-      document.getElementById("data-like-counter").textContent = data.likeCount;
-    })
-    .catch((error) => {
-      console.error("Error loading likes:", error);
+  observeUserIdChange();
+  observeBlogPageIdChange();
+}
+
+function observeUserIdChange() {
+  observer.subscribe(ObserverEvents.USER_ID_CHANGED, (newUserId) => {
+    getLikeStatePerBlogPage(blogPageId, newUserId).then((data) => {
+       document.getElementById("data-like-counter").textContent = data.likeCount;
     });
+  });
+}
+
+function observeBlogPageIdChange() {
+  observer.subscribe(ObserverEvents.BLOG_PAGE_ID_CHANGED, (newBlogPageId) => {
+    getLikesPerBlogPage(newBlogPageId)
+      .then((data) => {
+        document.getElementById("data-like-counter").textContent = data.likeCount;
+      })
+      .catch((error) => {
+        console.error("Error loading likes:", error);
+      });
+  });
 }
 
 initBlogPage();

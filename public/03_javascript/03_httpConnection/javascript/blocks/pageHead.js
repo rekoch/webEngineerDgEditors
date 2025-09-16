@@ -1,3 +1,6 @@
+import { Observer, ObserverEvents } from "../services/observer.js";
+const observer = new Observer();
+
 function handleUserIdChange() {
     const userIdReadonly = document.getElementById('userIdReadonly');
     const userIdSet = document.getElementById('userIdSet');
@@ -17,6 +20,7 @@ function handleUserIdChange() {
             dataUserId.textContent = newUserId;
             userIdReadonly.classList.remove('invisible');
             userIdSet.classList.add('invisible');
+            observer.emit(ObserverEvents.USER_ID_CHANGED, newUserId);
         }, 3000); // waits 3 seconds after user stops typing
     });
 
@@ -27,8 +31,17 @@ function handleUserIdChange() {
             dataUserId.textContent = newUserId;
             userIdReadonly.classList.remove('invisible');
             userIdSet.classList.add('invisible');
+            observer.emit(ObserverEvents.USER_ID_CHANGED, newUserId);
         }
     });
 }
 
+function observeUserIdChange() {
+  observer.subscribe(ObserverEvents.USER_ID_CHANGED, (newUserId) => {
+    console.log("User ID changed to:", newUserId);
+    userIdSet.textContent = newUserId;
+  });
+}
+
 handleUserIdChange();
+observeUserIdChange();

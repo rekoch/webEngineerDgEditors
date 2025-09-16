@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var router = express.Router();
-var {getCountOfLikesByBlogPageId, likeBlogPageByUser, unlikeBlogPageByUser } = require("../db/blogPageLikesRepo");
+var {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogPageByUser, unlikeBlogPageByUser } = require("../db/blogPageLikesRepo");
 
 /* GET likes count for a blog page */
 router.get("/:blogPageId", async function (req, res, next) {
@@ -20,6 +20,20 @@ router.get("/:blogPageId", async function (req, res, next) {
     next(error);
   }
 });
+
+/* GET like state for a blog page by a user */
+router.get("/state/:blogPageId/user/:userId", async function (req, res, next) {
+  const blogPageId = req.params.blogPageId;
+  const userId = req.params.userId;
+  try {
+    const isLiked = await getLikeStateByUserIdAndBlogPageId(userId, blogPageId);
+    res.send({ liked: isLiked });
+  } catch (error) {
+    console.error("Error fetching like state:", error);
+    next(error);
+  }
+});
+
 
 /* POST like a blog page by a user */
 router.post("/:blogPageId", async function (req, res, next) {
