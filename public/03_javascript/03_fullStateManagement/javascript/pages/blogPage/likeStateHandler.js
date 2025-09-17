@@ -3,6 +3,7 @@ import {
   getLikeStatePerBlogPage,
   unlikeBlogPage,
   likeBlogPage,
+  getLikesPerBlogPage,
 } from "../../services/blogPageLikes.js";
 
 const likePageText = "Dieser Artikel gefällt mir!";
@@ -45,6 +46,7 @@ function observeBlogPageIdChange() {
     (data) => {
       blogPageId = data.blogPageId;
       setLikeButtonState(currentUserId);
+      setLikeCounter();
     },
     true
   );
@@ -58,6 +60,19 @@ function setLikeButtonState(userId) {
       })
       .catch((error) => {
         console.error("Error loading like state:", error);
+      });
+  }
+}
+
+function setLikeCounter() {
+  if (blogPageId) {
+    getLikesPerBlogPage(blogPageId)
+      .then((response) => {
+        document.getElementById("data-like-counter").textContent =
+          response.likeCount;
+      })
+      .catch((error) => {
+        console.error("Error loading likes:", error);
       });
   }
 }
@@ -77,10 +92,12 @@ function updateButtonUI(isLiked) {
 function observeLikeEvents() {
   appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, () => {
     updateButtonUI(true);
+    setLikeCounter();
   });
 
   appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, () => {
     updateButtonUI(false);
+    setLikeCounter();
   });
 }
 
