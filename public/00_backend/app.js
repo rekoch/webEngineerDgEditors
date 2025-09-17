@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const createError = require('http-errors');
-const { corsMiddleware } = require('./utils/corsMIddleware.js');
+const { corsMiddleware } = require('./utils/corsMiddleware.js');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -10,7 +10,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const likesRouter = require('./routes/likes');
 
 const app = express();
@@ -32,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route Handlers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/likes', likesRouter);
 
 // Global async error handler - fängt unbehandelte Promise rejections ab
