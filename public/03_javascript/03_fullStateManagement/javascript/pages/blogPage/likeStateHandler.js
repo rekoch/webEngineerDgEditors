@@ -70,6 +70,7 @@ function setLikeCounter() {
       .then((response) => {
         document.getElementById("data-like-counter").textContent =
           response.likeCount;
+          document.getElementById("like-counter").classList.remove("invisible");
       })
       .catch((error) => {
         console.error("Error loading likes:", error);
