@@ -1,11 +1,9 @@
 import "./buttons.js";
 import "./tables.js";
-import {
-  getLikesPerBlogPage
-} from "../../services/blogPageLikes.js";
 import "./likeStateHandler.js";
 
 import { appObserver, ObserverEvents } from "../../services/observer.js";
+import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 
 let blogPageId = 0;
 
@@ -20,22 +18,16 @@ function observeBlogPageIdChange() {
   appObserver.subscribe(ObserverEvents.BLOG_PAGE_ID_CHANGED, (data) => {
     const newBlogPageId = data.blogPageId;
     
-    // Nur laden wenn sich die blogPageId geändert hat
-    if (blogPageId !== newBlogPageId) {
       blogPageId = newBlogPageId;
-      isCountLoaded = false;
       
-      // Lade initiale Like-Anzahl nur einmal beim Seitenwechsel
       getLikesPerBlogPage(blogPageId)
         .then((response) => {
           document.getElementById("data-like-counter").textContent = response.likeCount;
-          isCountLoaded = true;
         })
         .catch((error) => {
           console.error("Error loading likes:", error);
         });
-    }
-  }, true);
+    }, true);
 }
 
 function observeLikeCountChanges() {

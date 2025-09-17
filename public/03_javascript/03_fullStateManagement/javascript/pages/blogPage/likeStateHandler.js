@@ -27,14 +27,13 @@ const likeButton = document.querySelector("button[data-button='like_article']");
 
 let blogPageId = 0;
 let currentUserId = 0;
-let isInitialized = false;
 
 function observeUserIdChange() {
   appObserver.subscribe(
     ObserverEvents.USER_ID_CHANGED,
     (data) => {
       currentUserId = data.userId;
-      checkInitialization();
+      setLikeButtonState(currentUserId);
     },
     true
   );
@@ -45,25 +44,22 @@ function observeBlogPageIdChange() {
     ObserverEvents.BLOG_PAGE_ID_CHANGED,
     (data) => {
       blogPageId = data.blogPageId;
-      isInitialized = false; // Reset bei neuer Seite
-      checkInitialization();
+      setLikeButtonState(currentUserId);
     },
     true
   );
 }
 
-function checkInitialization() {
-  // Nur einmal initialisieren wenn beide Werte gesetzt sind
-  if (!isInitialized && blogPageId && currentUserId) {
-    isInitialized = true;
-    setLikeButtonState(currentUserId);
+function setLikeButtonState(userId) {
+  if (blogPageId && userId) {
+    getLikeStatePerBlogPage(blogPageId, userId)
+      .then((response) => {
+        updateButtonUI(response.liked);
+      })
+      .catch((error) => {
+        console.error("Error loading like state:", error);
+      });
   }
-}
-
-function setLikeButtonState(currentUserId) {
-  getLikeStatePerBlogPage(blogPageId, currentUserId).then((data) => {
-    updateButtonUI(data.liked);
-  });
 }
 
 function updateButtonUI(isLiked) {
@@ -78,60 +74,36 @@ function updateButtonUI(isLiked) {
   }
 }
 
+function observeLikeEvents() {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, () => {
+    updateButtonUI(true);
+  });
+
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, () => {
+    updateButtonUI(false);
+  });
+}
+
 export async function toggleBlogPageLike() {
-  // Prüfe aktuellen Status nur einmal
   const currentState = await getLikeStatePerBlogPage(blogPageId, currentUserId);
-  
+
   try {
     if (currentState.liked) {
-      // Optimistisches UI-Update SOFORT
-      updateButtonUI(false);
-      appObserver.emit(ObserverEvents.BLOG_PAGE_UNLIKED, { 
-        blogPageId, 
-        userId: currentUserId 
-      });
-      
-      // API-Call danach
       await unlikeBlogPage(blogPageId, currentUserId);
-    } else {
-      // Optimistisches UI-Update SOFORT
-      updateButtonUI(true);
-      appObserver.emit(ObserverEvents.BLOG_PAGE_LIKED, { 
-        blogPageId, 
-        userId: currentUserId 
+      appObserver.emit(ObserverEvents.BLOG_PAGE_UNLIKED, {
+        blogPageId,
+        userId: currentUserId,
       });
-      
-      // API-Call danach
+    } else {
       await likeBlogPage(blogPageId, currentUserId);
+      appObserver.emit(ObserverEvents.BLOG_PAGE_LIKED, {
+        blogPageId,
+        userId: currentUserId,
+      });
     }
   } catch (error) {
     console.error("Error toggling like:", error);
-    // Bei Fehler: Button-State wiederherstellen durch Rollback
-    updateButtonUI(currentState.liked); // Zurück zum ursprünglichen State
-    // Rollback des Counters
-    if (currentState.liked) {
-      appObserver.emit(ObserverEvents.BLOG_PAGE_LIKED, { 
-        blogPageId, 
-        userId: currentUserId 
-      });
-    } else {
-      appObserver.emit(ObserverEvents.BLOG_PAGE_UNLIKED, { 
-        blogPageId, 
-        userId: currentUserId 
-      });
-    }
   }
-}
-
-function observeLikeEvents() {
-  // Reagiere auf Like/Unlike Events und aktualisiere nur den Button-State
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, () => {
-    updateButtonUI(true); // Verwende zentrale UI-Update Funktion
-  });
-  
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, () => {
-    updateButtonUI(false); // Verwende zentrale UI-Update Funktion
-  });
 }
 
 observeUserIdChange();
