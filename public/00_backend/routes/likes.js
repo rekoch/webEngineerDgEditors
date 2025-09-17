@@ -1,26 +1,15 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
+const { createRouter } = require("../utils/routerBase");
+const {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogPageByUser, unlikeBlogPageByUser } = require("../db/blogPageLikesRepo");
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-var router = express.Router();
-var {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogPageByUser, unlikeBlogPageByUser } = require("../db/blogPageLikesRepo");
+const router = createRouter();
 
 /* GET likes count for a blog page */
-router.get("/:blogPageId", async function (req, res, next) {
+router.get("/:blogPageId", asyncHandler(async (req, res) => {
   const blogPageId = req.params.blogPageId;
+  const likeCount = await getCountOfLikesByBlogPageId(blogPageId);
   
-  try {
-    const likeCount = await getCountOfLikesByBlogPageId(blogPageId);
-    res.send({ likeCount });
-  } catch (error) {
-    console.error("Error fetching likes:", error);
-    // Fehler an Express Error Handler weiterleiten
-    next(error);
-  }
-});
+  responseHelper.success(res, { likeCount }, 'Likes fetched successfully');
+}));
 
 /* GET like state for a blog page by a user */
 router.get("/state/:blogPageId/user/:userId", async function (req, res, next) {
