@@ -1,4 +1,4 @@
-const { createRouter, errorHandler } = require("../utils/routerBase");
+const { createRouter, asyncHandler } = require("../utils/routerBase");
 const {
   getFollowedAuthorsByUserId,
   getIsFollowingAuthor,
@@ -9,58 +9,37 @@ const {
 const router = createRouter();
 
 /* GET followed authors for a user */
-router.get("/user/:userId", async function (req, res, next) {
+router.get("/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-
-  try {
-    const followedAuthors = await getFollowedAuthorsByUserId(userId);
-    res.send({ followedAuthors });
-  } catch (error) {
-    console.error("Error fetching followed authors:", error);
-    // Fehler an Express Error Handler weiterleiten
-    next(error);
-  }
-});
+  const followedAuthors = await getFollowedAuthorsByUserId(userId);
+  res.send({ followedAuthors });
+}));
 
 /* GET is author followed by user */
-router.get(":authorEmail/user/:userId", async function (req, res, next) {
+router.get("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-  const authorEmail = req.params.authorEmail;
+  const topicName = req.params.topicName;
 
-  try {
-    const isFollowedAuthor = await getIsFollowingAuthor(authorEmail, userId);
-    res.send({ isFollowedAuthor });
-  } catch (error) {
-    console.error("Error fetching followed authors:", error);
-    // Fehler an Express Error Handler weiterleiten
-    next(error);
-  }
-});
+  const isFollowedTopic = await getIsFollowingAuthor(topicName, userId);
+  res.send({ isFollowedTopic });
+}));
 
-/* POST follow an author */
-router.post("/:authorEmail/user/:userId", async function (req, res, next) {
+/* POST follow a topic */
+router.post("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-  const authorEmail = req.params.authorEmail;
-  try {
-    const result = await followAuthorByUser(authorEmail, userId);
-    res.send(result);
-  } catch (error) {
-    console.error("Error following author:", error);
-    next(error);
-  }
-});
+  const topicName = req.params.topicName;
 
-/* DELETE unfollow an author */
-router.delete("/:authorEmail/user/:userId", async function (req, res, next) {
+  const result = await followAuthorByUser(topicName, userId);
+  res.send(result);
+}));
+
+/* DELETE unfollow a topic */
+router.delete("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-  const authorEmail = req.params.authorEmail;
-  try {
-    const result = await unfollowAuthorByUser(authorEmail, userId);
-    res.send(result);
-  } catch (error) {
-    console.error("Error unfollowing author:", error);
-    next(error);
-  }
-});
+  const topicName = req.params.topicName;
+
+  const result = await unfollowAuthorByUser(topicName, userId);
+  res.send(result);
+}));
 
 module.exports = router;

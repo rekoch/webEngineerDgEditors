@@ -1,4 +1,4 @@
-const { createRouter } = require("../utils/routerBase");
+const { createRouter, asyncHandler } = require("../utils/routerBase");
 var router = createRouter();
 
 var {
@@ -9,58 +9,37 @@ var {
 } = require("../db/authorFollowRepo");
 
 /* GET followed authors for a user */
-router.get("/user/:userId", async function (req, res, next) {
+router.get("/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-
-  try {
-    const followedAuthors = await getFollowedAuthorsByUserId(userId);
-    res.send({ followedAuthors });
-  } catch (error) {
-    console.error("Error fetching followed authors:", error);
-    // Fehler an Express Error Handler weiterleiten
-    next(error);
-  }
-});
+  const followedAuthors = await getFollowedAuthorsByUserId(userId);
+  res.send({ followedAuthors });
+}));
 
 /* GET is author followed by user */
-router.get(":authorEmail/user/:userId", async function (req, res, next) {
+router.get("/:authorEmail/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const authorEmail = req.params.authorEmail;
-
-  try {
-    const isFollowedAuthor = await getIsFollowingAuthor(authorEmail, userId);
-    res.send({ isFollowedAuthor });
-  } catch (error) {
-    console.error("Error fetching followed authors:", error);
-    // Fehler an Express Error Handler weiterleiten
-    next(error);
-  }
-});
+  
+  const isFollowedAuthor = await getIsFollowingAuthor(authorEmail, userId);
+  res.send({ isFollowedAuthor });
+}));
 
 /* POST follow an author */
-router.post("/:authorEmail/user/:userId", async function (req, res, next) {
+router.post("/:authorEmail/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const authorEmail = req.params.authorEmail;
-  try {
-    const result = await followAuthorByUser(authorEmail, userId);
-    res.send(result);
-  } catch (error) {
-    console.error("Error following author:", error);
-    next(error);
-  }
-});
+  
+  const result = await followAuthorByUser(authorEmail, userId);
+  res.send(result);
+}));
 
 /* DELETE unfollow an author */
-router.delete("/:authorEmail/user/:userId", async function (req, res, next) {
+router.delete("/:authorEmail/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const authorEmail = req.params.authorEmail;
-  try {
-    const result = await unfollowAuthorByUser(authorEmail, userId);
-    res.send(result);
-  } catch (error) {
-    console.error("Error unfollowing author:", error);
-    next(error);
-  }
-});
+  
+  const result = await unfollowAuthorByUser(authorEmail, userId);
+  res.send(result);
+}));
 
 module.exports = router;

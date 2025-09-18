@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const { createRouter } = require("../utils/routerBase");
+
+const router = createRouter();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
