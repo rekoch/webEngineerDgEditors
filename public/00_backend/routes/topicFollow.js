@@ -1,26 +1,27 @@
 const { createRouter, asyncHandler } = require("../utils/routerBase");
+
 const {
-  getFollowedAuthorsByUserId,
-  getIsFollowingAuthor,
-  followAuthorByUser,
-  unfollowAuthorByUser,
-} = require("../db/authorFollowRepo");
+    getFollowedTopicsByUserId,
+    getIsUserFollowingTopic,
+    followTopicByUser,
+    unfollowTopicByUser
+} = require("../db/topicFollowRepo");
 
 const router = createRouter();
 
-/* GET followed authors for a user */
+/* GET followed topics for a user */
 router.get("/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
-  const followedAuthors = await getFollowedAuthorsByUserId(userId);
-  res.send({ followedAuthors });
+  const followedTopics = await getFollowedTopicsByUserId(userId);
+  res.send({ followedTopics });
 }));
 
-/* GET is author followed by user */
+/* GET is topic followed by user */
 router.get("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const topicName = req.params.topicName;
 
-  const isFollowedTopic = await getIsFollowingAuthor(topicName, userId);
+  const isFollowedTopic = await getIsUserFollowingTopic(topicName, userId);
   res.send({ isFollowedTopic });
 }));
 
@@ -29,7 +30,7 @@ router.post("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const topicName = req.params.topicName;
 
-  const result = await followAuthorByUser(topicName, userId);
+  const result = await followTopicByUser(topicName, userId);
   res.send(result);
 }));
 
@@ -38,7 +39,7 @@ router.delete("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const topicName = req.params.topicName;
 
-  const result = await unfollowAuthorByUser(topicName, userId);
+  const result = await unfollowTopicByUser(topicName, userId);
   res.send(result);
 }));
 
