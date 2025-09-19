@@ -6,7 +6,8 @@ const corsMiddleware = (req, res, next) => {
       : process.env.FRONTEND_URL_LOCAL; // Entwicklungs-Domain
   const origin = req.headers.origin;
 
-  if (!origin || origin === allowedOrigin) {
+console.log("cors allowedOrigin:", allowedOrigin);
+  if (origin && origin === allowedOrigin) {
     res.header("Access-Control-Allow-Origin", origin);
   } else {
     console.warn(`Blocked CORS request from origin: ${origin}`); // Warnung für blockierte Anfragen
