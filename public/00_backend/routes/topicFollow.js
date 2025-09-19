@@ -29,7 +29,7 @@ router.get("/:topicName/user/:userId", asyncHandler(async (req, res) => {
 router.post("/:topicName/user/:userId", asyncHandler(async (req, res) => {
   const userId = req.params.userId;
   const topicName = req.params.topicName;
-
+  
   const result = await followTopicByUser(topicName, userId);
   res.send(result);
 }));

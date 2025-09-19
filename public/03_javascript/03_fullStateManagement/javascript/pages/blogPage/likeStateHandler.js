@@ -32,9 +32,9 @@ let currentUserId = 0;
 function observeUserIdChange() {
   appObserver.subscribe(
     ObserverEvents.USER_ID_CHANGED,
-    (data) => {
+    async (data) => {
       currentUserId = data.userId;
-      setLikeButtonState(currentUserId);
+      await setLikeButtonState(currentUserId);
     },
     true
   );
@@ -43,38 +43,36 @@ function observeUserIdChange() {
 function observeBlogPageIdChange() {
   appObserver.subscribe(
     ObserverEvents.BLOG_PAGE_ID_CHANGED,
-    (data) => {
+    async (data) => {
       blogPageId = data.blogPageId;
-      setLikeButtonState(currentUserId);
-      setLikeCounter();
+      await setLikeButtonState(currentUserId);
+      await setLikeCounter();
     },
     true
   );
 }
 
-function setLikeButtonState(userId) {
+async function setLikeButtonState(userId) {
   if (blogPageId && userId) {
-    getLikeStatePerBlogPage(blogPageId, userId)
-      .then((response) => {
-        updateButtonUI(response.liked);
-      })
-      .catch((error) => {
-        console.error("Error loading like state:", error);
-      });
+    try {
+      const response = await getLikeStatePerBlogPage(blogPageId, userId);
+      updateButtonUI(response.liked);
+    } catch (error) {
+      console.error("Error loading like state:", error);
+    }
   }
 }
 
-function setLikeCounter() {
+async function setLikeCounter() {
   if (blogPageId) {
-    getLikesPerBlogPage(blogPageId)
-      .then((response) => {
-        document.getElementById("data-like-counter").textContent =
-          response.likeCount;
-          document.getElementById("like-counter").classList.remove("invisible");
-      })
-      .catch((error) => {
-        console.error("Error loading likes:", error);
-      });
+    try {
+      const response = await getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent =
+        response.likeCount;
+        document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
   }
 }
 
@@ -91,14 +89,14 @@ function updateButtonUI(isLiked) {
 }
 
 function observeLikeEvents() {
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, () => {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, async () => {
     updateButtonUI(true);
-    setLikeCounter();
+    await setLikeCounter();
   });
 
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, () => {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, async () => {
     updateButtonUI(false);
-    setLikeCounter();
+    await setLikeCounter();
   });
 }
 

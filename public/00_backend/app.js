@@ -30,8 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route Handlers
-app.use('/', indexRouter);
-app.use('/likes', likesRouter);
+const { routeHandler } = require('./routes/routeHandlers');
+routeHandler(app);
 
 // Global async error handler - fängt unbehandelte Promise rejections ab
 process.on('unhandledRejection', (reason, promise) => {

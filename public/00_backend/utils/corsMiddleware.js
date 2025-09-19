@@ -5,12 +5,15 @@ const corsMiddleware = (req, res, next) => {
       ? process.env.FRONTEND_URL_PRODUCTION // Produktions-Domain
       : process.env.FRONTEND_URL_LOCAL; // Entwicklungs-Domain
   const origin = req.headers.origin;
-
-console.log("cors allowedOrigin:", allowedOrigin);
-  if (origin && origin === allowedOrigin) {
+ 
+  if (!origin) {
+    // Erlaube Requests ohne Origin (file://, same-origin, Postman, etc.)
+    res.header("Access-Control-Allow-Origin", "*");
+  } else if (origin === allowedOrigin) {
+    // Erlaube spezifische erlaubte Origins
     res.header("Access-Control-Allow-Origin", origin);
   } else {
-    console.warn(`Blocked CORS request from origin: ${origin}`); // Warnung für blockierte Anfragen
+    console.warn(`CORS: Blocked request from origin: ${origin}`);
     return res.status(403).send("CORS policy: This origin is not allowed.");
   }
 

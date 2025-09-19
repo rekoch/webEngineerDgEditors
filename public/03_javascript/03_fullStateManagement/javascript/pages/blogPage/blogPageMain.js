@@ -15,18 +15,17 @@ function initBlogPage() {
 let isCountLoaded = false;
 
 function observeBlogPageIdChange() {
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_ID_CHANGED, (data) => {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_ID_CHANGED, async (data) => {
     const newBlogPageId = data.blogPageId;
     
       blogPageId = newBlogPageId;
       
-      getLikesPerBlogPage(blogPageId)
-        .then((response) => {
-          document.getElementById("data-like-counter").textContent = response.likeCount;
-        })
-        .catch((error) => {
-          console.error("Error loading likes:", error);
-        });
+      try {
+        const response = await getLikesPerBlogPage(blogPageId);
+        document.getElementById("data-like-counter").textContent = response.likeCount;
+      } catch (error) {
+        console.error("Error loading likes:", error);
+      }
     }, true);
 }
 
