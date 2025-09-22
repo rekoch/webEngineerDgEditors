@@ -1,0 +1,3 @@
+Unter Services findest du alle Implementationen, die für den Call zum Backend zur Verfügung stehen. Damit die jeweiligen Calls klappen, muss dein Backend gestartet sein. Siehe dazu im Verzeichnis `00_backend`
+
+Zudem bietet der `observer.js` die Möglichkeit, Events zu versenden und empfangen. Damit kann Applikations-Weit sichergestellt werden, dass Änderungen überall dort aktualisiert werden, wo sich die Daten / Zustand geändert hat, ohne die ganze Page neu laden zu müssen.
