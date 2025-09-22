@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const createError = require('http-errors');
 const { corsMiddleware } = require('./utils/corsMiddleware.js');
+const { swaggerRouter } = require('./utils/swagger.js');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -21,6 +22,9 @@ app.set('view engine', 'jade');
 // CORS Middleware
 app.use(cors());
 app.use(corsMiddleware);
+
+// Swagger API Documentation
+app.use(swaggerRouter);
 
 // Standard Middleware
 app.use(logger('dev'));

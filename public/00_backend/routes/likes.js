@@ -3,14 +3,68 @@ const {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogP
 
 const router = createRouter();
 
-/* GET likes count for a blog page */
+/**
+ * @swagger
+ * /likes/{blogPageId}:
+ *   get:
+ *     summary: Get likes count for a blog page
+ *     tags: [Likes]
+ *     parameters:
+ *       - in: path
+ *         name: blogPageId
+ *         required: true
+ *         description: The ID of the blog page
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The like count for the blog page
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 likeCount:
+ *                   type: integer
+ *                   example: 42
+ */
 router.get("/:blogPageId", asyncHandler(async (req, res) => {
   const blogPageId = req.params.blogPageId;
   const likeCount = await getCountOfLikesByBlogPageId(blogPageId);
   res.send({ likeCount });
 }));
 
-/* GET like state for a blog page by a user */
+/**
+ * @swagger
+ * /likes/state/{blogPageId}/user/{userId}:
+ *   get:
+ *     summary: Check if user has liked a blog page
+ *     tags: [Likes]
+ *     parameters:
+ *       - in: path
+ *         name: blogPageId
+ *         required: true
+ *         description: The ID of the blog page
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         description: The ID of the user
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The like state for the user and blog page
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 liked:
+ *                   type: boolean
+ *                   example: true
+ */
 router.get("/state/:blogPageId/user/:userId", asyncHandler(async (req, res) => {
   const blogPageId = req.params.blogPageId;
   const userId = req.params.userId;
@@ -19,7 +73,43 @@ router.get("/state/:blogPageId/user/:userId", asyncHandler(async (req, res) => {
   res.send({ liked: isLiked });
 }));
 
-/* POST like a blog page by a user */
+/**
+ * @swagger
+ * /likes/{blogPageId}:
+ *   post:
+ *     summary: Like a blog page
+ *     tags: [Likes]
+ *     parameters:
+ *       - in: path
+ *         name: blogPageId
+ *         required: true
+ *         description: The ID of the blog page to like
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - blogPageId
+ *               - userId
+ *             properties:
+ *               blogPageId:
+ *                 type: string
+ *                 example: "123"
+ *               userId:
+ *                 type: string
+ *                 example: "456"
+ *     responses:
+ *       200:
+ *         description: Like operation result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
 router.post("/:blogPageId", asyncHandler(async (req, res) => {
   const blogPageId = req.body.blogPageId;
   const userId = req.body.userId;
@@ -29,7 +119,43 @@ router.post("/:blogPageId", asyncHandler(async (req, res) => {
   res.send(result);
 }));
 
-/* DELETE unlike a blog page by a user */
+/**
+ * @swagger
+ * /likes/{blogPageId}:
+ *   delete:
+ *     summary: Unlike a blog page
+ *     tags: [Likes]
+ *     parameters:
+ *       - in: path
+ *         name: blogPageId
+ *         required: true
+ *         description: The ID of the blog page to unlike
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - blogPageId
+ *               - userId
+ *             properties:
+ *               blogPageId:
+ *                 type: string
+ *                 example: "123"
+ *               userId:
+ *                 type: string
+ *                 example: "456"
+ *     responses:
+ *       200:
+ *         description: Unlike operation result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
 router.delete("/:blogPageId", asyncHandler(async (req, res) => {
   const blogPageId = req.body.blogPageId;
   const userId = req.body.userId;
