@@ -27,5 +27,5 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 });
 
 function notYetImplemented() {
-  alert("Diese Funktion ist noch nicht implementiert.");
+  console.warn("Diese Funktion ist noch nicht implementiert.");
 }
