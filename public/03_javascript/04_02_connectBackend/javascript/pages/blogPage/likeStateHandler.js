@@ -18,6 +18,10 @@ Im Observer findest du zudem zwei weitere Events, die du verwenden kannst um den
 */
 
 import { appObserver, ObserverEvents } from "../../services/observer.js";
+import {
+  getLikesPerBlogPage
+} from "../../services/blogPageLikes.js";
+
 
 const likePageText = "Dieser Artikel gefällt mir!";
 const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
@@ -61,11 +65,42 @@ function observeBlogPageIdChange() {
       blogPageId = data.blogPageId;
       console.log("Current Blog Page ID in likeStateHandler:", blogPageId);
       // Hier kannst du weitere Aktionen hinzufügen, die bei einer Änderung der Blog-Seiten-ID ausgeführt werden sollen
+      setLikeCounter();
     },
     true
   );
 }
 
+function observeLikeEvents() {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, async () => {
+    console.log(
+      "Current Blog Page ID was liked in likeStateHandler:",
+      blogPageId
+    );
+    // hier kannst du darauf reagieren, wenn die aktuelle Seite geliked wurde
+  });
+
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, async () => {
+    console.log(
+      "Current Blog Page ID was unliked in likeStateHandler:",
+      blogPageId
+    );
+    // hier kannst du darauf reagieren, wenn die aktuelle Seite unliked wurde
+  });
+}
+
+async function setLikeCounter() {
+  if (blogPageId) {
+    try {
+      const response = await getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent =
+        response.likeCount;
+      document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
+  }
+}
 
 observeUserIdChange();
 observeBlogPageIdChange();

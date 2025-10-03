@@ -66,6 +66,17 @@ function observeBlogPageIdChange() {
   );
 }
 
+function observeLikeEvents() {
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, async () => {
+    console.log("Current Blog Page ID was liked in likeStateHandler:", blogPageId);
+    // hier kannst du darauf reagieren, wenn die aktuelle Seite geliked wurde
+  });
+
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, async () => {
+    console.log("Current Blog Page ID was unliked in likeStateHandler:", blogPageId);
+    // hier kannst du darauf reagieren, wenn die aktuelle Seite unliked wurde
+  });
+}
 
 observeUserIdChange();
 observeBlogPageIdChange();
