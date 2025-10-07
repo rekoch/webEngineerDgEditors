@@ -12,9 +12,6 @@ Die Observer-Funktionen sind bereits implementiert und reagieren auf die Events 
 
 Ausserdem wurden die Texte für die Buttons bereits definiert welche du verwenden kannst um den Button-Text entsprechend dem Like-Zustand zu aktualisieren.
 
-Im Observer findest du zudem zwei weitere Events, die du verwenden kannst um den Like-Counter auf der Seite aktuell zu halten:
-- BLOG_PAGE_LIKED
-- BLOG_PAGE_UNLIKED
 */
 
 import { appObserver, ObserverEvents } from "../../services/observer.js";
@@ -36,8 +33,6 @@ brokenHeart.innerHTML = `<svg
     <polyline points="6,4 8,8 7,10 9,12" stroke="#fff" stroke-width="1" fill="none"/>
 </svg>`;
 brokenHeart.classList.add("mr-s");
-
-const likeButton = document.querySelector("button[data-button='like_article']");
 
 let blogPageId = 0;
 let currentUserId = 0;
@@ -67,14 +62,12 @@ function observeBlogPageIdChange() {
 }
 
 function observeLikeEvents() {
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKED, async () => {
-    console.log("Current Blog Page ID was liked in likeStateHandler:", blogPageId);
-    // hier kannst du darauf reagieren, wenn die aktuelle Seite geliked wurde
-  });
-
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_UNLIKED, async () => {
-    console.log("Current Blog Page ID was unliked in likeStateHandler:", blogPageId);
-    // hier kannst du darauf reagieren, wenn die aktuelle Seite unliked wurde
+  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKE_CHANGED, async () => {
+    console.log(
+      "Current Blog Page ID like changed in likeStateHandler:",
+      blogPageId
+    );
+    // hier kannst du darauf reagieren, wenn der Like State geändert wurde
   });
 }
 

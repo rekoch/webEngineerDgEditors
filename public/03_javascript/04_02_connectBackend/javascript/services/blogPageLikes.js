@@ -4,7 +4,7 @@ export function getLikesPerBlogPage(blogPageId) {
     return httpGet(`likes/${blogPageId}`);
 }
 
-export function getLikeStatePerBlogPage(blogPageId, userId) {
+export function getIsLikingBlogPage(blogPageId, userId) {
     return httpGet(`likes/state/${blogPageId}/user/${userId}`);
 }
 

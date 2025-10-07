@@ -11,14 +11,15 @@ Dazu wirst du die Observer-Funktionalität nutzen, um auf Änderungen der Benutz
 Die Observer-Funktionen sind bereits implementiert und reagieren auf die Events USER_ID_CHANGED und BLOG_PAGE_ID_CHANGED.
 
 Ausserdem wurden die Texte für die Buttons bereits definiert welche du verwenden kannst um den Button-Text entsprechend dem Like-Zustand zu aktualisieren.
-
 */
 
 import { appObserver, ObserverEvents } from "../../services/observer.js";
 import {
-  getLikesPerBlogPage
+  getLikesPerBlogPage,
+  getIsLikingBlogPage,
+  likeBlogPage,
+  unlikeBlogPage,
 } from "../../services/blogPageLikes.js";
-
 
 const likePageText = "Dieser Artikel gefällt mir!";
 const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
@@ -65,13 +66,41 @@ function observeBlogPageIdChange() {
 }
 
 function observeLikeEvents() {
-  appObserver.subscribe(ObserverEvents.BLOG_PAGE_LIKE_CHANGED, async () => {
-    console.log(
-      "Current Blog Page ID was like changed in likeStateHandler:",
-      blogPageId
-    );
-    // hier kannst du darauf reagieren, wenn der Like State geändert wurde
+  appObserver.subscribe(ObserverEvents.LIKE_BUTTON_CLICKED, async () => {
+    toggleLikeState();
   });
+}
+
+async function toggleLikeState() {
+  try {
+    const likeStatus = await checkUserLikeStatus(blogPageId, currentUserId);
+    if (!likeStatus.success) {
+      console.error("Could not determine like status:", likeStatus.error);
+      return;
+    }
+    if (likeStatus.liked) {
+      await unlikeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(false);
+    } else {
+      await likeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(true);
+    }
+    setLikeCounter();
+  } catch (error) {
+    console.error("Error toggling like state:", error);
+  }
+}
+
+async function checkUserLikeStatus() {
+  try {
+    const response = await getIsLikingBlogPage(blogPageId, currentUserId);
+    if (response === undefined || response === null) {
+      return { success: false, liked: false, error: "No response received" };
+    }
+    return { success: true, liked: response.liked, error: null };
+  } catch (error) {
+    return { success: false, liked: false, error: error.message };
+  }
 }
 
 async function setLikeCounter() {
@@ -84,6 +113,21 @@ async function setLikeCounter() {
     } catch (error) {
       console.error("Error loading likes:", error);
     }
+  }
+}
+
+function updateLikeButtonUi(isLiked) {
+  const likeButton = document.querySelector(
+    "button[data-button='like_article']"
+  );
+  if (isLiked) {
+    likeButton.classList.remove("primary");
+    likeButton.innerHTML = unlikePageText;
+    likeButton.prepend(brokenHeart.cloneNode(true));
+  } else {
+    likeButton.classList.add("primary");
+    likeButton.innerHTML = likePageText;
+    likeButton.prepend(filledHeart.cloneNode(true));
   }
 }
 

@@ -1,0 +1,20 @@
+/* general spaces variables */
+:root {
+  --space-xxs: 4px;
+  --space-xs: 12px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 40px;
+  --space-xxl: 64px;
+}
+
+/*colors*/
+:root {
+ --galaxus-brown: #c4a277;
+ --galaxus-yellow: #ffc32d;
+ --galaxus-red: #f67858;
+ --galaxus-green: #84d160;
+ --galaxus-purple: #b384d3;
+ --galaxus-blue: #72c7f9;
+}
