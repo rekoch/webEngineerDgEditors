@@ -47,8 +47,13 @@ function observeUserIdChange() {
     ObserverEvents.USER_ID_CHANGED,
     async (data) => {
       currentUserId = data.userId;
-      console.log("Current User ID in likeStateHandler:", currentUserId);
-      // Hier kannst du weitere Aktionen hinzufügen, die bei einer Änderung der Benutzer-ID ausgeführt werden sollen
+      const likeStatus = await checkUserLikeStatus();
+      if (likeStatus.success) {
+        updateLikeButtonUi(likeStatus.liked);
+        setLikeCounter();
+      } else {
+        console.error("Could not fetch like status:", likeStatus.error);
+      }
     },
     true
   );
