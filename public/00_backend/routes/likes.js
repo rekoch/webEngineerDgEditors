@@ -1,5 +1,5 @@
 const express = require("express");
-const { asyncHandler } = require("../utils/routerBase");
+const { asyncHandler } = require("../utils/helper");
 const {getCountOfLikesByBlogPageId, getLikeStateByUserIdAndBlogPageId, likeBlogPageByUser, unlikeBlogPageByUser } = require("../db/blogPageLikesRepo");
 
 const router = express.Router();

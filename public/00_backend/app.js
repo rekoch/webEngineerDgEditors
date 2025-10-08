@@ -24,7 +24,7 @@ app.use(corsMiddleware);
 app.use(swaggerRouter);
 
 // Standard Middleware
-app.use(logger('dev'));
+app.use(logger('dev')); // Morgan Logger
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
