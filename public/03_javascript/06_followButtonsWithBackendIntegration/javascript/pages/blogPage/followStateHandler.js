@@ -134,7 +134,7 @@ async function toggleAuthorFollowState(btn) {
 }
 
 async function setTopicFollowButtonState(userId) {
-  if (userId && topicsOfCurrentBlogPage.length > 0) {
+  if (userId) {
     const buttons = document.querySelectorAll(
       "button[data-button='follow_topic']"
     );
@@ -152,12 +152,13 @@ async function setTopicFollowButtonState(userId) {
 }
 
 async function setAuthorFollowButtonState(userId) {
-  if (userId && authorOfCurrentBlogPage) {
+  if (userId) {
     const btn = document.querySelector("button[data-button='follow_author']");
+    const authorEmail = btn.dataset.authorEmail;
     if (btn) {
       try {
         const response = await getIsFollowingAuthor(
-          authorOfCurrentBlogPage,
+          authorEmail,
           userId
         );
         updateAuthorFollowButtonUI(btn, response.isFollowedAuthor);

@@ -47,13 +47,7 @@ function observeUserIdChange() {
     ObserverEvents.USER_ID_CHANGED,
     async (data) => {
       currentUserId = data.userId;
-      const likeStatus = await checkUserLikeStatus();
-      if (likeStatus.success) {
-        updateLikeButtonUi(likeStatus.liked);
-        setLikeCounter();
-      } else {
-        console.error("Could not fetch like status:", likeStatus.error);
-      }
+      initLikeState();
     },
     true
   );
@@ -64,10 +58,20 @@ function observeBlogPageIdChange() {
     ObserverEvents.BLOG_PAGE_ID_CHANGED,
     async (data) => {
       blogPageId = data.blogPageId;
-      setLikeCounter();
+      await initLikeState();
     },
     true
   );
+}
+
+async function initLikeState() {
+  const likeStatus = await checkUserLikeStatus();
+  if (likeStatus.success) {
+    updateLikeButtonUi(likeStatus.liked);
+    setLikeCounter();
+  } else {
+    console.error("Could not fetch like status:", likeStatus.error);
+  }
 }
 
 function observeLikeEvents() {
