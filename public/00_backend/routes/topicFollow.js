@@ -1,4 +1,5 @@
-const { createRouter, asyncHandler } = require("../utils/routerBase");
+const express = require("express");
+const { asyncHandler } = require("../utils/routerBase");
 
 const {
     getFollowedTopicsByUserId,
@@ -7,7 +8,7 @@ const {
     unfollowTopicByUser
 } = require("../db/topicFollowRepo");
 
-const router = createRouter();
+const router = express.Router();
 
 /**
  * @swagger

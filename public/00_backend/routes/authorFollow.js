@@ -1,5 +1,6 @@
-const { createRouter, asyncHandler } = require("../utils/routerBase");
-var router = createRouter();
+const express = require("express");
+const { asyncHandler } = require("../utils/routerBase");
+const router = express.Router();
 
 var {
   getFollowedAuthorsByUserId,

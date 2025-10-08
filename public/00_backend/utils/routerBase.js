@@ -7,11 +7,8 @@ const bodyParser = require("body-parser");
  * @param {boolean} options.enableLogging - Request-Logging aktivieren (default: true)
  * @returns {express.Router} Konfigurierter Router mit Standard-Middleware
  */
-function createRouter(options = {}) {
-  const { enableLogging = true} = options;
-  
-  const router = express.Router();
-  
+function enableLogging(router) {
+    
   // Standard-Middleware für alle Router
   router.use(bodyParser.urlencoded({ extended: false }));
   router.use(bodyParser.json());
@@ -23,8 +20,6 @@ function createRouter(options = {}) {
       next();
     });
   }
-  
-  return router;
 }
 
 /**
@@ -37,6 +32,6 @@ function asyncHandler(fn) {
 }
 
 module.exports = {
-  createRouter,
+  enableLogging,
   asyncHandler,
 };
