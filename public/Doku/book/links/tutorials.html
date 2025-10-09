@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Debug JS mit Chrome - Learn To Build A Web Page</title>
+        <title>Tutorials - Learn To Build A Web Page</title>
 
 
         <!-- Custom HTML head -->
@@ -175,80 +175,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="debug-js-mit-chrome"><a class="header" href="#debug-js-mit-chrome">Debug JS mit Chrome</a></h1>
-<p>Die Methode welche den einfachsten Zugang gewährt, ist der Browser selbst. Denn der Browser führt direkt JavaScript aus und unterstützt dich mit vielen sinnvollen Tools.</p>
-<pre><code>1. Öffne die Seite https://web-eng-dg.web.app/03_javascript/02_buttonReactive/index.html mit Chrome
-2. Öffne die Dev Tools (F12, rechtsklick im HTML -&gt; untersuchen)
-3. Scrolle zu den Buttons am Ende der Seite
-4. 
-5. Drücke bspw. auf den "Dieser Artikel gefällt mir!" Button. Du siehst, dass sich die Anzeige ändert und bspw. von "59 auf 60" bzw. zurück auf "59" wechselst
-6. Damit wir den dahinter liegenden JavaScript Code debuggen können, müsstest du schon fast wissen wie der heisst. Du kannst auch auf gut Glück die Dateien betrachten.
-7. Wähle im Dev-Tool das Tab "sources"
-8. 
-
-9. 
-10. In diesem Fall haben wir "Glück" und es gibt den Folder "javascript" und die Datei "buttons.js" die es wohl ist. Klicke die Datei an. Der Source-Code wird auf der rechten Seite angezeigt
-11. 
-12. Wenn du weiter schaust findest du die funktion "toggleLikeButtonState" was wohl unser gesuchtes Stück code sein dürfte. Klicke danach links beim Zeilenmarker mit der Maus. Du solltest eine Markierung kriegen.
-13. Drücke jetzt nochmals auf den like button. Wenn es geklappt hat, siehst du im Dev Tool nun die Stelle umrandet. Zudem etwas weiter rechts noch die ganzen debug tools. Auf der Seite selbst steht ebenfalls eine Info.
-14. 
-
-15. 
-16. Mit F10 oder dem button kannst du nun einzeln weiter gehen. Im Code kannst du bei fast allen Elementen mit der Maus darüber fahren und siehst die Details dazu
-17. Wir haben aktuell am Anfang gestoppt. Daher ist "currentState" noch nicht gefüllt
-18. 
-
-19. 
-20. Drücke jetzt auf den Button oder F10 einmal
-21. 
-22. Jetzt siehst du das Zeiger eins weiter gewandert ist und die Variable "currentState" den aktuellen Wert anzeigt. In diesem Fall "inactive"
-23. Jetzt kannst du beliebig weiter steppen. Beispielsweise ist es dann spannend, ob beim ersten "if" im code das richtige passiert?
-24. Mit jedem Step siehst du auch, wie sich das HTML anpasst, vorausgesetzt, der Schritt ändert auch tatsächlich was. Bei Zeile 50+ werden die Texte, Farben etc. angepasst.
-25. Gehe mal ganz durch, bis du wieder "normal" bist und drücke denn Like-Button nochmals. Du solltest dann beim "if" in die andere Variante reinlaufen
-</code></pre>
-<p>Was kann ich tun, wenn ich nicht weiss in welchem File die Änderung gemacht wird?
-1. Wir hatten vorhin "glück" dass wir das File einfach so gefunden haben.
-2. Lösche den aktuellen Breakpoint im buttons.js file wieder. Dies kannst du auf verschiedene Wege. Das einfachste ist wohl einfach nochmals an der Stelle zu klicken und die Markierung sollte verschwinden
-3. Gehe dann im Dev-Tool zurück ins Tab "Elements" wo das html angezeigt
-4. Suche den Button (oder mit dem Fadenkreuz anwählen) damit du an der richtigen Stell im HTML bist
-5. Mache dann einen Rechtsklick und wähle "Break on" -&gt; "subtree modifications"
-6.
-7. Klicke dann nochmals den Button
-8. Du solltest an genau der Stelle "breaken" -&gt; pausieren, wo durch das Javascript der Text geändert wird
-9.
-10. Dies ist super hilfreich, wenn du ein Verhalten im HTML prüfen willst und durch welches Javascript das genau ausgelöst wird.
-11. Im Debug Tool siehst du alle aktiven Breakpoints. Die dom-Breakpoints kannst du so prüfen und auch wieder löschen
-12.</p>
-<p>Was wenn ich einfach "egal wo im HTML, wenn es geklickt wird will ich das Javascript finden"?
-Auch da hilft dir Chrome…
-1. Lösche allfällig vorhandene Breakpoints (inklusive den vorherigen DOM)
-2. Gehe dort wo du die DOM Breakpoints siehst weiter nach unten und klappe "Event Listener Breakpoints" auf
-3. Wähle "mouse" und dann "click"
-4.
-5. Klicke nochmals auf den Button oder auch bewusst dieses Mal auf einen anderen
-6. Der Debugger sollte dich automatisch dorthin führen, wo tatsächlich der "Start" Code liegt</p>
-<pre><code>7. 
-</code></pre>
-<p>Und wenn ich aus meinen Code heraus genau sagen will, wo es stoppen soll?
-Es kann sein, dass du Zugang zum Code hast, weil du gerade entwickelst. Dann weisst du ev. genau welchen Teil des Skripts du genauer untersuchen möchtest. Alternativ kannst du auch mit VS Code debuggen Debug Javascript mit Visual Code</p>
-<p>Öffne bei dir im VS Code einen Stand mit JavaScript. Entweder das gleiche Beispiel wie oben oder sonst irgendwas anderes. Öffne das JavaScript im VS Code. Gehe beispielsweise zum Buttons.js</p>
-<p>Schreibe an der Stelle, an der du den Debugger nutzen willst "debugger;" rein</p>
-<p>Öffne die Page mit dem LiveServer und dann das Dev Tool wie vorhin. Drücke einen Button.
-Der Debugger stoppt an genau der Stelle.</p>
-<p>Das kann helfen, wenn du auch verstehen willst, wo dein File/Code genau liegt. Vor allem wenn du mit React, Angular oder ähnlichen Bibliotheken arbeitest, kann es sein, dass dein Code nochmals umgewandelt wird.</p>
-<p>Aber Achtung! Du darfst das "debugger" statement natürlich nicht produkiv ausliefern. Sonst stoppt die Page bei allen, die gleichzeitig das Dev Tool öffnen (wenigstens nur dann :D )</p>
-<p>Weitere Infos zum Chrome Debug Tool
-Noch viel umfassender findest du die Debug Tools Erklärungen hier https://developer.chrome.com/docs/devtools/javascript?hl=de</p>
-
+                        <h1 id="tutorials"><a class="header" href="#tutorials">Tutorials</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Was</th><th>Link <div style="min-width: 200px"></div></th></tr></thead><tbody>
+<tr><td>Html, CSS, Javascript</td><td><a href="https://www.freecodecamp.org/learn/full-stack-developer/">freeCodeCamp Full Stack Developer</a></td></tr>
+<tr><td>Html</td><td><a href="https://www.w3schools.com/html/default.asp">W3Schools HTML Tutorial</a></td></tr>
+<tr><td>CSS</td><td><a href="https://www.w3schools.com/css/default.asp">W3Schools CSS Tutorial</a></td></tr>
+<tr><td>JavaScript</td><td><a href="https://www.w3schools.com/js/default.asp">W3Schools JavaScript Tutorial</a></td></tr>
+<tr><td>TypeScript</td><td><a href="https://www.typescriptlang.org">TypeScript Nachschlagewerk</a></td></tr>
+<tr><td><div style="min-height: 20px"></div></td><td></td></tr>
+<tr><td>CSS Grid</td><td><a href="https://cssgridgarden.com/#de">CSS Grid Garden</a></td></tr>
+<tr><td>CSS Flexbox</td><td><a href="https://flexboxfroggy.com/#de">Flexbox Froggy</a></td></tr>
+<tr><td>Verschiedene</td><td><a href="https://scrimba.com/home">Scrimba Interactive Tutorials</a></td></tr>
+<tr><td><div style="min-height: 20px"></div></td><td></td></tr>
+<tr><td>Angular</td><td><a href="https://angular.dev/tutorials/learn-angular">Angular Official Tutorial</a></td></tr>
+<tr><td>React</td><td><a href="https://react-tutorial.app">React Tutorial App</a></td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../javascript/debugJs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../links/links.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../javascript/debugVsCode.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../links/videos.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -258,11 +209,11 @@ Noch viel umfassender findest du die Debug Tools Erklärungen hier https://devel
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../javascript/debugJs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../links/links.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../javascript/debugVsCode.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../links/videos.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
