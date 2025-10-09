@@ -1,5 +1,5 @@
 # Online Tutorial
-Für das Online Tutorial gehe auf [Tutorial](https://web-eng-dg.web.app/Doku/book/index.html)
+Für das Online Tutorial gehe auf [Tutorial](https://web-eng-dg.web.app/Doku/book)
 
 # Web Engineering Kurs - Beispielprojekte
 
