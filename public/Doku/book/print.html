@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Learn To Build A Web Page</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn To Build A Web Page</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="willkommen"><a class="header" href="#willkommen">Willkommen</a></h1>
+<p>Dieser Kurs ermöglicht dir einen Einstieg in die Webentwicklung mit Html, CSS und JavaScript. Anhand einer Blog Page von Galaxus wirst du nach und nach vieles davon nachbauen und sehen, was es teilweise braucht, um ein schönes Layout hinzukriegen oder wie ein Button zu Funktionen verholfen wird.</p>
+<p>Viel Spass beim Lernen und ausprobieren.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="geschichte-von-javascript"><a class="header" href="#geschichte-von-javascript">Geschichte von JavaScript</a></h1>
+<p>JavaScript hat eine recht interessante Geschichte hinter sich. Diese zeigt auch auf, wie früh JavaScript entstanden ist und eigentlich durch den Fortschritt des WWW geprägt wurde. Siehe auch <a href="https://de.wikipedia.org/wiki/JavaScript#Geschichte">Wiki JavaScript Geschichte</a></p>
+<p>Wie viel hat JavaScript denn nun mit Java zu tun? Etwa so viel wie ein HotDog mit einem Hund → nichts!
+Dies ist zwar nicht ganz korrekt. Wenn du die Geschichte auf Wikipedia nachliest, findest du heraus wieso. Die damals genannte Skriptsprache "LiveScript" sollte Java ansprechen können. Weil diese Einwicklung von Netscape (=Browser) und Sun (=Java) zusammen kreiert wurde, nannte man sie später JavaScript. Also eine Web-Skript-Sprache, welche Java zudienen soll. Vermutlich weisst du unterdessen, dass dies heute etwas anders funktioniert.</p>
+<h2 id="einführung-javascript"><a class="header" href="#einführung-javascript">Einführung JavaScript</a></h2>
+<ul>
+<li>Einstieg nach <a href="https://www.w3schools.com/js/default.asp">w3schools Einstieg</a> —&gt; wir programmieren eine simple Funktion mit JavaScript.</li>
+<li>Auf welche Arten kann ein Script eingebunden werden <a href="https://www.w3schools.com/js/js_whereto.asp">w3schools Einbinden JS</a></li>
+<li>Was ist ein DOM? <a href="https://www.w3schools.com/js/js_htmldom.asp">w3schools DOM</a></li>
+</ul>
+<h3 id="ecma-und-javascript"><a class="header" href="#ecma-und-javascript">ECMA und JavaScript</a></h3>
+<p>Heute gibt es nebst JavaScript den Namen "EcmaScript". Vielleicht hast du davon gehört. ECMA Skript vor, was eine Skriptsprache für den Browser unterstützen soll. Es ist also eine Art Vorgabe. JavaScript ist eine Programmiersprache, die sich an diese Vorgabe möglichst hält. Die beiden Namen sind also nicht das gleiche, werden aber häufig gleich verwendet.</p>
+<h2 id="have-fun-with-javascript"><a class="header" href="#have-fun-with-javascript">Have Fun with JavaScript</a></h2>
+<p>Wie und wo kann Javascript genutzt werden?</p>
+<ul>
+<li>Direkt im Browser. Öffne dazu beispielsweise die Entwicklertools auf Chrome. Danach wechselst du dort auf „console". Direkt in diesem Fenster kannst du JavaScript schreiben und ausführen.</li>
+<li>Mit einer Lauftzeitumgebung wie dies bei Node der Fall ist. Auf dem Computer findest du „node.exe". Starte dies und code direkt drauf los.</li>
+</ul>
+<h3 id="-und-"><a class="header" href="#-und-">== und ===</a></h3>
+<p>Time to code. Juhuu. Starte auf deinem Windows oder Mac "node".
+Gib auf der Konsole nun folgendes ein:</p>
+<pre><code>0 == 0
+</code></pre>
+<p>Überlege dir nun, was das Resultat ist. Mache nun jeweils das selbe, mit allen nachfolgenden Beispielen. Überlege dir immer VOR der Eingabe, was wohl das Resultat sein könnte:</p>
+<pre><code>0 == new String("0")
+
+0 == "0"
+
+new String ("0") == "0"
+
+null == undefined
+
+"" == false
+
+1 == true
+
+"1" == true
+
+new String("66") == true;
+</code></pre>
+<p>Jetzt wiederhole die Schritte und benutze anstelle von <code>==</code> jeweils <code>===</code></p>
+<h3 id="objekte-und-funktionen"><a class="header" href="#objekte-und-funktionen">Objekte und Funktionen</a></h3>
+<p>Verwende weiterhin jeweils node, um die Beispiele zu programmieren.</p>
+<pre><code>var person = {}; eingeben
+this.person; eingeben
+</code></pre>
+<p>Was lernst du daraus? Mit {} konntest du einfach so ein Objekt erstellen.</p>
+<p>JavaScript erstellt aus allem direkt ein Objekt. Damit lässt sich wunderbar ein Objekt auch erweitern. Entgegen bspw. Java, muss dieses Objekt nicht auf einer Klasse definieren.</p>
+<p>Gib folgendes ein:</p>
+<pre><code>this.person.name = 'urs';
+this.person;
+</code></pre>
+<p>Genau. Es hat funktioniert. Jetzt hast du einfach so deinem leeren Objekt kurzerhand ein neues Property angefügt und abgefüllt. Auch hier. Keine Klasse sagt, wie dein Objekt auszusehen hat. Ausserdem ist jedes Objekt immer komplett unabhängig von einem anderen.
+Du hast eine Variable deklariert, jedoch keinen Wert vergeben. Solche Variablen sind in JavaScript zwar vorhanden, aber sind "undefined". Du darfst also nicht versuchen, auf ein weiteres Property zuzugreifen. Du wirst wohl noch oft den Fehler antreffen, dass du auf eine undefined Variable zugreifen willst.</p>
+<h3 id="funktionen"><a class="header" href="#funktionen">Funktionen</a></h3>
+<p>In JavaScript kannst du dir jedes Objekt wie eine Art HashMap in Java vorstellen. Du hast also eine Art Katalog, welcher definiert, welche Werte existieren und was dort abgespeichert ist. Die Werte können dabei andere Objekte oder auch Funktionen sein. Versuche folgendes:</p>
+<pre><code>var person = {};
+person.adress = {strasse: 'ume egge', nummer: 2, ort: 'hie'};
+this.person
+person.sayHello = function() {return 'hallo du'};
+this.person;
+this.person.sayHello();
+</code></pre>
+<p>Funktionen können auf verschiedene Arten erstellt werden.</p>
+<p>function doIt() { return 'no';}
+var doItMaybe = function () { return 'still no';}
+var doItDefiniv = function stillBlocking() { return 'I give up';}</p>
+<p>Erste Variante wird gehoistet und kann vorher schon benutzt werden. Andere Varianten nicht. Named hat Vorteile beim Debuggen. Führe alle Varianten mit () aus -&gt;</p>
+<ul>
+<li>Kein grosser Unterschied</li>
+<li>Führe Variante 2 und 3 ohne () aus</li>
+<li>Der Name wird bei Variante 3 entsprechend angezeigt</li>
+</ul>
+<p>In JavaScript ist wirklich ALLES ein Objekt. Sogar Funktionen. Lass es uns beweisen und gib folgendes ein:</p>
+<pre><code>doItMaybe instanceOf Object
+doItMaybe.candidate = 'nid ig'
+</code></pre>
+<p>das erste wird <code>true</code> zurückgeben.</p>
+<p>Was denkst, du was nun in doItMaybe drin ist wenn du es ausführst?
+Auch ein Array verhält sich eigentlich genau gleich wie ein Objekt:</p>
+<pre><code>var a = [];
+a[0] = 1;
+a; -&gt; Ausgabe prüfen
+a[100] = 100;
+-&gt; denkst du das geht?
+a; -&gt; Ausgabe prüfen
+</code></pre>
+<p>Hier musst du immer sehr darauf achten, wenn du bspw. einen Loop hast mit einer Schleifenvariable. Ein Fehler und deine Schleife läuft endlos.</p>
+<h3 id="higher-order-function"><a class="header" href="#higher-order-function">Higher Order Function</a></h3>
+<p>Eine Funktion kann eine Funktion enthalten. Ist dies der Fall, nennt man dieses Konstrukt eine "higher Order function". In Frameworks wie Angular oder React wirst du sehr häufig solche Konstrukte vorfinden.</p>
+<pre><code>var higherOrderFunction = function (justANumber, func) {
+justANumber = justANumber * 1000;
+func(justANumber);
+}
+this.higherOrderFunction(10, function(answer){console.log(answer)};
+</code></pre>
+<p>Das ganze kann auch mit einer Arrow functions ausgeführt werden:</p>
+<pre><code>this.higherOrderFunction(10, answer =&gt; console.log(answer) )
+</code></pre>
+<h3 id="let-and-const"><a class="header" href="#let-and-const">Let and const</a></h3>
+<p>In einem modernen JavasScript Umfeld soll immer <code>let</code> und <code>const</code> verwendet werden. Man kann Variablen auch mit dem Keyword <code>var</code> erstellen. Dies verursacht jedoch ungewünschte Effekte und soll nicht mehr gemacht werden);</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debuggen-von-javascript"><a class="header" href="#debuggen-von-javascript">Debuggen von JavaScript</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debug-js-mit-chrome"><a class="header" href="#debug-js-mit-chrome">Debug JS mit Chrome</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debug-js-mit-vscode"><a class="header" href="#debug-js-mit-vscode">Debug JS mit VsCode</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript-und-aynchronität"><a class="header" href="#javascript-und-aynchronität">JavaScript und Aynchronität</a></h1>
+<p>Weil ein Browser bereits auf dem Betriebssystem als Applikation läuft, steht den Teilen in JavaScript nur ein Thread zur Verfügung. Ein Thread ist eine Ressource, welche das Betriebssystem einer Applikation für die Ausführung von Rechenoperationen bereit stellt. Hat man nur 1 solchen Thread, können keine Rechenoperationen gleichzeitig behandelt werden. Der Browser kümmert sich aber nebst dem Ausführen von JavaScript auch noch um die Darstellung der Seite mit HTML oder CSS. Wenn du jetzt also bspw. die ersten 100 Zahlen der Fibonacci Folge berechnen willst, würde die Webseite während dieser Zeit "einfrieren" und keine Interaktionen vom Benutzer mehr entgegen nehmen. Dieses "Problem"wird so gelöst, dass der Browser angewiesen wird (mit JavaScript), dass er aufwändigere Operationen nachlagert ausführt. Du weisst dann nicht genau, wann dein Stück Code effektiv ausgeführt wird. Dieses "asynchrone" Verhalten führt im Umgang mit JavaScript zu einer höheren Komplexität.</p>
+<p>Du kannst dir so vorstellen, wie wenn du jemanden bittest, dir einen Kaffee zu besorgen. Während der Kaffee "hoffentlich" organisiert wird, arbeitest du weiter. Wenn er dann da ist, wirst du den Kaffee trinken wollen. Die Aktion "Kaffee trinken" definierst du zwar schon bei der Bestellung des Kaffees (das ist deine Absicht), führst sie aber erst aus, wenn der Kaffee da ist.</p>
+<p>In JavaScript wird dies so gelöst, indem eine Funktion eine andere Funktion entgegen nimmt. Die Funktion "Kaffee trinken" wird der Funktion "Kaffee bestellen" mitgegeben. Wenn der Kaffee dann da ist, wird er getrunken. Zeitpunkt und Detail der Ausführung wird in der Methode "Kaffee bestellen" definiert, der konkrete Ablauf von "Kaffee trinken" in der Funktion, die übergeben wird.</p>
+<p>Unter <a href="https://www.w3schools.com/js/js_callback.asp">w3schools Callbacks</a> findest du ebenfalls ein Code Beispiel dazu. Sicher findest du auch auf YouTube Erklär-Videos zu Callbacks.</p>
+<p>Die Syntax sieht wie folgt aus:</p>
+<pre><code>function functionWithCallback(callback) {
+    console.log("Funktion mit Callback wird ausgeführt");
+    callback();
+}
+
+function callbackFunction() {
+    console.log("Callback-Funktion wird ausgeführt");
+}
+
+functionWithCallback(callbackFunction);
+</code></pre>
+<p>Die Funktion <code>functionWithCallback</code> nimmt als Parameter eine Funktion entgegen, welche dann ausgeführt wird. Mittels <code>()</code> siehst du, dass es eine Funktion ist. Inhaltlich weiss die Methode nicht, was sie ausführt, bestimmt aber den Zeitpunkt.</p>
+<p>Die Funktion <code>callbackFunction</code> ist die Funktion selbst. Ein Beispiel mit dem Kaffee trinken können wir erweitern, dass die Funktion "Kaffee bestellen" der Funktion "Kaffee trinken" auch noch mitgibt, welchen Kaffee genau eigentlich bestellt wurde.</p>
+<pre><code>function orderCoffee(callback) {
+    console.log("Kaffee wird bestellt...");
+    console.log("Kaffee ist da!");
+    callback("Milchkaffee");
+}
+
+function drinkCoffee(coffeeType) {
+    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+}
+
+orderCoffee(drinkCoffee);
+</code></pre>
+<p>Die Funktion "drinkCoffee" verlangt also ebenfalls einen Parameter, den sie nutzen will. Sie weiss nicht "was" dort mitkommt. Die "orderCoffee" Funktion muss sich nun also darum kümmern und übergibt den Typ beim Aufruf des Callbacks.</p>
+<p>Wieso macht das so nicht viel Sinn? Der Aufruf von "callback" ist aktuell relativ synchron, da Zeile für Zeile abgearbeitet wird. Stell dir vor, es braucht lange bis die Aktion durch ist. In einem technischen Sinne beispielsweise, weil die Aufgabe über einen entfernten Server erfolgt oder eine lang dauernde Datebankabfrage erfolgt. Du kannst so was mit einem "setTimeout()" simulieren.</p>
+<pre><code>function orderCoffee(callback) {
+    console.log("Kaffee wird bestellt...");
+    setTimeout(() =&gt; {
+        console.log("Kaffee ist da!");
+        callback("Milchkaffee");
+     }, 2000);
+}
+</code></pre>
+<p>Wir warten nun 2 Sekunden, bis es weiter geht.</p>
+<p>Die Syntax wie oben kann zu Problemen mit <code>this</code> führen und ist etwas mühsam, wenn wir das oft brauchen. Darum kennt JavaScript die "Arrow" Funktion.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a></p>
+<p>Anstelle von</p>
+<p><code>orderCoffee(drinkCoffee)</code> übergeben wir den Inhalt von "drinkCoffee" direkt mit der Arrow Syntax</p>
+<pre><code>function orderCoffee(callback) {
+    console.log("Kaffee wird bestellt...");
+    setTimeout(() =&gt; {
+        console.log("Kaffee ist da!");
+        callback("Milchkaffee");
+    }, 2000);
+}
+
+orderCoffee((coffeeType) =&gt; {
+    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+});
+</code></pre>
+<p>die ganze <code>drinkCoffee</code> Funktion ist nicht mehr nötig und wird direkt geschrieben.  Du musst das nicht und kannst immer noch innerhalb des Arrow Bodys {} eine andere Funktion aufrufen.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blog-page-intelligence"><a class="header" href="#blog-page-intelligence">Blog Page Intelligence</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-table-auto-design"><a class="header" href="#-table-auto-design">🤖 Table auto design</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-push-the-button"><a class="header" href="#-push-the-button">🛎️ Push the button</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-connect-the-backend"><a class="header" href="#-connect-the-backend">⛓️‍💥 connect the backend</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-like-funktion-wiederherstellen"><a class="header" href="#-like-funktion-wiederherstellen">❤️‍🩹 like Funktion wiederherstellen</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-follow-funktion-wiederherstellen"><a class="header" href="#-follow-funktion-wiederherstellen">🚓 follow Funktion wiederherstellen</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up"><a class="header" href="#-wrap-it-up">💝 wrap it up</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
