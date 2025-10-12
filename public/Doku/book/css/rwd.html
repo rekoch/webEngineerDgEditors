@@ -1,0 +1,811 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Responsive Web Design - Learn To Build A Web Page</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn To Build A Web Page</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="-responsive-web-design"><a class="header" href="#-responsive-web-design">📱 Responsive Web Design</a></h1>
+<h2 id="-die-evolution-des-web-designs"><a class="header" href="#-die-evolution-des-web-designs">🕰️ Die Evolution des Web Designs</a></h2>
+<h3 id="-2009-die-einfache-zeit"><a class="header" href="#-2009-die-einfache-zeit">📊 2009: Die einfache Zeit</a></h3>
+<p>Im Jahr <strong>2009</strong> war noch alles viel einfacher. Die meisten User nutzten eine Bildauflösung von <strong>1024x768 Pixel</strong> - dem damaligen Desktop-Standard.
+<img src="images/rwd_chart.png" alt="Statistiken 2009" /></p>
+<p><strong>Alle Auflösungen</strong> waren im Desktop-Segment angesiedelt. Die Welt des Web-Engineers war einfach:</p>
+<ul>
+<li><strong>Eine Seite</strong> für alle</li>
+<li><strong><code>&lt;table&gt;</code> Tags</strong> für Layout</li>
+<li><strong>Feste Breiten</strong> funktionierten perfekt</li>
+</ul>
+<p>SBB Seite
+<img src="images/rwd_oldSBBPage.png" alt="Alte Website-Darstellung" /></p>
+<p>Apple Seite
+<img src="images/rwd_oldApplePage.png" alt="Alte Website-Darstellung" /></p>
+<h3 id="-2014-der-mobile-wandel"><a class="header" href="#-2014-der-mobile-wandel">📈 2014: Der Mobile Wandel</a></h3>
+<p><img src="images/rwd_2014Stats.png" alt="Statistiken 2014" /></p>
+<p><strong>Deutlich kleinere Auflösungen</strong> dominieren das Chart:</p>
+<ul>
+<li><strong>📱 Smartphones</strong> an der Spitze</li>
+<li><strong>"Others"</strong> deutlich gestiegen</li>
+<li><strong>💥 Paradigmenwechsel</strong>: Responsive Design wird Pflicht</li>
+</ul>
+<blockquote>
+<p>🚨 <strong>Realität</strong>: Smartphones haben der Webentwicklung einen Dämpfer verpasst. Plötzlich müssen Seiten auch auf relativ kleinen Auflösungen gut aussehen.</p>
+</blockquote>
+<hr />
+<h2 id="-mobile-first--responsive-design"><a class="header" href="#-mobile-first--responsive-design">📱 Mobile First &amp; Responsive Design</a></h2>
+<h3 id="-das-iphone-problem-2008"><a class="header" href="#-das-iphone-problem-2008">🍎 Das iPhone-Problem (2008)</a></h3>
+<p><strong>Ursprüngliche Lösung</strong>: Webseiten wurden "gezoomed" dargestellt</p>
+<ul>
+<li>Browser verkleinerte Desktop-Darstellung</li>
+<li><strong>Zoom-Geste</strong> ermöglichte Navigation</li>
+<li><strong>❌ Problem</strong>: Nicht zielführend für positive User Experience</li>
+</ul>
+<h3 id="-die-viewport-lösung"><a class="header" href="#-die-viewport-lösung">🔧 Die Viewport-Lösung</a></h3>
+<p><strong>Emmet-Shortcut <code>!</code> erstellt automatisch:</strong></p>
+<pre><code class="language-html">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+</code></pre>
+<p><strong>Was passiert:</strong></p>
+<ul>
+<li>Browser zeigt Webseite <strong>1:1</strong> dar (keine Verkleinerung)</li>
+<li><strong>400px Button</strong> = <strong>volle Breite</strong> auf 400px-Screen</li>
+<li><strong>Verantwortung</strong> liegt bei der Entwicklerin</li>
+</ul>
+<blockquote>
+<p>📖 <strong>Mehr Infos</strong>: <a href="https://www.w3schools.com/css/css_rwd_viewport.asp">W3Schools Viewport Guide</a></p>
+</blockquote>
+<hr />
+<h2 id="-mobile-first-strategie"><a class="header" href="#-mobile-first-strategie">🏗️ Mobile First Strategie</a></h2>
+<h3 id="-konzept-Übersicht"><a class="header" href="#-konzept-Übersicht">📋 Konzept-Übersicht</a></h3>
+<p><strong>Mobile First</strong> = Design beginnt mit kleinster Auflösung</p>
+<pre><code>📱 320px (Mobile)  →  📲 768px (Tablet)  →  🖥️ 1200px (Desktop)
+</code></pre>
+<h3 id="-breakpoint-system"><a class="header" href="#-breakpoint-system">🎯 Breakpoint-System</a></h3>
+<p><strong>Breakpoint</strong> = Bestimmte Auflösung, wo sich das Design anpassen muss</p>
+<p><strong>Beispiel-Szenario:</strong></p>
+<ul>
+<li><strong>Button bis 400px</strong>: <code>width: 100%</code> ✅</li>
+<li><strong>Button ab 450px</strong>: Anpassung nötig ❌</li>
+<li><strong>Lösung</strong>: Breakpoint bei <code>400px</code> definieren</li>
+</ul>
+<h3 id="-bootstrap-breakpoints-beispiel"><a class="header" href="#-bootstrap-breakpoints-beispiel">📊 Bootstrap Breakpoints (Beispiel)</a></h3>
+<p><img src="images/rwd_breakpointsBootstrap.png" alt="Bootstrap Breakpoints" /></p>
+<p><strong>Mobile First erkennbar:</strong></p>
+<ul>
+<li><strong>Erster Breakpoint</strong>: <code>min-width: 576px</code></li>
+<li><strong>Bis dahin</strong>: "Kleinster Screen" als Basis</li>
+<li><strong>Alle weiteren</strong>: <code>min-width</code> für schrittweise Erweiterung</li>
+</ul>
+<hr />
+<h2 id="-praktische-umsetzung"><a class="header" href="#-praktische-umsetzung">🛠️ Praktische Umsetzung</a></h2>
+<h3 id="-projekt-setup"><a class="header" href="#-projekt-setup">📁 Projekt-Setup</a></h3>
+<h4 id="schritt-1-ordner-struktur"><a class="header" href="#schritt-1-ordner-struktur"><strong>Schritt 1: Ordner-Struktur</strong></a></h4>
+<ol>
+<li><strong>Neuen Ordner</strong> erstellen</li>
+<li><strong>VS Code</strong> öffnen</li>
+<li><strong>Files erstellen</strong>: <code>index.html</code> + <code>main.css</code></li>
+</ol>
+<p><img src="images/rwd_setupExample.png" alt="Setup Beispiel" /></p>
+<h4 id="schritt-2-grid-system-vorbereiten"><a class="header" href="#schritt-2-grid-system-vorbereiten"><strong>Schritt 2: Grid-System vorbereiten</strong></a></h4>
+<p><strong>W3Schools Referenz</strong>: <a href="https://www.w3schools.com/css/css_rwd_intro.asp">CSS RWD Intro</a></p>
+<p><strong>12-Spalten-System</strong> (bewährter Standard):</p>
+<ul>
+<li><strong>Flexible Aufteilung</strong> für verschiedene Layouts</li>
+<li><strong>Prozentuale Breiten</strong> für responsive Verhalten</li>
+</ul>
+<h3 id="-grid-css-erstellen"><a class="header" href="#-grid-css-erstellen">📂 Grid CSS erstellen</a></h3>
+<h4 id="ordner-struktur"><a class="header" href="#ordner-struktur"><strong>Ordner-Struktur:</strong></a></h4>
+<pre><code>project/
+├── index.html
+├── main.css
+└── styleguide/
+    └── grid.css
+</code></pre>
+<h4 id="grid-klassen-definieren-gridcss"><a class="header" href="#grid-klassen-definieren-gridcss"><strong>Grid-Klassen definieren: (grid.css)</strong></a></h4>
+<pre><code class="language-css">.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-4 {
+  width: 33.33%;
+}
+.col-5 {
+  width: 41.66%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 66.66%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33%;
+}
+.col-11 {
+  width: 91.66%;
+}
+.col-12 {
+  width: 100%;
+}
+</code></pre>
+<h3 id="-html-grundgerüst"><a class="header" href="#-html-grundgerüst">🔧 HTML-Grundgerüst</a></h3>
+<h4 id="indexhtml-body"><a class="header" href="#indexhtml-body"><strong>index.html Body:</strong></a></h4>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="col-3"&gt;first column&lt;/div&gt;
+  &lt;div class="col-3"&gt;second column&lt;/div&gt;
+  &lt;div class="col-3"&gt;third column&lt;/div&gt;
+  &lt;div class="col-3"&gt;fourth column&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="box-sizing-hinzufügen-maincss"><a class="header" href="#box-sizing-hinzufügen-maincss"><strong>Box-Sizing hinzufügen (main.css):</strong></a></h4>
+<pre><code class="language-css">* {
+  box-sizing: border-box;
+}
+</code></pre>
+<h4 id="grid-styling-erweitern-gridcss"><a class="header" href="#grid-styling-erweitern-gridcss"><strong>Grid-Styling erweitern (grid.css):</strong></a></h4>
+<pre><code class="language-css">[class*="col-"] {
+  float: left;
+  padding: 15px;
+  border: 1px solid red;
+}
+</code></pre>
+<h3 id="-css-verknüpfen"><a class="header" href="#-css-verknüpfen">🔗 CSS verknüpfen</a></h3>
+<h4 id="html-head-erweitern"><a class="header" href="#html-head-erweitern"><strong>HTML Head erweitern:</strong></a></h4>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;link rel="stylesheet" href="main.css" /&gt;
+&lt;/head&gt;
+</code></pre>
+<h4 id="css-import-maincss"><a class="header" href="#css-import-maincss"><strong>CSS Import (main.css):</strong></a></h4>
+<pre><code class="language-css">@import "styleguide/grid.css";
+</code></pre>
+<p>Jetzt sollte deine Page wie folgt aussehen.
+<img src="images/rwd_screenshotIndexHtml.png" alt="Erste Ansicht" /></p>
+<h3 id="-row-system-implementieren"><a class="header" href="#-row-system-implementieren">📐 Row-System implementieren</a></h3>
+<p>Was noch fehlt ist die Möglichkeit, einzelne Zeilen zu definieren. Wir möchten sicherstellen, dass sich die Verteilung nur auf einen bestimmten Bereich bezieht. Dafür benötigen wir noch folgende css Anweisung in unserem grid.css file</p>
+<h4 id="row-css-hinzufügen-gridcss"><a class="header" href="#row-css-hinzufügen-gridcss"><strong>Row-CSS hinzufügen (grid.css):</strong></a></h4>
+<pre><code class="language-css">.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</code></pre>
+<h4 id="html-mit-rows-strukturieren"><a class="header" href="#html-mit-rows-strukturieren"><strong>HTML mit Rows strukturieren:</strong></a></h4>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-3"&gt;first column&lt;/div&gt;
+    &lt;div class="col-3"&gt;second column&lt;/div&gt;
+    &lt;div class="col-3"&gt;third column&lt;/div&gt;
+    &lt;div class="col-3"&gt;fourth column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Spiele nun etwas mit der Breite des Bildschirms. Du wirst nun allenfalls feststellen, dass nicht alle Breiten gut aussehen. Je Breiter der Bildschirm, desto mehr unnötige Abstände produzieren wir. Genau das wollen wir nun verbessern, indem wir im Zusammenspiel mit den MediaQueries unser Grid erst richtig erweitern.</p>
+<p>Da wir mobile-first designen, kümmern wir uns um die Namens Zusätze erst ab dem ersten Breakpoint. Also in unserem Beispiel der Breakpoint mit dem Namen <code>sm</code> für Small</p>
+<hr />
+<h2 id="-responsive-breakpoints"><a class="header" href="#-responsive-breakpoints">📱 Responsive Breakpoints</a></h2>
+<h3 id="-media-queries-implementieren"><a class="header" href="#-media-queries-implementieren">🎯 Media Queries implementieren</a></h3>
+<h4 id="mobile-first-basis-grid"><a class="header" href="#mobile-first-basis-grid"><strong>Mobile First Basis-Grid:</strong></a></h4>
+<pre><code class="language-css">/* Mobile (Standard - kein Breakpoint nötig) */
+.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
+/* ... bis col-12 */
+</code></pre>
+<h4 id="small-devices-576px"><a class="header" href="#small-devices-576px"><strong>Small Devices (576px+):</strong></a></h4>
+<pre><code class="language-css">@media (min-width: 576px) {
+  .col-sm-1 {
+    width: 8.33%;
+  }
+  .col-sm-2 {
+    width: 16.66%;
+  }
+  .col-sm-3 {
+    width: 25%;
+  }
+  .col-sm-4 {
+    width: 33.33%;
+  }
+  /* ... bis col-sm-12 */
+}
+</code></pre>
+<h3 id="-responsive-html-beispiel"><a class="header" href="#-responsive-html-beispiel">💡 Responsive HTML-Beispiel</a></h3>
+<p>Nun hast du die Möglichkeit, das Layout für jeden Breakpoint zu definieren. Mache bspw. mal col-12 im mobile, für sm danach col-sm-3 und siehe wie sich das Layout nun verhält.</p>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-12 col-sm-3"&gt;first column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;second column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;third column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;fourth column&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Verhalten:</strong></p>
+<ul>
+<li><strong>Mobile</strong>: 4 Zeilen (je 100% Breite)</li>
+<li><strong>ab 576px</strong>: 4 Spalten (je 25% Breite)</li>
+</ul>
+<hr />
+<h2 id="-library-vs-custom-solution"><a class="header" href="#-library-vs-custom-solution">🤔 Library vs. Custom Solution</a></h2>
+<p>Nun hast du gesehen, dass es nicht unbedingt Magie ist, ein Grid selber zu programmieren. Damit alles funktioniert, fehlen trotzdem noch einige CSS Klassen, die noch definiert werden müssen. Daher stellt sich doch gleich die Frage, wieso nicht von Anfang an Bootstrap oder andere CSS Bibliotheken einsetzen? Wenn dein Projekt keine speziellen Anforderungen hat, du mit grundsätzlich 12 Spalten problemlos dein Design umsetzen kannst, dann kannst du gut und gerne eine Bibliothek wie Bootstrap einsetzen. Trotzdem muss man sich immer bewusst sein, dass der Einsatz einer solchen Bibliothek auch erfordert, dass man sie korrekt versteht und entsprechend korrekt einsetzt. Du musst die Klassen verstehen und wissen, welche für was eingesetzt wird. Ein einfaches Beispiel mit Bootstrap sieht wie folgt aus</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="-entscheidungskriterien"><a class="header" href="#-entscheidungskriterien">⚖️ Entscheidungskriterien</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Aspekt</th><th><strong>Bootstrap</strong></th><th><strong>Custom Grid</strong></th></tr></thead><tbody>
+<tr><td><strong>⚡ Setup-Zeit</strong></td><td>Schnell</td><td>Länger</td></tr>
+<tr><td><strong>🎯 Flexibilität</strong></td><td>Begrenzt</td><td>Vollständig</td></tr>
+<tr><td><strong>📚 Lernaufwand</strong></td><td>Framework lernen</td><td>CSS verstehen</td></tr>
+<tr><td><strong>🔧 Anpassungen</strong></td><td>Workarounds</td><td>Direkte Kontrolle</td></tr>
+<tr><td><strong>📦 Bundle-Size</strong></td><td>Größer</td><td>Minimal</td></tr>
+</tbody></table>
+</div>
+<h3 id="-bootstrap-verwenden-wenn"><a class="header" href="#-bootstrap-verwenden-wenn">✅ Bootstrap verwenden, wenn:</a></h3>
+<ul>
+<li><strong>🚀 Schnelle Prototypen</strong> erstellen</li>
+<li><strong>12-Spalten-System</strong> ausreicht</li>
+<li><strong>Standard-Designs</strong> umsetzen</li>
+<li><strong>Team</strong> bereits Bootstrap-Erfahrung hat</li>
+</ul>
+<h3 id="-custom-grid-verwenden-wenn"><a class="header" href="#-custom-grid-verwenden-wenn">✅ Custom Grid verwenden, wenn:</a></h3>
+<ul>
+<li><strong>🎨 Unique Designs</strong> entwickeln</li>
+<li><strong>Volle Kontrolle</strong> benötigt</li>
+<li><strong>Performance</strong> kritisch ist</li>
+<li><strong>Lernziele</strong> CSS-Verständnis beinhalten</li>
+</ul>
+<hr />
+<h2 id="-the-modern-way-css-grid"><a class="header" href="#-the-modern-way-css-grid">🚀 The Modern Way: CSS Grid</a></h2>
+<h3 id="-css-grid-vorteile-seit-20162017"><a class="header" href="#-css-grid-vorteile-seit-20162017">🌟 CSS Grid Vorteile (seit 2016/2017)</a></h3>
+<p><strong>Warum CSS Grid?</strong></p>
+<ul>
+<li><strong>🏗️ 2D-Layout</strong> (Zeilen + Spalten)</li>
+<li><strong>🎯 Intuitive Syntax</strong></li>
+<li><strong>📱 Native Browser-Support</strong></li>
+<li><strong>⚡ Performance-optimiert</strong></li>
+</ul>
+<h3 id="-css-grid-lernressourcen"><a class="header" href="#-css-grid-lernressourcen">📚 CSS Grid Lernressourcen</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Resource</th><th>Typ</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong><a href="https://cssgridgarden.com/">CSS Grid Garden</a></strong></td><td>🎮 Spiel</td><td>Interaktives Lernen</td></tr>
+<tr><td><strong><a href="https://scrimba.com/learn-css-grid-c02k">Scrimba CSS Grid</a></strong></td><td>🎥 Video</td><td>Hands-on Kurs</td></tr>
+<tr><td><strong><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids">MDN Grid Guide</a></strong></td><td>📖 Docs</td><td>Umfassende Referenz</td></tr>
+</tbody></table>
+</div>
+<h3 id="-css-grid-implementation"><a class="header" href="#-css-grid-implementation">🔧 CSS Grid Implementation</a></h3>
+<h4 id="variablen-definieren"><a class="header" href="#variablen-definieren"><strong>Variablen definieren:</strong></a></h4>
+<pre><code class="language-css">:root {
+  --columns-amount: 12;
+  --gap-small: 20px;
+}
+</code></pre>
+<h4 id="grid-container"><a class="header" href="#grid-container"><strong>Grid-Container:</strong></a></h4>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-template-columns: repeat(var(--columns-amount), 1fr);
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Du wirst feststellen, dass wir bereits eine vertikale Verteilung haben. Nun möchten wir noch so was wie zuvor haben und die jeweilige Breite festlegen. Dafür müssen wir unser grid.css einfach wiederum um die breakpoints erweitern. Anstelle von breiten verwenden wir jedoch ein grid-column span.</p>
+<h4 id="responsive-grid-spans"><a class="header" href="#responsive-grid-spans"><strong>Responsive Grid-Spans:</strong></a></h4>
+<pre><code class="language-css">/* Mobile */
+.col-12 {
+  grid-column: span 12;
+}
+
+/* Small Devices */
+@media (min-width: 576px) {
+  .col-sm-4 {
+    grid-column: span 4;
+  }
+}
+
+/* Medium Devices */
+@media (min-width: 768px) {
+  .col-md-3 {
+    grid-column: span 3;
+  }
+}
+</code></pre>
+<h3 id="-advanced-css-grid-features"><a class="header" href="#-advanced-css-grid-features">🎯 Advanced CSS Grid Features</a></h3>
+<p>Du hast nun ein Grid ähnliches Layout mit CSS Grid als Basis gebaut. Überlege dir folgende Anforderung. Nebst dem eigentlichen Inhalt, der auf 12 Spalten verteilt ist, möchtest du nun auf einer virtuellen ersten bzw. letzten Spalte bei Bedarf einen "Seiten-Content" einfügen.
+<img src="images/rwd_screenshotWithColumns.png" alt="Responsive Breiten" /></p>
+<p>Der Rest soll sich weiterhin verteilen wie zuvor. Das Element auf der Seite soll sich an der Höhe orientieren, wo auch der entsprechende Inhalt steht. Überleg dir mal, wie du das ohne CSS Grid machen würdest.
+Damit das Beispiel funktioniert, kopiere folgendes HTML in dein index.html</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="row"&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 1&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 2&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 3&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 4&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 5&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 6&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 7&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 8&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 9&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 10&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 11&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 12&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 13&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 14&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 15&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 16&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 17&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 18&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 19&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 20&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 21&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 22&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 23&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 24&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 25&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 26&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 27&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 28&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 29&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 30&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 31&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 32&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 33&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 34&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 35&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 36&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 37&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 38&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 39&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 40&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 41&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 42&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 43&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 44&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 45&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 46&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 47&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 48&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 49&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 50&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="erweiterte-spalten"><a class="header" href="#erweiterte-spalten"><strong>Erweiterte Spalten:</strong></a></h4>
+<p>Damit wir unser .aside links bzw. rechts hinzufügen können, müssen wir als erstes dem ganzen Inhalt weitere Spalten hinzufügen. Das einfachste ist, unserer "row" Klasse diese Spalten hinzuzufügen. Dies machen wir nun im grid.css und passen einfach unsere grid-template-columns definition der .row klasse an.</p>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-template-columns: 150px repeat(var(--columns-amount), 1fr) 150px;
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Nun wird die Page etwa so aussehen:
+<img src="images/rwd_screenshotNewWidths.png" alt="Responsive Breiten" /></p>
+<p>Wir haben also erreicht, dass wir unseren Inhalt neu auf 14 Spalten verteilen. Was wir aber nicht möchten, ist, dass die erste Spalte durch Inhalt belegt wird. Wir möchten alles eines nach "rechts" verschieben. Wie erreichen wir das rein nur über CSS? Wir wollen keine Klasse im HTML anpassen müssen.</p>
+<h4 id="grid-span"><a class="header" href="#grid-span"><strong>grid-span:</strong></a></h4>
+<p>Damit wir das Ziel erreichen, können wir unser CSS mit folgendem Attribut erweitern:</p>
+<pre><code class="language-css">.col-12 {
+  grid-column: 2 / span 12;
+}
+</code></pre>
+<p>Teste die entsprechende Auflösung. Sieht es gut aus? Das ganze benötigen wir nun auch für unsere anderen Auflösungen. Benutze Media Queries und erweitere die col-x Klassen entsprechend. Wir verzichten auf alle col-definitionen, da wir nur entweder 12 spalten, 4 oder 3 brauchen (<code>col-12</code>, <code>col-sm-4</code>, <code>col-md-3</code>).</p>
+<pre><code class="language-css">/* Mobile-Spaltenklassen */
+col-12 {
+  grid-column: 2 / span 12;
+}
+
+/* Spaltenklassen für Breakpoint 576px (sm) */
+@media (min-width: 576px) {
+  .col-sm-4 {
+    grid-column: 2 / span 4;
+  }
+}
+
+/* Spaltenklassen für Breakpoint 768px (md) */
+@media (min-width: 768px) {
+  .col-md-3 {
+    grid-column: 2 / span 3;
+  }
+}
+</code></pre>
+<p>Teste ein wenig das neue Layout. Folgende Dinge sollten dir auffallen:</p>
+<ul>
+<li>Je nach Grösse des Bildschirms haben wir einen etwas zu grossen gap</li>
+<li>Je nach Grösse des Bildschirms sind die zusätzlichen Spalten am Anfang und Ende zu breit</li>
+<li>Die Höhe der Elemente ist teilweise unterschiedlich</li>
+<li>Die Elemente sind nun immer ab der zweiten Spalte gereiht und nicht mehr verteilt
+Alle dies Dinge wollen wir nun beheben. Die einfachste ist auf jeden Fall das Gap und die Spaltenbreite.</li>
+</ul>
+<p>Passe daher dein css entsprechend an. Wir setzen Variablen ein, die wiederum mit Media-Queries definiert werden. So können wir die Angaben automatisch setzen, basierend auf der Viewport Grösse. Genius 🤓</p>
+<pre><code class="language-css">:root {
+  --columns-amount: 12;
+  --column-width: 50px;
+  --gap-width: 20px;
+
+  @media (min-width: 768px) {
+    --column-width: 150px;
+    --gap-width: 40px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--column-width) repeat(
+      var(--columns-amount),
+      1fr
+    ) var(--column-width);
+  grid-gap: var(--gap-width);
+}
+</code></pre>
+<h4 id="gleiche-höhen"><a class="header" href="#gleiche-höhen"><strong>Gleiche Höhen:</strong></a></h4>
+<p>Für das Problem mit der Höhe der Elemente bietet uns CSS Grid eine sehr einfach Eigenschaft an. Mit "grid-auto-rows" und dem Wert "1fr" weisen wir das Grid an, jeweils die selbe Höhe einzusetzen. Basierend auf der Mindest-Höhe, welches ein Element einnimmt. Du kannst beispielsweise bei einem Button den Text so lange machen, dass er noch höher wird. Achte dann darauf, was geschieht. Dafür erweitere einfach das css ganz am Anfang um den entsprechenden Wert.</p>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-auto-rows: 1fr; /* Alle Elemente gleiche Höhe */
+  grid-template-columns: var(--column-width) repeat(
+      var(--columns-amount),
+      1fr
+    ) var(--column-width);
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Das etwas mühsamere Problem ist, dass wir nun unsere Elemente verteilen möchten, sobald die Breite der Elemente weniger als 12 Spalten einnimmt. Daher für unsere <code>col-sm-4</code> sowie <code>col-md-3</code> Klassen benötigen wir eine bessere Lösung.</p>
+<p>Wenn wir weiterhin von unserem 12er Grid ausgehen, müssen wir das CSS Grid immer nur für das 4te bzw. 3te Element anweisen, auf die erste Stelle zu springen. Dafür hat CSS den sehr schönen nth-child Selector. Mit diesem können wir genau unser CSS entsprechend erweitern. Passe nun also unsere bisherigen <code>.col-sm-4</code> bzw. <code>.col-md-3</code> Klassen so an.</p>
+<h4 id="nth-child-selector"><a class="header" href="#nth-child-selector"><strong>nth-child selector:</strong></a></h4>
+<pre><code class="language-css">  .col-sm-4:nth-child(3n+1) {
+    grid-column: 2 / span 4;
+  }
+
+  .col-md-3:nth-child(4n+1) {
+    grid-column: 2 / span 3;
+  }
+</code></pre>
+<p>Wenn du es testet, sieht es irgendwie noch nicht so ganz toll aus. Weisst du wieso? Das Problem liegt leider genau wieder bei unserem neuen Selektor. Das nth-child von bspw. col-sm-4 wird auch bei einer Auflösung von mehr als unserem md-breakpoint appliziert. Wir haben sie also dreifach (<code>col-12</code>, <code>col-sm-4</code>, <code>col-m-3</code>). Wie beheben wir nun das Problem?</p>
+<p>Es gibt zwei Varianten. Wir erweitern unsere Media-Queries, dass sie nicht nur ein Min-Width sondern auch ein Max-Width berücksichtigen. Dies hat den Nachteil, dass wir bei Anpassungen nach "oben" zusätzliche Schritte implementieren müssen. Der andere Ansatz ist, dass wir ganz den Mobile First Ansatz verfolgen und von klein nach gross dafür sorgen müssen, dass die CSS Angaben wichtiger sind als die vorherigen. Wir definieren also nicht nur unsere nth-child Elemente die rutschen sollen, sondern auch noch alle die bleiben sollen. Zusätzlich müssen wir auch dafür ein nth-child Selektor einsetzen, damit er als wichtiger betrachtet wird und die anderen Anweisungen überschreibt. Unser css sieht dann wie folgt aus:</p>
+<pre><code class="language-css">/* ... von col-sm-1 */
+  .col-sm-4:nth-child(1n + 1) {
+    grid-column: span 4;
+  }
+  .col-sm-4:nth-child(3n + 1) {
+    grid-column: 2 / span 4;
+  }
+  …
+  .col-md-3:nth-child(1n + 1) {
+    grid-column: span 3;
+  }
+  .col-md-3:nth-child(4n + 1) {
+    grid-column: 2 / span 3;
+  }
+/* ... bis col-md-12 */
+</code></pre>
+<h4 id="sidebar-implementation"><a class="header" href="#sidebar-implementation"><strong>Sidebar Implementation:</strong></a></h4>
+<p>Erweitere dein HTML innerhalb der .row. Wo genau, spielt keine Rolle. Vergib die Klasse .aside</p>
+<pre><code class="language-html">&lt;div class="aside"&gt;I am an edge case&lt;/div&gt;
+</code></pre>
+<p>Wie können wir nun das Element auf die Seite stellen? Einfacher als das. Mit unserem grid-column aus dem css grid haben wir nun die freie Möglichkeit, mit column und row zu definieren, wohin das Element soll.
+Füge im "grid.css" einfach folgende Klasse hinzu.</p>
+<pre><code class="language-css">.aside {
+  grid-column: 1
+}
+</code></pre>
+<p>Sieht toll aus, oder? Du kannst etwas mit der Position spielen, span hinzufügen und/oder auch die Position definieren. Ein Beispiel dafür könnte wie folgt aussehen.</p>
+<pre><code class="language-css">.aside {
+  grid-column: 1;
+  grid-row: span 13;
+  place-self: center;
+}
+</code></pre>
+<hr />
+<h2 id="-css-flexbox"><a class="header" href="#-css-flexbox">🔄 CSS Flexbox</a></h2>
+<p>Die bisherigen Layout Möglichkeiten beziehen sich sowohl auf die horizontale wie auch auf die vertikale Verteilung von Elementen. Man kann es sich auch so vorstellen, dass man damit sehr gut fährt, wenn man das eigentlich Design-Layout umsetzen möchte. Also wo gibt es auf der Seite Inhalt? Gibt es eine Navbar? Gibt es einen Side-Content? Gibt es einen Footer?
+Mit CSS Grid, Bootstrap oder Spalten Design lassen sich diese Art von Design / Layouts sehr gut strukturieren und umsetzen. Man könnte auch von 2 Dimensionalen Layouts sprechen. Nebst diesen Varianten hält seit einigen Jahren auch Flexbox Einzug im ganzen CSS Universum. Analog CSS Grid kennt der Browser CSS Flexbox direkt und wird unterdessen breit von den Browser unterstützt. Flexbox ist sogar älter als CSS Grid. Bei Flexbox sprechen wir nun eher von einem eindimensionalen Design. Wir können damit sehr gut Elemente auf der selben Ebene layouten. Sei dies auf der vertikalen oder horizontalen Ausrichtung.</p>
+<h3 id="-flexbox-vs-grid"><a class="header" href="#-flexbox-vs-grid">🎯 Flexbox vs. Grid</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Feature</th><th><strong>CSS Grid</strong></th><th><strong>CSS Flexbox</strong></th></tr></thead><tbody>
+<tr><td><strong>📐 Dimensionen</strong></td><td>2D (Zeilen + Spalten)</td><td>1D (Eine Richtung)</td></tr>
+<tr><td><strong>🎯 Use Case</strong></td><td>Page Layout</td><td>Component Layout</td></tr>
+<tr><td><strong>📱 Responsive</strong></td><td>Breakpoint-basiert</td><td>Content-basiert</td></tr>
+<tr><td><strong>🔧 Komplexität</strong></td><td>Höher</td><td>Einfacher</td></tr>
+</tbody></table>
+</div>
+<h3 id="-flexbox-lernressourcen"><a class="header" href="#-flexbox-lernressourcen">📚 Flexbox Lernressourcen</a></h3>
+<ul>
+<li><strong><a href="https://flexboxfroggy.com/">Flexbox Froggy</a></strong> 🐸</li>
+<li><strong><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks Flexbox Guide</a></strong> 📖</li>
+</ul>
+<hr />
+<h2 id="-technologie-entscheidung"><a class="header" href="#-technologie-entscheidung">🎯 Technologie-Entscheidung</a></h2>
+<h3 id="-die-richtige-wahl-treffen"><a class="header" href="#-die-richtige-wahl-treffen">🤔 Die richtige Wahl treffen</a></h3>
+<h4 id="fragen-zur-orientierung"><a class="header" href="#fragen-zur-orientierung"><strong>Fragen zur Orientierung:</strong></a></h4>
+<ol>
+<li><strong>🆕 Neues Projekt</strong> oder bestehende Libraries?</li>
+<li><strong>👥 Team-Erfahrung</strong> mit welcher Technologie?</li>
+<li><strong>🎨 Layout-Flexibilität</strong>: Immer 12 Spalten oder variabel?</li>
+<li><strong>📱 Device-Support</strong>: Welche Breakpoints nötig?</li>
+</ol>
+<h4 id="-empfehlungen"><a class="header" href="#-empfehlungen"><strong>💡 Empfehlungen:</strong></a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Szenario</th><th>Empfehlung</th><th>Begründung</th></tr></thead><tbody>
+<tr><td><strong>🚀 Neue Website</strong></td><td><strong>CSS Grid + Flexbox</strong></td><td>Modern, flexibel, performant</td></tr>
+<tr><td><strong>🔧 Bestehende Bootstrap-Site</strong></td><td><strong>Bootstrap</strong></td><td>Konsistenz wahren</td></tr>
+<tr><td><strong>🎯 Einfache Layouts</strong></td><td><strong>Flexbox</strong></td><td>Weniger Overhead</td></tr>
+<tr><td><strong>🏗️ Komplexe Layouts</strong></td><td><strong>CSS Grid</strong></td><td>2D-Kontrolle</td></tr>
+</tbody></table>
+</div>
+<h3 id="-anti-patterns-vermeiden"><a class="header" href="#-anti-patterns-vermeiden">⚠️ Anti-Patterns vermeiden</a></h3>
+<ul>
+<li><strong>❌ Bootstrap + CSS Grid Mix</strong> (Konflikte)</li>
+<li><strong>❌ Float-basierte Layouts</strong> (veraltet)</li>
+<li><strong>❌ Table-Layout für Design</strong> (nicht semantisch)</li>
+</ul>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">🎉 Zusammenfassung</a></h2>
+<h3 id="-was-du-gelernt-hast"><a class="header" href="#-was-du-gelernt-hast">✅ Was du gelernt hast:</a></h3>
+<ol>
+<li><strong>📱 Mobile First Prinzip</strong></li>
+<li><strong>🔧 Custom Grid System</strong></li>
+<li><strong>📊 Breakpoint-Strategien</strong></li>
+<li><strong>🚀 CSS Grid Modernisierung</strong></li>
+<li><strong>⚖️ Technologie-Entscheidungen</strong></li>
+</ol>
+<h3 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🎯 Nächste Schritte:</a></h3>
+<ol>
+<li><strong>💻 Praktisches Üben</strong> mit eigenem Projekt</li>
+<li><strong>🎮 CSS Grid Garden</strong> durchspielen</li>
+<li><strong>🐸 Flexbox Froggy</strong> meistern</li>
+<li><strong>🏗️ Blog-Seite</strong> responsive machen</li>
+</ol>
+<p><strong>Du bist bereit für modernes, responsives Webdesign!</strong> 🌟</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../css/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../css/blogpage/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../css/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../css/blogpage/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

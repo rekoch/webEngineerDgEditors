@@ -224,7 +224,2187 @@
 <tr><td>30. September</td><td><a href="links/Teil_1_CSS">Teil 1 CSS</a></td></tr>
 <tr><td>7. Oktober</td><td><a href="links/Teil_2_CSS">Teil 2 CSS</a></td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="geschichte-von-javascript"><a class="header" href="#geschichte-von-javascript">Geschichte von JavaScript</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="setup"><a class="header" href="#setup">Setup</a></h1>
+<h2 id="erforderliche-applikationen"><a class="header" href="#erforderliche-applikationen">Erforderliche Applikationen</a></h2>
+<p>Folgende Applikationen musst du auf deinem Gerät installiert haben:</p>
+<ul>
+<li><strong>Visual Studio Code</strong> - Code-Editor</li>
+<li><strong>NodeJS</strong> - JavaScript Runtime</li>
+<li><strong>Chrome</strong> - Browser für Entwicklung</li>
+</ul>
+<p>Für jede Applikation findest du eine detaillierte Beschreibung in diesem Setup-Bereich.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="visual-studio-code"><a class="header" href="#visual-studio-code">Visual Studio Code</a></h1>
+<p>Visual Studio Code wird das wichtigste während dem Kurs sein. Damit erstellst du den Code für die Webseite. Du wirst rasch sehen, wie viel Unterstützung dir VS Code dabei bietet.</p>
+<h2 id="download"><a class="header" href="#download">Download</a></h2>
+<ol>
+<li>Besuche die Seite <a href="https://code.visualstudio.com/download">Vs Code Download</a></li>
+<li>Wähle die Version deines Betriebssystems und klicke auf den großen Button. Dieser wählt in der Regel die beste Option für deine Arbeitsumgebung.</li>
+</ol>
+<p><img src="setup/images/VsCodeDownload.png" alt="VS Code Download" /></p>
+<h2 id="settings"><a class="header" href="#settings">Settings</a></h2>
+<p>Öffne die Einstellungen im VS Code. Passe folgendes an:</p>
+<div class="table-wrapper"><table><thead><tr><th>Suchbegriff</th><th>Einstellung</th></tr></thead><tbody>
+<tr><td><strong>editor.linkedEditing</strong></td><td>Aktiviere "linked editing" <img src="setup/images/editor_linkedEditing.png" alt="Linked Editing" /></td></tr>
+<tr><td><strong>save</strong></td><td>Überprüfe die Einstellungen zu "save". Mindestens "Auto Save" → onFocusChange aktivieren ergibt Sinn. Zudem kannst du auch einstellen, dass z.B. dein File automatisch formatiert wird <img src="setup/images/setting_save.png" alt="Save Settings" /></td></tr>
+<tr><td><strong>Liveserver</strong> (zuerst Plugin installieren)</td><td><img src="setup/images/liveserver_customBrowser.png" alt="Custom Browser" /> Klicke dann auf <img src="setup/images/settings_json.png" alt="Settings JSON" /> und erweitere das JSON so, dass es den Wert fürs Debug Attach auf true hat! <img src="setup/images/settings_attachDebug.png" alt="Attach Debug" /></td></tr>
+</tbody></table>
+</div>
+<h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
+<p>Sobald du Visual Studio Code (VS Code) installiert hast, öffne es. Damit das Leben mit VS Code noch angenehmer wird, kannst du noch ein paar Plugins installieren. Dafür gehst du in deinem VS Code auf den Bereich "Erweiterungen" und gibst den Namen oben ein. Danach klickst du jeweils auf "Installieren". Die Version kann sich unter Umständen erhöht haben, wenn du die Erweiterungen installierst. Die Angabe unten ist die Mindest-Version.</p>
+<p><img src="setup/images/vsCodeExtension.png" alt="VS Code Extensions" /></p>
+<h3 id="erforderliche-plugins"><a class="header" href="#erforderliche-plugins">Erforderliche Plugins</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Plugin</th><th>Version</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>Highlight Matching Tag</strong></td><td>3.x</td><td>Färbt Klammern / Code die zusammenpassen ein</td></tr>
+<tr><td><strong>Path Intellisense</strong></td><td>16.x</td><td>Vereinfacht die Angabe von Pfaden</td></tr>
+<tr><td><strong>Prettier - Code Formatter</strong></td><td>58.x</td><td>Kann den Code automatisch formatieren. Hilft, um eine bessere Übersicht zu haben</td></tr>
+<tr><td><strong>Live Server</strong></td><td>64.x</td><td>Web Server, damit die Webseite "richtig" ausgeführt werden kann</td></tr>
+</tbody></table>
+</div>
+<h3 id="optionale-plugins"><a class="header" href="#optionale-plugins">Optionale Plugins</a></h3>
+<p>Für den Kurs nicht zwingend nötig, können aber allenfalls zusätzlich unterstützen:</p>
+<div class="table-wrapper"><table><thead><tr><th>Plugin</th><th>Version</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>German Language Pack for Visual Studio Code</strong></td><td>4.x</td><td>Damit kannst du VS Code in Deutsch nutzen</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs"><a class="header" href="#nodejs">NodeJS</a></h1>
+<p>NodeJS verwenden wir nur im Hintergrund. Dieses Tool ist dafür zuständig, dass dein Computer JavaScript ausführen kann. Da wir eine Webseite programmieren, welche auf JavaScript aufbaut, ist dieses Tool essentiell.</p>
+<h2 id="download-und-installation"><a class="header" href="#download-und-installation">Download und Installation</a></h2>
+<p>Wähle auf der Seite <a href="https://nodejs.org/en/download/">Node Download</a> LTS und danach die 64-Bit Version von Windows bzw. Mac.</p>
+<p><img src="setup/images/nodeDownload.png" alt="Node Download" /></p>
+<p>Bei den Installationsschritten kannst du überall den Standard belassen und dich bis zum Abschluss durchklicken.</p>
+<h2 id="alternative-installation-ohne-admin-rechte"><a class="header" href="#alternative-installation-ohne-admin-rechte">Alternative Installation ohne Admin-Rechte</a></h2>
+<p>Wenn du keine Admin-Rechte hast, kannst du diese Anleitung verwenden:
+<a href="https://zwbetz.com/install-nodejs-on-windows-without-admin-access/">Install without Admin Rights</a></p>
+<h2 id="online-alternativen"><a class="header" href="#online-alternativen">Online-Alternativen</a></h2>
+<p>Ansonsten können folgende Online-Tools verwendet werden:</p>
+<ul>
+<li><strong>Browser</strong> (JavaScript Console)</li>
+<li><strong>StackBlitz</strong> - Online-Entwicklungsumgebung</li>
+<li><strong>Programiz Online Compiler</strong> - <a href="https://www.programiz.com/javascript/online-compiler/">online compiler</a></li>
+<li>Andere beliebige Node.js Online-Tools</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="chrome"><a class="header" href="#chrome">Chrome</a></h1>
+<p>Falls du den Chrome Browser noch nicht installiert hast, ist es jetzt an der Zeit. Die Entwicklungstools von Chrome bieten einiges, was andere Browser leider nicht mitbringen. Du kannst den Browser nach dem Kurs auch wieder löschen und ihn vor allem zum Fehler suchen einsetzen.</p>
+<h2 id="download-und-installation-1"><a class="header" href="#download-und-installation-1">Download und Installation</a></h2>
+<ol>
+<li>Öffne <a href="https://www.google.com/chrome/">download Chrome</a></li>
+<li>Der dort angezeigte Download-Knopf sollte eigentlich immer der korrekte für dein Betriebssystem sein</li>
+<li>Die Installationsschritte sind selbsterklärend - befolge sie bis zum Abschluss der Installation</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-html-einstieg"><a class="header" href="#-html-einstieg">🌐 HTML Einstieg</a></h1>
+<h2 id="-grundlagen-lernen"><a class="header" href="#-grundlagen-lernen">📚 Grundlagen lernen</a></h2>
+<p>Am einfachsten lernst du die HTML-Grundlagen im <strong>Tutorial-Kurs</strong> von <a href="https://www.freecodecamp.org/learn/full-stack-developer/">FreeCodeCamp</a>. Mit dem Abschluss des HTML-Teils solltest du die wichtigsten Tags kennen, die wir auch in unserem Beispiel nutzen werden.</p>
+<hr />
+<h2 id="-erste-html-seite-erstellen"><a class="header" href="#-erste-html-seite-erstellen">🚀 Erste HTML-Seite erstellen</a></h2>
+<h3 id="-schritt-1-projekt-setup"><a class="header" href="#-schritt-1-projekt-setup">📁 Schritt 1: Projekt-Setup</a></h3>
+<ol>
+<li><strong>Visual Studio Code öffnen</strong></li>
+<li><strong>"Ordner öffnen" wählen</strong></li>
+</ol>
+<p><img src="html/images/OpenFolder.png" alt="Ordner öffnen" /></p>
+<ol start="3">
+<li><strong>Passenden Ordner anlegen</strong> (z.B. "myFirstWebpage")</li>
+<li><strong>Öffnen des Ordners bestätigen</strong></li>
+</ol>
+<h3 id="-schritt-2-html-datei-erstellen"><a class="header" href="#-schritt-2-html-datei-erstellen">📄 Schritt 2: HTML-Datei erstellen</a></h3>
+<ol>
+<li>
+<p><strong>Neues File anlegen</strong>: <code>index.html</code></p>
+</li>
+<li>
+<p><strong>Emmet-Abkürzung verwenden</strong>:</p>
+<ul>
+<li>Schreibe <code>!</code> gefolgt von <code>TAB</code></li>
+<li>Dies führt die <a href="https://docs.emmet.io/abbreviations/">Emmet Abbreviation</a> aus</li>
+</ul>
+</li>
+<li>
+<p><strong>Grundgerüst sollte automatisch erstellt werden</strong>:</p>
+</li>
+</ol>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="-schritt-3-liveserver-starten"><a class="header" href="#-schritt-3-liveserver-starten">🔴 Schritt 3: LiveServer starten</a></h3>
+<ol>
+<li><strong>Rechtsklick auf <code>index.html</code></strong></li>
+<li><strong>"Open with LiveServer" wählen</strong></li>
+</ol>
+<p><img src="html/images/OpenWithLiveServer.png" alt="Open with LiveServer" /></p>
+<blockquote>
+<p>💡 <strong>Hinweis</strong>: Falls der Button nicht verfügbar ist, überprüfe dein Setup und installiere die LiveServer Extension (siehe Abschnitt "Setup")</p>
+</blockquote>
+<h3 id="-schritt-4-browser-ansicht"><a class="header" href="#-schritt-4-browser-ansicht">🌐 Schritt 4: Browser-Ansicht</a></h3>
+<ul>
+<li><strong>Automatisches Öffnen</strong> im Browser-Fenster</li>
+<li><strong>Standard-Port</strong>: 5500</li>
+<li><strong>Live-Reload</strong>: Änderungen werden sofort angezeigt</li>
+</ul>
+<hr />
+<h2 id="-liveserver-konfigurieren"><a class="header" href="#-liveserver-konfigurieren">⚙️ LiveServer konfigurieren</a></h2>
+<h3 id="-custom-browser-einstellen"><a class="header" href="#-custom-browser-einstellen">🔧 Custom Browser einstellen</a></h3>
+<ol>
+<li><strong>Einstellungen öffnen</strong></li>
+<li><strong>Nach "liveserver" suchen</strong></li>
+<li><strong>Custom Browser einstellen</strong></li>
+</ol>
+<p><img src="html/images/LiveserverCustomBrowser.png" alt="LiveServer Custom Browser" /></p>
+<h3 id="-erweiterte-konfiguration"><a class="header" href="#-erweiterte-konfiguration">📝 Erweiterte Konfiguration</a></h3>
+<p>Für weitere Einstellungen kannst du alles in der <code>settings.json</code> bearbeiten:</p>
+<pre><code class="language-json">{
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.donotShowInfoMsg": true
+}
+</code></pre>
+<hr />
+<h2 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🎯 Nächste Schritte</a></h2>
+<p>Nach dem erfolgreichen Setup kannst du mit dem <a href="html/blogpage.html">Blog Page</a> Tutorial fortfahren und deine erste komplette Webseite erstellen!</p>
+<h3 id="-was-du-jetzt-kannst"><a class="header" href="#-was-du-jetzt-kannst">✅ Was du jetzt kannst:</a></h3>
+<ul>
+<li><strong>HTML-Grundgerüst</strong> erstellen</li>
+<li><strong>LiveServer</strong> verwenden</li>
+<li><strong>Live-Reload</strong> für Entwicklung nutzen</li>
+<li><strong>VS Code</strong> für Web-Entwicklung konfigurieren</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-blog-page-erstellen"><a class="header" href="#-blog-page-erstellen">📄 Blog Page erstellen</a></h1>
+<h2 id="-projekt-ziel"><a class="header" href="#-projekt-ziel">🎯 Projekt-Ziel</a></h2>
+<p>Wir bauen eine Blog Page nach dem Vorbild von <a href="https://www.galaxus.ch/de/page/endlich-weg-vom-lahmen-e-reader-dieses-tablet-macht-auf-e-ink-37832">Galaxus Beispiel-Artikel</a>.</p>
+<p>Die Page enthält:</p>
+<ul>
+<li><strong>Video/Bild als Slide</strong></li>
+<li><strong>Fazit-Bereiche</strong></li>
+<li><strong>Tabellen und Bilder</strong></li>
+<li><strong>Produkt-Kacheln</strong></li>
+<li><strong>Empfohlene Blog-Pages</strong></li>
+<li><strong>Like- und Kommentar-Funktionen</strong></li>
+</ul>
+<h3 id="-entwicklungsansatz"><a class="header" href="#-entwicklungsansatz">🎯 Entwicklungsansatz</a></h3>
+<p><strong>Struktur vor Design</strong>: Wir fokussieren uns zunächst auf das <strong>HTML-Grundgerüst</strong>. Das Design kommt später mit CSS.</p>
+<blockquote>
+<p>⚠️ <strong>Hinweis</strong>: Ignoriere die linke und rechte Spalte. Wir konzentrieren uns ausschließlich auf die <strong>Blog Page selbst</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="-mindest-anforderungen"><a class="header" href="#-mindest-anforderungen">📋 Mindest-Anforderungen</a></h2>
+<h3 id="-kern-elemente-must-have"><a class="header" href="#-kern-elemente-must-have">✅ Kern-Elemente (Must-have)</a></h3>
+<ol>
+<li><strong>Video oder Bild</strong> als Slide (freie Tag-Wahl)</li>
+<li><strong>Rubrik</strong></li>
+<li><strong>Titel</strong> im H1-Format</li>
+<li><strong>Lead-Text</strong></li>
+<li><strong>Haupttext</strong></li>
+<li><strong>Weitere Überschriften</strong> im H2-Format (max. ein H1 pro Page!)</li>
+<li><strong>Weitere Bilder</strong></li>
+<li><strong>Gefällt mir Button</strong></li>
+<li><strong>Empfehlungen</strong> mit weiteren Blog Pages</li>
+</ol>
+<h3 id="-erweiterte-elemente-nice-to-have"><a class="header" href="#-erweiterte-elemente-nice-to-have">🌟 Erweiterte Elemente (Nice-to-have)</a></h3>
+<p>Wenn Zeit vorhanden:</p>
+<ol start="10">
+<li><strong>Autor:innen-Bereich</strong></li>
+<li><strong>Tabelle</strong></li>
+<li><strong>Fazit-Box</strong></li>
+<li><strong>Produkt-Kachel</strong></li>
+<li><strong>Autor:innen-Box</strong> mit Folgen-Button</li>
+<li><strong>Thema</strong> mit Folgen-Button</li>
+</ol>
+<blockquote>
+<p>🚫 <strong>Verzicht</strong>: Community-Bereich (zu komplex für Einstieg)</p>
+</blockquote>
+<hr />
+<h2 id="-html-grundgerüst-erstellen"><a class="header" href="#-html-grundgerüst-erstellen">🛠️ HTML-Grundgerüst erstellen</a></h2>
+<h3 id="-schritt-1-projekt-setup-1"><a class="header" href="#-schritt-1-projekt-setup-1">📁 Schritt 1: Projekt-Setup</a></h3>
+<ol>
+<li><strong>VS Code öffnen</strong></li>
+<li><strong>Ordner für Übungen</strong> anlegen</li>
+<li><strong>GitHub Repository</strong> für Referenz: <a href="https://github.com/rekoch/webEngineerDgEditors">webEngineerDgEditors</a></li>
+</ol>
+<h3 id="-schritt-2-basis-datei-erstellen"><a class="header" href="#-schritt-2-basis-datei-erstellen">📄 Schritt 2: Basis-Datei erstellen</a></h3>
+<ol>
+<li><strong><code>index.html</code> anlegen</strong></li>
+<li><strong>Grundgerüst mit <code>!</code> + Tab</strong> erstellen</li>
+<li><strong>LiveServer starten</strong> für sofortige Änderungsanzeige</li>
+<li><strong>Titel definieren</strong></li>
+</ol>
+<h3 id="-schritt-3-body-struktur-aufbauen"><a class="header" href="#-schritt-3-body-struktur-aufbauen">🏗️ Schritt 3: Body-Struktur aufbauen</a></h3>
+<h4 id="a-media-bereich"><a class="header" href="#a-media-bereich"><strong>A. Media-Bereich</strong></a></h4>
+<pre><code class="language-html">&lt;!-- Video/Image als Slide --&gt;
+&lt;iframe 
+  src="YOUTUBE_EMBED_URL" 
+  title="Video Titel"&gt;
+&lt;/iframe&gt;
+&lt;!-- ODER --&gt;
+&lt;img src="bild.jpg" alt="Beschreibung"&gt;
+</code></pre>
+<h4 id="b-content-header"><a class="header" href="#b-content-header"><strong>B. Content-Header</strong></a></h4>
+<pre><code class="language-html">&lt;!-- Rubrik --&gt;
+&lt;p class="category"&gt;Kategorie&lt;/p&gt;
+
+&lt;!-- Haupttitel --&gt;
+&lt;h1&gt;Artikel-Titel&lt;/h1&gt;
+
+&lt;!-- Lead-Text --&gt;
+&lt;h2&gt;Lead-Text oder Untertitel&lt;/h2&gt;
+</code></pre>
+<h4 id="c-hauptinhalt"><a class="header" href="#c-hauptinhalt"><strong>C. Hauptinhalt</strong></a></h4>
+<pre><code class="language-html">&lt;!-- Text-Abschnitte --&gt;
+&lt;p&gt;Erster Textabschnitt...&lt;/p&gt;
+
+&lt;!-- Gruppierte Inhalte --&gt;
+&lt;section&gt;
+  &lt;h3&gt;Zwischenüberschrift&lt;/h3&gt;
+  &lt;p&gt;Zugehöriger Text...&lt;/p&gt;
+  &lt;img src="bild.jpg" alt="Beschreibung"&gt;
+&lt;/section&gt;
+</code></pre>
+<h4 id="d-interaktions-elemente"><a class="header" href="#d-interaktions-elemente"><strong>D. Interaktions-Elemente</strong></a></h4>
+<pre><code class="language-html">&lt;!-- Gefällt mir Button --&gt;
+&lt;button&gt;❤️ Gefällt mir&lt;/button&gt;
+</code></pre>
+<h4 id="e-empfehlungen"><a class="header" href="#e-empfehlungen"><strong>E. Empfehlungen</strong></a></h4>
+<pre><code class="language-html">&lt;!-- Empfohlene Artikel --&gt;
+&lt;section&gt;
+  &lt;h2&gt;Diese Beiträge könnten dich auch interessieren&lt;/h2&gt;
+  &lt;!-- Struktur für empfohlene Pages --&gt;
+&lt;/section&gt;
+</code></pre>
+<hr />
+<h2 id="-content-strategien"><a class="header" href="#-content-strategien">📝 Content-Strategien</a></h2>
+<h3 id="-text-optionen"><a class="header" href="#-text-optionen">📖 Text-Optionen</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Methode</th><th>Beschreibung</th><th>Verwendung</th></tr></thead><tbody>
+<tr><td><strong>Lorem Ipsum</strong></td><td><code>lorem</code> + Tab in VS Code</td><td>Platzhalter-Text</td></tr>
+<tr><td><strong>Original-Content</strong></td><td>Von Beispiel-Seite kopieren</td><td>Realitätsnaher Content</td></tr>
+<tr><td><strong>Eigener Content</strong></td><td>Selbst geschriebene Texte</td><td>Personalisierte Inhalte</td></tr>
+</tbody></table>
+</div>
+<h3 id="-semantische-html-struktur"><a class="header" href="#-semantische-html-struktur">🎨 Semantische HTML-Struktur</a></h3>
+<p><strong>Verwende logische Gruppierungen:</strong></p>
+<pre><code class="language-html">&lt;!-- Beispiel: Gruppierte Inhalte --&gt;
+&lt;article&gt;
+  &lt;section class="intro"&gt;
+    &lt;h1&gt;Titel&lt;/h1&gt;
+    &lt;p&gt;Lead&lt;/p&gt;
+  &lt;/section&gt;
+  
+  &lt;section class="content"&gt;
+    &lt;h2&gt;Abschnitt&lt;/h2&gt;
+    &lt;p&gt;Text&lt;/p&gt;
+  &lt;/section&gt;
+  
+  &lt;section class="recommendations"&gt;
+    &lt;h2&gt;Empfehlungen&lt;/h2&gt;
+    &lt;!-- Empfohlene Artikel --&gt;
+  &lt;/section&gt;
+&lt;/article&gt;
+</code></pre>
+<hr />
+<h2 id="-best-practices"><a class="header" href="#-best-practices">💡 Best Practices</a></h2>
+<h3 id="-html-struktur"><a class="header" href="#-html-struktur">✅ HTML-Struktur</a></h3>
+<ul>
+<li><strong>Einen H1</strong> pro Page</li>
+<li><strong>Logische Heading-Hierarchie</strong> (H1 → H2 → H3)</li>
+<li><strong>Semantische Tags</strong> verwenden (<code>article</code>, <code>section</code>, <code>aside</code>)</li>
+<li><strong>Alt-Attribute</strong> für alle Bilder</li>
+</ul>
+<h3 id="-media-integration"><a class="header" href="#-media-integration">🔗 Media-Integration</a></h3>
+<p><strong>YouTube-Video einbetten:</strong></p>
+<pre><code class="language-html">&lt;iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/VIDEO_ID" 
+  title="Video Titel"
+  frameborder="0" 
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+</code></pre>
+<p><strong>Responsive Bilder:</strong></p>
+<pre><code class="language-html">&lt;img 
+  src="bild.jpg" 
+  alt="Beschreibende Bildbeschreibung"
+  width="100%"&gt;
+</code></pre>
+<hr />
+<h2 id="-entwicklungsworkflow"><a class="header" href="#-entwicklungsworkflow">🎯 Entwicklungsworkflow</a></h2>
+<h3 id="-schritt-für-schritt-checklist"><a class="header" href="#-schritt-für-schritt-checklist">📋 Schritt-für-Schritt-Checklist</a></h3>
+<ol>
+<li>✅ <strong>HTML-Grundgerüst</strong> erstellen</li>
+<li>✅ <strong>LiveServer</strong> starten</li>
+<li>✅ <strong>Media-Bereich</strong> implementieren</li>
+<li>✅ <strong>Content-Header</strong> aufbauen</li>
+<li>✅ <strong>Hauptinhalt</strong> strukturieren</li>
+<li>✅ <strong>Interaktions-Elemente</strong> hinzufügen</li>
+<li>✅ <strong>Empfehlungen-Bereich</strong> erstellen</li>
+<li>✅ <strong>Erweiterte Elemente</strong> (optional)</li>
+</ol>
+<h3 id="-iterativer-ansatz"><a class="header" href="#-iterativer-ansatz">🔄 Iterativer Ansatz</a></h3>
+<ol>
+<li><strong>Basis-Version</strong> mit Mindest-Elementen</li>
+<li><strong>Schritt-für-Schritt-Erweiterung</strong></li>
+<li><strong>Kontinuierliche Browser-Tests</strong></li>
+<li><strong>Spätere CSS-Integration</strong></li>
+</ol>
+<hr />
+<h2 id="-nächste-schritte-1"><a class="header" href="#-nächste-schritte-1">🚀 Nächste Schritte</a></h2>
+<p>Nach Fertigstellung der HTML-Struktur:</p>
+<ol>
+<li><strong>CSS-Styling</strong> hinzufügen</li>
+<li><strong>Responsive Design</strong> implementieren</li>
+<li><strong>JavaScript-Interaktivität</strong> einbauen</li>
+<li><strong>Performance-Optimierung</strong></li>
+</ol>
+<p><strong>Ziel erreicht</strong>: Solide HTML-Basis für eine professionelle Blog Page! 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-css-einstieg"><a class="header" href="#-css-einstieg">🎨 CSS Einstieg</a></h1>
+<h2 id="-was-ist-css"><a class="header" href="#-was-ist-css">💡 Was ist CSS?</a></h2>
+<p><strong>CSS</strong> steht für <strong>Cascading Style Sheets</strong> und bildet die Grundlage des Designs für jede Webseite.</p>
+<blockquote>
+<p>🔍 <strong>Wichtig</strong>: Sogar wenn du kein eigenes CSS definiert hast, gibt es ein CSS! Jeder Browser definiert dies über das <strong>"User Agent Stylesheet"</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="-css-im-browser-untersuchen"><a class="header" href="#-css-im-browser-untersuchen">🔧 CSS im Browser untersuchen</a></h2>
+<h3 id="-schritt-für-schritt-anleitung"><a class="header" href="#-schritt-für-schritt-anleitung">📋 Schritt-für-Schritt-Anleitung</a></h3>
+<h4 id="1-beispiel-seite-öffnen"><a class="header" href="#1-beispiel-seite-öffnen"><strong>1. Beispiel-Seite öffnen</strong></a></h4>
+<ul>
+<li><strong><a href="https://www.galaxus.ch/de/page/endlich-weg-vom-lahmen-e-reader-dieses-tablet-macht-auf-e-ink-37832">Galaxus Artikel</a></strong> in <strong>Chrome</strong> öffnen</li>
+<li><strong>Rechtsklick</strong> auf einen Bereich der Seite</li>
+<li><strong>"Untersuchen"</strong> auswählen (oder <strong>F12</strong> drücken)</li>
+</ul>
+<p><img src="css/images/CSS_OpenWebChromeTools.png" alt="Chrome Entwicklertools öffnen" /></p>
+<h4 id="2-entwicklertools-verstehen"><a class="header" href="#2-entwicklertools-verstehen"><strong>2. Entwicklertools verstehen</strong></a></h4>
+<p>Das Entwickler-Werkzeug wird auf der rechten Seite angezeigt. Die Position lässt sich umschalten.</p>
+<p><img src="css/images/CSS_changePlacement.png" alt="Platzierung ändern" /></p>
+<h4 id="3-auswahl-werkzeug-aktivieren"><a class="header" href="#3-auswahl-werkzeug-aktivieren"><strong>3. Auswahl-Werkzeug aktivieren</strong></a></h4>
+<ul>
+<li><strong>Auswahl-Werkzeug</strong> in der Toolbar aktivieren</li>
+<li>Ermöglicht das direkte Anklicken von Elementen</li>
+</ul>
+<p><img src="css/images/CSS_activateSelectionTool.png" alt="Auswahl-Werkzeug aktivieren" /></p>
+<h4 id="4-element-inspizieren"><a class="header" href="#4-element-inspizieren"><strong>4. Element inspizieren</strong></a></h4>
+<ul>
+<li><strong>Überschrift</strong> oder anderes Element anklicken</li>
+<li>CSS-Eigenschaften werden rechts unter <strong>"Styles"</strong> angezeigt</li>
+</ul>
+<p><img src="css/images/CSS_clickOnTitle.png" alt="Element auswählen" /></p>
+<hr />
+<h2 id="-css-hierarchie-verstehen"><a class="header" href="#-css-hierarchie-verstehen">🏗️ CSS-Hierarchie verstehen</a></h2>
+<h3 id="-kaskadierung-cascading"><a class="header" href="#-kaskadierung-cascading">📊 Kaskadierung (Cascading)</a></h3>
+<p><strong>Von unten nach oben gelesen:</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Priorität</th><th>Quelle</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>Niedrigste</strong></td><td><strong>User Agent Stylesheet</strong></td><td>Browser-Standard CSS</td></tr>
+<tr><td><strong>Mittlere</strong></td><td><strong>Website CSS</strong></td><td>Entwickler-definierte Styles</td></tr>
+<tr><td><strong>Höchste</strong></td><td><strong>Spezifische Selektoren</strong></td><td>Überschreibende Definitionen</td></tr>
+</tbody></table>
+</div>
+<h3 id="-was-du-in-den-devtools-siehst"><a class="header" href="#-was-du-in-den-devtools-siehst">🔍 Was du in den DevTools siehst:</a></h3>
+<ul>
+<li><strong>📋 User-Agent-Stylesheet</strong>: Browser-Standard (unterste Ebene)</li>
+<li><strong>🎯 Hierachische Definitionen</strong>: Von unten nach oben</li>
+<li><strong>✂️ Durchgestrichene Regeln</strong>: "Verlierende" CSS-Definitionen</li>
+<li><strong>🏆 Gewinnende Definition</strong>: Letzte, spezifischste Regel</li>
+<li><strong>🤖 Framework-Klassen</strong>: Z.B. <code>.yDkbjfY3</code> (automatisch generiert)</li>
+</ul>
+<h3 id="-beispiel-css-eigenschaft"><a class="header" href="#-beispiel-css-eigenschaft">💡 Beispiel-CSS-Eigenschaft</a></h3>
+<pre><code class="language-css">margin-bottom: 16px; /* 16 Pixel Abstand unterhalb des Elements */
+</code></pre>
+<hr />
+<h2 id="-css-lernen"><a class="header" href="#-css-lernen">📚 CSS lernen</a></h2>
+<h3 id="-empfohlene-lernressourcen"><a class="header" href="#-empfohlene-lernressourcen">🎯 Empfohlene Lernressourcen</a></h3>
+<h4 id="-freecodecamp-tutorial"><a class="header" href="#-freecodecamp-tutorial"><strong>🚀 FreeCodeCamp Tutorial</strong></a></h4>
+<p><strong>Link</strong>: <a href="https://www.freecodecamp.org/learn/full-stack-developer/">Full Stack Developer Kurs</a></p>
+<p><strong>Vorgehen</strong>:</p>
+<ol>
+<li><strong>CSS-Sektion</strong> auswählen</li>
+<li><strong>Computer Basics</strong> überspringen (falls bereits bekannt)</li>
+<li><strong>Responsive Web Design</strong> für Fortgeschrittene</li>
+</ol>
+<h4 id="-lernweg-struktur"><a class="header" href="#-lernweg-struktur"><strong>📖 Lernweg-Struktur</strong></a></h4>
+<pre><code>1. CSS Basics
+   ├── Selektoren
+   ├── Eigenschaften  
+   └── Werte
+
+2. Layout-Konzepte
+   ├── Box Model
+   ├── Flexbox
+   └── CSS Grid
+
+3. Responsive Design
+   ├── Media Queries
+   ├── Breakpoints
+   └── Mobile First
+</code></pre>
+<hr />
+<h2 id="-praktische-anwendung"><a class="header" href="#-praktische-anwendung">🎨 Praktische Anwendung</a></h2>
+<h3 id="-nächster-schritt-blog-seite-stylen"><a class="header" href="#-nächster-schritt-blog-seite-stylen">🎯 Nächster Schritt: Blog-Seite stylen</a></h3>
+<p>Nach dem Tutorial-Durchlauf:</p>
+<ol>
+<li><strong>✅ HTML-Grundgerüst</strong> (bereits vorhanden)</li>
+<li><strong>🎨 CSS-Design</strong> hinzufügen</li>
+<li><strong>📱 Responsive</strong> machen</li>
+<li><strong>✨ Interaktivität</strong> erweitern</li>
+</ol>
+<blockquote>
+<p>🔥 <strong>Ziel</strong>: Die Blog-Seite von einem reinen HTML-Gerüst zu einer ansprechend gestylten Webseite verwandeln!</p>
+</blockquote>
+<hr />
+<h2 id="-best-practices-1"><a class="header" href="#-best-practices-1">💡 Best Practices</a></h2>
+<h3 id="-css-grundregeln"><a class="header" href="#-css-grundregeln">✅ CSS-Grundregeln</a></h3>
+<ul>
+<li><strong>📝 Kommentare</strong> für komplexe Bereiche</li>
+<li><strong>🏗️ Logische Struktur</strong> in CSS-Dateien</li>
+<li><strong>🎯 Spezifische Selektoren</strong> verwenden</li>
+<li><strong>🔄 Wiederverwendbare Klassen</strong> erstellen</li>
+</ul>
+<h3 id="-browser-devtools-nutzen"><a class="header" href="#-browser-devtools-nutzen">🔧 Browser-DevTools nutzen</a></h3>
+<ul>
+<li><strong>🔍 Live-Editing</strong> für schnelle Tests</li>
+<li><strong>📊 Computed Styles</strong> für finale Werte</li>
+<li><strong>🎯 Element-Inspektion</strong> für Debugging</li>
+<li><strong>📱 Device-Simulation</strong> für Responsive Tests</li>
+</ul>
+<hr />
+<h2 id="-workflow-empfehlung"><a class="header" href="#-workflow-empfehlung">🚀 Workflow-Empfehlung</a></h2>
+<h3 id="-entwicklungsschritte"><a class="header" href="#-entwicklungsschritte">📋 Entwicklungsschritte</a></h3>
+<ol>
+<li><strong>🖼️ Design analysieren</strong> (Galaxus-Beispiel)</li>
+<li><strong>🏗️ HTML-Struktur</strong> überprüfen</li>
+<li><strong>🎨 CSS schrittweise</strong> hinzufügen</li>
+<li><strong>🔄 Browser-Tests</strong> kontinuierlich</li>
+<li><strong>📱 Responsive</strong> optimieren</li>
+</ol>
+<p><strong>Bereit für kreatives CSS-Design!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-responsive-web-design"><a class="header" href="#-responsive-web-design">📱 Responsive Web Design</a></h1>
+<h2 id="-die-evolution-des-web-designs"><a class="header" href="#-die-evolution-des-web-designs">🕰️ Die Evolution des Web Designs</a></h2>
+<h3 id="-2009-die-einfache-zeit"><a class="header" href="#-2009-die-einfache-zeit">📊 2009: Die einfache Zeit</a></h3>
+<p>Im Jahr <strong>2009</strong> war noch alles viel einfacher. Die meisten User nutzten eine Bildauflösung von <strong>1024x768 Pixel</strong> - dem damaligen Desktop-Standard.
+<img src="css/images/rwd_chart.png" alt="Statistiken 2009" /></p>
+<p><strong>Alle Auflösungen</strong> waren im Desktop-Segment angesiedelt. Die Welt des Web-Engineers war einfach:</p>
+<ul>
+<li><strong>Eine Seite</strong> für alle</li>
+<li><strong><code>&lt;table&gt;</code> Tags</strong> für Layout</li>
+<li><strong>Feste Breiten</strong> funktionierten perfekt</li>
+</ul>
+<p>SBB Seite
+<img src="css/images/rwd_oldSBBPage.png" alt="Alte Website-Darstellung" /></p>
+<p>Apple Seite
+<img src="css/images/rwd_oldApplePage.png" alt="Alte Website-Darstellung" /></p>
+<h3 id="-2014-der-mobile-wandel"><a class="header" href="#-2014-der-mobile-wandel">📈 2014: Der Mobile Wandel</a></h3>
+<p><img src="css/images/rwd_2014Stats.png" alt="Statistiken 2014" /></p>
+<p><strong>Deutlich kleinere Auflösungen</strong> dominieren das Chart:</p>
+<ul>
+<li><strong>📱 Smartphones</strong> an der Spitze</li>
+<li><strong>"Others"</strong> deutlich gestiegen</li>
+<li><strong>💥 Paradigmenwechsel</strong>: Responsive Design wird Pflicht</li>
+</ul>
+<blockquote>
+<p>🚨 <strong>Realität</strong>: Smartphones haben der Webentwicklung einen Dämpfer verpasst. Plötzlich müssen Seiten auch auf relativ kleinen Auflösungen gut aussehen.</p>
+</blockquote>
+<hr />
+<h2 id="-mobile-first--responsive-design"><a class="header" href="#-mobile-first--responsive-design">📱 Mobile First &amp; Responsive Design</a></h2>
+<h3 id="-das-iphone-problem-2008"><a class="header" href="#-das-iphone-problem-2008">🍎 Das iPhone-Problem (2008)</a></h3>
+<p><strong>Ursprüngliche Lösung</strong>: Webseiten wurden "gezoomed" dargestellt</p>
+<ul>
+<li>Browser verkleinerte Desktop-Darstellung</li>
+<li><strong>Zoom-Geste</strong> ermöglichte Navigation</li>
+<li><strong>❌ Problem</strong>: Nicht zielführend für positive User Experience</li>
+</ul>
+<h3 id="-die-viewport-lösung"><a class="header" href="#-die-viewport-lösung">🔧 Die Viewport-Lösung</a></h3>
+<p><strong>Emmet-Shortcut <code>!</code> erstellt automatisch:</strong></p>
+<pre><code class="language-html">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+</code></pre>
+<p><strong>Was passiert:</strong></p>
+<ul>
+<li>Browser zeigt Webseite <strong>1:1</strong> dar (keine Verkleinerung)</li>
+<li><strong>400px Button</strong> = <strong>volle Breite</strong> auf 400px-Screen</li>
+<li><strong>Verantwortung</strong> liegt bei der Entwicklerin</li>
+</ul>
+<blockquote>
+<p>📖 <strong>Mehr Infos</strong>: <a href="https://www.w3schools.com/css/css_rwd_viewport.asp">W3Schools Viewport Guide</a></p>
+</blockquote>
+<hr />
+<h2 id="-mobile-first-strategie"><a class="header" href="#-mobile-first-strategie">🏗️ Mobile First Strategie</a></h2>
+<h3 id="-konzept-Übersicht"><a class="header" href="#-konzept-Übersicht">📋 Konzept-Übersicht</a></h3>
+<p><strong>Mobile First</strong> = Design beginnt mit kleinster Auflösung</p>
+<pre><code>📱 320px (Mobile)  →  📲 768px (Tablet)  →  🖥️ 1200px (Desktop)
+</code></pre>
+<h3 id="-breakpoint-system"><a class="header" href="#-breakpoint-system">🎯 Breakpoint-System</a></h3>
+<p><strong>Breakpoint</strong> = Bestimmte Auflösung, wo sich das Design anpassen muss</p>
+<p><strong>Beispiel-Szenario:</strong></p>
+<ul>
+<li><strong>Button bis 400px</strong>: <code>width: 100%</code> ✅</li>
+<li><strong>Button ab 450px</strong>: Anpassung nötig ❌</li>
+<li><strong>Lösung</strong>: Breakpoint bei <code>400px</code> definieren</li>
+</ul>
+<h3 id="-bootstrap-breakpoints-beispiel"><a class="header" href="#-bootstrap-breakpoints-beispiel">📊 Bootstrap Breakpoints (Beispiel)</a></h3>
+<p><img src="css/images/rwd_breakpointsBootstrap.png" alt="Bootstrap Breakpoints" /></p>
+<p><strong>Mobile First erkennbar:</strong></p>
+<ul>
+<li><strong>Erster Breakpoint</strong>: <code>min-width: 576px</code></li>
+<li><strong>Bis dahin</strong>: "Kleinster Screen" als Basis</li>
+<li><strong>Alle weiteren</strong>: <code>min-width</code> für schrittweise Erweiterung</li>
+</ul>
+<hr />
+<h2 id="-praktische-umsetzung"><a class="header" href="#-praktische-umsetzung">🛠️ Praktische Umsetzung</a></h2>
+<h3 id="-projekt-setup"><a class="header" href="#-projekt-setup">📁 Projekt-Setup</a></h3>
+<h4 id="schritt-1-ordner-struktur"><a class="header" href="#schritt-1-ordner-struktur"><strong>Schritt 1: Ordner-Struktur</strong></a></h4>
+<ol>
+<li><strong>Neuen Ordner</strong> erstellen</li>
+<li><strong>VS Code</strong> öffnen</li>
+<li><strong>Files erstellen</strong>: <code>index.html</code> + <code>main.css</code></li>
+</ol>
+<p><img src="css/images/rwd_setupExample.png" alt="Setup Beispiel" /></p>
+<h4 id="schritt-2-grid-system-vorbereiten"><a class="header" href="#schritt-2-grid-system-vorbereiten"><strong>Schritt 2: Grid-System vorbereiten</strong></a></h4>
+<p><strong>W3Schools Referenz</strong>: <a href="https://www.w3schools.com/css/css_rwd_intro.asp">CSS RWD Intro</a></p>
+<p><strong>12-Spalten-System</strong> (bewährter Standard):</p>
+<ul>
+<li><strong>Flexible Aufteilung</strong> für verschiedene Layouts</li>
+<li><strong>Prozentuale Breiten</strong> für responsive Verhalten</li>
+</ul>
+<h3 id="-grid-css-erstellen"><a class="header" href="#-grid-css-erstellen">📂 Grid CSS erstellen</a></h3>
+<h4 id="ordner-struktur"><a class="header" href="#ordner-struktur"><strong>Ordner-Struktur:</strong></a></h4>
+<pre><code>project/
+├── index.html
+├── main.css
+└── styleguide/
+    └── grid.css
+</code></pre>
+<h4 id="grid-klassen-definieren-gridcss"><a class="header" href="#grid-klassen-definieren-gridcss"><strong>Grid-Klassen definieren: (grid.css)</strong></a></h4>
+<pre><code class="language-css">.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-4 {
+  width: 33.33%;
+}
+.col-5 {
+  width: 41.66%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 66.66%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33%;
+}
+.col-11 {
+  width: 91.66%;
+}
+.col-12 {
+  width: 100%;
+}
+</code></pre>
+<h3 id="-html-grundgerüst"><a class="header" href="#-html-grundgerüst">🔧 HTML-Grundgerüst</a></h3>
+<h4 id="indexhtml-body"><a class="header" href="#indexhtml-body"><strong>index.html Body:</strong></a></h4>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="col-3"&gt;first column&lt;/div&gt;
+  &lt;div class="col-3"&gt;second column&lt;/div&gt;
+  &lt;div class="col-3"&gt;third column&lt;/div&gt;
+  &lt;div class="col-3"&gt;fourth column&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="box-sizing-hinzufügen-maincss"><a class="header" href="#box-sizing-hinzufügen-maincss"><strong>Box-Sizing hinzufügen (main.css):</strong></a></h4>
+<pre><code class="language-css">* {
+  box-sizing: border-box;
+}
+</code></pre>
+<h4 id="grid-styling-erweitern-gridcss"><a class="header" href="#grid-styling-erweitern-gridcss"><strong>Grid-Styling erweitern (grid.css):</strong></a></h4>
+<pre><code class="language-css">[class*="col-"] {
+  float: left;
+  padding: 15px;
+  border: 1px solid red;
+}
+</code></pre>
+<h3 id="-css-verknüpfen"><a class="header" href="#-css-verknüpfen">🔗 CSS verknüpfen</a></h3>
+<h4 id="html-head-erweitern"><a class="header" href="#html-head-erweitern"><strong>HTML Head erweitern:</strong></a></h4>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;link rel="stylesheet" href="main.css" /&gt;
+&lt;/head&gt;
+</code></pre>
+<h4 id="css-import-maincss"><a class="header" href="#css-import-maincss"><strong>CSS Import (main.css):</strong></a></h4>
+<pre><code class="language-css">@import "styleguide/grid.css";
+</code></pre>
+<p>Jetzt sollte deine Page wie folgt aussehen.
+<img src="css/images/rwd_screenshotIndexHtml.png" alt="Erste Ansicht" /></p>
+<h3 id="-row-system-implementieren"><a class="header" href="#-row-system-implementieren">📐 Row-System implementieren</a></h3>
+<p>Was noch fehlt ist die Möglichkeit, einzelne Zeilen zu definieren. Wir möchten sicherstellen, dass sich die Verteilung nur auf einen bestimmten Bereich bezieht. Dafür benötigen wir noch folgende css Anweisung in unserem grid.css file</p>
+<h4 id="row-css-hinzufügen-gridcss"><a class="header" href="#row-css-hinzufügen-gridcss"><strong>Row-CSS hinzufügen (grid.css):</strong></a></h4>
+<pre><code class="language-css">.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</code></pre>
+<h4 id="html-mit-rows-strukturieren"><a class="header" href="#html-mit-rows-strukturieren"><strong>HTML mit Rows strukturieren:</strong></a></h4>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-3"&gt;first column&lt;/div&gt;
+    &lt;div class="col-3"&gt;second column&lt;/div&gt;
+    &lt;div class="col-3"&gt;third column&lt;/div&gt;
+    &lt;div class="col-3"&gt;fourth column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Spiele nun etwas mit der Breite des Bildschirms. Du wirst nun allenfalls feststellen, dass nicht alle Breiten gut aussehen. Je Breiter der Bildschirm, desto mehr unnötige Abstände produzieren wir. Genau das wollen wir nun verbessern, indem wir im Zusammenspiel mit den MediaQueries unser Grid erst richtig erweitern.</p>
+<p>Da wir mobile-first designen, kümmern wir uns um die Namens Zusätze erst ab dem ersten Breakpoint. Also in unserem Beispiel der Breakpoint mit dem Namen <code>sm</code> für Small</p>
+<hr />
+<h2 id="-responsive-breakpoints"><a class="header" href="#-responsive-breakpoints">📱 Responsive Breakpoints</a></h2>
+<h3 id="-media-queries-implementieren"><a class="header" href="#-media-queries-implementieren">🎯 Media Queries implementieren</a></h3>
+<h4 id="mobile-first-basis-grid"><a class="header" href="#mobile-first-basis-grid"><strong>Mobile First Basis-Grid:</strong></a></h4>
+<pre><code class="language-css">/* Mobile (Standard - kein Breakpoint nötig) */
+.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
+/* ... bis col-12 */
+</code></pre>
+<h4 id="small-devices-576px"><a class="header" href="#small-devices-576px"><strong>Small Devices (576px+):</strong></a></h4>
+<pre><code class="language-css">@media (min-width: 576px) {
+  .col-sm-1 {
+    width: 8.33%;
+  }
+  .col-sm-2 {
+    width: 16.66%;
+  }
+  .col-sm-3 {
+    width: 25%;
+  }
+  .col-sm-4 {
+    width: 33.33%;
+  }
+  /* ... bis col-sm-12 */
+}
+</code></pre>
+<h3 id="-responsive-html-beispiel"><a class="header" href="#-responsive-html-beispiel">💡 Responsive HTML-Beispiel</a></h3>
+<p>Nun hast du die Möglichkeit, das Layout für jeden Breakpoint zu definieren. Mache bspw. mal col-12 im mobile, für sm danach col-sm-3 und siehe wie sich das Layout nun verhält.</p>
+<pre><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-12 col-sm-3"&gt;first column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;second column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;third column&lt;/div&gt;
+  &lt;div class="col-12 col-sm-3"&gt;fourth column&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Verhalten:</strong></p>
+<ul>
+<li><strong>Mobile</strong>: 4 Zeilen (je 100% Breite)</li>
+<li><strong>ab 576px</strong>: 4 Spalten (je 25% Breite)</li>
+</ul>
+<hr />
+<h2 id="-library-vs-custom-solution"><a class="header" href="#-library-vs-custom-solution">🤔 Library vs. Custom Solution</a></h2>
+<p>Nun hast du gesehen, dass es nicht unbedingt Magie ist, ein Grid selber zu programmieren. Damit alles funktioniert, fehlen trotzdem noch einige CSS Klassen, die noch definiert werden müssen. Daher stellt sich doch gleich die Frage, wieso nicht von Anfang an Bootstrap oder andere CSS Bibliotheken einsetzen? Wenn dein Projekt keine speziellen Anforderungen hat, du mit grundsätzlich 12 Spalten problemlos dein Design umsetzen kannst, dann kannst du gut und gerne eine Bibliothek wie Bootstrap einsetzen. Trotzdem muss man sich immer bewusst sein, dass der Einsatz einer solchen Bibliothek auch erfordert, dass man sie korrekt versteht und entsprechend korrekt einsetzt. Du musst die Klassen verstehen und wissen, welche für was eingesetzt wird. Ein einfaches Beispiel mit Bootstrap sieht wie folgt aus</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+    &lt;div class="col-sm"&gt;One of three columns&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="-entscheidungskriterien"><a class="header" href="#-entscheidungskriterien">⚖️ Entscheidungskriterien</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Aspekt</th><th><strong>Bootstrap</strong></th><th><strong>Custom Grid</strong></th></tr></thead><tbody>
+<tr><td><strong>⚡ Setup-Zeit</strong></td><td>Schnell</td><td>Länger</td></tr>
+<tr><td><strong>🎯 Flexibilität</strong></td><td>Begrenzt</td><td>Vollständig</td></tr>
+<tr><td><strong>📚 Lernaufwand</strong></td><td>Framework lernen</td><td>CSS verstehen</td></tr>
+<tr><td><strong>🔧 Anpassungen</strong></td><td>Workarounds</td><td>Direkte Kontrolle</td></tr>
+<tr><td><strong>📦 Bundle-Size</strong></td><td>Größer</td><td>Minimal</td></tr>
+</tbody></table>
+</div>
+<h3 id="-bootstrap-verwenden-wenn"><a class="header" href="#-bootstrap-verwenden-wenn">✅ Bootstrap verwenden, wenn:</a></h3>
+<ul>
+<li><strong>🚀 Schnelle Prototypen</strong> erstellen</li>
+<li><strong>12-Spalten-System</strong> ausreicht</li>
+<li><strong>Standard-Designs</strong> umsetzen</li>
+<li><strong>Team</strong> bereits Bootstrap-Erfahrung hat</li>
+</ul>
+<h3 id="-custom-grid-verwenden-wenn"><a class="header" href="#-custom-grid-verwenden-wenn">✅ Custom Grid verwenden, wenn:</a></h3>
+<ul>
+<li><strong>🎨 Unique Designs</strong> entwickeln</li>
+<li><strong>Volle Kontrolle</strong> benötigt</li>
+<li><strong>Performance</strong> kritisch ist</li>
+<li><strong>Lernziele</strong> CSS-Verständnis beinhalten</li>
+</ul>
+<hr />
+<h2 id="-the-modern-way-css-grid"><a class="header" href="#-the-modern-way-css-grid">🚀 The Modern Way: CSS Grid</a></h2>
+<h3 id="-css-grid-vorteile-seit-20162017"><a class="header" href="#-css-grid-vorteile-seit-20162017">🌟 CSS Grid Vorteile (seit 2016/2017)</a></h3>
+<p><strong>Warum CSS Grid?</strong></p>
+<ul>
+<li><strong>🏗️ 2D-Layout</strong> (Zeilen + Spalten)</li>
+<li><strong>🎯 Intuitive Syntax</strong></li>
+<li><strong>📱 Native Browser-Support</strong></li>
+<li><strong>⚡ Performance-optimiert</strong></li>
+</ul>
+<h3 id="-css-grid-lernressourcen"><a class="header" href="#-css-grid-lernressourcen">📚 CSS Grid Lernressourcen</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Resource</th><th>Typ</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong><a href="https://cssgridgarden.com/">CSS Grid Garden</a></strong></td><td>🎮 Spiel</td><td>Interaktives Lernen</td></tr>
+<tr><td><strong><a href="https://scrimba.com/learn-css-grid-c02k">Scrimba CSS Grid</a></strong></td><td>🎥 Video</td><td>Hands-on Kurs</td></tr>
+<tr><td><strong><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids">MDN Grid Guide</a></strong></td><td>📖 Docs</td><td>Umfassende Referenz</td></tr>
+</tbody></table>
+</div>
+<h3 id="-css-grid-implementation"><a class="header" href="#-css-grid-implementation">🔧 CSS Grid Implementation</a></h3>
+<h4 id="variablen-definieren"><a class="header" href="#variablen-definieren"><strong>Variablen definieren:</strong></a></h4>
+<pre><code class="language-css">:root {
+  --columns-amount: 12;
+  --gap-small: 20px;
+}
+</code></pre>
+<h4 id="grid-container"><a class="header" href="#grid-container"><strong>Grid-Container:</strong></a></h4>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-template-columns: repeat(var(--columns-amount), 1fr);
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Du wirst feststellen, dass wir bereits eine vertikale Verteilung haben. Nun möchten wir noch so was wie zuvor haben und die jeweilige Breite festlegen. Dafür müssen wir unser grid.css einfach wiederum um die breakpoints erweitern. Anstelle von breiten verwenden wir jedoch ein grid-column span.</p>
+<h4 id="responsive-grid-spans"><a class="header" href="#responsive-grid-spans"><strong>Responsive Grid-Spans:</strong></a></h4>
+<pre><code class="language-css">/* Mobile */
+.col-12 {
+  grid-column: span 12;
+}
+
+/* Small Devices */
+@media (min-width: 576px) {
+  .col-sm-4 {
+    grid-column: span 4;
+  }
+}
+
+/* Medium Devices */
+@media (min-width: 768px) {
+  .col-md-3 {
+    grid-column: span 3;
+  }
+}
+</code></pre>
+<h3 id="-advanced-css-grid-features"><a class="header" href="#-advanced-css-grid-features">🎯 Advanced CSS Grid Features</a></h3>
+<p>Du hast nun ein Grid ähnliches Layout mit CSS Grid als Basis gebaut. Überlege dir folgende Anforderung. Nebst dem eigentlichen Inhalt, der auf 12 Spalten verteilt ist, möchtest du nun auf einer virtuellen ersten bzw. letzten Spalte bei Bedarf einen "Seiten-Content" einfügen.
+<img src="css/images/rwd_screenshotWithColumns.png" alt="Responsive Breiten" /></p>
+<p>Der Rest soll sich weiterhin verteilen wie zuvor. Das Element auf der Seite soll sich an der Höhe orientieren, wo auch der entsprechende Inhalt steht. Überleg dir mal, wie du das ohne CSS Grid machen würdest.
+Damit das Beispiel funktioniert, kopiere folgendes HTML in dein index.html</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Responsive is cool&lt;/h1&gt;
+  &lt;div class="row"&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 1&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 2&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 3&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 4&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 5&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 6&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 7&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 8&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 9&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 10&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 11&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 12&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 13&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 14&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 15&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 16&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 17&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 18&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 19&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 20&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 21&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 22&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 23&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 24&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 25&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 26&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 27&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 28&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 29&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 30&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 31&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 32&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 33&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 34&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 35&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 36&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 37&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 38&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 39&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 40&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 41&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 42&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 43&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 44&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 45&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 46&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 47&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 48&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 49&lt;/button&gt;
+    &lt;button class="col-12 col-sm-4 col-md-3"&gt;button 50&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="erweiterte-spalten"><a class="header" href="#erweiterte-spalten"><strong>Erweiterte Spalten:</strong></a></h4>
+<p>Damit wir unser .aside links bzw. rechts hinzufügen können, müssen wir als erstes dem ganzen Inhalt weitere Spalten hinzufügen. Das einfachste ist, unserer "row" Klasse diese Spalten hinzuzufügen. Dies machen wir nun im grid.css und passen einfach unsere grid-template-columns definition der .row klasse an.</p>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-template-columns: 150px repeat(var(--columns-amount), 1fr) 150px;
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Nun wird die Page etwa so aussehen:
+<img src="css/images/rwd_screenshotNewWidths.png" alt="Responsive Breiten" /></p>
+<p>Wir haben also erreicht, dass wir unseren Inhalt neu auf 14 Spalten verteilen. Was wir aber nicht möchten, ist, dass die erste Spalte durch Inhalt belegt wird. Wir möchten alles eines nach "rechts" verschieben. Wie erreichen wir das rein nur über CSS? Wir wollen keine Klasse im HTML anpassen müssen.</p>
+<h4 id="grid-span"><a class="header" href="#grid-span"><strong>grid-span:</strong></a></h4>
+<p>Damit wir das Ziel erreichen, können wir unser CSS mit folgendem Attribut erweitern:</p>
+<pre><code class="language-css">.col-12 {
+  grid-column: 2 / span 12;
+}
+</code></pre>
+<p>Teste die entsprechende Auflösung. Sieht es gut aus? Das ganze benötigen wir nun auch für unsere anderen Auflösungen. Benutze Media Queries und erweitere die col-x Klassen entsprechend. Wir verzichten auf alle col-definitionen, da wir nur entweder 12 spalten, 4 oder 3 brauchen (<code>col-12</code>, <code>col-sm-4</code>, <code>col-md-3</code>).</p>
+<pre><code class="language-css">/* Mobile-Spaltenklassen */
+col-12 {
+  grid-column: 2 / span 12;
+}
+
+/* Spaltenklassen für Breakpoint 576px (sm) */
+@media (min-width: 576px) {
+  .col-sm-4 {
+    grid-column: 2 / span 4;
+  }
+}
+
+/* Spaltenklassen für Breakpoint 768px (md) */
+@media (min-width: 768px) {
+  .col-md-3 {
+    grid-column: 2 / span 3;
+  }
+}
+</code></pre>
+<p>Teste ein wenig das neue Layout. Folgende Dinge sollten dir auffallen:</p>
+<ul>
+<li>Je nach Grösse des Bildschirms haben wir einen etwas zu grossen gap</li>
+<li>Je nach Grösse des Bildschirms sind die zusätzlichen Spalten am Anfang und Ende zu breit</li>
+<li>Die Höhe der Elemente ist teilweise unterschiedlich</li>
+<li>Die Elemente sind nun immer ab der zweiten Spalte gereiht und nicht mehr verteilt
+Alle dies Dinge wollen wir nun beheben. Die einfachste ist auf jeden Fall das Gap und die Spaltenbreite.</li>
+</ul>
+<p>Passe daher dein css entsprechend an. Wir setzen Variablen ein, die wiederum mit Media-Queries definiert werden. So können wir die Angaben automatisch setzen, basierend auf der Viewport Grösse. Genius 🤓</p>
+<pre><code class="language-css">:root {
+  --columns-amount: 12;
+  --column-width: 50px;
+  --gap-width: 20px;
+
+  @media (min-width: 768px) {
+    --column-width: 150px;
+    --gap-width: 40px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--column-width) repeat(
+      var(--columns-amount),
+      1fr
+    ) var(--column-width);
+  grid-gap: var(--gap-width);
+}
+</code></pre>
+<h4 id="gleiche-höhen"><a class="header" href="#gleiche-höhen"><strong>Gleiche Höhen:</strong></a></h4>
+<p>Für das Problem mit der Höhe der Elemente bietet uns CSS Grid eine sehr einfach Eigenschaft an. Mit "grid-auto-rows" und dem Wert "1fr" weisen wir das Grid an, jeweils die selbe Höhe einzusetzen. Basierend auf der Mindest-Höhe, welches ein Element einnimmt. Du kannst beispielsweise bei einem Button den Text so lange machen, dass er noch höher wird. Achte dann darauf, was geschieht. Dafür erweitere einfach das css ganz am Anfang um den entsprechenden Wert.</p>
+<pre><code class="language-css">.row {
+  display: grid;
+  grid-auto-rows: 1fr; /* Alle Elemente gleiche Höhe */
+  grid-template-columns: var(--column-width) repeat(
+      var(--columns-amount),
+      1fr
+    ) var(--column-width);
+  grid-gap: var(--gap-small);
+}
+</code></pre>
+<p>Das etwas mühsamere Problem ist, dass wir nun unsere Elemente verteilen möchten, sobald die Breite der Elemente weniger als 12 Spalten einnimmt. Daher für unsere <code>col-sm-4</code> sowie <code>col-md-3</code> Klassen benötigen wir eine bessere Lösung.</p>
+<p>Wenn wir weiterhin von unserem 12er Grid ausgehen, müssen wir das CSS Grid immer nur für das 4te bzw. 3te Element anweisen, auf die erste Stelle zu springen. Dafür hat CSS den sehr schönen nth-child Selector. Mit diesem können wir genau unser CSS entsprechend erweitern. Passe nun also unsere bisherigen <code>.col-sm-4</code> bzw. <code>.col-md-3</code> Klassen so an.</p>
+<h4 id="nth-child-selector"><a class="header" href="#nth-child-selector"><strong>nth-child selector:</strong></a></h4>
+<pre><code class="language-css">  .col-sm-4:nth-child(3n+1) {
+    grid-column: 2 / span 4;
+  }
+
+  .col-md-3:nth-child(4n+1) {
+    grid-column: 2 / span 3;
+  }
+</code></pre>
+<p>Wenn du es testet, sieht es irgendwie noch nicht so ganz toll aus. Weisst du wieso? Das Problem liegt leider genau wieder bei unserem neuen Selektor. Das nth-child von bspw. col-sm-4 wird auch bei einer Auflösung von mehr als unserem md-breakpoint appliziert. Wir haben sie also dreifach (<code>col-12</code>, <code>col-sm-4</code>, <code>col-m-3</code>). Wie beheben wir nun das Problem?</p>
+<p>Es gibt zwei Varianten. Wir erweitern unsere Media-Queries, dass sie nicht nur ein Min-Width sondern auch ein Max-Width berücksichtigen. Dies hat den Nachteil, dass wir bei Anpassungen nach "oben" zusätzliche Schritte implementieren müssen. Der andere Ansatz ist, dass wir ganz den Mobile First Ansatz verfolgen und von klein nach gross dafür sorgen müssen, dass die CSS Angaben wichtiger sind als die vorherigen. Wir definieren also nicht nur unsere nth-child Elemente die rutschen sollen, sondern auch noch alle die bleiben sollen. Zusätzlich müssen wir auch dafür ein nth-child Selektor einsetzen, damit er als wichtiger betrachtet wird und die anderen Anweisungen überschreibt. Unser css sieht dann wie folgt aus:</p>
+<pre><code class="language-css">/* ... von col-sm-1 */
+  .col-sm-4:nth-child(1n + 1) {
+    grid-column: span 4;
+  }
+  .col-sm-4:nth-child(3n + 1) {
+    grid-column: 2 / span 4;
+  }
+  …
+  .col-md-3:nth-child(1n + 1) {
+    grid-column: span 3;
+  }
+  .col-md-3:nth-child(4n + 1) {
+    grid-column: 2 / span 3;
+  }
+/* ... bis col-md-12 */
+</code></pre>
+<h4 id="sidebar-implementation"><a class="header" href="#sidebar-implementation"><strong>Sidebar Implementation:</strong></a></h4>
+<p>Erweitere dein HTML innerhalb der .row. Wo genau, spielt keine Rolle. Vergib die Klasse .aside</p>
+<pre><code class="language-html">&lt;div class="aside"&gt;I am an edge case&lt;/div&gt;
+</code></pre>
+<p>Wie können wir nun das Element auf die Seite stellen? Einfacher als das. Mit unserem grid-column aus dem css grid haben wir nun die freie Möglichkeit, mit column und row zu definieren, wohin das Element soll.
+Füge im "grid.css" einfach folgende Klasse hinzu.</p>
+<pre><code class="language-css">.aside {
+  grid-column: 1
+}
+</code></pre>
+<p>Sieht toll aus, oder? Du kannst etwas mit der Position spielen, span hinzufügen und/oder auch die Position definieren. Ein Beispiel dafür könnte wie folgt aussehen.</p>
+<pre><code class="language-css">.aside {
+  grid-column: 1;
+  grid-row: span 13;
+  place-self: center;
+}
+</code></pre>
+<hr />
+<h2 id="-css-flexbox"><a class="header" href="#-css-flexbox">🔄 CSS Flexbox</a></h2>
+<p>Die bisherigen Layout Möglichkeiten beziehen sich sowohl auf die horizontale wie auch auf die vertikale Verteilung von Elementen. Man kann es sich auch so vorstellen, dass man damit sehr gut fährt, wenn man das eigentlich Design-Layout umsetzen möchte. Also wo gibt es auf der Seite Inhalt? Gibt es eine Navbar? Gibt es einen Side-Content? Gibt es einen Footer?
+Mit CSS Grid, Bootstrap oder Spalten Design lassen sich diese Art von Design / Layouts sehr gut strukturieren und umsetzen. Man könnte auch von 2 Dimensionalen Layouts sprechen. Nebst diesen Varianten hält seit einigen Jahren auch Flexbox Einzug im ganzen CSS Universum. Analog CSS Grid kennt der Browser CSS Flexbox direkt und wird unterdessen breit von den Browser unterstützt. Flexbox ist sogar älter als CSS Grid. Bei Flexbox sprechen wir nun eher von einem eindimensionalen Design. Wir können damit sehr gut Elemente auf der selben Ebene layouten. Sei dies auf der vertikalen oder horizontalen Ausrichtung.</p>
+<h3 id="-flexbox-vs-grid"><a class="header" href="#-flexbox-vs-grid">🎯 Flexbox vs. Grid</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Feature</th><th><strong>CSS Grid</strong></th><th><strong>CSS Flexbox</strong></th></tr></thead><tbody>
+<tr><td><strong>📐 Dimensionen</strong></td><td>2D (Zeilen + Spalten)</td><td>1D (Eine Richtung)</td></tr>
+<tr><td><strong>🎯 Use Case</strong></td><td>Page Layout</td><td>Component Layout</td></tr>
+<tr><td><strong>📱 Responsive</strong></td><td>Breakpoint-basiert</td><td>Content-basiert</td></tr>
+<tr><td><strong>🔧 Komplexität</strong></td><td>Höher</td><td>Einfacher</td></tr>
+</tbody></table>
+</div>
+<h3 id="-flexbox-lernressourcen"><a class="header" href="#-flexbox-lernressourcen">📚 Flexbox Lernressourcen</a></h3>
+<ul>
+<li><strong><a href="https://flexboxfroggy.com/">Flexbox Froggy</a></strong> 🐸</li>
+<li><strong><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks Flexbox Guide</a></strong> 📖</li>
+</ul>
+<hr />
+<h2 id="-technologie-entscheidung"><a class="header" href="#-technologie-entscheidung">🎯 Technologie-Entscheidung</a></h2>
+<h3 id="-die-richtige-wahl-treffen"><a class="header" href="#-die-richtige-wahl-treffen">🤔 Die richtige Wahl treffen</a></h3>
+<h4 id="fragen-zur-orientierung"><a class="header" href="#fragen-zur-orientierung"><strong>Fragen zur Orientierung:</strong></a></h4>
+<ol>
+<li><strong>🆕 Neues Projekt</strong> oder bestehende Libraries?</li>
+<li><strong>👥 Team-Erfahrung</strong> mit welcher Technologie?</li>
+<li><strong>🎨 Layout-Flexibilität</strong>: Immer 12 Spalten oder variabel?</li>
+<li><strong>📱 Device-Support</strong>: Welche Breakpoints nötig?</li>
+</ol>
+<h4 id="-empfehlungen"><a class="header" href="#-empfehlungen"><strong>💡 Empfehlungen:</strong></a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Szenario</th><th>Empfehlung</th><th>Begründung</th></tr></thead><tbody>
+<tr><td><strong>🚀 Neue Website</strong></td><td><strong>CSS Grid + Flexbox</strong></td><td>Modern, flexibel, performant</td></tr>
+<tr><td><strong>🔧 Bestehende Bootstrap-Site</strong></td><td><strong>Bootstrap</strong></td><td>Konsistenz wahren</td></tr>
+<tr><td><strong>🎯 Einfache Layouts</strong></td><td><strong>Flexbox</strong></td><td>Weniger Overhead</td></tr>
+<tr><td><strong>🏗️ Komplexe Layouts</strong></td><td><strong>CSS Grid</strong></td><td>2D-Kontrolle</td></tr>
+</tbody></table>
+</div>
+<h3 id="-anti-patterns-vermeiden"><a class="header" href="#-anti-patterns-vermeiden">⚠️ Anti-Patterns vermeiden</a></h3>
+<ul>
+<li><strong>❌ Bootstrap + CSS Grid Mix</strong> (Konflikte)</li>
+<li><strong>❌ Float-basierte Layouts</strong> (veraltet)</li>
+<li><strong>❌ Table-Layout für Design</strong> (nicht semantisch)</li>
+</ul>
+<hr />
+<h2 id="-zusammenfassung"><a class="header" href="#-zusammenfassung">🎉 Zusammenfassung</a></h2>
+<h3 id="-was-du-gelernt-hast"><a class="header" href="#-was-du-gelernt-hast">✅ Was du gelernt hast:</a></h3>
+<ol>
+<li><strong>📱 Mobile First Prinzip</strong></li>
+<li><strong>🔧 Custom Grid System</strong></li>
+<li><strong>📊 Breakpoint-Strategien</strong></li>
+<li><strong>🚀 CSS Grid Modernisierung</strong></li>
+<li><strong>⚖️ Technologie-Entscheidungen</strong></li>
+</ol>
+<h3 id="-nächste-schritte-2"><a class="header" href="#-nächste-schritte-2">🎯 Nächste Schritte:</a></h3>
+<ol>
+<li><strong>💻 Praktisches Üben</strong> mit eigenem Projekt</li>
+<li><strong>🎮 CSS Grid Garden</strong> durchspielen</li>
+<li><strong>🐸 Flexbox Froggy</strong> meistern</li>
+<li><strong>🏗️ Blog-Seite</strong> responsive machen</li>
+</ol>
+<p><strong>Du bist bereit für modernes, responsives Webdesign!</strong> 🌟</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-blog-page-mit-css"><a class="header" href="#-blog-page-mit-css">🎨 Blog Page mit CSS</a></h1>
+<h2 id="-was-wir-designen"><a class="header" href="#-was-wir-designen">🎯 Was wir designen</a></h2>
+<p>Analog zum HTML-Teil werden wir uns nicht um alle Elemente kümmern bzw. nur wenn die Zeit reicht.</p>
+<h3 id="-diese-elemente-setzen-wir-sicher-um"><a class="header" href="#-diese-elemente-setzen-wir-sicher-um">✅ Diese Elemente setzen wir sicher um:</a></h3>
+<ul>
+<li><strong>Textgrössen</strong> inklusive Überschriften etc.</li>
+<li><strong>Video oder Bild</strong> als Slide (du kannst aktuell wählen welches Tag du hier verwendest)</li>
+<li><strong>Rubrik</strong></li>
+<li><strong>Weitere Bilder</strong></li>
+<li><strong>Buttons</strong></li>
+<li><strong>Gefällt mir Bereich</strong></li>
+<li><strong>Blog Page Preview</strong> inklusive Ansicht für "weitere spannende Artikel"</li>
+</ul>
+<h3 id="-folgende-elemente-wenn-zeit-vorhanden"><a class="header" href="#-folgende-elemente-wenn-zeit-vorhanden">🌟 Folgende Elemente wenn Zeit vorhanden:</a></h3>
+<ul>
+<li><strong>Autor*innen Bereich</strong></li>
+<li><strong>Tabellen</strong></li>
+<li><strong>Fazit Box</strong></li>
+<li><strong>Produkt Kachel</strong></li>
+<li><strong>Autor*innen Box</strong> mit Folgen-Button</li>
+<li><strong>Thema</strong> mit Folgen-Button</li>
+</ul>
+<h2 id="-zuerst-mal-das-grobe"><a class="header" href="#-zuerst-mal-das-grobe">📐 Zuerst mal das Grobe</a></h2>
+<p>Bei CSS macht es Sinn, zunächst das Grobe zu definieren. Du kannst dir das vorstellen wie auch bei einem Schreibprogramm wie Word. Zuerst versuchst du mal Überschriften, Seitenränder etc. zu optimieren und erst später z.B. auch noch Tabellen, Aufzählungen und weiter ganz nach deinem Geschmack.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-basis"><a class="header" href="#-basis">🗺️ Basis</a></h1>
+<h2 id="setup-prozess"><a class="header" href="#setup-prozess">Setup-Prozess</a></h2>
+<p>Damit wir überhaupt CSS ergänzen können, brauchen wir unser CSS:</p>
+<h3 id="schritt-1-neuen-ordner-erstellen"><a class="header" href="#schritt-1-neuen-ordner-erstellen"><strong>Schritt 1: Neuen Ordner erstellen</strong></a></h3>
+<ul>
+<li><strong>Neuen Ordner</strong> erstellen: <code>html_blog_page_with_css</code></li>
+</ul>
+<h3 id="schritt-2-html-kopieren"><a class="header" href="#schritt-2-html-kopieren"><strong>Schritt 2: HTML kopieren</strong></a></h3>
+<ul>
+<li><strong>HTML aus der HTML-Übung</strong> in den neuen Ordner kopieren</li>
+<li><strong>Alternative</strong>: Von <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/01_html">GitHub</a> herunterladen</li>
+</ul>
+<h3 id="schritt-3-css-datei-erstellen"><a class="header" href="#schritt-3-css-datei-erstellen"><strong>Schritt 3: CSS-Datei erstellen</strong></a></h3>
+<ul>
+<li><strong><code>main.css</code></strong> im neuen Ordner erstellen</li>
+</ul>
+<h3 id="schritt-4-css-verknüpfen"><a class="header" href="#schritt-4-css-verknüpfen"><strong>Schritt 4: CSS verknüpfen</strong></a></h3>
+<p>Im <code>index.html</code> den CSS-Import ergänzen:</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;blog page 37832&lt;/title&gt;
+    &lt;link rel="stylesheet" href="main.css"&gt;
+&lt;/head&gt;
+</code></pre>
+<p><strong>✅ Jetzt kannst du in diesem CSS Styles für deine Webseite einsetzen!</strong></p>
+<hr />
+<h1 id="das-ding-mit-den-user-agent-stylesheets"><a class="header" href="#das-ding-mit-den-user-agent-stylesheets">Das Ding mit den User Agent Stylesheets</a></h1>
+<p>Wir wollen als erstes den äusseren Rand der Seite definieren. Nun kriegen wir etwas das Problem, dass es User Agent Stylesheets gibt, die uns allenfalls in die Quere kommen. Wir wollen also nicht einfach einen neuen Rand hinzufügen, sondern den bestehenden anpassen.</p>
+<h2 id="margin-problem-analysieren"><a class="header" href="#margin-problem-analysieren">Margin-Problem analysieren</a></h2>
+<h3 id="schritt-1-liveserver-starten"><a class="header" href="#schritt-1-liveserver-starten"><strong>Schritt 1: LiveServer starten</strong></a></h3>
+<ul>
+<li><strong>Rechtsklick</strong> auf <code>index.html</code></li>
+<li><strong>"LiveServer"</strong> auswählen</li>
+</ul>
+<h3 id="schritt-2-chrome-devtools-öffnen"><a class="header" href="#schritt-2-chrome-devtools-öffnen"><strong>Schritt 2: Chrome DevTools öffnen</strong></a></h3>
+<ul>
+<li><strong>Seite in Chrome</strong> öffnen</li>
+<li><strong>Entwickler-Werkzeug</strong> aktivieren</li>
+</ul>
+<h3 id="schritt-3-element-inspizieren"><a class="header" href="#schritt-3-element-inspizieren"><strong>Schritt 3: Element inspizieren</strong></a></h3>
+<ul>
+<li><strong>Auswahl-Werkzeug</strong> aktivieren</li>
+<li><strong>Mit Maus</strong> über verschiedene Elemente fahren</li>
+<li><strong>Bei "äusseren" Elementen</strong>: Orange Farbe um die ganze Page</li>
+</ul>
+<p><img src="css/blogpage/images/intro_marginAround.png" alt="Margin-Analyse" /></p>
+<h3 id="schritt-4-margin-verstehen"><a class="header" href="#schritt-4-margin-verstehen"><strong>Schritt 4: Margin verstehen</strong></a></h3>
+<ul>
+<li><strong>Orange Farben</strong> = Margins</li>
+<li><strong>Grüne Farben</strong> = Paddings</li>
+<li><strong>Body-Element</strong> hat <code>8px margin</code> als Standard</li>
+</ul>
+<p><img src="css/blogpage/images/intro_marginWithColors.png" alt="Margin mit Farben" /></p>
+<blockquote>
+<p>💡 <strong>Erkenntniss</strong>: Wir müssen den <strong><code>body</code></strong>-Selektor übersteuern, um genau diesen Wert zu vergrössern!</p>
+</blockquote>
+<h2 id="css-lösung-implementieren"><a class="header" href="#css-lösung-implementieren">CSS-Lösung implementieren</a></h2>
+<h3 id="body-margin-anpassen"><a class="header" href="#body-margin-anpassen"><strong>Body-Margin anpassen:</strong></a></h3>
+<pre><code class="language-css">body {
+  margin: 20px;
+}
+</code></pre>
+<p><strong>Teste verschiedene Werte und überprüfe das Ergebnis!</strong></p>
+<hr />
+<h1 id="weitere-anpassungen"><a class="header" href="#weitere-anpassungen">Weitere Anpassungen</a></h1>
+<p>Damit die Page immer mehr der <a href="https://www.galaxus.ch/de/page/endlich-weg-vom-lahmen-e-reader-dieses-tablet-macht-auf-e-ink-37832">Galaxus-Vorlage</a> entspricht, passen wir weitere Elemente an.</p>
+<h2 id="iframe-responsive-machen"><a class="header" href="#iframe-responsive-machen">iFrame responsive machen</a></h2>
+<p>Das eingebundene iFrame ganz am Anfang stört gewaltig durch die definierte Breite und Höhe. Wir wollen dies per CSS definieren.</p>
+<h3 id="html-bereinigen"><a class="header" href="#html-bereinigen"><strong>HTML bereinigen:</strong></a></h3>
+<ul>
+<li><strong>Höhe und Breite</strong> aus dem HTML entfernen</li>
+</ul>
+<h3 id="css-lösung"><a class="header" href="#css-lösung"><strong>CSS-Lösung:</strong></a></h3>
+<pre><code class="language-css">iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+}
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Wichtig</strong>: Min-height müssen wir bei einem iFrame definieren. Ansonsten wird es "zerquetscht"!</p>
+</blockquote>
+<h2 id="bilder-responsive-machen"><a class="header" href="#bilder-responsive-machen">Bilder responsive machen</a></h2>
+<p>Die Bilder haben auch noch eine falsche Grösse. Definiere den Selektor auf alle <code>img</code>s:</p>
+<pre><code class="language-css">img {
+  max-width: 100%;
+  height: auto;
+}
+</code></pre>
+<p><strong>✅ Resultat</strong>: Die maximale Breite wird auf 100% der ganzen Seite gesetzt und so "sprengen" die Bilder das Layout in der Breite nicht mehr.</p>
+<hr />
+<h1 id="-nächste-schritte-3"><a class="header" href="#-nächste-schritte-3">🎯 Nächste Schritte</a></h1>
+<p>Nach diesen Grundlagen-Anpassungen:</p>
+<ol>
+<li><strong>Typography</strong> verfeinern</li>
+<li><strong>Farben</strong> hinzufügen</li>
+<li><strong>Layout</strong> optimieren</li>
+<li><strong>Responsive</strong> Design implementieren</li>
+</ol>
+<p><strong>Die Basis steht - jetzt wird es kreativ!</strong> 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-font-und-schriftgrösse-anpassen"><a class="header" href="#-font-und-schriftgrösse-anpassen">📚 Font und Schriftgrösse anpassen</a></h1>
+<p>Diese wenigen Anpassungen haben schon einen starken Effekt auf das Optische. Basierend auf der Vorlage müssen wir uns auch noch Schrift und Schriftgrösse anschauen.</p>
+<h2 id="font-family-analysieren"><a class="header" href="#font-family-analysieren">Font-Family analysieren</a></h2>
+<p>Wenn du z.B. das Titel-Element H2 untersuchst, findest du folgende Definition:</p>
+<pre><code class="language-css">font-family: Galactica, Arial, sans-serif;
+</code></pre>
+<h2 id="body-font-definieren"><a class="header" href="#body-font-definieren">Body-Font definieren</a></h2>
+<p>Wir ergänzen die Schrift auf unsere ganze Page im CSS mittels dem Body-Selektor:</p>
+<pre><code class="language-css">body {
+  margin: 20px;
+  font-family: Galactica, Arial, sans-serif;
+}
+</code></pre>
+<h2 id="computed-styles-überprüfen"><a class="header" href="#computed-styles-überprüfen">Computed Styles überprüfen</a></h2>
+<p>Wenn du deine Seite nochmals untersuchst, wirst du eine Änderung feststellen. Aber irgendwie stimmt die Schrift noch nicht. Du kannst über <strong>"Computed"</strong> genau sehen, welche Schrift dein Browser ausgewählt hat.</p>
+<p><img src="css/blogpage/images/font_computed.png" alt="Font Computed" /></p>
+<p><strong>Fallback-Mechanismus:</strong></p>
+<ol>
+<li><strong>Galactica</strong> versuchen → nicht gefunden</li>
+<li><strong>Arial</strong> versuchen → ✅ gefunden und verwendet</li>
+<li><strong>sans-serif</strong> als letzte Option</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Problem</strong>: Es rendert die Schrift "Arial", da <strong>Galactica</strong> nicht verfügbar ist.</p>
+</blockquote>
+<hr />
+<h1 id="custom-font-laden"><a class="header" href="#custom-font-laden">Custom Font laden</a></h1>
+<p>Wir wollen aber die selbe Schrift wie in der Vorlage. Dazu müssen wir die Schrift zuerst laden.</p>
+<h2 id="font-loading-grundlagen"><a class="header" href="#font-loading-grundlagen">Font-Loading Grundlagen</a></h2>
+<p><strong>Referenz</strong>: <a href="https://www.w3schools.com/css/css3_fonts.asp">W3Schools CSS3 Fonts</a></p>
+<h2 id="font-url-finden"><a class="header" href="#font-url-finden">Font-URL finden</a></h2>
+<p>Die URL auf den Font ist auf der <a href="https://www.galaxus.ch/de/page/endlich-weg-vom-lahmen-e-reader-dieses-tablet-macht-auf-e-ink-37832">Galaxus-Seite</a> zu finden:</p>
+<p><strong>Original-Pfad:</strong> <code>/static/fonts/Galactica/galactica-2024-12-19.woff2</code></p>
+<p><strong>Vollständige URL:</strong> <code>https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2</code></p>
+<h2 id="font-face-implementieren"><a class="header" href="#font-face-implementieren">@font-face implementieren</a></h2>
+<pre><code class="language-css">@font-face {
+  font-family: 'Galactica';
+  src: url("https://static.digitecgalaxus.ch/static/fonts/Galactica/galactica-2024-12-19.woff2") format('woff2');
+}
+</code></pre>
+<p><img src="css/blogpage/images/font_galactica.png" alt="Galactica Font geladen" /></p>
+<p><strong>✅ Lade die Page neu</strong> und du wirst sehen, dass nun tatsächlich die <strong>Galactica-Schrift</strong> verwendet wird!</p>
+<hr />
+<h1 id="schriftgrössen-und-gewichte-definieren"><a class="header" href="#schriftgrössen-und-gewichte-definieren">Schriftgrössen und Gewichte definieren</a></h1>
+<p>Damit auch die Grössen und font-weight aller Texte stimmen, gehe durch die Elemente aus der Vorlage durch und definiere es entsprechend in deinem CSS.</p>
+<h2 id="h1-element-beispiel"><a class="header" href="#h1-element-beispiel">H1-Element Beispiel</a></h2>
+<p><strong>Aus der Vorlage extrahierte Werte:</strong></p>
+<ul>
+<li><strong>font-weight:</strong> 650</li>
+<li><strong>font-stretch:</strong> normal</li>
+<li><strong>line-height:</strong> 36px</li>
+<li><strong>font-size:</strong> 30px</li>
+</ul>
+<pre><code class="language-css">h1 {
+  font-weight: 650;
+  font-stretch: normal;
+  line-height: 36px;
+  font-size: 30px;
+}
+</code></pre>
+<h2 id="systematisches-vorgehen"><a class="header" href="#systematisches-vorgehen">Systematisches Vorgehen</a></h2>
+<ol>
+<li><strong>H1-H4 Elemente</strong> durchgehen</li>
+<li><strong>P-Tags</strong> analysieren</li>
+<li><strong>Werte aus Vorlage</strong> übernehmen</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Beachte</strong>: Falls du den Lead als H2 und weitere als H3 definiert hast, musst du das beim Kopieren entsprechend berücksichtigen!</p>
+</blockquote>
+<hr />
+<h1 id="globale-text-optimierungen"><a class="header" href="#globale-text-optimierungen">Globale Text-Optimierungen</a></h1>
+<p>Vermutlich gibt es jetzt immer noch klare optische Unterschiede. Ein paar zusätzliche Definitionen kannst du mit einem <code>*</code> für alle Elemente hinzufügen:</p>
+<h2 id="universal-selector"><a class="header" href="#universal-selector">Universal-Selector</a></h2>
+<pre><code class="language-css">* {
+  text-wrap-mode: wrap;
+  text-wrap-style: pretty;
+  overflow-wrap: break-word;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+}
+</code></pre>
+<h2 id="p-tag-letter-spacing"><a class="header" href="#p-tag-letter-spacing">P-Tag Letter-Spacing</a></h2>
+<pre><code class="language-css">p {
+  font-weight: 400;
+  font-stretch: normal;
+  line-height: 28px;
+  font-size: 18px;
+  letter-spacing: 0.005em;
+}
+</code></pre>
+<hr />
+<h1 id="browser-spezifische-optimierungen"><a class="header" href="#browser-spezifische-optimierungen">Browser-spezifische Optimierungen</a></h1>
+<h2 id="-webkit-font-smoothing"><a class="header" href="#-webkit-font-smoothing">-webkit-font-smoothing</a></h2>
+<p>Das <code>-webkit-font-smoothing</code> ist etwas speziell und wird <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth">hier nicht unbedingt empfohlen</a>, weil es nicht alle Browser unterstützen.</p>
+<p><strong>Aber</strong>: Es macht im Chrome einen wesentlichen optischen Unterschied!</p>
+<h2 id="ab-test"><a class="header" href="#ab-test">A/B Test</a></h2>
+<p><strong>Teste es mit und ohne:</strong></p>
+<ul>
+<li><strong>Ohne</strong>: Text wirkt beinahe "zu fett" oder "blurry"</li>
+<li><strong>Mit</strong>: Schärfere, glattere Darstellung</li>
+</ul>
+<h2 id="weitere-verbesserungen"><a class="header" href="#weitere-verbesserungen">Weitere Verbesserungen</a></h2>
+<p>Die weiteren Definitionen machen die Umbrüche etc. noch etwas besser:</p>
+<ul>
+<li><strong>text-wrap-mode</strong>: Intelligentere Textumbrüche</li>
+<li><strong>text-wrap-style</strong>: Schönere Zeilenumbrüche</li>
+<li><strong>overflow-wrap</strong>: Besseres Verhalten bei langen Wörtern</li>
+</ul>
+<p><strong>Typography-Grundlage ist gelegt!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-breite-der-seite"><a class="header" href="#-breite-der-seite">📐 Breite der Seite</a></h1>
+<h2 id="problem-zu-breite-darstellung"><a class="header" href="#problem-zu-breite-darstellung">Problem: Zu breite Darstellung</a></h2>
+<p>Im Vergleich wirst du feststellen, dass unsere Page zu breit werden kann. Die Vorlage hat beim Text eine <strong>eingeschränkte Breite</strong>.</p>
+<h3 id="analyse-mit-devtools"><a class="header" href="#analyse-mit-devtools">Analyse mit DevTools</a></h3>
+<p>Versuche mittels dem <strong>Dev-Tools in Chrome</strong> herauszufinden, welche Werte und wo du sie hinzufügen musst.</p>
+<hr />
+<h2 id="html-struktur-optimieren"><a class="header" href="#html-struktur-optimieren">HTML-Struktur optimieren</a></h2>
+<h3 id="container-ansatz"><a class="header" href="#container-ansatz">Container-Ansatz</a></h3>
+<p>Arbeite hier mit dem <code>div</code>-Element um den eigentlichen Artikel zu umschliessen und vergib dann eine Klasse, auf welcher du das <code>max-width</code> abkopierst.</p>
+<blockquote>
+<p>⚠️ <strong>Beachte</strong>: Das Slide Video/Bild hat eine <strong>andere Breite</strong> definiert. Füge also allenfalls zwei verschiedene Klassen dazu oder passe <code>iframe</code> an.</p>
+</blockquote>
+<h3 id="hero-bereich-spacing"><a class="header" href="#hero-bereich-spacing">Hero-Bereich Spacing</a></h3>
+<p><strong>Wenn du schon beim iframe bist</strong>: Du findest auch eine margin-Angabe dazu. Wir wollen zwischen Hero-Bild/Video noch etwas Abstand gewinnen.</p>
+<hr />
+<h2 id="css-implementation"><a class="header" href="#css-implementation">CSS-Implementation</a></h2>
+<h3 id="content-breite-definieren"><a class="header" href="#content-breite-definieren">Content-Breite definieren</a></h3>
+<pre><code class="language-css">.content-max-width {
+  max-width: calc(640px + (80px * 2));
+  margin: 0 auto;
+}
+</code></pre>
+<h3 id="iframe-optimieren"><a class="header" href="#iframe-optimieren">iframe optimieren</a></h3>
+<pre><code class="language-css">iframe {
+  min-width: 100%;
+  max-width: 1839px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+  margin: 0 auto 80px auto;
+}
+</code></pre>
+<h3 id="zentrierung-verstehen"><a class="header" href="#zentrierung-verstehen">Zentrierung verstehen</a></h3>
+<p><strong>Mit <code>margin: 0 auto;</code></strong> kannst du die Elemente zentrieren:</p>
+<ul>
+<li><strong>0</strong>: Kein vertikaler Margin</li>
+<li><strong>auto</strong>: Automatische horizontale Zentrierung</li>
+</ul>
+<hr />
+<h2 id="implementierungs-checklist"><a class="header" href="#implementierungs-checklist">Implementierungs-Checklist</a></h2>
+<ol>
+<li><strong>📦 Container-div</strong> um Artikel-Content</li>
+<li><strong>🎯 Klasse vergeben</strong> für max-width</li>
+<li><strong>🎬 iframe-Spacing</strong> anpassen</li>
+<li><strong>📱 Responsive</strong> testen</li>
+</ol>
+<p><strong>Layout-Breite ist professionell optimiert!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-rubrik"><a class="header" href="#-rubrik">🏷️ Rubrik</a></h1>
+<h2 id="rubrik-styling-optimieren"><a class="header" href="#rubrik-styling-optimieren">Rubrik-Styling optimieren</a></h2>
+<p>Die Rubrik "Produkttest" ist noch nicht ganz korrekt. Die Farbe stimmt nicht. Ausserdem können wir dafür sorgen, dass sicher immer alles mit Grossbuchstaben dargestellt wird.</p>
+<h3 id="korrekte-farbe-finden"><a class="header" href="#korrekte-farbe-finden">Korrekte Farbe finden</a></h3>
+<p>Die korrekte Farbe kannst du entweder dem <a href="https://www.galaxus.ch/designsystem/foundations/colors-design">Galaxus Design System</a> entnehmen oder ab der Vorlage suchen/kopieren.</p>
+<blockquote>
+<p>💡 <strong>Hinweis</strong>: Wir setzen hier und in allen folgenden Styles immer nur das <strong>Galaxus Light Theme</strong> um. Ansonsten müssten wir sehr viel mehr CSS produzieren.</p>
+</blockquote>
+<h3 id="css-klasse-definieren"><a class="header" href="#css-klasse-definieren">CSS-Klasse definieren</a></h3>
+<p>Definiere eine Klasse, auf welcher du die Werte vergibst und füge sie überall hinzu, wo du eine Rubrik hast im HTML.</p>
+<h4 id="css-implementierung"><a class="header" href="#css-implementierung"><strong>CSS-Implementierung:</strong></a></h4>
+<pre><code class="language-css">.content-category {
+  color: rgb(147, 83, 185);
+  text-transform: uppercase;
+}
+</code></pre>
+<h4 id="html-anwendung"><a class="header" href="#html-anwendung"><strong>HTML-Anwendung:</strong></a></h4>
+<pre><code class="language-html">&lt;p class="content-category"&gt;Produkttest&lt;/p&gt;
+</code></pre>
+<h3 id="eigenschaften-erklärt"><a class="header" href="#eigenschaften-erklärt">Eigenschaften erklärt</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Eigenschaft</th><th>Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>color</strong></td><td><code>rgb(147, 83, 185)</code></td><td>Galaxus-Purple für Kategorien</td></tr>
+<tr><td><strong>text-transform</strong></td><td><code>uppercase</code></td><td>Automatische Grossschreibung</td></tr>
+</tbody></table>
+</div>
+<h3 id="-resultat"><a class="header" href="#-resultat">✅ Resultat</a></h3>
+<ul>
+<li><strong>Korrekte Purple-Farbe</strong> wie im Design System</li>
+<li><strong>Automatische Grossbuchstaben</strong> für Konsistenz</li>
+<li><strong>Wiederverwendbare Klasse</strong> für alle Rubriken</li>
+</ul>
+<p><strong>Rubrik-Styling ist professionell umgesetzt!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-buttons"><a class="header" href="#-buttons">🔘 Buttons</a></h1>
+<h2 id="button-design-system"><a class="header" href="#button-design-system">Button Design System</a></h2>
+<p>Die Buttons sehen noch nicht ganz so aus wie sie sollten. Häufig gibt es in einem Design System einen <strong>"primary"</strong> und <strong>"standard"</strong> oder <strong>"secondary"</strong> Button. Das ist bei uns nicht anders.</p>
+<h3 id="button-hierarchie"><a class="header" href="#button-hierarchie">Button-Hierarchie</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Button-Typ</th><th>Verwendung</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>Primary</strong></td><td>Primäre Aktion</td><td>Die gewünschte/erwartete Aktion</td></tr>
+<tr><td><strong>Secondary</strong></td><td>Alternative Aktionen</td><td>Weniger prominente Buttons</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>⚠️ <strong>Realität</strong>: Teilweise wird das auch bei uns nicht ganz eingehalten und es gibt mehr als einen Primary Button.</p>
+</blockquote>
+<h3 id="design-referenzen"><a class="header" href="#design-referenzen">Design-Referenzen</a></h3>
+<p><strong>Design System</strong>: <a href="https://www.galaxus.ch/designsystem/components/button-design#states-primary-button">Galaxus Button Design</a></p>
+<blockquote>
+<p><strong>Tipp</strong>: Da es nicht so einfach ist die nötigen CSS-Werte zu finden, kann es einfacher sein, wenn du das Beispiel im <strong>Dev-Tool des Browsers</strong> anschaust. Immerhin die Farben findest du einigermassen übersichtlich.</p>
+</blockquote>
+<h3 id="responsive-considerations"><a class="header" href="#responsive-considerations">Responsive Considerations</a></h3>
+<p>Damit sich die Buttons in jedem Layout korrekt verhalten, werden wir auch mit <strong>Responsive Design</strong> in Berührung kommen. Mache allenfalls noch das <strong>Responsive Web Design</strong> Beispiel durch, damit du das besser verstehst.</p>
+<hr />
+<h2 id="css-struktur-mit-verschachtelung"><a class="header" href="#css-struktur-mit-verschachtelung">CSS-Struktur mit Verschachtelung</a></h2>
+<p>Um die Varianten zu stylen, können wir uns sowohl die <strong>CSS-Verschachtelung</strong> sowie den Umstand zu Nutze machen, dass es ein <code>button</code>-Element ist. Damit können wir den <strong>"standard"</strong> auf dem Button und mittels einer Klasse <strong>"primary"</strong> als Variante definieren.</p>
+<hr />
+<h2 id="buttoncss-erstellen"><a class="header" href="#buttoncss-erstellen">Button.css erstellen</a></h2>
+<h3 id="setup-prozess-1"><a class="header" href="#setup-prozess-1">Setup-Prozess</a></h3>
+<p>Buttons sind gut geeignet, dass wir das ganze CSS aus dem "main" loslösen und ein eigenes dafür erstellen. So hast du den CSS-Code separat und ist einfacher zu verstehen.</p>
+<h4 id="schritt-1-datei-erstellen"><a class="header" href="#schritt-1-datei-erstellen"><strong>Schritt 1: Datei erstellen</strong></a></h4>
+<ul>
+<li><strong><code>buttons.css</code></strong> File erstellen</li>
+</ul>
+<h4 id="schritt-2-import-hinzufügen"><a class="header" href="#schritt-2-import-hinzufügen"><strong>Schritt 2: Import hinzufügen</strong></a></h4>
+<p>Im <code>main.css</code> am Anfang des Files:</p>
+<pre><code class="language-css">@import url("buttons.css");
+</code></pre>
+<h3 id="css-implementierung-1"><a class="header" href="#css-implementierung-1">CSS-Implementierung</a></h3>
+<p>Danach fügst du nach und nach alle CSS-Definitionen ein, die für Primary und Standard-Button nötig sind. Sinnvoller nutzt du die <strong>Macht des Cascadings</strong>: Indem du z.B. den Standard-Button als ersten definierst, kannst du danach die Abweichungen für primary und die states hinzufügen (hover, focus, disabled).</p>
+<h4 id="vollständiges-button-css"><a class="header" href="#vollständiges-button-css"><strong>Vollständiges Button-CSS:</strong></a></h4>
+<pre><code class="language-css">button {
+  background-color: #eee;
+  color: #000;
+  border: 1px solid #0003;
+  border-radius: 3px;
+  padding: 7px 15px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  font-size: inherit;
+  
+  &amp;:hover {
+    background-color: #ddd;
+  }
+  
+  &amp;:focus-visible {
+    background-color: #ddd;
+  }
+  
+  &amp;.primary {
+    background-color: #444;
+    color: #fff;
+    
+    &amp;:hover {
+      background-color: #000;
+    }
+    
+    &amp;:focus-visible {
+      background-color: #000;
+    }
+  }
+  
+  &amp;.disabled,
+  &amp;.primary.disabled {
+    color: #0006;
+    border: 1px solid #0001;
+  }
+}
+</code></pre>
+<h3 id="css-eigenschaften-erklärt"><a class="header" href="#css-eigenschaften-erklärt">CSS-Eigenschaften erklärt</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Eigenschaft</th><th>Standard</th><th>Primary</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td><strong>background-color</strong></td><td><code>#eee</code></td><td><code>#444</code></td><td>Hintergrundfarbe</td></tr>
+<tr><td><strong>color</strong></td><td><code>#000</code></td><td><code>#fff</code></td><td>Textfarbe</td></tr>
+<tr><td><strong>border</strong></td><td><code>1px solid #0003</code></td><td>Gleich</td><td>Rahmen</td></tr>
+<tr><td><strong>border-radius</strong></td><td><code>3px</code></td><td>Gleich</td><td>Runde Ecken</td></tr>
+<tr><td><strong>padding</strong></td><td><code>7px 15px</code></td><td>Gleich</td><td>Innenabstand</td></tr>
+<tr><td><strong>width</strong></td><td><code>100%</code></td><td>Gleich</td><td>Volle Breite</td></tr>
+<tr><td><strong>cursor</strong></td><td><code>pointer</code></td><td>Gleich</td><td>Hand-Cursor</td></tr>
+</tbody></table>
+</div>
+<h3 id="states-und-interaktionen"><a class="header" href="#states-und-interaktionen">States und Interaktionen</a></h3>
+<h4 id="hover-states"><a class="header" href="#hover-states"><strong>Hover-States:</strong></a></h4>
+<ul>
+<li><strong>Standard</strong>: Helleres Grau (<code>#ddd</code>)</li>
+<li><strong>Primary</strong>: Schwarz (<code>#000</code>)</li>
+</ul>
+<h4 id="focus-states"><a class="header" href="#focus-states"><strong>Focus-States:</strong></a></h4>
+<ul>
+<li><strong>Accessibility</strong>: Gleiche Farben wie Hover</li>
+<li><strong>Keyboard-Navigation</strong>: Bessere Sichtbarkeit</li>
+</ul>
+<h4 id="disabled-states"><a class="header" href="#disabled-states"><strong>Disabled-States:</strong></a></h4>
+<ul>
+<li><strong>Transparente Textfarbe</strong>: <code>#0006</code></li>
+<li><strong>Schwacher Rahmen</strong>: <code>#0001</code></li>
+</ul>
+<hr />
+<h2 id="html-implementation"><a class="header" href="#html-implementation">HTML-Implementation</a></h2>
+<p>Am Schluss musst du im HTML überall noch <strong>"primary"</strong> hinzufügen, wo es ein solcher ist.</p>
+<h3 id="html-beispiele"><a class="header" href="#html-beispiele">HTML-Beispiele</a></h3>
+<h4 id="standard-button"><a class="header" href="#standard-button"><strong>Standard Button:</strong></a></h4>
+<pre><code class="language-html">&lt;button&gt;Standard Button&lt;/button&gt;
+</code></pre>
+<h4 id="primary-button"><a class="header" href="#primary-button"><strong>Primary Button:</strong></a></h4>
+<pre><code class="language-html">&lt;button class="primary"&gt;Primary Button&lt;/button&gt;
+</code></pre>
+<h4 id="disabled-button"><a class="header" href="#disabled-button"><strong>Disabled Button:</strong></a></h4>
+<pre><code class="language-html">&lt;button class="primary disabled"&gt;Disabled Primary&lt;/button&gt;
+</code></pre>
+<h3 id="vorlage-konformität"><a class="header" href="#vorlage-konformität">Vorlage-Konformität</a></h3>
+<p><strong>Hältst du dich an die Vorlage</strong>, sind das tatsächlich aktuell <strong>alle Buttons als Primary</strong>. Eventuell können wir diesen Umstand später noch verbessern.</p>
+<p><strong>Button-System ist professionell implementiert!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-like-bereich"><a class="header" href="#-like-bereich">❤️ Like Bereich</a></h1>
+<h2 id="responsive-layout-unterschiede"><a class="header" href="#responsive-layout-unterschiede">Responsive Layout-Unterschiede</a></h2>
+<p>Der "Like"-Bereich enthält keine neuen Elemente (ausser noch der "# Personen gefällt dieser Artikel"). Vor allem aber definiert der Bereich verschiedene Layouts für Mobile und Desktop, damit alles etwas besser passt.</p>
+<h3 id="layout-vergleich"><a class="header" href="#layout-vergleich">Layout-Vergleich</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Mobile</th><th>Desktop</th></tr></thead><tbody>
+<tr><td><img src="css/blogpage/images/like_mobile_desktop.png" alt="Mobile Layout" /></td><td><img src="css/blogpage/images/like_desktop.png" alt="Mobile Layout" /></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="css-methodik-utility-first"><a class="header" href="#css-methodik-utility-first">CSS-Methodik: Utility-First</a></h2>
+<p>Wir können für diesen Bereich ein eigenes CSS anlegen oder gezielte CSS-Klassen schreiben, die etwas allgemeiner gehalten sind. Dadurch kann die <strong>Wiederverwendung</strong> erhöht werden.</p>
+<h3 id="utility-first-ansatz"><a class="header" href="#utility-first-ansatz">Utility-First Ansatz</a></h3>
+<p><strong>Anstelle:</strong> <code>"blog-page-like-button"</code><br />
+<strong>Verwende:</strong> Mehrere Klassen die den jeweiligen Anwendungszweck beschreiben<br />
+<strong>Beispiel:</strong> <code>"margin-bottom-small"</code> oder ähnlich</p>
+<h3 id="css-methodologien"><a class="header" href="#css-methodologien">CSS-Methodologien</a></h3>
+<p>Diese Art von CSS nennt sich <strong>"Utility-First"</strong> und wird etwa von der CSS-Bibliothek <strong>Tailwind</strong> und teilweise von <strong>Bootstrap</strong> verwendet.</p>
+<p><strong>Unser Ansatz:</strong> Kombination von:</p>
+<ul>
+<li><strong>Utility-Klassen</strong> (Utility-First CSS)</li>
+<li><strong>Komponenten-basierten/semantischen Klassen</strong> (OOCSS)</li>
+</ul>
+<blockquote>
+<p>📖 <strong>Mehr Infos</strong>: <a href="https://medium.com/@hossein.khoshnevis77/understanding-and-implementing-css-methodologies-a-guide-for-web-developers-572983f0e9fe">CSS Methodologies Guide</a></p>
+</blockquote>
+<hr />
+<h2 id="utilitiescss-erstellen"><a class="header" href="#utilitiescss-erstellen">Utilities.css erstellen</a></h2>
+<h3 id="setup-1"><a class="header" href="#setup-1">Setup</a></h3>
+<p>Erstelle ein neues CSS-File <strong><code>utilities.css</code></strong> und importiere es im <code>main.css</code>:</p>
+<pre><code class="language-css">@import url("utilities.css");
+</code></pre>
+<h3 id="margin-werte-analysieren"><a class="header" href="#margin-werte-analysieren">Margin-Werte analysieren</a></h3>
+<p>Wenn du die Vorlage auf Desktop-Grösse untersuchst und nach verschiedenen Margins Ausschau hältst, wirst du verschiedene Angaben finden:</p>
+<div class="table-wrapper"><table><thead><tr><th>Wert</th><th>Bezeichnung</th><th>Abkürzung</th></tr></thead><tbody>
+<tr><td><strong>0px</strong></td><td>Zero</td><td><code>0</code></td></tr>
+<tr><td><strong>16px</strong></td><td>Small</td><td><code>s</code></td></tr>
+<tr><td><strong>24px</strong></td><td>Medium</td><td><code>m</code></td></tr>
+<tr><td><strong>32px</strong></td><td>Large</td><td><code>l</code></td></tr>
+<tr><td><strong>40px</strong></td><td>X-Large</td><td><code>xl</code></td></tr>
+<tr><td><strong>64px</strong></td><td>XX-Large</td><td><code>xxl</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="koordinatensystem-verstehen"><a class="header" href="#koordinatensystem-verstehen">Koordinatensystem verstehen</a></h3>
+<p><img src="css/blogpage/images/like_coordinationSystem.png" alt="Koordinatensystem" /></p>
+<p><strong>Für oben/unten bzw. rechts/links</strong> wird gerne <code>y</code> bzw. <code>x</code> benutzt, welches aus dem klassischen Koordinatensystem stammt.</p>
+<h3 id="naming-convention"><a class="header" href="#naming-convention">Naming Convention</a></h3>
+<p><strong>Für "margin top small"</strong> machen wir <code>mt-s</code> draus:</p>
+<ul>
+<li><strong>m</strong> = margin</li>
+<li><strong>t</strong> = top</li>
+<li><strong>s</strong> = small</li>
+</ul>
+<hr />
+<h2 id="utility-klassen-implementieren"><a class="header" href="#utility-klassen-implementieren">Utility-Klassen implementieren</a></h2>
+<h3 id="margin-top-utilities"><a class="header" href="#margin-top-utilities">Margin-Top Utilities</a></h3>
+<pre><code class="language-css">/* margin-top utilities */
+.mt-0 {
+    margin-top: 0;
+}
+.mt-s {
+    margin-top: 16px;
+}
+.mt-m {
+  margin-top: 24px;
+}
+.mt-l {
+  margin-top: 32px;
+}
+.mt-xl {
+  margin-top: 40px;
+}
+.mt-xxl {
+  margin-top: 64px;
+}
+</code></pre>
+<h3 id="margin-bottom-utilities"><a class="header" href="#margin-bottom-utilities">Margin-Bottom Utilities</a></h3>
+<pre><code class="language-css">/* margin-bottom utilities */
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-s {
+  margin-bottom: 16px;
+}
+.mb-m {
+  margin-bottom: 24px;
+}
+.mb-l {
+  margin-bottom: 32px;
+}
+.mb-xl {
+  margin-bottom: 40px;
+}
+.mb-xxl {
+  margin-bottom: 64px;
+}
+</code></pre>
+<h3 id="margin-vertical-utilities"><a class="header" href="#margin-vertical-utilities">Margin Vertical Utilities</a></h3>
+<pre><code class="language-css">/* margin-top and bottom utilities */
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.my-s {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.my-m {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.my-l {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.my-xl {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.my-xxl {
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+</code></pre>
+<h3 id="html-anwendung-1"><a class="header" href="#html-anwendung-1">HTML-Anwendung</a></h3>
+<p>Nachdem nun die CSS-Klassen erstellt sind, fülle im HTML nun dort die Klassen ein, wo sie entsprechend für ein Margin sorgen.</p>
+<p><img src="css/blogpage/images/like_newMargins.png" alt="Neue Margins" /></p>
+<hr />
+<h2 id="-progress-tracking"><a class="header" href="#-progress-tracking">✅ Progress Tracking</a></h2>
+<h3 id="-stand-like-bereich"><a class="header" href="#-stand-like-bereich">📋 Stand Like-Bereich:</a></h3>
+<ul>
+<li>✅ <strong>Abstände oben und unten</strong></li>
+<li>❌ <strong>Text unter dem Button</strong> zentriert mit richtigen Abständen</li>
+<li>❌ <strong>Breite des Like-Buttons</strong></li>
+</ul>
+<hr />
+<h2 id="text-unter-dem-button"><a class="header" href="#text-unter-dem-button">Text unter dem Button</a></h2>
+<h3 id="text-alignment"><a class="header" href="#text-alignment">Text-Alignment</a></h3>
+<p>Du hast bereits die nötigen margins für die Abstände definiert und musst sie nur noch korrekt einsetzen im HTML. Allenfalls musst du etwas mit <code>"0"</code> aushelfen, wenn das User Agent Stylesheet dazwischen funkt.</p>
+<p><strong>Für's Zentrieren</strong> gibt es grundsätzlich verschiedene Varianten. Die einfachste für den Fall ist aber <code>text-align: center</code>.</p>
+<h3 id="text-utilities"><a class="header" href="#text-utilities">Text Utilities</a></h3>
+<pre><code class="language-css">/* text utilities */
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+</code></pre>
+<h3 id="-updated-progress"><a class="header" href="#-updated-progress">✅ Updated Progress:</a></h3>
+<ul>
+<li>✅ <strong>Abstände oben und unten</strong></li>
+<li>✅ <strong>Text zentriert</strong> mit richtigen Abständen</li>
+<li>❌ <strong>Breite des Like-Buttons</strong></li>
+</ul>
+<hr />
+<h2 id="breite-des-bereichs"><a class="header" href="#breite-des-bereichs">Breite des Bereichs</a></h2>
+<h3 id="desktop-analyse"><a class="header" href="#desktop-analyse">Desktop-Analyse</a></h3>
+<p>Der Bereich ist in den verschiedenen Elementen in der Breite schmaler. Im Prinzip könnte man einfach der ganzen Section eine Breite verpassen. Die Vorlage nutzt aber tatsächlich Einschränkungen auf dem <strong>Button und dem Text</strong> darunter selbst.</p>
+<p><strong>Untersuche mit dem Browser</strong> die Elemente. Dann wirst du sehen, dass beim Desktop folgendes steht:</p>
+<ul>
+<li><strong>width:</strong> <code>fit-content</code></li>
+<li><strong>min-width:</strong> <code>200px</code></li>
+</ul>
+<h3 id="button-css-erweitern"><a class="header" href="#button-css-erweitern">Button-CSS erweitern</a></h3>
+<p>Da dies sehr spezifisch ist, macht es Sinn, beim <code>button.css</code> eine Spezialbreite einzuführen:</p>
+<pre><code class="language-css">&amp;.width-200-fit {
+    min-width: 200px;
+    width: fit-content;
+}
+</code></pre>
+<h3 id="html-erweitern"><a class="header" href="#html-erweitern">HTML erweitern</a></h3>
+<pre><code class="language-html">&lt;button class="primary width-200-fit"&gt;❤️ Gefällt mir&lt;/button&gt;
+</code></pre>
+<p><img src="css/blogpage/images/like_wrongButtonPosition.png" alt="Falsche Button-Position" /></p>
+<h3 id="zentrierung-korrigieren"><a class="header" href="#zentrierung-korrigieren">Zentrierung korrigieren</a></h3>
+<p>Erst jetzt fällt auf, dass der Button eigentlich linksseitig orientiert ist. Auch das sollten wir ändern.</p>
+<p><strong>Der Trick</strong> ist relativ simpel: Anstelle das <code>"text-center"</code> auf dem Text selbst zu vergeben, setzt du die CSS-Klasse auf dem <strong>section container</strong>, welcher Button und Text vereint. Somit kriegen alle Elemente zentriert.</p>
+<p><img src="css/blogpage/images/like_text-center.png" alt="Text Center" /></p>
+<blockquote>
+<p>🎉 <strong>Falls du das von Beginn an so gemacht hast, umso besser!</strong></p>
+</blockquote>
+<h3 id="-final-progress"><a class="header" href="#-final-progress">✅ Final Progress:</a></h3>
+<ul>
+<li>✅ <strong>Abstände oben und unten</strong></li>
+<li>✅ <strong>Text zentriert</strong> mit richtigen Abständen</li>
+<li>✅ <strong>Breite des Like-Buttons</strong></li>
+</ul>
+<hr />
+<h2 id="ein--für-details"><a class="header" href="#ein--für-details">Ein ❤️ für Details</a></h2>
+<p>Falls du willst und magst, kannst du im Like-Bereich noch 2-3 Details beheben:</p>
+<h3 id="font-size-anpassung"><a class="header" href="#font-size-anpassung">Font-Size Anpassung</a></h3>
+<p><strong>Wenn du genau hinschaust</strong>, ist die Font-Size hier kleiner als üblich. Versuche herauszufinden wie gross und finde einen Weg mit CSS, dies anzupassen.</p>
+<h3 id="svg-herz-im-button"><a class="header" href="#svg-herz-im-button">SVG-Herz im Button</a></h3>
+<p><strong>Das Herz im Button</strong> ist ein SVG und sollte weiss sein. Zudem gibt es dort noch einen Abstand und alles sollte auf der selben Höhe liegen. All das ist eher schwierig. Wenn du dich fit dafür fühlst, versuche es. Es muss aber auch nicht sein.</p>
+<h3 id="endlösung"><a class="header" href="#endlösung">Endlösung</a></h3>
+<p><strong>Du findest den Endstand</strong> der Lösung auf <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/05_like_with_icon">GitHub</a></p>
+<p><strong>Like-Bereich ist responsive und professionell umgesetzt!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-css-variablen"><a class="header" href="#-css-variablen">🎯 CSS Variablen</a></h1>
+<h2 id="warum-css-variablen"><a class="header" href="#warum-css-variablen">Warum CSS Variablen?</a></h2>
+<p>Beim Like-Bereich haben wir sehr viele "statische" Werte für Abstände benutzt und teilweise auch x-fach wiederholt. Dies lässt sich mit Variablen deutlich besser gestalten. Es erlaubt, falls nötig, auch das einfachere Umsetzen von Responsive Design.</p>
+<hr />
+<h2 id="variablen-einführen"><a class="header" href="#variablen-einführen">Variablen einführen</a></h2>
+<h3 id="setup-prozess-2"><a class="header" href="#setup-prozess-2">Setup-Prozess</a></h3>
+<p>Als erstes wollen wir all die margin-Angaben durch Variablen ersetzen. Dafür führen wir ein separates CSS-File ein und importieren es wie üblich im <code>main.css</code>.</p>
+<pre><code class="language-css">@import url("variables.css");
+</code></pre>
+<h3 id="design-system-ansatz"><a class="header" href="#design-system-ansatz">Design System Ansatz</a></h3>
+<p>Wir haben in den utilities Angaben für margins von <code>xs</code> bis <code>xxl</code> eingesetzt. Diese wollen wir in den Variablen definieren.</p>
+<p><strong>In einem top Design System</strong> gäbe es einige Pixel-Angaben, die sich für alles wiederholen:</p>
+<ul>
+<li><strong>Set von Variablen</strong> für Margins</li>
+<li><strong>Konsistente Spacing-Skala</strong></li>
+<li><strong>Wiederverwendbare Werte</strong></li>
+</ul>
+<blockquote>
+<p>💡 <strong>Pragmatischer Ansatz</strong>: Wir definieren die Variablen explizit für die Margins. Später können wir diese möglicherweise mit anderen zusammenführen.</p>
+</blockquote>
+<h3 id="css-variablen-grundlagen"><a class="header" href="#css-variablen-grundlagen">CSS Variablen Grundlagen</a></h3>
+<p><strong>Referenz</strong>: <a href="https://www.w3schools.com/css/css3_variables.asp">W3Schools CSS Variables</a></p>
+<p>Variablen in CSS sind relativ umfassend und daher auch komplex. Wir konzentrieren uns hier auf die Basics.</p>
+<hr />
+<h2 id="margin-variablen-definieren"><a class="header" href="#margin-variablen-definieren">Margin-Variablen definieren</a></h2>
+<h3 id="variable-definition"><a class="header" href="#variable-definition">Variable Definition</a></h3>
+<p>Definiere mit der Angabe <code>:root {}</code> die Angaben für unsere verschiedenen Margins:</p>
+<pre><code class="language-css">/* margin variables */
+:root {
+  --margin-xs: 12px;
+  --margin-s: 16px;
+  --margin-m: 24px;
+  --margin-l: 32px;
+  --margin-xl: 40px;
+  --margin-xxl: 64px;
+}
+</code></pre>
+<h3 id="utilities-aktualisieren"><a class="header" href="#utilities-aktualisieren">Utilities aktualisieren</a></h3>
+<p>Danach gehe zum <code>utilities.css</code> und ersetze die fixen Zahlen durch unsere Variablen:</p>
+<h4 id="margin-top-utilities-1"><a class="header" href="#margin-top-utilities-1"><strong>Margin-Top Utilities:</strong></a></h4>
+<pre><code class="language-css">.mt-0 {
+    margin-top: 0;
+}
+.mt-s {
+    margin-top: var(--margin-s);
+}
+.mt-m {
+  margin-top: var(--margin-m);
+}
+.mt-l {
+  margin-top: var(--margin-l);
+}
+.mt-xl {
+  margin-top: var(--margin-xl);
+}
+.mt-xxl {
+  margin-top: var(--margin-xxl);
+}
+</code></pre>
+<h4 id="margin-bottom-utilities-1"><a class="header" href="#margin-bottom-utilities-1"><strong>Margin-Bottom Utilities:</strong></a></h4>
+<pre><code class="language-css">.mb-0 {
+  margin-bottom: 0;
+}
+.mb-s {
+  margin-bottom: var(--margin-s);
+}
+.mb-m {
+  margin-bottom: var(--margin-m);
+}
+.mb-l {
+  margin-bottom: var(--margin-l);
+}
+.mb-xl {
+  margin-bottom: var(--margin-xl);
+}
+.mb-xxl {
+  margin-bottom: var(--margin-xxl);
+}
+</code></pre>
+<h4 id="margin-right-utilities"><a class="header" href="#margin-right-utilities"><strong>Margin-Right Utilities:</strong></a></h4>
+<pre><code class="language-css">.mr-0 {
+  margin-right: 0;
+}
+.mr-xs {
+  margin-right: var(--margin-xs);
+}
+.mr-s {
+  margin-right: var(--margin-s);
+}
+.mr-m {
+  margin-right: var(--margin-m);
+}
+.mr-l {
+  margin-right: var(--margin-l);
+}
+.mr-xl {
+  margin-right: var(--margin-xl);
+}
+.mr-xxl {
+  margin-right: var(--margin-xxl);
+}
+</code></pre>
+<h4 id="margin-vertical-top--bottom-utilities"><a class="header" href="#margin-vertical-top--bottom-utilities"><strong>Margin Vertical (Top + Bottom) Utilities:</strong></a></h4>
+<pre><code class="language-css">.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.my-s {
+  margin-top: var(--margin-s);
+  margin-bottom: var(--margin-s);
+}
+.my-m {
+  margin-top: var(--margin-m);
+  margin-bottom: var(--margin-m);
+}
+.my-l {
+  margin-top: var(--margin-l);
+  margin-bottom: var(--margin-l);
+}
+.my-xl {
+  margin-top: var(--margin-xl);
+  margin-bottom: var(--margin-xl);
+}
+.my-xxl {
+  margin-top: var(--margin-xxl);
+  margin-bottom: var(--margin-xxl);
+}
+</code></pre>
+<hr />
+<h2 id="-funktionalität-prüfen"><a class="header" href="#-funktionalität-prüfen">✅ Funktionalität prüfen</a></h2>
+<p><strong>Like-Bereich testen</strong>: Prüfe kurz deinen "Like"-Bereich, ob die ganzen Abstände noch passen oder ob doch etwas kaputt ging.</p>
+<hr />
+<h2 id="weitere-optimierungen"><a class="header" href="#weitere-optimierungen">Weitere Optimierungen</a></h2>
+<p>Im Prinzip könntest du jetzt das restliche CSS nach weiteren Möglichkeiten für Variablen absuchen:</p>
+<h3 id="erweiterungsmöglichkeiten"><a class="header" href="#erweiterungsmöglichkeiten">Erweiterungsmöglichkeiten</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Bereich</th><th>Variablen-Optionen</th></tr></thead><tbody>
+<tr><td><strong>Buttons</strong></td><td>Border-radius, Padding, Colors</td></tr>
+<tr><td><strong>Typography</strong></td><td>Font-sizes, Line-heights, Font-weights</td></tr>
+<tr><td><strong>Colors</strong></td><td>Brand-colors, Background-colors</td></tr>
+<tr><td><strong>Layout</strong></td><td>Container-widths, Grid-gaps</td></tr>
+</tbody></table>
+</div>
+<h3 id="nächste-schritte"><a class="header" href="#nächste-schritte">Nächste Schritte</a></h3>
+<p>Wir lassen weitere Variablen vorerst sein und kümmern uns dafür um ein <strong>responsives Layout</strong>.</p>
+<p><strong>Variable-System etabliert - bereit für responsive Design!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="responsive-is-key"><a class="header" href="#responsive-is-key">Responsive is key</a></h1>
+<h2 id="-warum-responsive-design"><a class="header" href="#-warum-responsive-design">🎯 Warum Responsive Design?</a></h2>
+<p>Wenn wir eine Page für möglichst viele Endgeräte nutzen wollen, sollten wir sie <strong>responsive</strong> gestalten.</p>
+<blockquote>
+<p>📖 <strong>Siehe auch</strong>: <a href="css/blogpage/../rwd.html">Responsive Web Design Guide</a></p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Falls du nicht klarkommst</strong>, nutze den Stand aus <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/06_variables">GitHub</a></p>
+</blockquote>
+<hr />
+<h2 id="mobile-first"><a class="header" href="#mobile-first">Mobile First?</a></h2>
+<h3 id="desktop-first-vs-mobile-first"><a class="header" href="#desktop-first-vs-mobile-first">Desktop First vs. Mobile First</a></h3>
+<p>Wenn wir eine Seite responsive gestalten, sollten wir uns festlegen:</p>
+<div class="table-wrapper"><table><thead><tr><th>Ansatz</th><th>Beschreibung</th><th>Heute empfohlen?</th></tr></thead><tbody>
+<tr><td><strong>Desktop First</strong></td><td>Zuerst Desktop, dann kleiner</td><td>❌ Veraltet</td></tr>
+<tr><td><strong>Mobile First</strong></td><td>Zuerst Mobile, dann grösser</td><td>✅ Standard</td></tr>
+</tbody></table>
+</div>
+<h3 id="was-bedeutet-mobile-first"><a class="header" href="#was-bedeutet-mobile-first">Was bedeutet Mobile First?</a></h3>
+<p><strong>Grundsatz</strong>: Wir gehen immer davon aus, dass es ein <strong>Mobile-Gerät mit schmalem Screen</strong> ist.</p>
+<h4 id="praktische-beispiele"><a class="header" href="#praktische-beispiele"><strong>Praktische Beispiele:</strong></a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Element</th><th>Mobile</th><th>Desktop</th><th>Grund</th></tr></thead><tbody>
+<tr><td><strong>Margins</strong></td><td>0px</td><td>24px</td><td>Mehr Platz verfügbar</td></tr>
+<tr><td><strong>Button-Breite</strong></td><td>100%</td><td>fit-content</td><td>Schmaler Screen nutzen</td></tr>
+<tr><td><strong>Font-Size</strong></td><td>16px</td><td>18px</td><td>Bessere Lesbarkeit</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p><strong>Fazit</strong>: CSS für Mobile definieren, dann für breitere Bildschirme erweitern!</p>
+</blockquote>
+<hr />
+<h2 id="breakpoints-definieren"><a class="header" href="#breakpoints-definieren">Breakpoints definieren</a></h2>
+<h3 id="galaxus-design-system"><a class="header" href="#galaxus-design-system">Galaxus Design System</a></h3>
+<p>Damit wir überhaupt verschiedene Bildschirmbreiten unterstützen, müssen wir <strong>Breakpoints</strong> definieren.</p>
+<p><strong>Breakpoints</strong> = Stellen im Screen, wo wir sagen <em>"hey, jetzt sollte ich etwas am Design anpassen"</em></p>
+<h3 id="galaxus-breakpoints"><a class="header" href="#galaxus-breakpoints">Galaxus Breakpoints</a></h3>
+<p><strong>Referenz</strong>: <a href="https://www.galaxus.ch/designsystem/foundations/screen-ranges-and-breakpoints">Galaxus Screen Ranges</a></p>
+<div class="table-wrapper"><table><thead><tr><th>Range</th><th>Breite</th><th>Geräte</th></tr></thead><tbody>
+<tr><td><strong>zero → xs</strong></td><td>0 - 699px</td><td>Mobile</td></tr>
+<tr><td><strong>xs → s</strong></td><td>700px - 999px</td><td>Tablet</td></tr>
+<tr><td><strong>s → m</strong></td><td>1000px+</td><td>Desktop</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="media-queries---button-responsive-machen"><a class="header" href="#media-queries---button-responsive-machen">Media Queries - Button responsive machen</a></h2>
+<h3 id="css-magie-media-queries"><a class="header" href="#css-magie-media-queries">CSS-Magie: Media Queries</a></h3>
+<p><strong>Media Queries</strong> ermöglichen, auf den aktuellen Screen dynamisch zu reagieren.</p>
+<p><strong>Regel</strong>: Bis zum ersten Breakpoint gilt <strong>Mobile</strong> → da müssen wir nichts Spezielles tun.</p>
+<h3 id="button-problem-analysieren"><a class="header" href="#button-problem-analysieren">Button-Problem analysieren</a></h3>
+<p>Der <strong>Like-Button</strong> ist auf Mobile zu schmal und sollte die ganze Breite einnehmen, damit er optisch besser wirkt.</p>
+<h4 id="browser-analyse-mit-dev-tool"><a class="header" href="#browser-analyse-mit-dev-tool"><strong>Browser-Analyse mit Dev Tool:</strong></a></h4>
+<ul>
+<li><strong>bis 700px</strong>: Button volle Breite</li>
+<li><strong>ab 700px</strong>: Button schmal</li>
+</ul>
+<h3 id="responsive-verhalten"><a class="header" href="#responsive-verhalten">Responsive-Verhalten</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>zero → xs (699px)</th><th>xs (700px) → ∞</th></tr></thead><tbody>
+<tr><td><img src="css/blogpage/images/responsive_zero-xs.png" alt="Mobile Button" /></td><td><img src="css/blogpage/images/responsive_fromXs.png" alt="Responsive von xs" /></td></tr>
+</tbody></table>
+</div>
+<p>Für unseren Button bedeutet dies, wir müssen ihn beim xs-breakpoint auf schmal definieren. Gehe dazu erneut zum button.css file und suche die Stelle raus, die wir mit einem zusätzlichen CSS definiert haben.</p>
+<hr />
+<h2 id="css-implementation-1"><a class="header" href="#css-implementation-1">CSS-Implementation</a></h2>
+<p>Wir können mit einem Media Query den Button so direkt übersteuern, dass er ab dem xs-breakpoint schmal bleibt. Dafür entfernen wir unsere spezialklasse wieder, die wir zuvor angelegt haben.</p>
+<pre><code class="language-css">/* ENTFERNEN: */
+&amp;.width-200-fit {
+    min-width: 200px;
+    width: fit-content;
+}
+</code></pre>
+<h3 id="media-query-hinzufügen"><a class="header" href="#media-query-hinzufügen">Media Query hinzufügen</a></h3>
+<p><strong>Neues Button.css</strong> mit Media Query:</p>
+<pre><code class="language-css">button {
+  background-color: #eee;
+  color: #000;
+  border: 1px solid #0003;
+  border-radius: 3px;
+  padding: 7px 15px;
+  width: 100%; /* Mobile First: Volle Breite */
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  font-size: inherit;
+  
+  &amp;:hover {
+    background-color: #ddd;
+  }
+  
+  &amp;:focus-visible {
+    background-color: #ddd;
+  }
+  
+  &amp;.primary {
+    background-color: #444;
+    color: #fff;
+    
+    &amp;:hover {
+      background-color: #000;
+    }
+    
+    &amp;:focus-visible {
+      background-color: #000;
+    }
+  }
+  
+  &amp;.disabled,
+  &amp;.primary.disabled {
+    color: #0006;
+    border: 1px solid #0001;
+  }
+
+  /* Responsive Styles */
+  @media screen and (min-width: 700px) {
+    width: fit-content;
+    min-width: 200px;
+  }
+}
+</code></pre>
+<h3 id="design-Überlegung"><a class="header" href="#design-Überlegung">Design-Überlegung</a></h3>
+<p><strong>Wenn wir das so machen</strong>, applizieren wir das Verhalten auf <strong>alle Buttons</strong>. In der Vorlage ist das eigentlich nicht so. Jedoch ist das tatsächlich nicht mal so schön:</p>
+<p><img src="css/blogpage/images/responsive_uglyButtonPlacements.png" alt="Hässliche Button-Platzierungen" /></p>
+<p><strong>Problem</strong>: Die Buttons wirken etwas unsauber und es gibt quasi eine <strong>Zick-Zack-Linie</strong>.</p>
+<blockquote>
+<p><strong>Insider-Info</strong>: Der Bereich wird aktuell bei Clippy tatsächlich neu gestaltet!</p>
+</blockquote>
+<h3 id="html-bereinigen-1"><a class="header" href="#html-bereinigen-1">HTML bereinigen</a></h3>
+<p><strong>Entferne</strong> zu guter Letzt die CSS-Klasse im HTML:</p>
+<pre><code class="language-html">&lt;!-- ENTFERNEN: class="width-200-fit" --&gt;
+&lt;button class="primary"&gt;❤️ Gefällt mir&lt;/button&gt;
+</code></pre>
+<hr />
+<h2 id="resultat"><a class="header" href="#resultat">Resultat</a></h2>
+<h3 id="-was-haben-wir-erreicht"><a class="header" href="#-was-haben-wir-erreicht">✅ Was haben wir erreicht?</a></h3>
+<ul>
+<li><strong>Mobile First</strong> Ansatz implementiert</li>
+<li><strong>Responsive Breakpoints</strong> definiert</li>
+<li><strong>Button-Verhalten</strong> optimiert</li>
+<li><strong>Sauberer Code</strong> ohne Spezialklassen</li>
+</ul>
+<h3 id="-fertige-version"><a class="header" href="#-fertige-version">🔗 Fertige Version</a></h3>
+<p><strong>Die komplette Lösung</strong> findest du unter: <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/07_responsive">GitHub - Responsive Version</a></p>
+<p><strong>Responsive Design erfolgreich implementiert!</strong> 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-blog-page-preview"><a class="header" href="#-blog-page-preview">🔭 Blog Page Preview</a></h1>
+<h2 id="verschiedene-ansichten"><a class="header" href="#verschiedene-ansichten">Verschiedene Ansichten</a></h2>
+<p>Die Blog Page Preview gibt es an verschiedenen Orten und Formaten:</p>
+<h3 id="layout-vergleich-1"><a class="header" href="#layout-vergleich-1">Layout-Vergleich</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Ansicht</th><th>Mobile</th><th>Desktop</th></tr></thead><tbody>
+<tr><td><strong>Einzelne Page</strong></td><td><img src="css/blogpage/images/preview_mobile_onePage.png" alt="Mobile One Page" /></td><td><img src="css/blogpage/images/preview_desktop_onePage.png" alt="Desktop One Page" /></td></tr>
+<tr><td><strong>Listenansicht</strong></td><td><img src="css/blogpage/images/preview_list_mobile.png" alt="Mobile List" /></td><td><img src="css/blogpage/images/preview_list_desktop.png" alt="Desktop List" /></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>💡 <strong>Glück</strong>: Die Änderungen sind minimal zwischen den Versionen. Wir können uns auf die Mobile konzentrieren und haben ev. die restlichen Varianten bereits mit abgebildet.</p>
+</blockquote>
+<hr />
+<h2 id="flexbox-implementieren"><a class="header" href="#flexbox-implementieren">Flexbox implementieren</a></h2>
+<h3 id="lernressourcen"><a class="header" href="#lernressourcen">Lernressourcen</a></h3>
+<p>Damit wir das Design umsetzen können, nutzen wir <strong>Flexbox</strong>:</p>
+<ul>
+<li><strong><a href="https://flexboxfroggy.com/#de">Flexbox Froggy</a></strong> 🐸 (Interaktives Tutorial)</li>
+<li><strong><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks Guide</a></strong> 📖 (Komplette Referenz)</li>
+</ul>
+<h3 id="element-auswahl"><a class="header" href="#element-auswahl">Element-Auswahl</a></h3>
+<p>Starte auf dem Element, welches diese Blog Page umschliesst.</p>
+<p><img src="css/blogpage/images/preview_flexboxArticle.png" alt="Flexbox Article" /></p>
+<hr />
+<h2 id="utilities-erweitern"><a class="header" href="#utilities-erweitern">Utilities erweitern</a></h2>
+<h3 id="flexbox-utilities-hinzufügen"><a class="header" href="#flexbox-utilities-hinzufügen">Flexbox-Utilities hinzufügen</a></h3>
+<p>Damit wir Flexbox verwenden können, brauchen wir im <code>utilities.css</code> die folgenden Klassen:</p>
+<pre><code class="language-css">/* Flexbox utilities */
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+</code></pre>
+<h3 id="html-implementation-1"><a class="header" href="#html-implementation-1">HTML-Implementation</a></h3>
+<p>Setze die beiden Klassen <code>d-flex</code> und <code>flex-row</code> auf dem HTML-Element <strong><code>article</code></strong> und prüfe, was passiert.</p>
+<p><img src="css/blogpage/images/preview_flexWithImageApplied.png" alt="Flex angewendet" /></p>
+<p><strong>✅ Resultat</strong>: Die Text-Elemente sind schon mal rechts vom Bild. Eigentlich genau was wir möchten!</p>
+<hr />
+<h2 id="bild-spezialbehandlung"><a class="header" href="#bild-spezialbehandlung">Bild-Spezialbehandlung</a></h2>
+<h3 id="problem"><a class="header" href="#problem">Problem</a></h3>
+<p>Das Bild benötigt relativ viele spezielle Behandlungen, damit es passt. Damit du nicht zu viele Klassen schreiben musst, erstelle eine <strong><code>flex-image-aside</code></strong> Klasse.</p>
+<h3 id="css-implementation-2"><a class="header" href="#css-implementation-2">CSS-Implementation</a></h3>
+<pre><code class="language-css">.flex-image-aside {
+  flex: 0 1 30%;  /* Kurzschreibweise für grow, shrink, basis */
+  max-width: 144px;
+}
+</code></pre>
+<h3 id="html-anwendung-2"><a class="header" href="#html-anwendung-2">HTML-Anwendung</a></h3>
+<p>Vergib diese Klasse dem Bild:</p>
+<pre><code class="language-html">&lt;img src="bild.jpg" alt="Beschreibung" class="flex-image-aside"&gt;
+</code></pre>
+<h2 id=""><a class="header" href="#"><img src="css/blogpage/images/preview_withFlexAsiedApplied.png" alt="Flex angewendet" /></a></h2>
+<h2 id="flex-direction-anpassen"><a class="header" href="#flex-direction-anpassen">Flex Direction anpassen</a></h2>
+<p><strong>Von Row zu Column</strong></p>
+<p>Jetzt müssen wir im <strong>"rechten"</strong> Bereich wiederum statt nebeneinander das Ganze untereinander haben. Also von <strong>"row"</strong> zu <strong>"column"</strong>.</p>
+<blockquote>
+<p><strong>Ahnst du schon</strong>, wie du das mit Flexbox machen kannst?</p>
+</blockquote>
+<h3 id="container-hinzufügen"><a class="header" href="#container-hinzufügen">Container hinzufügen</a></h3>
+<p>Falls dir ein Container fehlt, um diese Elemente zu umschliessen, kannst du ein <strong><code>div</code></strong> HTML-Element nutzen. Diese eignen sich super, um vor allem CSS-Klassen zu setzen.</p>
+<pre><code class="language-html">&lt;article class="d-flex flex-row"&gt;
+  &lt;img src="bild.jpg" alt="Beschreibung" class="flex-image-aside"&gt;
+  &lt;div class="d-flex flex-column"&gt;
+    &lt;h3&gt;Titel&lt;/h3&gt;
+    &lt;p&gt;Beschreibung&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+<p><img src="css/blogpage/images/preview_flexButUglyImage.png" alt="Flex aber hässliches Bild" /></p>
+<h3 id="bildverzerrung-beheben"><a class="header" href="#bildverzerrung-beheben">Bildverzerrung beheben</a></h3>
+<p><strong>Typisch Entwicklung</strong>: Man löst ein Problem und schafft sich neue... Wunderbar oder?</p>
+<p><strong>Problem</strong>: Das Bild ist jetzt komplett verzogen.</p>
+<p><strong>Lösung</strong>: <code>object-fit: cover</code></p>
+<pre><code class="language-css">.flex-image-aside {
+  flex: 0 1 30%;  /* Kurzschreibweise für grow, shrink, basis */
+  max-width: 144px;
+  object-fit: cover; /* Verhindert Verzerrung */
+}
+</code></pre>
+<hr />
+<h2 id="spacing-optimierungen"><a class="header" href="#spacing-optimierungen">Spacing-Optimierungen</a></h2>
+<p>Jetzt stören noch die Abstände oben / unten zwischen den Texten sowie sind Bild und Text zu nah aneinander.</p>
+<p><strong>Nutze deine Utility-Klassen</strong> um die Abstände anzupassen:</p>
+<ul>
+<li><strong>mr-s</strong> für rechten Abstand am Bild</li>
+<li><strong>my-0</strong> um vertikale Margins zu entfernen</li>
+</ul>
+<p>Danach müssen wir uns noch um die Schriftgrössen kümmern. Die sind jeweils 13 und 20. Zwischen dem Bild und dem Text gibt es einen Abstand von 16px.
+<img src="css/blogpage/images/preview_flexMarginsOverview.png" alt="Flex Margins Overview" />
+Als Margin-Top bei allen Texten sind 4px definiert. Wir brauchen also doch noch so was wie ein xxs.</p>
+<h3 id="anpassungen-vornehmen"><a class="header" href="#anpassungen-vornehmen">Anpassungen vornehmen</a></h3>
+<p>Damit alles klappt musst du noch die Fonts im <code>fonts.css</code> erweitern. Ausserdem brauchen wir neue Werte für die Font-Weights. Die <code>fonts.css</code> könnte nun so aussehen (die Werte wie 13, 20 kannst du auch durch small, large oder ähnlich ersetzen).</p>
+<pre><code class="language-css">.font-13 {
+  font-size: 13px;
+  line-height: 20px;
+}
+.font-20 {
+  font-size: 20px;
+  line-height: 28px;
+}
+.font-weight-regular {
+  font-weight: 400;
+}
+.font-weight-medium {
+  font-weight: 500;
+}
+.font-weight-bold {
+  font-weight: 700;
+}
+</code></pre>
+<p>Setzte dann die Klassen im Html alle. Achte darauf dass du die <code>my-0</code> durch <code>mt-s</code> und <code>mb-0</code> ersetzen musst, dort wo es ein <code>mt-s</code> gibt.</p>
+<p><img src="css/blogpage/images/preview_fixedMargins.png" alt="Fixed Margins" /></p>
+<h3 id="nur-noch-ein-paar-details"><a class="header" href="#nur-noch-ein-paar-details">Nur noch ein paar Details</a></h3>
+<p>Jetzt fehlen uns nur noch diese hübschen Linien oben und unten. Das sind einfache Border die wir ebenfalls im <code>utilities.css</code> definieren können. Auch hier könnten die Farben und Dicken jeweils über Variablen ausgelagert werden.</p>
+<pre><code class="language-css">.border-top {
+  border-top: 1px solid #ddd;
+}
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+</code></pre>
+<p><img src="css/blogpage/images/preview_final.png" alt="Wrong paddings" /></p>
+<p>Jetzt sind die Linien noch zu nah. Das können wir mit Padding korrigieren, da eine Border zwischen padding und Margin liegt.</p>
+<p><img src="css/blogpage/images/Preview_marginPaddinWrongDevTool.png" alt="Wrong paddings" /></p>
+<p>Gemäss Vorlag gibt es ein Padding oben und unten von 16px. Erweitere deine <code>utilitites.css</code> mit Paddings und setze danach die Klassen ein.</p>
+<p>Da wir für margin und padding die selben Werte nutzen, legen wir sie gleich zusammen in den Variablen zu <code>spaces</code> und nutzen im <code>utilties.css</code> dann dieselbe Variable für Margin und Padding Angaben.</p>
+<p><strong><code>Variables.css</code></strong></p>
+<pre><code class="language-css">/* general spaces variables */
+:root {
+  --space-xxs: 4px;
+  --space-xs: 12px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 40px;
+  --space-xxl: 64px;
+}
+</code></pre>
+<p><strong><code>Utilities.css</code></strong></p>
+<pre><code class="language-css">/* margin-top utilities */
+.mt-0{
+    margin-top: 0;
+}
+.mt-xxs {
+  margin-top: var(--space-xxs);
+}
+.mt-xs {
+…
+…
+
+/* padding-top utilities */
+.pt-0 {
+  padding-top: 0;
+}
+.pt-xxs {
+  padding-top: var(--space-xxs);
+}
+…
+…
+</code></pre>
+<p>Setze dann py-s auf das Article Element</p>
+<p><img src="css/blogpage/images/PreviewFinalWithFixedPaddingsAndMargins.png" alt="Final mit festen Paddings und Margins" /></p>
+<h3 id="fleissarbeit"><a class="header" href="#fleissarbeit">Fleissarbeit…</a></h3>
+<p>Jetzt hast du alle Grundlagen im CSS, um all die Blog Page Previews zu gestalten. Gehe durch jede Stelle in der Index.html Seite durch, ergänze die Klassen und es sollte soweit passen. Für Desktop könnte man das Bild noch etwas breiter machen. Aber das ist deine Wahl ob du das noch machen möchtest 😊 Viel Erfolg!</p>
+<p>Ps. Du findest die fertige Version auf Github https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/08_blog_page_preview</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up"><a class="header" href="#-wrap-it-up">🎁 Wrap it up</a></h1>
+<h2 id="erfolgreiche-umsetzung"><a class="header" href="#erfolgreiche-umsetzung">Erfolgreiche Umsetzung!</a></h2>
+<p>Du hast jetzt all die Elemente umgesetzt:</p>
+<h3 id="-erfolgreich-implementiert"><a class="header" href="#-erfolgreich-implementiert">✅ Erfolgreich implementiert:</a></h3>
+<ul>
+<li><strong>Textgrössen</strong> inklusive Überschriften etc.</li>
+<li><strong>Video oder Bild</strong> als Slide</li>
+<li><strong>Rubrik</strong></li>
+<li><strong>Weitere Bilder</strong></li>
+<li><strong>Buttons</strong></li>
+<li><strong>Gefällt mir Bereich</strong></li>
+<li><strong>Blog Page Preview</strong> inklusive Ansicht für "weitere spannende Artikel"</li>
+</ul>
+<h3 id="dabei-sehr-vieles-gelernt"><a class="header" href="#dabei-sehr-vieles-gelernt">Dabei sehr vieles gelernt:</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Technologie</th><th>Was du gelernt hast</th></tr></thead><tbody>
+<tr><td><strong>CSS Variablen</strong></td><td>Wartbare, skalierbare Styles</td></tr>
+<tr><td><strong>Flexbox</strong></td><td>Moderne Layout-Techniken</td></tr>
+<tr><td><strong>Responsive Design</strong></td><td>Mobile First Entwicklung</td></tr>
+<tr><td><strong>Font-Management</strong></td><td>Custom Fonts korrekt einbinden</td></tr>
+<tr><td><strong>Utility-First CSS</strong></td><td>Wiederverwendbare Klassen</td></tr>
+</tbody></table>
+</div>
+<p><strong>🎊 Gratulation - du bist jetzt ein CSS-Profi!</strong></p>
+<hr />
+<h2 id="erweiterte-challenges"><a class="header" href="#erweiterte-challenges">Erweiterte Challenges</a></h2>
+<p>Wenn du jetzt ungebremst noch weiter machen möchtest, dann kannst du folgende offene Elemente versuchen schön zu gestalten:</p>
+<h3 id="noch-zu-implementieren"><a class="header" href="#noch-zu-implementieren">Noch zu implementieren:</a></h3>
+<ul>
+<li><strong>Autor*innen Bereich</strong></li>
+<li><strong>Tabellen</strong></li>
+<li><strong>Fazit Box</strong></li>
+<li><strong>Produkt Kachel</strong></li>
+<li><strong>Autor*innen Box</strong> mit Folgen-Button</li>
+<li><strong>Thema</strong> mit Folgen-Button</li>
+</ul>
+<hr />
+<h2 id="schwierigkeits-einschätzung"><a class="header" href="#schwierigkeits-einschätzung">Schwierigkeits-Einschätzung</a></h2>
+<p><strong>Von "einfach bis komplizierter"</strong> vorgehen:</p>
+<div class="table-wrapper"><table><thead><tr><th>Element</th><th>Aufwand (0-10)</th><th>Begründung</th></tr></thead><tbody>
+<tr><td><strong>Beschreibung Bilder</strong></td><td>2</td><td>Optional: Beschreibungstext unter den Bildern. Benötigt noch etwas HTML (figure, figurecaption) sowie CSS für die Darstellung</td></tr>
+<tr><td><strong>Produkt Kachel</strong></td><td>3</td><td>Sehr ähnlich wie Blog Page Preview (verzichte besser auf die Verfügbarkeits-Anzeige)</td></tr>
+<tr><td><strong>Fazit Box</strong></td><td>4-6</td><td>Tabelle besser gestalten (pro/kontra). Herausforderung: CSS-Umsetzung. Eventuell CSS Grid lernen → macht Aufwand grösser</td></tr>
+<tr><td><strong>Thema mit Folgen</strong></td><td>5</td><td>Elemente wie bei Blog Page Preview wiederverwendbar. Neue Herausforderungen: Einrücken und Button rechts vom Text. CSS Grid könnte helfen</td></tr>
+<tr><td><strong>Autor*innen Box</strong></td><td>6</td><td>Analog "Thema mit Folgen", plus korrekte Darstellung/Grösse des Autor*innen-Bilds. Grid zum Angleichen mit "Thema folgen"</td></tr>
+<tr><td><strong>Tabellen</strong></td><td>8-10</td><td>Je nachdem wie "schön" die Tabelle aussehen soll, kann dies enorm aufwändig werden</td></tr>
+</tbody></table>
+</div>
+<h3 id="empfohlene-reihenfolge"><a class="header" href="#empfohlene-reihenfolge">Empfohlene Reihenfolge:</a></h3>
+<ol>
+<li>** Beschreibung Bilder** (Quick Win)</li>
+<li><strong>Produkt Kachel</strong> (Flexbox-Wiederholung)</li>
+<li><strong>Fazit Box</strong> (CSS Grid Lerneffekt)</li>
+<li><strong>Thema mit Folgen</strong> (Layout-Komplexität)</li>
+<li><strong>Autor*innen Box</strong> (Bild-Optimierung)</li>
+<li><strong>Tabellen</strong> (Master-Challenge)</li>
+</ol>
+<hr />
+<h2 id="fertige-lösung"><a class="header" href="#fertige-lösung">Fertige Lösung</a></h2>
+<p><strong>Die "fertige" Blog Page</strong> mit dem ganzen CSS findest du unter: <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/09_blog_page_completed">GitHub - Completed Blog Page</a></p>
+<blockquote>
+<p>💡 <strong>Hinweis</strong>: Du findest unter dem Link allenfalls auch CSS, HTML-Elemente/Lösungen, die nicht Teil des Tutorials direkt sind. Falls du konkret Fragen hast oder es ähnlich machen willst, frage am besten einfach im Kurs nach.</p>
+</blockquote>
+<p><strong>Du hast eine solide CSS-Basis geschaffen - jetzt wird experimentiert!</strong> 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="geschichte-von-javascript"><a class="header" href="#geschichte-von-javascript">Geschichte von JavaScript</a></h1>
 <p>JavaScript hat eine recht interessante Geschichte hinter sich. Diese zeigt auch auf, wie früh JavaScript entstanden ist und eigentlich durch den Fortschritt des WWW geprägt wurde. Siehe auch <a href="https://de.wikipedia.org/wiki/JavaScript#Geschichte">Wiki JavaScript Geschichte</a></p>
 <p>Wie viel hat JavaScript denn nun mit Java zu tun? Etwa so viel wie ein HotDog mit einem Hund → nichts!
 Dies ist zwar nicht ganz korrekt. Wenn du die Geschichte auf Wikipedia nachliest, findest du heraus wieso. Die damals genannte Skriptsprache "LiveScript" sollte Java ansprechen können. Weil diese Einwicklung von Netscape (=Browser) und Sun (=Java) zusammen kreiert wurde, nannte man sie später JavaScript. Also eine Web-Skript-Sprache, welche Java zudienen soll. Vermutlich weisst du unterdessen, dass dies heute etwas anders funktioniert.</p>
@@ -1107,7 +3287,7 @@ brokenHeart.classList.add("mr-s");
 <p>✅ <strong>Like Button</strong>: Toggle mit Counter und Icon<br />
 ✅ <strong>Follow Author</strong>: Toggle mit Text-Änderung<br />
 ✅ <strong>Follow Topic</strong>: Toggle mit Text-Änderung</p>
-<h3 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🔗 Nächste Schritte</a></h3>
+<h3 id="-nächste-schritte-4"><a class="header" href="#-nächste-schritte-4">🔗 Nächste Schritte</a></h3>
 <p>Im nächsten Kapitel verbinden wir die Buttons mit einem <strong>Backend</strong> für persistente Datenspeicherung!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-backend-verbinden"><a class="header" href="#-backend-verbinden">⛓️‍💥 Backend verbinden</a></h1>
 <h2 id="-frontend-trifft-backend"><a class="header" href="#-frontend-trifft-backend">🎯 Frontend trifft Backend</a></h2>
@@ -1385,7 +3565,7 @@ appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 <li><strong>⚡ Async/Await</strong> - Moderne JavaScript-Patterns</li>
 <li><strong>🎛️ Dynamic BlogPageId</strong> - Reaktion auf ID-Änderungen</li>
 </ol>
-<h3 id="-nächste-schritte-1"><a class="header" href="#-nächste-schritte-1">🚀 Nächste Schritte:</a></h3>
+<h3 id="-nächste-schritte-5"><a class="header" href="#-nächste-schritte-5">🚀 Nächste Schritte:</a></h3>
 <p>Im nächsten Kapitel machen wir die <strong>Like-Buttons funktional</strong> und synchronisieren Backend-State mit Frontend-Interaktionen!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-like-funktion-wiederherstellen"><a class="header" href="#-like-funktion-wiederherstellen">❤️‍🩹 Like-Funktion wiederherstellen</a></h1>
 <h2 id="-Überblick"><a class="header" href="#-Überblick">🎯 Überblick</a></h2>
@@ -1847,7 +4027,7 @@ for (const btn of buttons) {
 ✅ <strong>Dynamic UI Updates</strong><br />
 ✅ <strong>Error Handling &amp; Robustness</strong></p>
 <p><strong>Du bist bereit für komplexere Frontend-Herausforderungen!</strong> 🚀</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up"><a class="header" href="#-wrap-it-up">💝 Wrap it up</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up-1"><a class="header" href="#-wrap-it-up-1">💝 Wrap it up</a></h1>
 <h2 id="-so-long-and-thanks-for-all-the-fish"><a class="header" href="#-so-long-and-thanks-for-all-the-fish">🎉 So long and thanks for all the fish</a></h2>
 <p>Du hast in diesem JavaScript-Teil grundlegende Funktionen umgesetzt wie:</p>
 <ul>

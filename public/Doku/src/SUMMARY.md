@@ -6,6 +6,31 @@
 - [Tutorials](./links/tutorials.md)
 - [Video Aufzeichnungen](./links/videos.md)
 
+# Setup
+- [Setup](./setup/intro.md)
+    - [Vs Code](./setup/vsCode.md)
+    - [NodeJs](./setup/node.md)
+    - [Chrome](./setup/chrome.md)
+
+# HTML
+- [Einstieg](./html/intro.md)
+- [Blog Page](./html/blogpage.md) 
+
+# CSS
+- [Einstieg](./css/intro.md)
+    - [Responsive Web Design](./css/rwd.md)
+- [Blog Page mit CSS](./css/blogpage/intro.md)
+    - [🗺️ Basis](./css/blogpage/basics.md)
+    - [🛫 Font and Size](./css/blogpage/font.md)
+    - [📐 Breite der Seite](./css/blogpage/width.md)
+    - [📄 Rubrik](./css/blogpage/rubrik.md)
+    - [🎛️ Buttons](./css/blogpage/buttons.md)
+    - [❤️ like Bereich](./css/blogpage/likes.md)
+    - [🦸‍♂️ CSS Variablen](./css/blogpage/variables.md)
+    - [💃🏼 Responsive is key](./css/blogpage/responsive.md)
+    - [🔭 Blog Page Preview](./css/blogpage/preview.md)
+    - [🎁 Wrap it up](./css/blogpage/wrapUp.md)
+
 # JavaScript
 - [Einstieg](./javascript/intro.md)
     - [Debuggen von JavaScript](./javascript/debugJs.md)
