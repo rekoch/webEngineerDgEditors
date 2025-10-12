@@ -176,14 +176,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-follow-funktion-wiederherstellen"><a class="header" href="#-follow-funktion-wiederherstellen">🚓 Follow-Funktion wiederherstellen</a></h1>
-<h2 id="-aufgabe"><a class="header" href="#-aufgabe">🎯 Aufgabe</a></h2>
+<h2 id="aufgabe"><a class="header" href="#aufgabe">Aufgabe</a></h2>
 <p>Du hast gelernt, wie du das Backend für State-Management nutzt - mit Services wie Observer und blogPageLikes. Jetzt fehlt die <strong>Follow-Funktionalität</strong> für <strong>Author</strong> und <strong>Topic</strong>. Nutze dein erworbenes Wissen!</p>
 <blockquote>
 <p>💪 <strong>Challenge</strong>: Wissen ist Macht, und mit Macht kommt... noch mehr Code! 😄</p>
 </blockquote>
 <hr />
-<h2 id="-author-follow-implementieren"><a class="header" href="#-author-follow-implementieren">👤 Author Follow implementieren</a></h2>
-<h3 id="-vorbereitung-followstatehandlerjs"><a class="header" href="#-vorbereitung-followstatehandlerjs">📁 Vorbereitung: followStateHandler.js</a></h3>
+<h2 id="author-follow-implementieren"><a class="header" href="#author-follow-implementieren">Author Follow implementieren</a></h2>
+<h3 id="vorbereitung-followstatehandlerjs"><a class="header" href="#vorbereitung-followstatehandlerjs">Vorbereitung: followStateHandler.js</a></h3>
 <p>Das File <code>followStateHandler.js</code> ist bereits vorbereitet:</p>
 <pre><code class="language-javascript">const followAuthorText = "Autor:in folgen";
 const unfollowAuthorText = "Autor:in nicht mehr folgen";
@@ -222,12 +222,12 @@ function observeBlogPageIdChange() {
 observeUserIdChange();
 observeBlogPageIdChange();
 </code></pre>
-<h3 id="-integration-aktivieren"><a class="header" href="#-integration-aktivieren">🔗 Integration aktivieren</a></h3>
+<h3 id="integration-aktivieren"><a class="header" href="#integration-aktivieren">Integration aktivieren</a></h3>
 <p><strong>Das File wird noch nicht geladen!</strong> Import in <code>blogPageMain.js</code> hinzufügen:</p>
 <pre><code class="language-javascript">import "./followStateHandler.js";
 </code></pre>
 <hr />
-<h2 id="-implementation-aufgaben"><a class="header" href="#-implementation-aufgaben">🛠️ Implementation-Aufgaben</a></h2>
+<h2 id="implementation-aufgaben"><a class="header" href="#implementation-aufgaben">Implementation-Aufgaben</a></h2>
 <h3 id="1-button-event-system-erweitern"><a class="header" href="#1-button-event-system-erweitern">1️⃣ Button Event-System erweitern</a></h3>
 <p><strong>In <code>buttons.js</code></strong>: Follow-Button-Klicks via Observer weiterleiten</p>
 <p><strong>Beispiel für Author-Follow:</strong></p>
@@ -253,23 +253,23 @@ observeBlogPageIdChange();
 <h3 id="4-userblogpage-id-changes-handhaben"><a class="header" href="#4-userblogpage-id-changes-handhaben">4️⃣ User/BlogPage-ID-Changes handhaben</a></h3>
 <p>Bei Änderungen der User-ID oder Blog-Page-ID korrekten Follow-Status laden und UI aktualisieren.</p>
 <hr />
-<h2 id="-hilfreiche-code-snippets"><a class="header" href="#-hilfreiche-code-snippets">💡 Hilfreiche Code-Snippets</a></h2>
-<h3 id="-author-email-aus-button-extrahieren"><a class="header" href="#-author-email-aus-button-extrahieren">📧 Author Email aus Button extrahieren</a></h3>
+<h2 id="hilfreiche-code-snippets"><a class="header" href="#hilfreiche-code-snippets">Hilfreiche Code-Snippets</a></h2>
+<h3 id="author-email-aus-button-extrahieren"><a class="header" href="#author-email-aus-button-extrahieren">Author Email aus Button extrahieren</a></h3>
 <pre><code class="language-javascript">const authorEmail = button.dataset.authorEmail;
 </code></pre>
-<h3 id="-event-mit-button-daten-versenden"><a class="header" href="#-event-mit-button-daten-versenden">📡 Event mit Button-Daten versenden</a></h3>
+<h3 id="event-mit-button-daten-versenden"><a class="header" href="#event-mit-button-daten-versenden">Event mit Button-Daten versenden</a></h3>
 <pre><code class="language-javascript">appObserver.emit(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, {
   button: button
 });
 </code></pre>
-<h3 id="-event-mit-button-daten-empfangen"><a class="header" href="#-event-mit-button-daten-empfangen">👂 Event mit Button-Daten empfangen</a></h3>
+<h3 id="event-mit-button-daten-empfangen"><a class="header" href="#event-mit-button-daten-empfangen">Event mit Button-Daten empfangen</a></h3>
 <pre><code class="language-javascript">appObserver.subscribe(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, async (data) =&gt; {
   const button = data.button;
   const authorEmail = button.dataset.authorEmail;
   // Toggle-Logik hier
 });
 </code></pre>
-<h3 id="-ui-update-pattern"><a class="header" href="#-ui-update-pattern">🎨 UI-Update-Pattern</a></h3>
+<h3 id="ui-update-pattern"><a class="header" href="#ui-update-pattern">UI-Update-Pattern</a></h3>
 <pre><code class="language-javascript">function updateAuthorFollowButtonUi(isFollowing, button) {
   if (isFollowing) {
     button.classList.remove("primary");
@@ -281,8 +281,8 @@ observeBlogPageIdChange();
 }
 </code></pre>
 <hr />
-<h2 id="-topic-follow-implementieren"><a class="header" href="#-topic-follow-implementieren">🏷️ Topic Follow implementieren</a></h2>
-<h3 id="-Ähnlich-aber-mit-unterschieden"><a class="header" href="#-Ähnlich-aber-mit-unterschieden">🔄 Ähnlich, aber mit Unterschieden</a></h3>
+<h2 id="topic-follow-implementieren"><a class="header" href="#topic-follow-implementieren">Topic Follow implementieren</a></h2>
+<h3 id="Ähnlich-aber-mit-unterschieden"><a class="header" href="#Ähnlich-aber-mit-unterschieden">Ähnlich, aber mit Unterschieden</a></h3>
 <p><strong>Topic Follow</strong> ist fast identisch zu Author Follow, mit diesen <strong>wichtigen Unterschieden</strong>:</p>
 <h4 id="1-neuer-event-typ-benötigt"><a class="header" href="#1-neuer-event-typ-benötigt">1️⃣ Neuer Event-Typ benötigt</a></h4>
 <pre><code class="language-javascript">ObserverEvents.TOPIC_FOLLOW_BUTTON_CLICKED
@@ -299,7 +299,7 @@ for (const btn of buttons) {
 <pre><code class="language-javascript">const topicName = button.dataset.topicName;
 </code></pre>
 <hr />
-<h2 id="-implementation-checkliste"><a class="header" href="#-implementation-checkliste">🎯 Implementation-Checkliste</a></h2>
+<h2 id="implementation-checkliste"><a class="header" href="#implementation-checkliste">Implementation-Checkliste</a></h2>
 <h3 id="-author-follow"><a class="header" href="#-author-follow">✅ Author Follow</a></h3>
 <ul>
 <li><input disabled="" type="checkbox"/>
@@ -331,14 +331,14 @@ for (const btn of buttons) {
 <strong>Backend-Integration</strong> vervollständigt</li>
 </ul>
 <hr />
-<h2 id="-testing-szenarios"><a class="header" href="#-testing-szenarios">🧪 Testing-Szenarios</a></h2>
-<h3 id="-ausgiebige-tests-durchführen"><a class="header" href="#-ausgiebige-tests-durchführen">🔬 Ausgiebige Tests durchführen</a></h3>
+<h2 id="testing-szenarios"><a class="header" href="#testing-szenarios">Testing-Szenarios</a></h2>
+<h3 id="ausgiebige-tests-durchführen"><a class="header" href="#ausgiebige-tests-durchführen">Ausgiebige Tests durchführen</a></h3>
 <ol>
-<li><strong>👤 User-ID wechseln</strong> - Follow-Status sollte sich entsprechend ändern</li>
-<li><strong>🔘 Button-Klicks</strong> - Follow/Unfollow funktioniert</li>
-<li><strong>📄 Blog-Page-ID ändern</strong> - Neue Follow-Status werden geladen</li>
-<li><strong>🏷️ Multiple Topic-Buttons</strong> - Alle werden synchron aktualisiert</li>
-<li><strong>🔄 Backend-Persistenz</strong> - Status bleibt nach Page-Reload erhalten</li>
+<li><strong>User-ID wechseln</strong> - Follow-Status sollte sich entsprechend ändern</li>
+<li><strong>Button-Klicks</strong> - Follow/Unfollow funktioniert</li>
+<li><strong>Blog-Page-ID ändern</strong> - Neue Follow-Status werden geladen</li>
+<li><strong>Multiple Topic-Buttons</strong> - Alle werden synchron aktualisiert</li>
+<li><strong>Backend-Persistenz</strong> - Status bleibt nach Page-Reload erhalten</li>
 </ol>
 <hr />
 <h2 id="-thats-it-folks"><a class="header" href="#-thats-it-folks">🎉 That's it folks!</a></h2>
@@ -350,7 +350,7 @@ for (const btn of buttons) {
 <li><strong>Network-Tab</strong> für API-Calls kontrollieren</li>
 <li><strong>Event-Flow</strong> durch Observer verfolgen</li>
 </ol>
-<h3 id="-endlösung-verfügbar"><a class="header" href="#-endlösung-verfügbar">🔗 Endlösung verfügbar</a></h3>
+<h3 id="endlösung-verfügbar"><a class="header" href="#endlösung-verfügbar">Endlösung verfügbar</a></h3>
 <p>Bei völliger Verzweiflung kannst du die <strong>komplette Lösung</strong> auf GitHub einsehen:</p>
 <p><a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/06_followButtonsWithBackendIntegration">GitHub: Follow Buttons mit Backend Integration</a></p>
 <hr />

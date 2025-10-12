@@ -5,22 +5,22 @@
 Mit "Backend Connection" hast du dafür gesorgt, dass Like-Counter-Daten aus dem Backend stammen. Der Button selbst funktioniert aber noch nicht korrekt. Wir implementieren die Like-Verwaltung in zwei Schritten:
 
 ### Ziele:
-1. **📝 Blog-Page liken** - mit korrekter UI und Backend-Verbindung
-2. **💔 Blog-Page entliken** - mit korrekter UI und Backend-Verbindung  
-3. **👤 User-ID-Wechsel** - korrekte Reaktion auf Benutzer-Änderungen
+1. **Blog-Page liken** - mit korrekter UI und Backend-Verbindung
+2. **Blog-Page entliken** - mit korrekter UI und Backend-Verbindung  
+3. **User-ID-Wechsel** - korrekte Reaktion auf Benutzer-Änderungen
 
 ---
 
-## 💝 Like & Dislike Implementation
+## Like & Dislike Implementation
 
-### 🔄 Toggle-Logik verstehen
+### Toggle-Logik verstehen
 
 Like und Dislike sind sehr ähnlich - wir **togglen** zwischen den Zuständen:
 1. **Aktuellen Zustand abfragen** (geliked oder nicht?)
 2. **Zustand umkehren** (like → unlike, unlike → like)
 3. **UI entsprechend aktualisieren**
 
-### 🏗️ Architektur-Entscheidung
+### Architektur-Entscheidung
 
 **File-Aufgabenverteilung:**
 - `buttons.js` - **Nur** Button-Klick erkennen und Event versenden
@@ -32,9 +32,9 @@ Like und Dislike sind sehr ähnlich - wir **togglen** zwischen den Zuständen:
 
 ---
 
-## 📡 Like Event versenden
+## Like Event versenden
 
-### 🔧 Button.js erweitern
+### Button.js erweitern
 
 **Observer und Events importieren:**
 ```javascript
@@ -65,9 +65,9 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 
 ---
 
-## 🎛️ Like Event verarbeiten
+## Like Event verarbeiten
 
-### 🔄 Toggle-State-Funktion erstellen
+### Toggle-State-Funktion erstellen
 
 **Observer-Funktion erweitern:**
 ```javascript
@@ -82,7 +82,7 @@ async function toggleLikeState() {
 }
 ```
 
-### 📊 Aktuellen Like-Status abfragen
+### Aktuellen Like-Status abfragen
 
 **Import der benötigten Services:**
 ```javascript
@@ -102,7 +102,7 @@ async function toggleLikeState() {
 }
 ```
 
-### 🔄 Backend-Status ändern
+### Backend-Status ändern
 
 ```javascript
 async function toggleLikeState() {
@@ -118,9 +118,9 @@ async function toggleLikeState() {
 
 ---
 
-## 🎨 UI-Updates implementieren
+## UI-Updates implementieren
 
-### 🖱️ Button-UI-Update-Funktion
+### Button-UI-Update-Funktion
 
 ```javascript
 function updateLikeButtonUi(isLiked) {
@@ -138,7 +138,7 @@ function updateLikeButtonUi(isLiked) {
 }
 ```
 
-### 🔄 Toggle-Funktion komplettieren
+### Toggle-Funktion komplettieren
 
 ```javascript
 async function toggleLikeState() {
@@ -162,9 +162,9 @@ async function toggleLikeState() {
 
 ---
 
-## 🛡️ Error Handling implementieren
+## Error Handling implementieren
 
-### 🔒 Try-Catch für Robustheit
+### Try-Catch für Robustheit
 
 ```javascript
 async function toggleLikeState() {
@@ -195,9 +195,9 @@ async function toggleLikeState() {
 
 ---
 
-## 👤 User-ID-Wechsel handhaben
+## User-ID-Wechsel handhaben
 
-### 🔄 User-Change Observer erweitern
+### User-Change Observer erweitern
 
 **Bestehende Observer-Funktion finden:**
 ```javascript
@@ -214,7 +214,7 @@ function observeUserIdChange() {
 }
 ```
 
-### 🔍 Like-Status-Check-Funktion erstellen
+### Like-Status-Check-Funktion erstellen
 
 **Wiederverwendbare Status-Check-Funktion:**
 ```javascript
@@ -233,7 +233,7 @@ async function checkUserLikeStatus() {
 }
 ```
 
-### 🔄 Toggle-Funktion refactoren
+### Toggle-Funktion refactoren
 
 **Status-Check-Funktion verwenden:**
 ```javascript
@@ -261,7 +261,7 @@ async function toggleLikeState() {
 }
 ```
 
-### 🎯 Init-Like-State-Funktion
+### Init-Like-State-Funktion
 
 **DRY-Prinzip - Wiederverwendbare Init-Funktion:**
 ```javascript
@@ -277,7 +277,7 @@ async function initLikeState() {
 }
 ```
 
-### 🔄 Observer-Funktionen finalisieren
+### Observer-Funktionen finalisieren
 
 **User-ID-Change Observer:**
 ```javascript
@@ -313,14 +313,14 @@ function observeBlogPageIdChange() {
 
 ### ✅ Implementierte Features
 
-1. **🔄 Like/Unlike Toggle** - Backend-synchronisiert
-2. **🎨 UI-Updates** - Button-Text und Icon-Änderungen  
-3. **📊 Counter-Updates** - Automatische Zähler-Aktualisierung
-4. **👤 User-Switching** - Korrekte Like-Status-Anzeige pro User
-5. **🛡️ Error Handling** - Robuste Fehlerbehandlung
-6. **🔄 DRY Code** - Wiederverwendbare Funktionen
+1. **Like/Unlike Toggle** - Backend-synchronisiert
+2. **UI-Updates** - Button-Text und Icon-Änderungen  
+3. **Counter-Updates** - Automatische Zähler-Aktualisierung
+4. **User-Switching** - Korrekte Like-Status-Anzeige pro User
+5. **Error Handling** - Robuste Fehlerbehandlung
+6. **DRY Code** - Wiederverwendbare Funktionen
 
-### 🧪 Vollständiger Test
+### Vollständiger Test
 
 **Test-Szenarios:**
 1. ✅ Like/Unlike mit verschiedenen Users

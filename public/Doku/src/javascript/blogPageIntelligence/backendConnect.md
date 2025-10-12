@@ -1,8 +1,8 @@
 # ⛓️‍💥 Backend verbinden
 
-## 🎯 Frontend trifft Backend
+## Frontend trifft Backend
 
-### 📊 Situation verstehen
+### Situation verstehen
 
 **Frontend-Only**: Alles ist einfach - nur **ein Datenzustand** im Browser:
 - Button gedrückt? ✅ HTML/Cookie
@@ -14,14 +14,14 @@
 
 ### 🎯 Erste Implementierung-Ziele
 
-1. **📊 Like Count** vom Backend laden und korrekt anzeigen
-2. **🔄 Blog-Page-ID-Wechsel** mit Backend-Daten synchronisieren
+1. **Like Count** vom Backend laden und korrekt anzeigen
+2. **Blog-Page-ID-Wechsel** mit Backend-Daten synchronisieren
 
 ---
 
-## 📁 Code-Setup
+## Code-Setup
 
-### 🔗 Projekt-Code holen
+### Projekt-Code holen
 
 **Frontend herunterladen:**
 ```
@@ -36,7 +36,7 @@ https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
 **Alternative:** Komplettes [GitHub Projekt klonen](https://github.com/rekoch/webEngineerDgEditors) oder als ZIP herunterladen.
 ![Github Download](./images/githubClone.png)
 
-### ⚙️ VS Code Settings anpassen
+### VS Code Settings anpassen
 
 **LiveServer-Konfiguration erweitern:**
 
@@ -60,15 +60,15 @@ Achte darauf, dass bei der Zeile davor ein Komma am Schluss ist.
 
 4. **Speichern** und schließen
 
-### 🔧 Optional: SQLite-Editor
+### Optional: SQLite-Editor
 
 [SQLite3 Editor Extension](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor) installieren für direkten Datenbank-Zugriff.
 
 ---
 
-## 📂 Projekt-Struktur verstehen
+## Projekt-Struktur verstehen
 
-### 🗄️ Backend-Struktur (`00_backend/`)
+### Backend-Struktur (`00_backend/`)
 
 ```
 00_backend/
@@ -90,7 +90,7 @@ Achte darauf, dass bei der Zeile davor ein Komma am Schluss ist.
     └── swagger.js               # API-Dokumentation
 ```
 
-### 🚀 Backend starten
+### Backend starten
 
 ```bash
 # Terminal öffnen
@@ -106,7 +106,7 @@ npm run dev
 # 📚 API-Docs: http://localhost:3000/api-docs/
 ```
 
-### 🎨 Frontend-Struktur (`04_01_backendBaseConnection/`)
+### Frontend-Struktur (`04_01_backendBaseConnection/`)
 
 ```
 04_01_backendBaseConnection/
@@ -128,7 +128,7 @@ npm run dev
 │       └── 📄 tables.js         # Tabellen-Management
 ```
 
-### 🏗️ Architektur-Highlights
+### Architektur-Highlights
 
 #### **Services Layer**
 - **Backend-Integration**: Alle API-Calls (erfordert laufenden Backend-Server)
@@ -145,7 +145,7 @@ npm run dev
 - **Async/Await**: Statt Promise-Chains
 - **Event Prevention**: Verhindert Page-Reloads
 
-### 🔄 Frontend ↔ Backend Workflow
+### Frontend ↔ Backend Workflow
 
 1. **Frontend** → API-Calls über Services
 2. **Backend** → JSON-Response  
@@ -154,9 +154,9 @@ npm run dev
 
 ---
 
-## 📊 Like Count Implementation
+## Like Count Implementation
 
-### 🎯 Schritt 1: setLikeCounter-Funktion erstellen
+### Schritt 1: setLikeCounter-Funktion erstellen
 
 **In `likeStateHandler.js` - am Ende der Datei:**
 
@@ -166,7 +166,7 @@ function setLikeCounter() {
 }
 ```
 
-### 🔒 Schritt 2: BlogPageId-Validierung
+### Schritt 2: BlogPageId-Validierung
 
 ```javascript
 function setLikeCounter() {
@@ -176,7 +176,7 @@ function setLikeCounter() {
 }
 ```
 
-### 🎨 Schritt 3: HTML-Element finden und Test-Wert setzen
+### Schritt 3: HTML-Element finden und Test-Wert setzen
 
 ```javascript
 function setLikeCounter() {
@@ -186,7 +186,7 @@ function setLikeCounter() {
 }
 ```
 
-### 🔗 Schritt 4: Funktion integrieren
+### Schritt 4: Funktion integrieren
 
 **`blogPageMain.js` erweitern:**
 ```javascript
@@ -204,7 +204,7 @@ observeLikeEvents();
 setLikeCounter();
 ```
 
-### ⚡ Schritt 5: BlogPageId setzen & Sichtbarkeit
+### Schritt 5: BlogPageId setzen & Sichtbarkeit
 
 **Test-BlogPageId setzen:**
 ```javascript
@@ -225,16 +225,16 @@ function setLikeCounter() {
 
 ---
 
-## 🌐 Backend-Integration
+## Backend-Integration
 
-### 📡 Schritt 1: Service importieren
+### Schritt 1: Service importieren
 
 ```javascript
 import { appObserver, ObserverEvents } from "../../services/observer.js";
 import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 ```
 
-### 🔄 Schritt 2: Backend-Call implementieren
+### Schritt 2: Backend-Call implementieren
 
 ```javascript
 function setLikeCounter() {
@@ -250,9 +250,9 @@ function setLikeCounter() {
 }
 ```
 
-**🚨 Problem**: Keine Zahl wird angezeigt? **Async-Problem!**
+** Problem**: Keine Zahl wird angezeigt? **Async-Problem!**
 
-### ⚡ Schritt 3: Async/Await Pattern
+### Schritt 3: Async/Await Pattern
 
 **Problem**: Code wartet nicht auf Backend-Response.  
 **Lösung**: `await` für asynchrone Operationen.
@@ -275,9 +275,9 @@ async function setLikeCounter() {
 
 ---
 
-## 🔄 Event-Driven Counter Updates
+## Event-Driven Counter Updates
 
-### 🎯 BlogPageId-Change-Event nutzen
+### BlogPageId-Change-Event nutzen
 
 **Direkten Funktionsaufruf entfernen:**
 ```javascript
@@ -287,7 +287,7 @@ async function setLikeCounter() {
 // setLikeCounter(); ← Diese Zeile entfernen
 ```
 
-### 📡 Observer-Integration
+### Observer-Integration
 
 **In `observeBlogPageIdChange()`:**
 ```javascript
@@ -305,7 +305,7 @@ function observeBlogPageIdChange() {
 }
 ```
 
-### 🔄 Event-Flow verstehen
+### Event-Flow verstehen
 
 1. **`main.js`** → BlogPageId = 2 setzen
 2. **`main.js`** → `appObserver.emit()` Event versenden
@@ -313,7 +313,7 @@ function observeBlogPageIdChange() {
 4. **`likeStateHandler`** → `subscribe()` mit `true` = Replay-Funktion
 5. **Replay** → Auch nachträglich registrierte Subscriber erhalten letzten Wert
 
-### 🔄 BlogPageId zurücksetzen
+### BlogPageId zurücksetzen
 
 ```javascript
 let blogPageId = 0;  // Wieder auf 0, da Wert von Observer kommt
@@ -326,9 +326,9 @@ Du kannst dies auch im Console.log überprüfen.
 
 ---
 
-## 🧪 Testing & Experimentation
+## Testing & Experimentation
 
-### 🔧 BlogPageId dynamisch ändern
+### BlogPageId dynamisch ändern
 
 **In `main.js` experimentieren:**
 ```javascript
@@ -336,7 +336,7 @@ Du kannst dies auch im Console.log überprüfen.
 appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 ```
 
-### 📊 Development Workflow
+### Development Workflow
 
 1. **Backend starten**: `cd 00_backend && npm run dev`
 2. **Frontend öffnen**: `index.html` über LiveServer
@@ -349,10 +349,10 @@ appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 
 ### ✅ Was funktioniert jetzt:
 
-1. **📊 Backend-Integration** - Like-Count aus Datenbank
-2. **🔄 Event-Driven Updates** - Observer-Pattern implementiert
-3. **⚡ Async/Await** - Moderne JavaScript-Patterns
-4. **🎛️ Dynamic BlogPageId** - Reaktion auf ID-Änderungen
+1. **Backend-Integration** - Like-Count aus Datenbank
+2. **Event-Driven Updates** - Observer-Pattern implementiert
+3. **Async/Await** - Moderne JavaScript-Patterns
+4. **Dynamic BlogPageId** - Reaktion auf ID-Änderungen
 
 ### 🚀 Nächste Schritte:
 

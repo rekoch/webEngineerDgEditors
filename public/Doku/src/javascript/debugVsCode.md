@@ -1,14 +1,14 @@
-# 🐛 Debug JavaScript mit VS Code
+# Debug JavaScript mit VS Code
 
 Wenn dein Code nicht wie erwartet funktioniert, hast du zwei Debugging-Optionen: Browser (Chrome) oder VS Code. Der **Vorteil beim VS Code Debugging** ist, dass du Code korrigieren und sofort die Auswirkungen sehen kannst.
 
-## 📖 Zusätzliche Ressourcen
+## Zusätzliche Ressourcen
 
 Eine grundlegende Anleitung findest du in der [offiziellen VS Code Dokumentation](https://code.visualstudio.com/docs/debugtest/debugging). Falls das nicht reibungslos funktioniert, verwendet diese Anleitung zusätzlich den **LiveServer** und hat sich in Tests bewährt.
 
 ---
 
-## 🚀 Debug Session starten mit VS Code
+## Debug Session starten mit VS Code
 
 ### Vorbereitung
 1. **Projekt öffnen**: Öffne den Ordner `public/03_javascript/02_buttonReactive` in VS Code  
@@ -70,13 +70,13 @@ Eine grundlegende Anleitung findest du in der [offiziellen VS Code Dokumentation
 
 ---
 
-## 🔗 Weiterführende Informationen
+## Weiterführende Informationen
 
 Detaillierte Informationen findest du in der [offiziellen VS Code Debugging-Dokumentation](https://code.visualstudio.com/docs/debugtest/debugging).
 
 ---
 
-## 💡 Tipps
+## Tipps
 
 - **LiveServer** erleichtert das Debugging erheblich
 - **Breakpoints** können jederzeit gesetzt/entfernt werden

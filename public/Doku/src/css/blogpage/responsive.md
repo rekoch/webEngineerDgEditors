@@ -1,6 +1,6 @@
-# Responsive is key
+# 💃🏼 Responsive is key
 
-## 🎯 Warum Responsive Design?
+## Warum Responsive Design?
 
 Wenn wir eine Page für möglichst viele Endgeräte nutzen wollen, sollten wir sie **responsive** gestalten. 
 

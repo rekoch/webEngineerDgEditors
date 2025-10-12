@@ -180,20 +180,20 @@
 <p>Mit "Backend Connection" hast du dafür gesorgt, dass Like-Counter-Daten aus dem Backend stammen. Der Button selbst funktioniert aber noch nicht korrekt. Wir implementieren die Like-Verwaltung in zwei Schritten:</p>
 <h3 id="ziele"><a class="header" href="#ziele">Ziele:</a></h3>
 <ol>
-<li><strong>📝 Blog-Page liken</strong> - mit korrekter UI und Backend-Verbindung</li>
-<li><strong>💔 Blog-Page entliken</strong> - mit korrekter UI und Backend-Verbindung</li>
-<li><strong>👤 User-ID-Wechsel</strong> - korrekte Reaktion auf Benutzer-Änderungen</li>
+<li><strong>Blog-Page liken</strong> - mit korrekter UI und Backend-Verbindung</li>
+<li><strong>Blog-Page entliken</strong> - mit korrekter UI und Backend-Verbindung</li>
+<li><strong>User-ID-Wechsel</strong> - korrekte Reaktion auf Benutzer-Änderungen</li>
 </ol>
 <hr />
-<h2 id="-like--dislike-implementation"><a class="header" href="#-like--dislike-implementation">💝 Like &amp; Dislike Implementation</a></h2>
-<h3 id="-toggle-logik-verstehen"><a class="header" href="#-toggle-logik-verstehen">🔄 Toggle-Logik verstehen</a></h3>
+<h2 id="like--dislike-implementation"><a class="header" href="#like--dislike-implementation">Like &amp; Dislike Implementation</a></h2>
+<h3 id="toggle-logik-verstehen"><a class="header" href="#toggle-logik-verstehen">Toggle-Logik verstehen</a></h3>
 <p>Like und Dislike sind sehr ähnlich - wir <strong>togglen</strong> zwischen den Zuständen:</p>
 <ol>
 <li><strong>Aktuellen Zustand abfragen</strong> (geliked oder nicht?)</li>
 <li><strong>Zustand umkehren</strong> (like → unlike, unlike → like)</li>
 <li><strong>UI entsprechend aktualisieren</strong></li>
 </ol>
-<h3 id="-architektur-entscheidung"><a class="header" href="#-architektur-entscheidung">🏗️ Architektur-Entscheidung</a></h3>
+<h3 id="architektur-entscheidung"><a class="header" href="#architektur-entscheidung">Architektur-Entscheidung</a></h3>
 <p><strong>File-Aufgabenverteilung:</strong></p>
 <ul>
 <li><code>buttons.js</code> - <strong>Nur</strong> Button-Klick erkennen und Event versenden</li>
@@ -205,8 +205,8 @@
 <li>❌ Option 1: Direkte Funktionsaufrufe (enger gekoppelt)</li>
 </ul>
 <hr />
-<h2 id="-like-event-versenden"><a class="header" href="#-like-event-versenden">📡 Like Event versenden</a></h2>
-<h3 id="-buttonjs-erweitern"><a class="header" href="#-buttonjs-erweitern">🔧 Button.js erweitern</a></h3>
+<h2 id="like-event-versenden"><a class="header" href="#like-event-versenden">Like Event versenden</a></h2>
+<h3 id="buttonjs-erweitern"><a class="header" href="#buttonjs-erweitern">Button.js erweitern</a></h3>
 <p><strong>Observer und Events importieren:</strong></p>
 <pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
 </code></pre>
@@ -232,8 +232,8 @@
 <p>🎉 <strong>Erfolg</strong>: LikeStateHandler empfängt und verarbeitet dein Event!</p>
 </blockquote>
 <hr />
-<h2 id="-like-event-verarbeiten"><a class="header" href="#-like-event-verarbeiten">🎛️ Like Event verarbeiten</a></h2>
-<h3 id="-toggle-state-funktion-erstellen"><a class="header" href="#-toggle-state-funktion-erstellen">🔄 Toggle-State-Funktion erstellen</a></h3>
+<h2 id="like-event-verarbeiten"><a class="header" href="#like-event-verarbeiten">Like Event verarbeiten</a></h2>
+<h3 id="toggle-state-funktion-erstellen"><a class="header" href="#toggle-state-funktion-erstellen">Toggle-State-Funktion erstellen</a></h3>
 <p><strong>Observer-Funktion erweitern:</strong></p>
 <pre><code class="language-javascript">function observeLikeEvents() {
   appObserver.subscribe(ObserverEvents.LIKE_BUTTON_CLICKED, async () =&gt; {
@@ -245,7 +245,7 @@ async function toggleLikeState() {
   // Logik kommt hier rein
 }
 </code></pre>
-<h3 id="-aktuellen-like-status-abfragen"><a class="header" href="#-aktuellen-like-status-abfragen">📊 Aktuellen Like-Status abfragen</a></h3>
+<h3 id="aktuellen-like-status-abfragen"><a class="header" href="#aktuellen-like-status-abfragen">Aktuellen Like-Status abfragen</a></h3>
 <p><strong>Import der benötigten Services:</strong></p>
 <pre><code class="language-javascript">import { getLikesPerBlogPage, getIsLikingBlogPage, likeBlogPage, unlikeBlogPage } from "../../services/blogPageLikes.js";
 </code></pre>
@@ -260,7 +260,7 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
-<h3 id="-backend-status-ändern"><a class="header" href="#-backend-status-ändern">🔄 Backend-Status ändern</a></h3>
+<h3 id="backend-status-ändern"><a class="header" href="#backend-status-ändern">Backend-Status ändern</a></h3>
 <pre><code class="language-javascript">async function toggleLikeState() {
   const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
   
@@ -272,8 +272,8 @@ async function toggleLikeState() {
 }
 </code></pre>
 <hr />
-<h2 id="-ui-updates-implementieren"><a class="header" href="#-ui-updates-implementieren">🎨 UI-Updates implementieren</a></h2>
-<h3 id="-button-ui-update-funktion"><a class="header" href="#-button-ui-update-funktion">🖱️ Button-UI-Update-Funktion</a></h3>
+<h2 id="ui-updates-implementieren"><a class="header" href="#ui-updates-implementieren">UI-Updates implementieren</a></h2>
+<h3 id="button-ui-update-funktion"><a class="header" href="#button-ui-update-funktion">Button-UI-Update-Funktion</a></h3>
 <pre><code class="language-javascript">function updateLikeButtonUi(isLiked) {
   const likeButton = document.querySelector("button[data-button='like_article']");
   
@@ -288,7 +288,7 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
-<h3 id="-toggle-funktion-komplettieren"><a class="header" href="#-toggle-funktion-komplettieren">🔄 Toggle-Funktion komplettieren</a></h3>
+<h3 id="toggle-funktion-komplettieren"><a class="header" href="#toggle-funktion-komplettieren">Toggle-Funktion komplettieren</a></h3>
 <pre><code class="language-javascript">async function toggleLikeState() {
   const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
   
@@ -306,8 +306,8 @@ async function toggleLikeState() {
 <h3 id="-funktionstest"><a class="header" href="#-funktionstest">✅ Funktionstest</a></h3>
 <p><strong>Backend und Frontend starten</strong> und Like-Button testen!</p>
 <hr />
-<h2 id="-error-handling-implementieren"><a class="header" href="#-error-handling-implementieren">🛡️ Error Handling implementieren</a></h2>
-<h3 id="-try-catch-für-robustheit"><a class="header" href="#-try-catch-für-robustheit">🔒 Try-Catch für Robustheit</a></h3>
+<h2 id="error-handling-implementieren"><a class="header" href="#error-handling-implementieren">Error Handling implementieren</a></h2>
+<h3 id="try-catch-für-robustheit"><a class="header" href="#try-catch-für-robustheit">Try-Catch für Robustheit</a></h3>
 <pre><code class="language-javascript">async function toggleLikeState() {
   try {
     const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
@@ -334,8 +334,8 @@ async function toggleLikeState() {
 }
 </code></pre>
 <hr />
-<h2 id="-user-id-wechsel-handhaben"><a class="header" href="#-user-id-wechsel-handhaben">👤 User-ID-Wechsel handhaben</a></h2>
-<h3 id="-user-change-observer-erweitern"><a class="header" href="#-user-change-observer-erweitern">🔄 User-Change Observer erweitern</a></h3>
+<h2 id="user-id-wechsel-handhaben"><a class="header" href="#user-id-wechsel-handhaben">User-ID-Wechsel handhaben</a></h2>
+<h3 id="user-change-observer-erweitern"><a class="header" href="#user-change-observer-erweitern">User-Change Observer erweitern</a></h3>
 <p><strong>Bestehende Observer-Funktion finden:</strong></p>
 <pre><code class="language-javascript">function observeUserIdChange() {
   appObserver.subscribe(
@@ -349,7 +349,7 @@ async function toggleLikeState() {
   );
 }
 </code></pre>
-<h3 id="-like-status-check-funktion-erstellen"><a class="header" href="#-like-status-check-funktion-erstellen">🔍 Like-Status-Check-Funktion erstellen</a></h3>
+<h3 id="like-status-check-funktion-erstellen"><a class="header" href="#like-status-check-funktion-erstellen">Like-Status-Check-Funktion erstellen</a></h3>
 <p><strong>Wiederverwendbare Status-Check-Funktion:</strong></p>
 <pre><code class="language-javascript">async function checkUserLikeStatus() {
   try {
@@ -365,7 +365,7 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
-<h3 id="-toggle-funktion-refactoren"><a class="header" href="#-toggle-funktion-refactoren">🔄 Toggle-Funktion refactoren</a></h3>
+<h3 id="toggle-funktion-refactoren"><a class="header" href="#toggle-funktion-refactoren">Toggle-Funktion refactoren</a></h3>
 <p><strong>Status-Check-Funktion verwenden:</strong></p>
 <pre><code class="language-javascript">async function toggleLikeState() {
   try {
@@ -390,7 +390,7 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
-<h3 id="-init-like-state-funktion"><a class="header" href="#-init-like-state-funktion">🎯 Init-Like-State-Funktion</a></h3>
+<h3 id="init-like-state-funktion"><a class="header" href="#init-like-state-funktion">Init-Like-State-Funktion</a></h3>
 <p><strong>DRY-Prinzip - Wiederverwendbare Init-Funktion:</strong></p>
 <pre><code class="language-javascript">async function initLikeState() {
   const likeStatus = await checkUserLikeStatus();
@@ -403,7 +403,7 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
-<h3 id="-observer-funktionen-finalisieren"><a class="header" href="#-observer-funktionen-finalisieren">🔄 Observer-Funktionen finalisieren</a></h3>
+<h3 id="observer-funktionen-finalisieren"><a class="header" href="#observer-funktionen-finalisieren">Observer-Funktionen finalisieren</a></h3>
 <p><strong>User-ID-Change Observer:</strong></p>
 <pre><code class="language-javascript">function observeUserIdChange() {
   appObserver.subscribe(
@@ -432,14 +432,14 @@ async function toggleLikeState() {
 <h2 id="-endergebnis"><a class="header" href="#-endergebnis">🎉 Endergebnis</a></h2>
 <h3 id="-implementierte-features"><a class="header" href="#-implementierte-features">✅ Implementierte Features</a></h3>
 <ol>
-<li><strong>🔄 Like/Unlike Toggle</strong> - Backend-synchronisiert</li>
-<li><strong>🎨 UI-Updates</strong> - Button-Text und Icon-Änderungen</li>
-<li><strong>📊 Counter-Updates</strong> - Automatische Zähler-Aktualisierung</li>
-<li><strong>👤 User-Switching</strong> - Korrekte Like-Status-Anzeige pro User</li>
-<li><strong>🛡️ Error Handling</strong> - Robuste Fehlerbehandlung</li>
-<li><strong>🔄 DRY Code</strong> - Wiederverwendbare Funktionen</li>
+<li><strong>Like/Unlike Toggle</strong> - Backend-synchronisiert</li>
+<li><strong>UI-Updates</strong> - Button-Text und Icon-Änderungen</li>
+<li><strong>Counter-Updates</strong> - Automatische Zähler-Aktualisierung</li>
+<li><strong>User-Switching</strong> - Korrekte Like-Status-Anzeige pro User</li>
+<li><strong>Error Handling</strong> - Robuste Fehlerbehandlung</li>
+<li><strong>DRY Code</strong> - Wiederverwendbare Funktionen</li>
 </ol>
-<h3 id="-vollständiger-test"><a class="header" href="#-vollständiger-test">🧪 Vollständiger Test</a></h3>
+<h3 id="vollständiger-test"><a class="header" href="#vollständiger-test">Vollständiger Test</a></h3>
 <p><strong>Test-Szenarios:</strong></p>
 <ol>
 <li>✅ Like/Unlike mit verschiedenen Users</li>

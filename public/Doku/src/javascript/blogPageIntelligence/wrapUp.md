@@ -1,6 +1,6 @@
 # 💝 Wrap it up
 
-## 🎉 So long and thanks for all the fish
+## So long and thanks for all the fish
 
 Du hast in diesem JavaScript-Teil grundlegende Funktionen umgesetzt wie:
 - **Styling einer Tabelle**
@@ -8,14 +8,14 @@ Du hast in diesem JavaScript-Teil grundlegende Funktionen umgesetzt wie:
 - **Backend-Anbindung**
 - **Komplette Neugestaltung** für eine flüssigere Benutzererfahrung
 
-### 🔄 Refactoring - Der Engineering-Alltag
+### Refactoring - Der Engineering-Alltag
 
 Und ja, **ganz viel Refactoring**! Das ist tägliche Arbeit im Engineering-Leben:
 1. Etwas implementieren
 2. Weiterentwickeln
 3. Feststellen: "Oh, das geht ja jetzt einfacher!"
 
-### 🏗️ Komplexe Konzepte gemeistert
+### Komplexe Konzepte gemeistert
 
 Du hast fortgeschrittene Konzepte erfolgreich umgesetzt:
 - **Observer Pattern**
@@ -25,7 +25,7 @@ Du hast fortgeschrittene Konzepte erfolgreich umgesetzt:
 
 ---
 
-## 🚀 Wie weiter?
+## Wie weiter?
 
 Du hast jetzt ein **solides Verständnis für JavaScript** und kannst darauf aufbauen.
 
@@ -44,7 +44,7 @@ Nimm dir ein modernes Framework zur Hand und baue die Page damit nach:
 | **Angular** | Vollständiges Framework von Google | [Angular Tutorial](https://angular.dev/tutorials/learn-angular) |
 | **React** | Komponenten-basierte Library von Meta | [React Tutorial](https://react-tutorial.app) |
 
-### 🎯 Framework-Vorteile
+### Framework-Vorteile
 
 Vieles, was wir **aufwändig manuell** gebaut haben, nehmen dir Angular/React ab:
 - **Automatisches State Management**

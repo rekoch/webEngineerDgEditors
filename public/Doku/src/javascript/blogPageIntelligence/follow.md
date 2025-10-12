@@ -1,6 +1,6 @@
 # 🚓 Follow-Funktion wiederherstellen
 
-## 🎯 Aufgabe
+## Aufgabe
 
 Du hast gelernt, wie du das Backend für State-Management nutzt - mit Services wie Observer und blogPageLikes. Jetzt fehlt die **Follow-Funktionalität** für **Author** und **Topic**. Nutze dein erworbenes Wissen!
 
@@ -8,9 +8,9 @@ Du hast gelernt, wie du das Backend für State-Management nutzt - mit Services w
 
 ---
 
-## 👤 Author Follow implementieren
+## Author Follow implementieren
 
-### 📁 Vorbereitung: followStateHandler.js
+### Vorbereitung: followStateHandler.js
 
 Das File `followStateHandler.js` ist bereits vorbereitet:
 
@@ -53,7 +53,7 @@ observeUserIdChange();
 observeBlogPageIdChange();
 ```
 
-### 🔗 Integration aktivieren
+### Integration aktivieren
 
 **Das File wird noch nicht geladen!** Import in `blogPageMain.js` hinzufügen:
 
@@ -63,7 +63,7 @@ import "./followStateHandler.js";
 
 ---
 
-## 🛠️ Implementation-Aufgaben
+## Implementation-Aufgaben
 
 ### 1️⃣ Button Event-System erweitern
 
@@ -100,15 +100,15 @@ Bei Änderungen der User-ID oder Blog-Page-ID korrekten Follow-Status laden und 
 
 ---
 
-## 💡 Hilfreiche Code-Snippets
+## Hilfreiche Code-Snippets
 
-### 📧 Author Email aus Button extrahieren
+### Author Email aus Button extrahieren
 
 ```javascript
 const authorEmail = button.dataset.authorEmail;
 ```
 
-### 📡 Event mit Button-Daten versenden
+### Event mit Button-Daten versenden
 
 ```javascript
 appObserver.emit(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, {
@@ -116,7 +116,7 @@ appObserver.emit(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, {
 });
 ```
 
-### 👂 Event mit Button-Daten empfangen
+### Event mit Button-Daten empfangen
 
 ```javascript
 appObserver.subscribe(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, async (data) => {
@@ -126,7 +126,7 @@ appObserver.subscribe(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, async (data) 
 });
 ```
 
-### 🎨 UI-Update-Pattern
+### UI-Update-Pattern
 
 ```javascript
 function updateAuthorFollowButtonUi(isFollowing, button) {
@@ -142,9 +142,9 @@ function updateAuthorFollowButtonUi(isFollowing, button) {
 
 ---
 
-## 🏷️ Topic Follow implementieren
+## Topic Follow implementieren
 
-### 🔄 Ähnlich, aber mit Unterschieden
+### Ähnlich, aber mit Unterschieden
 
 **Topic Follow** ist fast identisch zu Author Follow, mit diesen **wichtigen Unterschieden**:
 
@@ -173,7 +173,7 @@ const topicName = button.dataset.topicName;
 
 ---
 
-## 🎯 Implementation-Checkliste
+## Implementation-Checkliste
 
 ### ✅ Author Follow
 - [ ] **Observer Events** für Author-Follow erstellt
@@ -193,15 +193,15 @@ const topicName = button.dataset.topicName;
 
 ---
 
-## 🧪 Testing-Szenarios
+## Testing-Szenarios
 
-### 🔬 Ausgiebige Tests durchführen
+### Ausgiebige Tests durchführen
 
-1. **👤 User-ID wechseln** - Follow-Status sollte sich entsprechend ändern
-2. **🔘 Button-Klicks** - Follow/Unfollow funktioniert
-3. **📄 Blog-Page-ID ändern** - Neue Follow-Status werden geladen
-4. **🏷️ Multiple Topic-Buttons** - Alle werden synchron aktualisiert
-5. **🔄 Backend-Persistenz** - Status bleibt nach Page-Reload erhalten
+1. **User-ID wechseln** - Follow-Status sollte sich entsprechend ändern
+2. **Button-Klicks** - Follow/Unfollow funktioniert
+3. **Blog-Page-ID ändern** - Neue Follow-Status werden geladen
+4. **Multiple Topic-Buttons** - Alle werden synchron aktualisiert
+5. **Backend-Persistenz** - Status bleibt nach Page-Reload erhalten
 
 ---
 
@@ -216,7 +216,7 @@ Falls etwas nicht funktioniert:
 2. **Network-Tab** für API-Calls kontrollieren
 3. **Event-Flow** durch Observer verfolgen
 
-### 🔗 Endlösung verfügbar
+### Endlösung verfügbar
 
 Bei völliger Verzweiflung kannst du die **komplette Lösung** auf GitHub einsehen:
 

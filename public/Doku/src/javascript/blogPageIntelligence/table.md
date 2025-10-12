@@ -1,12 +1,12 @@
 # 🤖 Table Auto Design
 
-## 🎯 Das Problem
+## Das Problem
 
 Wenn du den letzten Stand aus dem [GitHub Repository](https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/09_blog_page_completed) nimmst, findest du eine Tabelle für die Benchmark-Übersicht.
 
 Die Tabelle startet hier: [index.html#L202](https://github.com/rekoch/webEngineerDgEditors/blob/780c327390f81ab9a61810681ac9baeac2ba58d1/public/02_html_css/09_blog_page_completed/index.html#L202)
 
-### 🚨 Design-Herausforderung
+### Design-Herausforderung
 
 Obwohl die Tabelle funktioniert, hat sie ein **fundamentales Problem**: Die Breite der Diagramm-Säulen ist fest im HTML hinterlegt.
 
@@ -26,9 +26,9 @@ Wir möchten eine Tabelle, die folgendes kann:
 
 ---
 
-## 🛠️ JavaScript Setup
+## JavaScript Setup
 
-### 📚 Grundlagen JavaScript einbinden
+### Grundlagen JavaScript einbinden
 
 Informationen zum Einbinden findest du auf [SelfHTML](https://wiki.selfhtml.org/wiki/JavaScript_in_HTML_einbinden).
 
@@ -36,7 +36,7 @@ Informationen zum Einbinden findest du auf [SelfHTML](https://wiki.selfhtml.org/
 - Script am **Ende der Seite** laden (bessere Performance - First Contentful Paint)
 - **Module-System** für strukturierte Code-Organisation
 
-### 📁 Ordnerstruktur erstellen
+### Ordnerstruktur erstellen
 
 Erstelle einen `javascript` Ordner mit folgenden Dateien:
 ```
@@ -45,7 +45,7 @@ javascript/
 └── tables.js
 ```
 
-### 🔗 JavaScript verknüpfen
+### JavaScript verknüpfen
 
 **1. In `main.js` das tables.js importieren:**
 ```javascript
@@ -77,13 +77,13 @@ Du solltest den Text sehen! 🥳 Klick rechts auf das Script-Link - es führt di
 
 ---
 
-## 🎛️ DOM-Manipulation
+## DOM-Manipulation
 
-### 🌐 Das Document Object Model (DOM)
+### Das Document Object Model (DOM)
 
 Der Browser stellt JavaScript das **DOM** zur Verfügung - eine JavaScript-Repräsentation des gesamten HTML. Über diese Schnittstelle lassen sich Inhalte auslesen und manipulieren.
 
-### 🔍 Elemente finden mit `querySelectorAll`
+### Elemente finden mit `querySelectorAll`
 
 ```javascript
 document.querySelectorAll("[selector]")
@@ -93,9 +93,9 @@ Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll
 
 ---
 
-## 🏷️ Data-Attribute for the Win
+## Data-Attribute for the Win
 
-### 🎯 Das Problem lösen
+### Das Problem lösen
 
 **Problem**: Suche nach `div` findet zu viele unnötige Elemente.  
 **Lösung**: [Data-Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes)
@@ -105,7 +105,7 @@ Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll
 - Stören HTML-Struktur minimal
 - Geben JavaScript mehr "Wissen"
 
-### 🏷️ Tabelle markieren
+### Tabelle markieren
 
 **Tabellen-Container markieren:**
 ```html
@@ -126,7 +126,7 @@ Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll
 
 ---
 
-## 🔧 JavaScript-Implementierung
+## JavaScript-Implementierung
 
 ### 1️⃣ Tabellen finden
 
@@ -176,9 +176,9 @@ Da JavaScript die Breite berechnet, kannst du das `style="width: 24%"` im HTML e
 
 ---
 
-## 🎯 Erweiterte Version (Kürzer aber komplexer)
+## Erweiterte Version (Kürzer aber komplexer)
 
-### 🔥 Kompakte Lösung
+### Kompakte Lösung
 
 ```javascript
 const maxWidth = Math.max(
@@ -189,7 +189,7 @@ columns.forEach((col) => {
 });
 ```
 
-### 🤔 Erklärung der neuen Konzepte
+### Erklärung der neuen Konzepte
 
 #### `Math.max()`
 [MDN Math.max](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max) - Gibt den höchsten Wert zurück.
@@ -210,14 +210,14 @@ Mit `${}` können Variablen und Berechnungen direkt im String verwendet werden.
 
 ---
 
-## 📊 Fazit
+## Fazit
 
 | Ansatz | Vorteile | Nachteile |
 |--------|----------|-----------|
 | **Ausführlich** | Gut verständlich, lernfreundlich | Mehr Code |
 | **Kompakt** | Weniger Code, eleganter | Erfordert mehr JS-Wissen |
 
-### 🎓 Lernempfehlung
+### Lernempfehlung
 
 1. **Beginne** mit der ausführlichen Version
 2. **Verstehe** jeden Schritt

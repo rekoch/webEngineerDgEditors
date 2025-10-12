@@ -179,16 +179,16 @@
 <h2 id="-ziele"><a class="header" href="#-ziele">🎯 Ziele</a></h2>
 <p>Unsere Buttons sehen zwar aus wie Buttons, aber sie machen noch nichts. Wir wollen folgende Funktionen erreichen:</p>
 <ol>
-<li><strong>📝 Artikel Like Button</strong> - mit Unlike und Zähler</li>
-<li><strong>👤 Autor:in Folgen Button</strong> - mit Unfollow</li>
-<li><strong>�️ Thema Folgen Button</strong> - mit Unfollow</li>
+<li><strong>Artikel Like Button</strong> - mit Unlike und Zähler</li>
+<li><strong>Autor:in Folgen Button</strong> - mit Unfollow</li>
+<li><strong>Thema Folgen Button</strong> - mit Unfollow</li>
 </ol>
 <blockquote>
-<p>⚠️ <strong>Frontend-Focus</strong>: In dieser Umsetzung konzentrieren wir uns auf Frontend-Logik. Daten werden nur im Frontend gespeichert - bei einem Page-Reload werden alle Status zurückgesetzt.</p>
+<p><strong>Frontend-Focus</strong>: In dieser Umsetzung konzentrieren wir uns auf Frontend-Logik. Daten werden nur im Frontend gespeichert - bei einem Page-Reload werden alle Status zurückgesetzt.</p>
 </blockquote>
 <hr />
-<h2 id="-skript-setup"><a class="header" href="#-skript-setup">🛠️ Skript Setup</a></h2>
-<h3 id="-button-script-erstellen"><a class="header" href="#-button-script-erstellen">📁 Button-Script erstellen</a></h3>
+<h2 id="skript-setup"><a class="header" href="#skript-setup">Skript Setup</a></h2>
+<h3 id="button-script-erstellen"><a class="header" href="#button-script-erstellen">Button-Script erstellen</a></h3>
 <ol>
 <li><strong>Neue Datei erstellen</strong>: <code>buttons.js</code> im <code>javascript</code> Ordner</li>
 <li><strong>Import in <code>main.js</code></strong> hinzufügen</li>
@@ -201,11 +201,11 @@
 <li><a href="../debugVsCode.html">Debug JavaScript mit Visual Code</a></li>
 </ul>
 <hr />
-<h2 id="-event-listener-verstehen"><a class="header" href="#-event-listener-verstehen">👂 Event Listener verstehen</a></h2>
-<h3 id="-events-grundlagen"><a class="header" href="#-events-grundlagen">🎯 Events Grundlagen</a></h3>
+<h2 id="event-listener-verstehen"><a class="header" href="#event-listener-verstehen">Event Listener verstehen</a></h2>
+<h3 id="events-grundlagen"><a class="header" href="#events-grundlagen">Events Grundlagen</a></h3>
 <p>Ein <strong>Event</strong> ist eine Nachricht wenn eine Aktion stattfindet - wie "Button XY wurde gedrückt". Der Browser kennt Standard-Reaktionen auf Events (z.B. Checkbox an/aus).</p>
 <p>Mehr dazu: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">MDN Event.preventDefault</a></p>
-<h3 id="-events-finden"><a class="header" href="#-events-finden">� Events finden</a></h3>
+<h3 id="events-finden"><a class="header" href="#events-finden">Events finden</a></h3>
 <p><strong>Herausforderung</strong>: Nicht jedes Element bietet die selben Events an:</p>
 <ul>
 <li><strong>Button</strong> kann geklickt werden</li>
@@ -213,13 +213,13 @@
 <li><strong>Maus</strong> kann bewegt werden</li>
 </ul>
 <p><strong>Aber wie finde ich heraus, welche Events verfügbar sind?</strong></p>
-<h4 id="-mdn-dokumentation-durchsuchen"><a class="header" href="#-mdn-dokumentation-durchsuchen">📚 MDN-Dokumentation durchsuchen</a></h4>
+<h4 id="mdn-dokumentation-durchsuchen"><a class="header" href="#mdn-dokumentation-durchsuchen">MDN-Dokumentation durchsuchen</a></h4>
 <ol>
 <li><strong>Button-spezifische API</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">HTMLButtonElement</a></li>
 <li><strong>Instance Methods</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#instance_methods">HTMLButtonElement#instance_methods</a></li>
 <li><strong>Problem</strong>: Der "click" Event ist hier nicht direkt zu finden!</li>
 </ol>
-<h4 id="-vererbungskette-verstehen"><a class="header" href="#-vererbungskette-verstehen">🔗 Vererbungskette verstehen</a></h4>
+<h4 id="vererbungskette-verstehen"><a class="header" href="#vererbungskette-verstehen">Vererbungskette verstehen</a></h4>
 <p><strong>Wichtiger Hinweis</strong>: Button erbt Methoden vom Eltern-Element:</p>
 <blockquote>
 <p><strong>"inherits methods from its parent, HTMLElement"</strong></p>
@@ -229,17 +229,17 @@
 <li><code>HTMLButtonElement</code> → <code>HTMLElement</code> → <code>Element</code></li>
 <li><strong>Ziel</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element API</a> - hier finden sich die meisten Events!</li>
 </ul>
-<h4 id="-praktische-tipps"><a class="header" href="#-praktische-tipps">💡 Praktische Tipps</a></h4>
+<h4 id="praktische-tipps"><a class="header" href="#praktische-tipps">Praktische Tipps</a></h4>
 <div class="table-wrapper"><table><thead><tr><th>Methode</th><th>Beschreibung</th><th>Effektivität</th></tr></thead><tbody>
-<tr><td><strong>📖 Dokumentation</strong></td><td>MDN systematisch durchsuchen</td><td>Vollständig aber zeitaufwändig</td></tr>
-<tr><td><strong>🧪 Trial &amp; Error</strong></td><td>Events ausprobieren und testen</td><td>Schnell für bekannte Events</td></tr>
-<tr><td><strong>🔧 IDE-Support</strong></td><td>Autocomplete und IntelliSense nutzen</td><td>Sehr praktisch während Entwicklung</td></tr>
+<tr><td><strong>Dokumentation</strong></td><td>MDN systematisch durchsuchen</td><td>Vollständig aber zeitaufwändig</td></tr>
+<tr><td><strong>Trial &amp; Error</strong></td><td>Events ausprobieren und testen</td><td>Schnell für bekannte Events</td></tr>
+<tr><td><strong>IDE-Support</strong></td><td>Autocomplete und IntelliSense nutzen</td><td>Sehr praktisch während Entwicklung</td></tr>
 </tbody></table>
 </div>
 <blockquote>
-<p>💡 <strong>Praxis-Tipp</strong>: Die Devise <strong>"trial and error"</strong> ist oft effizienter als stundenlanges Dokumentation-Studium!</p>
+<p><strong>Praxis-Tipp</strong>: Die Devise <strong>"trial and error"</strong> ist oft effizienter als stundenlanges Dokumentation-Studium!</p>
 </blockquote>
-<h3 id="-event-listener-erstellen"><a class="header" href="#-event-listener-erstellen">�🔊 Event Listener erstellen</a></h3>
+<h3 id="event-listener-erstellen"><a class="header" href="#event-listener-erstellen">Event Listener erstellen</a></h3>
 <p><strong>Schritt 1</strong>: Alle Buttons finden und Event Listener registrieren</p>
 <pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
   // Für jeden Button einen Click-Listener erstellen
@@ -250,7 +250,7 @@
   // Handle button click
 });
 </code></pre>
-<h3 id="-erster-test"><a class="header" href="#-erster-test">🧪 Erster Test</a></h3>
+<h3 id="erster-test"><a class="header" href="#erster-test">Erster Test</a></h3>
 <pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
   button.addEventListener("click", () =&gt; {
     // Handle button click
@@ -260,15 +260,15 @@
 </code></pre>
 <p>Teste im Browser - bei jedem Button-Klick sollte ein Alert erscheinen!</p>
 <hr />
-<h2 id="-html-mit-data-attributen-erweitern"><a class="header" href="#-html-mit-data-attributen-erweitern">🏷️ HTML mit Data-Attributen erweitern</a></h2>
-<h3 id="-button-unterscheidung"><a class="header" href="#-button-unterscheidung">🎯 Button-Unterscheidung</a></h3>
+<h2 id="html-mit-data-attributen-erweitern"><a class="header" href="#html-mit-data-attributen-erweitern">HTML mit Data-Attributen erweitern</a></h2>
+<h3 id="button-unterscheidung"><a class="header" href="#button-unterscheidung">Button-Unterscheidung</a></h3>
 <p>Wir haben 3 verschiedene Button-Typen. Für bessere JavaScript-Kontrolle erweitern wir das HTML:</p>
 <p><strong>Data-Attribute hinzufügen:</strong></p>
 <ul>
 <li><code>data-button-state</code>: "active" oder "inactive"</li>
 <li><code>data-button</code>: Button-Name zur Identifikation</li>
 </ul>
-<h3 id="-html-updates"><a class="header" href="#-html-updates">🔧 HTML-Updates</a></h3>
+<h3 id="html-updates"><a class="header" href="#html-updates">HTML-Updates</a></h3>
 <h4 id="like-button"><a class="header" href="#like-button">Like Button</a></h4>
 <pre><code class="language-html">&lt;button
   data-button-state="inactive"
@@ -287,13 +287,13 @@
   data-button="follow_topic"
   class="primary"&gt;
 </code></pre>
-<h3 id="-spezifische-button-auswahl"><a class="header" href="#-spezifische-button-auswahl">🎯 Spezifische Button-Auswahl</a></h3>
+<h3 id="spezifische-button-auswahl"><a class="header" href="#spezifische-button-auswahl">Spezifische Button-Auswahl</a></h3>
 <pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
   // Nur Buttons mit data-button Attribut
 });
 </code></pre>
 <hr />
-<h2 id="-button-states-management"><a class="header" href="#-button-states-management">🔄 Button States Management</a></h2>
+<h2 id="button-states-management"><a class="header" href="#button-states-management">Button States Management</a></h2>
 <h3 id="-switch-statement-für-button-typen"><a class="header" href="#-switch-statement-für-button-typen">⚡ Switch-Statement für Button-Typen</a></h3>
 <pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
   button.addEventListener("click", () =&gt; {
@@ -310,7 +310,7 @@
   });
 });
 </code></pre>
-<h3 id="-toggle-funktionalität"><a class="header" href="#-toggle-funktionalität">🔄 Toggle-Funktionalität</a></h3>
+<h3 id="toggle-funktionalität"><a class="header" href="#toggle-funktionalität">Toggle-Funktionalität</a></h3>
 <p><strong>Toggle-Funktion erstellen:</strong></p>
 <pre><code class="language-javascript">function toggleButtonState(button) {
   const currentState = button.dataset.buttonState;
@@ -337,7 +337,7 @@
     break;
 }
 </code></pre>
-<h3 id="-css-klassen-automatisch-togglen"><a class="header" href="#-css-klassen-automatisch-togglen">🎨 CSS-Klassen automatisch togglen</a></h3>
+<h3 id="css-klassen-automatisch-togglen"><a class="header" href="#css-klassen-automatisch-togglen">CSS-Klassen automatisch togglen</a></h3>
 <p>Mit <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList.toggle</a> wird das noch einfacher:</p>
 <pre><code class="language-javascript">function toggleButtonState(button) {
   const currentState = button.dataset.buttonState;
@@ -351,8 +351,8 @@
 }
 </code></pre>
 <hr />
-<h2 id="-button-texte-dynamisch-ändern"><a class="header" href="#-button-texte-dynamisch-ändern">📝 Button-Texte dynamisch ändern</a></h2>
-<h3 id="-text-parameter-hinzufügen"><a class="header" href="#-text-parameter-hinzufügen">🔤 Text-Parameter hinzufügen</a></h3>
+<h2 id="button-texte-dynamisch-ändern"><a class="header" href="#button-texte-dynamisch-ändern">Button-Texte dynamisch ändern</a></h2>
+<h3 id="text-parameter-hinzufügen"><a class="header" href="#text-parameter-hinzufügen">Text-Parameter hinzufügen</a></h3>
 <pre><code class="language-javascript">function toggleButtonState(button, activationText, inactivatingText) {
   const currentState = button.dataset.buttonState;
   button.classList.toggle("primary");
@@ -366,7 +366,7 @@
   }
 }
 </code></pre>
-<h3 id="-text-konstanten-definieren"><a class="header" href="#-text-konstanten-definieren">📚 Text-Konstanten definieren</a></h3>
+<h3 id="text-konstanten-definieren"><a class="header" href="#text-konstanten-definieren">Text-Konstanten definieren</a></h3>
 <pre><code class="language-javascript">const likePageText = "Dieser Artikel gefällt mir!";
 const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
 const followAuthorText = "Autor:in folgen";
@@ -374,7 +374,7 @@ const unfollowAuthorText = "Autor:in nicht mehr folgen";
 const followTopicText = "Thema folgen";
 const unfollowTopicText = "Thema entfolgen";
 </code></pre>
-<h3 id="-switch-statement-mit-texten"><a class="header" href="#-switch-statement-mit-texten">🔧 Switch-Statement mit Texten</a></h3>
+<h3 id="switch-statement-mit-texten"><a class="header" href="#switch-statement-mit-texten">Switch-Statement mit Texten</a></h3>
 <pre><code class="language-javascript">switch (button.dataset.button) {
   case "like_article":
     toggleButtonState(button, likePageText, unlikePageText);
@@ -388,21 +388,21 @@ const unfollowTopicText = "Thema entfolgen";
 }
 </code></pre>
 <hr />
-<h2 id="-like-button-erweitern"><a class="header" href="#-like-button-erweitern">❤️ Like Button erweitern</a></h2>
-<h3 id="-like-counter-implementieren"><a class="header" href="#-like-counter-implementieren">📊 Like Counter implementieren</a></h3>
+<h2 id="like-button-erweitern"><a class="header" href="#like-button-erweitern">Like Button erweitern</a></h2>
+<h3 id="like-counter-implementieren"><a class="header" href="#like-counter-implementieren">Like Counter implementieren</a></h3>
 <p>Der Like Button braucht zusätzliche Features:</p>
 <ul>
 <li><strong>Zähler</strong> für Likes</li>
 <li><strong>Icon</strong> mit Herz/gebrochenem Herz</li>
 </ul>
-<h3 id="-html-für-counter-markieren"><a class="header" href="#-html-für-counter-markieren">🏷️ HTML für Counter markieren</a></h3>
+<h3 id="html-für-counter-markieren"><a class="header" href="#html-für-counter-markieren">HTML für Counter markieren</a></h3>
 <p><strong>Zahl mit span und ID markieren:</strong></p>
 <pre><code class="language-html">&lt;span id="data-like-counter"&gt;59&lt;/span&gt; Personen gefällt dieser Artikel
 </code></pre>
 <blockquote>
 <p>💡 <strong>Wichtig</strong>: IDs dürfen nur einmal pro HTML existieren!</p>
 </blockquote>
-<h3 id="-like-spezifische-toggle-funktion"><a class="header" href="#-like-spezifische-toggle-funktion">🔢 Like-spezifische Toggle-Funktion</a></h3>
+<h3 id="like-spezifische-toggle-funktion"><a class="header" href="#like-spezifische-toggle-funktion">Like-spezifische Toggle-Funktion</a></h3>
 <pre><code class="language-javascript">function toggleLikeButtonState(button) {
   const currentState = button.dataset.buttonState;
   const likeCounter = document.querySelector("#data-like-counter");
@@ -419,7 +419,7 @@ const unfollowTopicText = "Thema entfolgen";
   likeCounter.textContent = currentCount;
 }
 </code></pre>
-<h3 id="-integration-mit-bestehender-toggle-logik"><a class="header" href="#-integration-mit-bestehender-toggle-logik">🔄 Integration mit bestehender Toggle-Logik</a></h3>
+<h3 id="integration-mit-bestehender-toggle-logik"><a class="header" href="#integration-mit-bestehender-toggle-logik">Integration mit bestehender Toggle-Logik</a></h3>
 <pre><code class="language-javascript">function toggleLikeButtonState(button, activationText, inactivatingText) {
   const currentState = button.dataset.buttonState;
   const likeCounter = document.getElementById("data-like-counter");
@@ -435,14 +435,14 @@ const unfollowTopicText = "Thema entfolgen";
   likeCounter.textContent = currentCount;
 }
 </code></pre>
-<h3 id="-switch-statement-anpassen"><a class="header" href="#-switch-statement-anpassen">🔧 Switch-Statement anpassen</a></h3>
+<h3 id="switch-statement-anpassen"><a class="header" href="#switch-statement-anpassen">Switch-Statement anpassen</a></h3>
 <pre><code class="language-javascript">case "like_article":
   toggleLikeButtonState(button, likePageText, unlikePageText);
   break;
 </code></pre>
 <hr />
-<h2 id="-icon-integration"><a class="header" href="#-icon-integration">💝 Icon-Integration</a></h2>
-<h3 id="-svg-icons-vorbereiten"><a class="header" href="#-svg-icons-vorbereiten">🎨 SVG-Icons vorbereiten</a></h3>
+<h2 id="icon-integration"><a class="header" href="#icon-integration">Icon-Integration</a></h2>
+<h3 id="svg-icons-vorbereiten"><a class="header" href="#svg-icons-vorbereiten">SVG-Icons vorbereiten</a></h3>
 <pre><code class="language-javascript">const filledHeart = document.createElement("span");
 const brokenHeart = document.createElement("span");
 
@@ -467,7 +467,7 @@ brokenHeart.innerHTML = `&lt;svg
 filledHeart.classList.add("mr-s");
 brokenHeart.classList.add("mr-s");
 </code></pre>
-<h3 id="-icons-in-toggle-funktion-integrieren"><a class="header" href="#-icons-in-toggle-funktion-integrieren">🔄 Icons in Toggle-Funktion integrieren</a></h3>
+<h3 id="icons-in-toggle-funktion-integrieren"><a class="header" href="#icons-in-toggle-funktion-integrieren">Icons in Toggle-Funktion integrieren</a></h3>
 <pre><code class="language-javascript">if (currentState == "inactive") {
   button.prepend(filledHeart);
   currentCount++;
@@ -482,7 +482,7 @@ brokenHeart.classList.add("mr-s");
 <p>✅ <strong>Like Button</strong>: Toggle mit Counter und Icon<br />
 ✅ <strong>Follow Author</strong>: Toggle mit Text-Änderung<br />
 ✅ <strong>Follow Topic</strong>: Toggle mit Text-Änderung</p>
-<h3 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🔗 Nächste Schritte</a></h3>
+<h3 id="nächste-schritte"><a class="header" href="#nächste-schritte">Nächste Schritte</a></h3>
 <p>Im nächsten Kapitel verbinden wir die Buttons mit einem <strong>Backend</strong> für persistente Datenspeicherung!</p>
 
                     </main>

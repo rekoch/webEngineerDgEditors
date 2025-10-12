@@ -4,17 +4,17 @@
 
 Unsere Buttons sehen zwar aus wie Buttons, aber sie machen noch nichts. Wir wollen folgende Funktionen erreichen:
 
-1. **📝 Artikel Like Button** - mit Unlike und Zähler
-2. **👤 Autor:in Folgen Button** - mit Unfollow  
-3. **�️ Thema Folgen Button** - mit Unfollow
+1. **Artikel Like Button** - mit Unlike und Zähler
+2. **Autor:in Folgen Button** - mit Unfollow  
+3. **Thema Folgen Button** - mit Unfollow
 
-> ⚠️ **Frontend-Focus**: In dieser Umsetzung konzentrieren wir uns auf Frontend-Logik. Daten werden nur im Frontend gespeichert - bei einem Page-Reload werden alle Status zurückgesetzt.
+> **Frontend-Focus**: In dieser Umsetzung konzentrieren wir uns auf Frontend-Logik. Daten werden nur im Frontend gespeichert - bei einem Page-Reload werden alle Status zurückgesetzt.
 
 ---
 
-## 🛠️ Skript Setup
+## Skript Setup
 
-### 📁 Button-Script erstellen
+### Button-Script erstellen
 
 1. **Neue Datei erstellen**: `buttons.js` im `javascript` Ordner
 2. **Import in `main.js`** hinzufügen
@@ -28,15 +28,15 @@ Für lokales Debugging siehe:
 
 ---
 
-## 👂 Event Listener verstehen
+## Event Listener verstehen
 
-### 🎯 Events Grundlagen
+### Events Grundlagen
 
 Ein **Event** ist eine Nachricht wenn eine Aktion stattfindet - wie "Button XY wurde gedrückt". Der Browser kennt Standard-Reaktionen auf Events (z.B. Checkbox an/aus).
 
 Mehr dazu: [MDN Event.preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
 
-### � Events finden
+### Events finden
 
 **Herausforderung**: Nicht jedes Element bietet die selben Events an:
 - **Button** kann geklickt werden
@@ -45,13 +45,13 @@ Mehr dazu: [MDN Event.preventDefault](https://developer.mozilla.org/en-US/docs/W
 
 **Aber wie finde ich heraus, welche Events verfügbar sind?**
 
-#### 📚 MDN-Dokumentation durchsuchen
+#### MDN-Dokumentation durchsuchen
 
 1. **Button-spezifische API**: [HTMLButtonElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement)
 2. **Instance Methods**: [HTMLButtonElement#instance_methods](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#instance_methods)
 3. **Problem**: Der "click" Event ist hier nicht direkt zu finden! 
 
-#### 🔗 Vererbungskette verstehen
+#### Vererbungskette verstehen
 
 **Wichtiger Hinweis**: Button erbt Methoden vom Eltern-Element:
 > **"inherits methods from its parent, HTMLElement"**
@@ -60,17 +60,17 @@ Mehr dazu: [MDN Event.preventDefault](https://developer.mozilla.org/en-US/docs/W
 - `HTMLButtonElement` → `HTMLElement` → `Element`
 - **Ziel**: [Element API](https://developer.mozilla.org/en-US/docs/Web/API/Element) - hier finden sich die meisten Events!
 
-#### 💡 Praktische Tipps
+#### Praktische Tipps
 
 | Methode | Beschreibung | Effektivität |
 |---------|--------------|---------------|
-| **📖 Dokumentation** | MDN systematisch durchsuchen | Vollständig aber zeitaufwändig |
-| **🧪 Trial & Error** | Events ausprobieren und testen | Schnell für bekannte Events |
-| **🔧 IDE-Support** | Autocomplete und IntelliSense nutzen | Sehr praktisch während Entwicklung |
+| **Dokumentation** | MDN systematisch durchsuchen | Vollständig aber zeitaufwändig |
+| **Trial & Error** | Events ausprobieren und testen | Schnell für bekannte Events |
+| **IDE-Support** | Autocomplete und IntelliSense nutzen | Sehr praktisch während Entwicklung |
 
-> 💡 **Praxis-Tipp**: Die Devise **"trial and error"** ist oft effizienter als stundenlanges Dokumentation-Studium!
+>  **Praxis-Tipp**: Die Devise **"trial and error"** ist oft effizienter als stundenlanges Dokumentation-Studium!
 
-### �🔊 Event Listener erstellen
+### Event Listener erstellen
 
 **Schritt 1**: Alle Buttons finden und Event Listener registrieren
 
@@ -88,7 +88,7 @@ button.addEventListener("click", () => {
 });
 ```
 
-### 🧪 Erster Test
+### Erster Test
 
 ```javascript
 document.querySelectorAll("button").forEach((button) => {
@@ -103,9 +103,9 @@ Teste im Browser - bei jedem Button-Klick sollte ein Alert erscheinen!
 
 ---
 
-## 🏷️ HTML mit Data-Attributen erweitern
+## HTML mit Data-Attributen erweitern
 
-### 🎯 Button-Unterscheidung
+### Button-Unterscheidung
 
 Wir haben 3 verschiedene Button-Typen. Für bessere JavaScript-Kontrolle erweitern wir das HTML:
 
@@ -113,7 +113,7 @@ Wir haben 3 verschiedene Button-Typen. Für bessere JavaScript-Kontrolle erweite
 - `data-button-state`: "active" oder "inactive"
 - `data-button`: Button-Name zur Identifikation
 
-### 🔧 HTML-Updates
+### HTML-Updates
 
 #### Like Button
 ```html
@@ -139,7 +139,7 @@ Wir haben 3 verschiedene Button-Typen. Für bessere JavaScript-Kontrolle erweite
   class="primary">
 ```
 
-### 🎯 Spezifische Button-Auswahl
+### Spezifische Button-Auswahl
 
 ```javascript
 document.querySelectorAll("button[data-button]").forEach((button) => {
@@ -149,7 +149,7 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 
 ---
 
-## 🔄 Button States Management
+## Button States Management
 
 ### ⚡ Switch-Statement für Button-Typen
 
@@ -170,7 +170,7 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 });
 ```
 
-### 🔄 Toggle-Funktionalität
+### Toggle-Funktionalität
 
 **Toggle-Funktion erstellen:**
 ```javascript
@@ -202,7 +202,7 @@ switch (button.dataset.button) {
 }
 ```
 
-### 🎨 CSS-Klassen automatisch togglen
+### CSS-Klassen automatisch togglen
 
 Mit [classList.toggle](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) wird das noch einfacher:
 
@@ -221,9 +221,9 @@ function toggleButtonState(button) {
 
 ---
 
-## 📝 Button-Texte dynamisch ändern
+## Button-Texte dynamisch ändern
 
-### 🔤 Text-Parameter hinzufügen
+### Text-Parameter hinzufügen
 
 ```javascript
 function toggleButtonState(button, activationText, inactivatingText) {
@@ -240,7 +240,7 @@ function toggleButtonState(button, activationText, inactivatingText) {
 }
 ```
 
-### 📚 Text-Konstanten definieren
+### Text-Konstanten definieren
 
 ```javascript
 const likePageText = "Dieser Artikel gefällt mir!";
@@ -251,7 +251,7 @@ const followTopicText = "Thema folgen";
 const unfollowTopicText = "Thema entfolgen";
 ```
 
-### 🔧 Switch-Statement mit Texten
+### Switch-Statement mit Texten
 
 ```javascript
 switch (button.dataset.button) {
@@ -269,15 +269,15 @@ switch (button.dataset.button) {
 
 ---
 
-## ❤️ Like Button erweitern
+## Like Button erweitern
 
-### 📊 Like Counter implementieren
+### Like Counter implementieren
 
 Der Like Button braucht zusätzliche Features:
 - **Zähler** für Likes
 - **Icon** mit Herz/gebrochenem Herz
 
-### 🏷️ HTML für Counter markieren
+### HTML für Counter markieren
 
 **Zahl mit span und ID markieren:**
 ```html
@@ -286,7 +286,7 @@ Der Like Button braucht zusätzliche Features:
 
 > 💡 **Wichtig**: IDs dürfen nur einmal pro HTML existieren!
 
-### 🔢 Like-spezifische Toggle-Funktion
+### Like-spezifische Toggle-Funktion
 
 ```javascript
 function toggleLikeButtonState(button) {
@@ -306,7 +306,7 @@ function toggleLikeButtonState(button) {
 }
 ```
 
-### 🔄 Integration mit bestehender Toggle-Logik
+### Integration mit bestehender Toggle-Logik
 
 ```javascript
 function toggleLikeButtonState(button, activationText, inactivatingText) {
@@ -325,7 +325,7 @@ function toggleLikeButtonState(button, activationText, inactivatingText) {
 }
 ```
 
-### 🔧 Switch-Statement anpassen
+### Switch-Statement anpassen
 
 ```javascript
 case "like_article":
@@ -335,9 +335,9 @@ case "like_article":
 
 ---
 
-## 💝 Icon-Integration
+## Icon-Integration
 
-### 🎨 SVG-Icons vorbereiten
+### SVG-Icons vorbereiten
 
 ```javascript
 const filledHeart = document.createElement("span");
@@ -365,7 +365,7 @@ filledHeart.classList.add("mr-s");
 brokenHeart.classList.add("mr-s");
 ```
 
-### 🔄 Icons in Toggle-Funktion integrieren
+### Icons in Toggle-Funktion integrieren
 
 ```javascript
 if (currentState == "inactive") {
@@ -387,6 +387,6 @@ if (currentState == "inactive") {
 ✅ **Follow Author**: Toggle mit Text-Änderung  
 ✅ **Follow Topic**: Toggle mit Text-Änderung  
 
-### 🔗 Nächste Schritte
+### Nächste Schritte
 
 Im nächsten Kapitel verbinden wir die Buttons mit einem **Backend** für persistente Datenspeicherung!
