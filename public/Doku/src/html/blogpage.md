@@ -1,6 +1,6 @@
 # 📄 Blog Page erstellen
 
-## 🎯 Projekt-Ziel
+## Projekt-Ziel
 
 Wir bauen eine Blog Page nach dem Vorbild von [Galaxus Beispiel-Artikel](https://www.galaxus.ch/de/page/endlich-weg-vom-lahmen-e-reader-dieses-tablet-macht-auf-e-ink-37832).
 
@@ -12,7 +12,7 @@ Die Page enthält:
 - **Empfohlene Blog-Pages**
 - **Like- und Kommentar-Funktionen**
 
-### 🎯 Entwicklungsansatz
+### Entwicklungsansatz
 
 **Struktur vor Design**: Wir fokussieren uns zunächst auf das **HTML-Grundgerüst**. Das Design kommt später mit CSS.
 
@@ -20,7 +20,7 @@ Die Page enthält:
 
 ---
 
-## 📋 Mindest-Anforderungen
+## Mindest-Anforderungen
 
 ### ✅ Kern-Elemente (Must-have)
 
@@ -49,22 +49,22 @@ Wenn Zeit vorhanden:
 
 ---
 
-## 🛠️ HTML-Grundgerüst erstellen
+## HTML-Grundgerüst erstellen
 
-### 📁 Schritt 1: Projekt-Setup
+### Schritt 1: Projekt-Setup
 
 1. **VS Code öffnen**
 2. **Ordner für Übungen** anlegen
 3. **GitHub Repository** für Referenz: [webEngineerDgEditors](https://github.com/rekoch/webEngineerDgEditors)
 
-### 📄 Schritt 2: Basis-Datei erstellen
+### Schritt 2: Basis-Datei erstellen
 
 1. **`index.html` anlegen**
 2. **Grundgerüst mit `!` + Tab** erstellen
 3. **LiveServer starten** für sofortige Änderungsanzeige
 4. **Titel definieren**
 
-### 🏗️ Schritt 3: Body-Struktur aufbauen
+### Schritt 3: Body-Struktur aufbauen
 
 #### **A. Media-Bereich**
 ```html
@@ -119,9 +119,9 @@ Wenn Zeit vorhanden:
 
 ---
 
-## 📝 Content-Strategien
+## Content-Strategien
 
-### 📖 Text-Optionen
+### Text-Optionen
 
 | Methode | Beschreibung | Verwendung |
 |---------|--------------|------------|
@@ -129,7 +129,7 @@ Wenn Zeit vorhanden:
 | **Original-Content** | Von Beispiel-Seite kopieren | Realitätsnaher Content |
 | **Eigener Content** | Selbst geschriebene Texte | Personalisierte Inhalte |
 
-### 🎨 Semantische HTML-Struktur
+### Semantische HTML-Struktur
 
 **Verwende logische Gruppierungen:**
 
@@ -155,16 +155,16 @@ Wenn Zeit vorhanden:
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
-### ✅ HTML-Struktur
+### HTML-Struktur
 
 - **Einen H1** pro Page
 - **Logische Heading-Hierarchie** (H1 → H2 → H3)
 - **Semantische Tags** verwenden (`article`, `section`, `aside`)
 - **Alt-Attribute** für alle Bilder
 
-### 🔗 Media-Integration
+### Media-Integration
 
 **YouTube-Video einbetten:**
 ```html
@@ -188,9 +188,9 @@ Wenn Zeit vorhanden:
 
 ---
 
-## 🎯 Entwicklungsworkflow
+## Entwicklungsworkflow
 
-### 📋 Schritt-für-Schritt-Checklist
+### Schritt-für-Schritt-Checklist
 
 1. ✅ **HTML-Grundgerüst** erstellen
 2. ✅ **LiveServer** starten
@@ -201,7 +201,7 @@ Wenn Zeit vorhanden:
 7. ✅ **Empfehlungen-Bereich** erstellen
 8. ✅ **Erweiterte Elemente** (optional)
 
-### 🔄 Iterativer Ansatz
+### Iterativer Ansatz
 
 1. **Basis-Version** mit Mindest-Elementen
 2. **Schritt-für-Schritt-Erweiterung**

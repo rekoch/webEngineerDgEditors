@@ -1,14 +1,14 @@
 # 🌐 HTML Einstieg
 
-## 📚 Grundlagen lernen
+## Grundlagen lernen
 
 Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeCamp](https://www.freecodecamp.org/learn/full-stack-developer/). Mit dem Abschluss des HTML-Teils solltest du die wichtigsten Tags kennen, die wir auch in unserem Beispiel nutzen werden.
 
 ---
 
-## 🚀 Erste HTML-Seite erstellen
+## Erste HTML-Seite erstellen
 
-### 📁 Schritt 1: Projekt-Setup
+### Schritt 1: Projekt-Setup
 
 1. **Visual Studio Code öffnen**
 2. **"Ordner öffnen" wählen**
@@ -18,7 +18,7 @@ Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeC
 3. **Passenden Ordner anlegen** (z.B. "myFirstWebpage")
 4. **Öffnen des Ordners bestätigen**
 
-### 📄 Schritt 2: HTML-Datei erstellen
+### Schritt 2: HTML-Datei erstellen
 
 1. **Neues File anlegen**: `index.html`
 2. **Emmet-Abkürzung verwenden**: 
@@ -41,7 +41,7 @@ Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeC
 </html>
 ```
 
-### 🔴 Schritt 3: LiveServer starten
+### Schritt 3: LiveServer starten
 
 1. **Rechtsklick auf `index.html`**
 2. **"Open with LiveServer" wählen**
@@ -50,7 +50,7 @@ Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeC
 
 > 💡 **Hinweis**: Falls der Button nicht verfügbar ist, überprüfe dein Setup und installiere die LiveServer Extension (siehe Abschnitt "Setup")
 
-### 🌐 Schritt 4: Browser-Ansicht
+### Schritt 4: Browser-Ansicht
 
 - **Automatisches Öffnen** im Browser-Fenster
 - **Standard-Port**: 5500
@@ -58,9 +58,9 @@ Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeC
 
 ---
 
-## ⚙️ LiveServer konfigurieren
+## LiveServer konfigurieren
 
-### 🔧 Custom Browser einstellen
+### Custom Browser einstellen
 
 1. **Einstellungen öffnen**
 2. **Nach "liveserver" suchen**
@@ -68,7 +68,7 @@ Am einfachsten lernst du die HTML-Grundlagen im **Tutorial-Kurs** von [FreeCodeC
 
 ![LiveServer Custom Browser](images/LiveserverCustomBrowser.png)
 
-### 📝 Erweiterte Konfiguration
+### Erweiterte Konfiguration
 
 Für weitere Einstellungen kannst du alles in der `settings.json` bearbeiten:
 
@@ -82,7 +82,7 @@ Für weitere Einstellungen kannst du alles in der `settings.json` bearbeiten:
 
 ---
 
-## 🎯 Nächste Schritte
+## Nächste Schritte
 
 Nach dem erfolgreichen Setup kannst du mit dem [Blog Page](blogpage.md) Tutorial fortfahren und deine erste komplette Webseite erstellen!
 
