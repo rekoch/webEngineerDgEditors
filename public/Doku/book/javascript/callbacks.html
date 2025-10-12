@@ -181,39 +181,39 @@
 <p>In JavaScript wird dies so gelöst, indem eine Funktion eine andere Funktion entgegen nimmt. Die Funktion "Kaffee trinken" wird der Funktion "Kaffee bestellen" mitgegeben. Wenn der Kaffee dann da ist, wird er getrunken. Zeitpunkt und Detail der Ausführung wird in der Methode "Kaffee bestellen" definiert, der konkrete Ablauf von "Kaffee trinken" in der Funktion, die übergeben wird.</p>
 <p>Unter <a href="https://www.w3schools.com/js/js_callback.asp">w3schools Callbacks</a> findest du ebenfalls ein Code Beispiel dazu. Sicher findest du auch auf YouTube Erklär-Videos zu Callbacks.</p>
 <p>Die Syntax sieht wie folgt aus:</p>
-<pre><code>function functionWithCallback(callback) {
-    console.log("Funktion mit Callback wird ausgeführt");
-    callback();
+<pre><code class="language-javascript">function functionWithCallback(callback) {
+  console.log("Funktion mit Callback wird ausgeführt");
+  callback();
 }
 
 function callbackFunction() {
-    console.log("Callback-Funktion wird ausgeführt");
+  console.log("Callback-Funktion wird ausgeführt");
 }
 
 functionWithCallback(callbackFunction);
 </code></pre>
 <p>Die Funktion <code>functionWithCallback</code> nimmt als Parameter eine Funktion entgegen, welche dann ausgeführt wird. Mittels <code>()</code> siehst du, dass es eine Funktion ist. Inhaltlich weiss die Methode nicht, was sie ausführt, bestimmt aber den Zeitpunkt.</p>
 <p>Die Funktion <code>callbackFunction</code> ist die Funktion selbst. Ein Beispiel mit dem Kaffee trinken können wir erweitern, dass die Funktion "Kaffee bestellen" der Funktion "Kaffee trinken" auch noch mitgibt, welchen Kaffee genau eigentlich bestellt wurde.</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    console.log("Kaffee ist da!");
-    callback("Milchkaffee");
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  console.log("Kaffee ist da!");
+  callback("Milchkaffee");
 }
 
 function drinkCoffee(coffeeType) {
-    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+  console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
 }
 
 orderCoffee(drinkCoffee);
 </code></pre>
 <p>Die Funktion "drinkCoffee" verlangt also ebenfalls einen Parameter, den sie nutzen will. Sie weiss nicht "was" dort mitkommt. Die "orderCoffee" Funktion muss sich nun also darum kümmern und übergibt den Typ beim Aufruf des Callbacks.</p>
 <p>Wieso macht das so nicht viel Sinn? Der Aufruf von "callback" ist aktuell relativ synchron, da Zeile für Zeile abgearbeitet wird. Stell dir vor, es braucht lange bis die Aktion durch ist. In einem technischen Sinne beispielsweise, weil die Aufgabe über einen entfernten Server erfolgt oder eine lang dauernde Datebankabfrage erfolgt. Du kannst so was mit einem "setTimeout()" simulieren.</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    setTimeout(() =&gt; {
-        console.log("Kaffee ist da!");
-        callback("Milchkaffee");
-     }, 2000);
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  setTimeout(() =&gt; {
+    console.log("Kaffee ist da!");
+    callback("Milchkaffee");
+  }, 2000);
 }
 </code></pre>
 <p>Wir warten nun 2 Sekunden, bis es weiter geht.</p>
@@ -221,19 +221,19 @@ orderCoffee(drinkCoffee);
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a></p>
 <p>Anstelle von</p>
 <p><code>orderCoffee(drinkCoffee)</code> übergeben wir den Inhalt von "drinkCoffee" direkt mit der Arrow Syntax</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    setTimeout(() =&gt; {
-        console.log("Kaffee ist da!");
-        callback("Milchkaffee");
-    }, 2000);
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  setTimeout(() =&gt; {
+    console.log("Kaffee ist da!");
+    callback("Milchkaffee");
+  }, 2000);
 }
 
 orderCoffee((coffeeType) =&gt; {
-    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+  console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
 });
 </code></pre>
-<p>die ganze <code>drinkCoffee</code> Funktion ist nicht mehr nötig und wird direkt geschrieben.  Du musst das nicht und kannst immer noch innerhalb des Arrow Bodys {} eine andere Funktion aufrufen.</p>
+<p>die ganze <code>drinkCoffee</code> Funktion ist nicht mehr nötig und wird direkt geschrieben. Du musst das nicht und kannst immer noch innerhalb des Arrow Bodys {} eine andere Funktion aufrufen.</p>
 
                     </main>
 

@@ -175,7 +175,284 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-connect-the-backend"><a class="header" href="#-connect-the-backend">⛓️‍💥 connect the backend</a></h1>
+                        <h1 id="-backend-verbinden"><a class="header" href="#-backend-verbinden">⛓️‍💥 Backend verbinden</a></h1>
+<h2 id="-frontend-trifft-backend"><a class="header" href="#-frontend-trifft-backend">🎯 Frontend trifft Backend</a></h2>
+<h3 id="-situation-verstehen"><a class="header" href="#-situation-verstehen">📊 Situation verstehen</a></h3>
+<p><strong>Frontend-Only</strong>: Alles ist einfach - nur <strong>ein Datenzustand</strong> im Browser:</p>
+<ul>
+<li>Button gedrückt? ✅ HTML/Cookie</li>
+<li>Seite geliked? ✅ Lokaler Speicher</li>
+</ul>
+<p><strong>Mit Backend</strong>: <strong>Zwei Datenzustände</strong> synchronisieren:</p>
+<ul>
+<li>🖥️ <strong>Frontend-State</strong> (Browser)</li>
+<li>🗄️ <strong>Backend-State</strong> (Datenbank)</li>
+</ul>
+<h3 id="-erste-implementierung-ziele"><a class="header" href="#-erste-implementierung-ziele">🎯 Erste Implementierung-Ziele</a></h3>
+<ol>
+<li><strong>📊 Like Count</strong> vom Backend laden und korrekt anzeigen</li>
+<li><strong>🔄 Blog-Page-ID-Wechsel</strong> mit Backend-Daten synchronisieren</li>
+</ol>
+<hr />
+<h2 id="-code-setup"><a class="header" href="#-code-setup">📁 Code-Setup</a></h2>
+<h3 id="-projekt-code-holen"><a class="header" href="#-projekt-code-holen">🔗 Projekt-Code holen</a></h3>
+<p><strong>Frontend herunterladen:</strong></p>
+<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection
+</code></pre>
+<p><strong>Backend herunterladen:</strong></p>
+<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
+</code></pre>
+<p><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
+<img src="./images/githubClone.png" alt="Github Download" /></p>
+<h3 id="-vs-code-settings-anpassen"><a class="header" href="#-vs-code-settings-anpassen">⚙️ VS Code Settings anpassen</a></h3>
+<p><strong>LiveServer-Konfiguration erweitern:</strong></p>
+<ol>
+<li><strong>Settings öffnen</strong>: Button unten links → Settings</li>
+</ol>
+<p><img src="./images/VsCodeSettings.png" alt="Settings öffnen" /></p>
+<ol start="2">
+<li><strong>LiveServer suchen</strong>: "liveServer" eingeben → "In settings.json öffnen"</li>
+</ol>
+<p><img src="./images/LiveServerSettings.png" alt="Settings öffnen" />
+3. <strong>JSON erweitern</strong>:</p>
+<pre><code class="language-json">"liveServer.settings.ignoreFiles": [
+  ".vscode/**",
+  "public/00_backend/**"
+]
+</code></pre>
+<p>Achte darauf, dass bei der Zeile davor ein Komma am Schluss ist.
+<img src="./images/LiveServerAddExclusion.png" alt="JSON edit" /></p>
+<ol start="4">
+<li><strong>Speichern</strong> und schließen</li>
+</ol>
+<h3 id="-optional-sqlite-editor"><a class="header" href="#-optional-sqlite-editor">🔧 Optional: SQLite-Editor</a></h3>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor">SQLite3 Editor Extension</a> installieren für direkten Datenbank-Zugriff.</p>
+<hr />
+<h2 id="-projekt-struktur-verstehen"><a class="header" href="#-projekt-struktur-verstehen">📂 Projekt-Struktur verstehen</a></h2>
+<h3 id="-backend-struktur-00_backend"><a class="header" href="#-backend-struktur-00_backend">🗄️ Backend-Struktur (<code>00_backend/</code>)</a></h3>
+<pre><code>00_backend/
+├── 📄 app.js                    # Express-Hauptanwendung
+├── 📄 package.json              # Dependencies &amp; Scripts
+├── 📄 .env                      # Umgebungsvariablen
+├── 📄 editorialContent.db       # SQLite-Datenbank
+├── 📄 readme.md                 # Setup-Anweisungen
+├── 📁 routes/                   # API-Endpunkte
+│   ├── likes.js                 # Like-Funktionalität
+│   ├── authorFollow.js          # Autor-Follow
+│   └── topicFollow.js           # Topic-Follow
+├── 📁 db/                       # Datenbank-Layer
+│   ├── blogPageLikesRepo.js     # Like-Operationen
+│   ├── authorFollowRepo.js      # Autor-Follow-Ops
+│   └── topicFollowRepo.js       # Topic-Follow-Ops
+└── 📁 utils/                    # Middleware &amp; Tools
+    ├── corsMiddleware.js        # CORS-Konfiguration
+    └── swagger.js               # API-Dokumentation
+</code></pre>
+<h3 id="-backend-starten"><a class="header" href="#-backend-starten">🚀 Backend starten</a></h3>
+<pre><code class="language-bash"># Terminal öffnen
+cd public/00_backend
+
+# Dependencies installieren  
+npm install
+
+# Development-Server starten
+npm run dev
+
+# ✅ Backend läuft auf Port 3000
+# 📚 API-Docs: http://localhost:3000/api-docs/
+</code></pre>
+<h3 id="-frontend-struktur-04_01_backendbaseconnection"><a class="header" href="#-frontend-struktur-04_01_backendbaseconnection">🎨 Frontend-Struktur (<code>04_01_backendBaseConnection/</code>)</a></h3>
+<pre><code>04_01_backendBaseConnection/
+├── 📄 index.html                # Haupt-HTML
+├── 📁 css/                      # Styling
+├── 📁 javascript/
+│   ├── 📄 main.js               # Entry Point
+│   ├── 📁 services/             # Backend-Services
+│   │   ├── 📄 observer.js       # Event-System (Singleton)
+│   │   ├── 📄 httpClient.js     # HTTP-Wrapper
+│   │   ├── 📄 blogPageLikes.js  # Like-API-Calls
+│   │   ├── 📄 authorFollow.js   # Autor-Follow-APIs
+│   │   └── 📄 topicFollow.js    # Topic-Follow-APIs
+│   └── 📁 pages/blogPage/       # Blog-spezifische Logik
+│       ├── 📄 blogPageMain.js   # Koordination
+│       ├── 📄 buttons.js        # Button-Events
+│       ├── 📄 likeStateHandler.js    # Like-State
+│       ├── 📄 followStateHandler.js  # Follow-State
+│       └── 📄 tables.js         # Tabellen-Management
+</code></pre>
+<h3 id="-architektur-highlights"><a class="header" href="#-architektur-highlights">🏗️ Architektur-Highlights</a></h3>
+<h4 id="services-layer"><a class="header" href="#services-layer"><strong>Services Layer</strong></a></h4>
+<ul>
+<li><strong>Backend-Integration</strong>: Alle API-Calls (erfordert laufenden Backend-Server)</li>
+<li><strong>Observer Pattern</strong>: Event-System für applikationsweite Zustandssynchronisation</li>
+<li><strong>Vorteil</strong>: Keine Page-Reloads bei Datenänderungen</li>
+</ul>
+<h4 id="event-driven-architecture"><a class="header" href="#event-driven-architecture"><strong>Event-Driven Architecture</strong></a></h4>
+<ul>
+<li><strong>Observer.js</strong>: Singleton-Pattern für typsafe Events</li>
+<li><strong>Auto UI-Updates</strong>: Änderungen reflektiert überall</li>
+<li><strong>Performance</strong>: Minimale API-Calls durch intelligente Zustandsverwaltung</li>
+</ul>
+<h4 id="moderne-javascript-patterns"><a class="header" href="#moderne-javascript-patterns"><strong>Moderne JavaScript-Patterns</strong></a></h4>
+<ul>
+<li><strong>ES6-Module</strong>: Import/Export-System</li>
+<li><strong>Async/Await</strong>: Statt Promise-Chains</li>
+<li><strong>Event Prevention</strong>: Verhindert Page-Reloads</li>
+</ul>
+<h3 id="-frontend--backend-workflow"><a class="header" href="#-frontend--backend-workflow">🔄 Frontend ↔ Backend Workflow</a></h3>
+<ol>
+<li><strong>Frontend</strong> → API-Calls über Services</li>
+<li><strong>Backend</strong> → JSON-Response</li>
+<li><strong>Observer</strong> → Änderungen an UI-Komponenten verteilen</li>
+<li><strong>UI</strong> → Automatische Updates ohne Page-Reload</li>
+</ol>
+<hr />
+<h2 id="-like-count-implementation"><a class="header" href="#-like-count-implementation">📊 Like Count Implementation</a></h2>
+<h3 id="-schritt-1-setlikecounter-funktion-erstellen"><a class="header" href="#-schritt-1-setlikecounter-funktion-erstellen">🎯 Schritt 1: setLikeCounter-Funktion erstellen</a></h3>
+<p><strong>In <code>likeStateHandler.js</code> - am Ende der Datei:</strong></p>
+<pre><code class="language-javascript">function setLikeCounter() {
+  // Logik kommt hier rein
+}
+</code></pre>
+<h3 id="-schritt-2-blogpageid-validierung"><a class="header" href="#-schritt-2-blogpageid-validierung">🔒 Schritt 2: BlogPageId-Validierung</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    // Nur weiter wenn gültige BlogPageId vorhanden
+  }
+}
+</code></pre>
+<h3 id="-schritt-3-html-element-finden-und-test-wert-setzen"><a class="header" href="#-schritt-3-html-element-finden-und-test-wert-setzen">🎨 Schritt 3: HTML-Element finden und Test-Wert setzen</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    document.getElementById("data-like-counter").textContent = 99;
+  }
+}
+</code></pre>
+<h3 id="-schritt-4-funktion-integrieren"><a class="header" href="#-schritt-4-funktion-integrieren">🔗 Schritt 4: Funktion integrieren</a></h3>
+<p><strong><code>blogPageMain.js</code> erweitern:</strong></p>
+<pre><code class="language-javascript">// Importiere die notwendigen Module
+import "./buttons.js";
+import "./tables.js";
+import "./likeStateHandler.js";
+</code></pre>
+<p><strong><code>likeStateHandler.js</code> - am Ende:</strong></p>
+<pre><code class="language-javascript">observeUserIdChange();
+observeBlogPageIdChange();
+observeLikeEvents();
+setLikeCounter();
+</code></pre>
+<h3 id="-schritt-5-blogpageid-setzen--sichtbarkeit"><a class="header" href="#-schritt-5-blogpageid-setzen--sichtbarkeit">⚡ Schritt 5: BlogPageId setzen &amp; Sichtbarkeit</a></h3>
+<p><strong>Test-BlogPageId setzen:</strong></p>
+<pre><code class="language-javascript">let blogPageId = 37832;  // Statt 0
+</code></pre>
+<p><strong>Invisible-Klasse entfernen:</strong></p>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    document.getElementById("data-like-counter").textContent = 99;
+    document.getElementById("like-counter").classList.remove("invisible");
+  }
+}
+</code></pre>
+<p><strong>✅ Test</strong>: Du solltest jetzt "99" und den Text sehen!</p>
+<hr />
+<h2 id="-backend-integration"><a class="header" href="#-backend-integration">🌐 Backend-Integration</a></h2>
+<h3 id="-schritt-1-service-importieren"><a class="header" href="#-schritt-1-service-importieren">📡 Schritt 1: Service importieren</a></h3>
+<pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
+import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
+</code></pre>
+<h3 id="-schritt-2-backend-call-implementieren"><a class="header" href="#-schritt-2-backend-call-implementieren">🔄 Schritt 2: Backend-Call implementieren</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    try {
+      const response = getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent = response.likeCount;
+      document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
+  }
+}
+</code></pre>
+<p><strong>🚨 Problem</strong>: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong></p>
+<h3 id="-schritt-3-asyncawait-pattern"><a class="header" href="#-schritt-3-asyncawait-pattern">⚡ Schritt 3: Async/Await Pattern</a></h3>
+<p><strong>Problem</strong>: Code wartet nicht auf Backend-Response.<br />
+<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen.</p>
+<pre><code class="language-javascript">async function setLikeCounter() {
+  if (blogPageId) {
+    try {
+      const response = await getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent = response.likeCount;
+      document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
+  }
+}
+</code></pre>
+<p><strong>✅ Test</strong>: Echte Backend-Daten werden geladen!</p>
+<hr />
+<h2 id="-event-driven-counter-updates"><a class="header" href="#-event-driven-counter-updates">🔄 Event-Driven Counter Updates</a></h2>
+<h3 id="-blogpageid-change-event-nutzen"><a class="header" href="#-blogpageid-change-event-nutzen">🎯 BlogPageId-Change-Event nutzen</a></h3>
+<p><strong>Direkten Funktionsaufruf entfernen:</strong></p>
+<pre><code class="language-javascript">// observeUserIdChange();
+// observeBlogPageIdChange();
+// observeLikeEvents();
+// setLikeCounter(); ← Diese Zeile entfernen
+</code></pre>
+<h3 id="-observer-integration"><a class="header" href="#-observer-integration">📡 Observer-Integration</a></h3>
+<p><strong>In <code>observeBlogPageIdChange()</code>:</strong></p>
+<pre><code class="language-javascript">function observeBlogPageIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.BLOG_PAGE_ID_CHANGED,
+    async (data) =&gt; {
+      blogPageId = data.blogPageId;
+      console.log("Current Blog Page ID in likeStateHandler:", blogPageId);
+      
+      setLikeCounter(); // ← Hier aufrufen
+    },
+    true  // Replay-Funktion für Initial-State
+  );
+}
+</code></pre>
+<h3 id="-event-flow-verstehen"><a class="header" href="#-event-flow-verstehen">🔄 Event-Flow verstehen</a></h3>
+<ol>
+<li><strong><code>main.js</code></strong> → BlogPageId = 2 setzen</li>
+<li><strong><code>main.js</code></strong> → <code>appObserver.emit()</code> Event versenden</li>
+<li><strong>Observer</strong> → Alle Subscriber informieren</li>
+<li><strong><code>likeStateHandler</code></strong> → <code>subscribe()</code> mit <code>true</code> = Replay-Funktion</li>
+<li><strong>Replay</strong> → Auch nachträglich registrierte Subscriber erhalten letzten Wert</li>
+</ol>
+<h3 id="-blogpageid-zurücksetzen"><a class="header" href="#-blogpageid-zurücksetzen">🔄 BlogPageId zurücksetzen</a></h3>
+<pre><code class="language-javascript">let blogPageId = 0;  // Wieder auf 0, da Wert von Observer kommt
+</code></pre>
+<p><strong>✅ Test</strong>: Likes werden weiterhin geladen, aber jetzt event-driven!</p>
+<p>Du kannst dies auch im Console.log überprüfen.
+<img src="./images/ConsoleLogLikeStateHandler.png" alt="LikeStateHandler Ausgabe" /></p>
+<hr />
+<h2 id="-testing--experimentation"><a class="header" href="#-testing--experimentation">🧪 Testing &amp; Experimentation</a></h2>
+<h3 id="-blogpageid-dynamisch-ändern"><a class="header" href="#-blogpageid-dynamisch-ändern">🔧 BlogPageId dynamisch ändern</a></h3>
+<p><strong>In <code>main.js</code> experimentieren:</strong></p>
+<pre><code class="language-javascript">// Verschiedene Blog-Page-IDs testen
+appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
+</code></pre>
+<h3 id="-development-workflow"><a class="header" href="#-development-workflow">📊 Development Workflow</a></h3>
+<ol>
+<li><strong>Backend starten</strong>: <code>cd 00_backend &amp;&amp; npm run dev</code></li>
+<li><strong>Frontend öffnen</strong>: <code>index.html</code> über LiveServer</li>
+<li><strong>API testen</strong>: http://localhost:3000/api-docs/</li>
+<li><strong>Console-Logs beobachten</strong> für Event-Flow-Debugging</li>
+</ol>
+<hr />
+<h2 id="-meilenstein-erreicht"><a class="header" href="#-meilenstein-erreicht">🎉 Meilenstein erreicht!</a></h2>
+<h3 id="-was-funktioniert-jetzt"><a class="header" href="#-was-funktioniert-jetzt">✅ Was funktioniert jetzt:</a></h3>
+<ol>
+<li><strong>📊 Backend-Integration</strong> - Like-Count aus Datenbank</li>
+<li><strong>🔄 Event-Driven Updates</strong> - Observer-Pattern implementiert</li>
+<li><strong>⚡ Async/Await</strong> - Moderne JavaScript-Patterns</li>
+<li><strong>🎛️ Dynamic BlogPageId</strong> - Reaktion auf ID-Änderungen</li>
+</ol>
+<h3 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🚀 Nächste Schritte:</a></h3>
+<p>Im nächsten Kapitel machen wir die <strong>Like-Buttons funktional</strong> und synchronisieren Backend-State mit Frontend-Interaktionen!</p>
 
                     </main>
 

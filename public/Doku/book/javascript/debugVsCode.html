@@ -175,7 +175,107 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="debug-js-mit-vscode"><a class="header" href="#debug-js-mit-vscode">Debug JS mit VsCode</a></h1>
+                        <h1 id="-debug-javascript-mit-vs-code"><a class="header" href="#-debug-javascript-mit-vs-code">🐛 Debug JavaScript mit VS Code</a></h1>
+<p>Wenn dein Code nicht wie erwartet funktioniert, hast du zwei Debugging-Optionen: Browser (Chrome) oder VS Code. Der <strong>Vorteil beim VS Code Debugging</strong> ist, dass du Code korrigieren und sofort die Auswirkungen sehen kannst.</p>
+<h2 id="-zusätzliche-ressourcen"><a class="header" href="#-zusätzliche-ressourcen">📖 Zusätzliche Ressourcen</a></h2>
+<p>Eine grundlegende Anleitung findest du in der <a href="https://code.visualstudio.com/docs/debugtest/debugging">offiziellen VS Code Dokumentation</a>. Falls das nicht reibungslos funktioniert, verwendet diese Anleitung zusätzlich den <strong>LiveServer</strong> und hat sich in Tests bewährt.</p>
+<hr />
+<h2 id="-debug-session-starten-mit-vs-code"><a class="header" href="#-debug-session-starten-mit-vs-code">🚀 Debug Session starten mit VS Code</a></h2>
+<h3 id="vorbereitung"><a class="header" href="#vorbereitung">Vorbereitung</a></h3>
+<ol>
+<li><strong>Projekt öffnen</strong>: Öffne den Ordner <code>public/03_javascript/02_buttonReactive</code> in VS Code<br />
+<em>(alternativ ein beliebiges Projekt mit JavaScript und HTML)</em></li>
+<li><strong>LiveServer starten</strong>: Starte die <code>index.html</code> mit deinem LiveServer</li>
+<li><strong>URL überprüfen</strong>: Du solltest die Seite über folgende URL sehen:
+<pre><code>http://127.0.0.1:5500/public/03_javascript/03_buttonReactive/index.html
+</code></pre>
+</li>
+</ol>
+<h3 id="debug-verbindung-einrichten"><a class="header" href="#debug-verbindung-einrichten">Debug-Verbindung einrichten</a></h3>
+<ol>
+<li><strong>Debug-Panel öffnen</strong>: Gehe zum "Debug"-Bereich in VS Code</li>
+<li><strong>Befehlspalette öffnen</strong>:
+<ul>
+<li><strong>Mac</strong>: <code>Cmd + Shift + P</code></li>
+<li><strong>Windows/Linux</strong>: <code>Ctrl + Shift + P</code></li>
+</ul>
+</li>
+<li><strong>Befehl eingeben</strong>: Tippe <code>Debug: link</code> in die Befehlszeile</li>
+<li><strong>Debug-Link öffnen</strong>: Klicke auf das Ergebnis <strong>"Debug: Open Link"</strong>
+<img src="./images/VsCodeDebug_link.png" alt="Debug Link" /></li>
+<li><strong>URL eingeben</strong>: Kopiere die LiveServer-URL und füge sie ein
+<img src="./images/VsCodeDebug_start.png" alt="Link bestätigen" /></li>
+<li><strong>Verbindung bestätigen</strong>: Der Browser sollte die Seite öffnen und in VS Code solltest du die "Aufrufliste" sehen
+<img src="./images/VsCodeDebugAufrufliste.png" alt="Aufrufliste" /></li>
+</ol>
+<h3 id="breakpoints-setzen"><a class="header" href="#breakpoints-setzen">Breakpoints setzen</a></h3>
+<ol>
+<li><strong>JavaScript-Datei öffnen</strong>: Gehe zu einer JavaScript-Datei (z.B. <code>buttons.js</code>)</li>
+<li><strong>Breakpoint setzen</strong>: Klicke am <strong>linken Rand</strong> der gewünschten Zeile<br />
+→ Ein <strong>roter Punkt</strong> wird angezeigt
+<img src="./images/VsCodeDebugBreakpoint.png" alt="Breakpoint" /></li>
+<li><strong>Code ausführen</strong>: Gehe zurück zur Webseite und führe eine Aktion aus (z.B. Button klicken)</li>
+<li><strong>Debugging startet</strong>: Der Debugger stoppt an der markierten Stelle
+<img src="./images/VsCodeDebugPaused.png" alt="Breakpoint paused" /></li>
+</ol>
+<h3 id="debug-steuerung"><a class="header" href="#debug-steuerung">Debug-Steuerung</a></h3>
+<ol>
+<li><strong>Debug-Toolbar</strong>: Du siehst eine verschiebbare Button-Leiste zur Debugging-Steuerung
+<img src="./images/VsCodeSteuerung.png" alt="Steuerung" /></li>
+<li><strong>Step Over</strong> (<code>F8</code>):
+<ul>
+<li>Drücke den ersten Button rechts vom Play-Symbol</li>
+<li>Führt die aktuelle Zeile aus und geht zur nächsten</li>
+</ul>
+</li>
+<li><strong>Step Into</strong> (<code>F7</code>):
+<ul>
+<li>Wenn du wissen möchtest, was sich hinter einer Funktion wie <code>toggleLikeButtonState(button);</code> verbirgt</li>
+<li>Springt <strong>in die Methode hinein</strong> für detaillierte Analyse</li>
+</ul>
+</li>
+<li><strong>Schritt-für-Schritt</strong>:
+<ul>
+<li><strong>F7</strong> = Mehr ins Detail (Step Into)</li>
+<li><strong>F8</strong> = Überspringen (Step Over)</li>
+</ul>
+</li>
+</ol>
+<h3 id="variable-inspizieren"><a class="header" href="#variable-inspizieren">Variable inspizieren</a></h3>
+<ol>
+<li><strong>Werte anzeigen</strong>:
+<ul>
+<li>Fahre mit der Maus über eine Variable und bleibe stehen</li>
+<li>Der Wert wird direkt angezeigt</li>
+<li>Zusätzlich gibt es <strong>oben links eine Übersicht</strong> aller Variablen
+<img src="./images/VsCodeDebugVariablenValues.png" alt="Values" /></li>
+</ul>
+</li>
+<li><strong>Werte ändern</strong>:
+<ul>
+<li><strong>Doppelklick</strong> auf eine Variable in der Übersicht</li>
+<li>Ändere den Wert und bestätige mit <code>Enter</code>
+<img src="./images/VsCodeDebugChangeValue.png" alt="Change values" /></li>
+</ul>
+</li>
+<li><strong>Simulation</strong>:
+<ul>
+<li>Hilfreich zum Testen: "Wie würde sich der Code verhalten, wenn...?"</li>
+<li>Ändere Werte temporär zur Simulation verschiedener Szenarien</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="-weiterführende-informationen"><a class="header" href="#-weiterführende-informationen">🔗 Weiterführende Informationen</a></h2>
+<p>Detaillierte Informationen findest du in der <a href="https://code.visualstudio.com/docs/debugtest/debugging">offiziellen VS Code Debugging-Dokumentation</a>.</p>
+<hr />
+<h2 id="-tipps"><a class="header" href="#-tipps">💡 Tipps</a></h2>
+<ul>
+<li><strong>LiveServer</strong> erleichtert das Debugging erheblich</li>
+<li><strong>Breakpoints</strong> können jederzeit gesetzt/entfernt werden</li>
+<li><strong>Variablen-Werte</strong> können zur Laufzeit geändert werden</li>
+<li><strong>Step Into vs. Step Over</strong> je nach gewünschtem Detailgrad verwenden</li>
+</ul>
 
                     </main>
 

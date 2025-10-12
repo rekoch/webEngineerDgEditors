@@ -245,52 +245,63 @@ Dies ist zwar nicht ganz korrekt. Wenn du die Geschichte auf Wikipedia nachliest
 <h3 id="-und-"><a class="header" href="#-und-">== und ===</a></h3>
 <p>Time to code. Juhuu. Starte auf deinem Windows oder Mac "node".
 Gib auf der Konsole nun folgendes ein:</p>
-<pre><code>0 == 0
+<pre><code class="language-javascript">0 == 0;
 </code></pre>
 <p>Überlege dir nun, was das Resultat ist. Mache nun jeweils das selbe, mit allen nachfolgenden Beispielen. Überlege dir immer VOR der Eingabe, was wohl das Resultat sein könnte:</p>
-<pre><code>0 == new String("0")
+<pre><code class="language-javascript">0 == new String("0");
 
-0 == "0"
+0 == "0";
 
-new String ("0") == "0"
+new String("0") == "0";
 
-null == undefined
+null == undefined;
 
-"" == false
+"" == false;
 
-1 == true
+1 == true;
 
-"1" == true
+"1" == true;
 
 new String("66") == true;
 </code></pre>
 <p>Jetzt wiederhole die Schritte und benutze anstelle von <code>==</code> jeweils <code>===</code></p>
 <h3 id="objekte-und-funktionen"><a class="header" href="#objekte-und-funktionen">Objekte und Funktionen</a></h3>
 <p>Verwende weiterhin jeweils node, um die Beispiele zu programmieren.</p>
-<pre><code>var person = {}; eingeben
-this.person; eingeben
+<pre><code class="language-javascript">var person = {};
+//eingeben;
+this.person;
+//eingeben;
 </code></pre>
 <p>Was lernst du daraus? Mit {} konntest du einfach so ein Objekt erstellen.</p>
 <p>JavaScript erstellt aus allem direkt ein Objekt. Damit lässt sich wunderbar ein Objekt auch erweitern. Entgegen bspw. Java, muss dieses Objekt nicht auf einer Klasse definieren.</p>
 <p>Gib folgendes ein:</p>
-<pre><code>this.person.name = 'urs';
+<pre><code class="language-javascript">this.person.name = "urs";
 this.person;
 </code></pre>
 <p>Genau. Es hat funktioniert. Jetzt hast du einfach so deinem leeren Objekt kurzerhand ein neues Property angefügt und abgefüllt. Auch hier. Keine Klasse sagt, wie dein Objekt auszusehen hat. Ausserdem ist jedes Objekt immer komplett unabhängig von einem anderen.
 Du hast eine Variable deklariert, jedoch keinen Wert vergeben. Solche Variablen sind in JavaScript zwar vorhanden, aber sind "undefined". Du darfst also nicht versuchen, auf ein weiteres Property zuzugreifen. Du wirst wohl noch oft den Fehler antreffen, dass du auf eine undefined Variable zugreifen willst.</p>
 <h3 id="funktionen"><a class="header" href="#funktionen">Funktionen</a></h3>
 <p>In JavaScript kannst du dir jedes Objekt wie eine Art HashMap in Java vorstellen. Du hast also eine Art Katalog, welcher definiert, welche Werte existieren und was dort abgespeichert ist. Die Werte können dabei andere Objekte oder auch Funktionen sein. Versuche folgendes:</p>
-<pre><code>var person = {};
-person.adress = {strasse: 'ume egge', nummer: 2, ort: 'hie'};
-this.person
-person.sayHello = function() {return 'hallo du'};
+<pre><code class="language-javascript">var person = {};
+person.adress = { strasse: "ume egge", nummer: 2, ort: "hie" };
+this.person;
+person.sayHello = function () {
+  return "hallo du";
+};
 this.person;
 this.person.sayHello();
 </code></pre>
 <p>Funktionen können auf verschiedene Arten erstellt werden.</p>
-<p>function doIt() { return 'no';}
-var doItMaybe = function () { return 'still no';}
-var doItDefiniv = function stillBlocking() { return 'I give up';}</p>
+<pre><code class="language-javascript">function doIt() {
+  return "no";
+}
+var doItMaybe = function () {
+  return "still no";
+};
+var doItDefiniv = function stillBlocking() {
+  return "I give up";
+};
+</code></pre>
 <p>Erste Variante wird gehoistet und kann vorher schon benutzt werden. Andere Varianten nicht. Named hat Vorteile beim Debuggen. Führe alle Varianten mit () aus -&gt;</p>
 <ul>
 <li>Kein grosser Unterschied</li>
@@ -298,30 +309,30 @@ var doItDefiniv = function stillBlocking() { return 'I give up';}</p>
 <li>Der Name wird bei Variante 3 entsprechend angezeigt</li>
 </ul>
 <p>In JavaScript ist wirklich ALLES ein Objekt. Sogar Funktionen. Lass es uns beweisen und gib folgendes ein:</p>
-<pre><code>doItMaybe instanceOf Object
-doItMaybe.candidate = 'nid ig'
+<pre><code class="language-javascript">doItMaybe instanceOf Object
+    doItMaybe.candidate = 'nid ig'
 </code></pre>
 <p>das erste wird <code>true</code> zurückgeben.</p>
 <p>Was denkst, du was nun in doItMaybe drin ist wenn du es ausführst?
 Auch ein Array verhält sich eigentlich genau gleich wie ein Objekt:</p>
-<pre><code>var a = [];
-a[0] = 1;
-a; -&gt; Ausgabe prüfen
-a[100] = 100;
--&gt; denkst du das geht?
-a; -&gt; Ausgabe prüfen
+<pre><code class="language-javascript">var a = [];
+    a[0] = 1;
+    a; //-&gt; Ausgabe prüfen
+    a[100] = 100;
+    //-&gt; denkst du das geht?
+    a; //-&gt; Ausgabe prüfen
 </code></pre>
 <p>Hier musst du immer sehr darauf achten, wenn du bspw. einen Loop hast mit einer Schleifenvariable. Ein Fehler und deine Schleife läuft endlos.</p>
 <h3 id="higher-order-function"><a class="header" href="#higher-order-function">Higher Order Function</a></h3>
 <p>Eine Funktion kann eine Funktion enthalten. Ist dies der Fall, nennt man dieses Konstrukt eine "higher Order function". In Frameworks wie Angular oder React wirst du sehr häufig solche Konstrukte vorfinden.</p>
-<pre><code>var higherOrderFunction = function (justANumber, func) {
-justANumber = justANumber * 1000;
-func(justANumber);
-}
-this.higherOrderFunction(10, function(answer){console.log(answer)};
+<pre><code class="language-javascript">var higherOrderFunction = function (justANumber, func) {
+    justANumber = justANumber * 1000;
+    func(justANumber);
+    }
+    this.higherOrderFunction(10, function(answer){console.log(answer)};
 </code></pre>
 <p>Das ganze kann auch mit einer Arrow functions ausgeführt werden:</p>
-<pre><code>this.higherOrderFunction(10, answer =&gt; console.log(answer) )
+<pre><code class="language-javascript">this.higherOrderFunction(10, (answer) =&gt; console.log(answer));
 </code></pre>
 <h3 id="let-and-const"><a class="header" href="#let-and-const">Let and const</a></h3>
 <p>In einem modernen JavasScript Umfeld soll immer <code>let</code> und <code>const</code> verwendet werden. Man kann Variablen auch mit dem Keyword <code>var</code> erstellen. Dies verursacht jedoch ungewünschte Effekte und soll nicht mehr gemacht werden);</p>
@@ -394,46 +405,146 @@ Der Debugger stoppt an genau der Stelle.</p>
 <p>Aber Achtung! Du darfst das "debugger" statement natürlich nicht produkiv ausliefern. Sonst stoppt die Page bei allen, die gleichzeitig das Dev Tool öffnen (wenigstens nur dann :D )</p>
 <h3 id="weitere-infos-zum-chrome-debug-tool"><a class="header" href="#weitere-infos-zum-chrome-debug-tool">Weitere Infos zum Chrome Debug Tool</a></h3>
 <p>Noch viel umfassender findest du die Debug Tools Erklärungen hier https://developer.chrome.com/docs/devtools/javascript?hl=de</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="debug-js-mit-vscode"><a class="header" href="#debug-js-mit-vscode">Debug JS mit VsCode</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-debug-javascript-mit-vs-code"><a class="header" href="#-debug-javascript-mit-vs-code">🐛 Debug JavaScript mit VS Code</a></h1>
+<p>Wenn dein Code nicht wie erwartet funktioniert, hast du zwei Debugging-Optionen: Browser (Chrome) oder VS Code. Der <strong>Vorteil beim VS Code Debugging</strong> ist, dass du Code korrigieren und sofort die Auswirkungen sehen kannst.</p>
+<h2 id="-zusätzliche-ressourcen"><a class="header" href="#-zusätzliche-ressourcen">📖 Zusätzliche Ressourcen</a></h2>
+<p>Eine grundlegende Anleitung findest du in der <a href="https://code.visualstudio.com/docs/debugtest/debugging">offiziellen VS Code Dokumentation</a>. Falls das nicht reibungslos funktioniert, verwendet diese Anleitung zusätzlich den <strong>LiveServer</strong> und hat sich in Tests bewährt.</p>
+<hr />
+<h2 id="-debug-session-starten-mit-vs-code"><a class="header" href="#-debug-session-starten-mit-vs-code">🚀 Debug Session starten mit VS Code</a></h2>
+<h3 id="vorbereitung"><a class="header" href="#vorbereitung">Vorbereitung</a></h3>
+<ol>
+<li><strong>Projekt öffnen</strong>: Öffne den Ordner <code>public/03_javascript/02_buttonReactive</code> in VS Code<br />
+<em>(alternativ ein beliebiges Projekt mit JavaScript und HTML)</em></li>
+<li><strong>LiveServer starten</strong>: Starte die <code>index.html</code> mit deinem LiveServer</li>
+<li><strong>URL überprüfen</strong>: Du solltest die Seite über folgende URL sehen:
+<pre><code>http://127.0.0.1:5500/public/03_javascript/03_buttonReactive/index.html
+</code></pre>
+</li>
+</ol>
+<h3 id="debug-verbindung-einrichten"><a class="header" href="#debug-verbindung-einrichten">Debug-Verbindung einrichten</a></h3>
+<ol>
+<li><strong>Debug-Panel öffnen</strong>: Gehe zum "Debug"-Bereich in VS Code</li>
+<li><strong>Befehlspalette öffnen</strong>:
+<ul>
+<li><strong>Mac</strong>: <code>Cmd + Shift + P</code></li>
+<li><strong>Windows/Linux</strong>: <code>Ctrl + Shift + P</code></li>
+</ul>
+</li>
+<li><strong>Befehl eingeben</strong>: Tippe <code>Debug: link</code> in die Befehlszeile</li>
+<li><strong>Debug-Link öffnen</strong>: Klicke auf das Ergebnis <strong>"Debug: Open Link"</strong>
+<img src="javascript/./images/VsCodeDebug_link.png" alt="Debug Link" /></li>
+<li><strong>URL eingeben</strong>: Kopiere die LiveServer-URL und füge sie ein
+<img src="javascript/./images/VsCodeDebug_start.png" alt="Link bestätigen" /></li>
+<li><strong>Verbindung bestätigen</strong>: Der Browser sollte die Seite öffnen und in VS Code solltest du die "Aufrufliste" sehen
+<img src="javascript/./images/VsCodeDebugAufrufliste.png" alt="Aufrufliste" /></li>
+</ol>
+<h3 id="breakpoints-setzen"><a class="header" href="#breakpoints-setzen">Breakpoints setzen</a></h3>
+<ol>
+<li><strong>JavaScript-Datei öffnen</strong>: Gehe zu einer JavaScript-Datei (z.B. <code>buttons.js</code>)</li>
+<li><strong>Breakpoint setzen</strong>: Klicke am <strong>linken Rand</strong> der gewünschten Zeile<br />
+→ Ein <strong>roter Punkt</strong> wird angezeigt
+<img src="javascript/./images/VsCodeDebugBreakpoint.png" alt="Breakpoint" /></li>
+<li><strong>Code ausführen</strong>: Gehe zurück zur Webseite und führe eine Aktion aus (z.B. Button klicken)</li>
+<li><strong>Debugging startet</strong>: Der Debugger stoppt an der markierten Stelle
+<img src="javascript/./images/VsCodeDebugPaused.png" alt="Breakpoint paused" /></li>
+</ol>
+<h3 id="debug-steuerung"><a class="header" href="#debug-steuerung">Debug-Steuerung</a></h3>
+<ol>
+<li><strong>Debug-Toolbar</strong>: Du siehst eine verschiebbare Button-Leiste zur Debugging-Steuerung
+<img src="javascript/./images/VsCodeSteuerung.png" alt="Steuerung" /></li>
+<li><strong>Step Over</strong> (<code>F8</code>):
+<ul>
+<li>Drücke den ersten Button rechts vom Play-Symbol</li>
+<li>Führt die aktuelle Zeile aus und geht zur nächsten</li>
+</ul>
+</li>
+<li><strong>Step Into</strong> (<code>F7</code>):
+<ul>
+<li>Wenn du wissen möchtest, was sich hinter einer Funktion wie <code>toggleLikeButtonState(button);</code> verbirgt</li>
+<li>Springt <strong>in die Methode hinein</strong> für detaillierte Analyse</li>
+</ul>
+</li>
+<li><strong>Schritt-für-Schritt</strong>:
+<ul>
+<li><strong>F7</strong> = Mehr ins Detail (Step Into)</li>
+<li><strong>F8</strong> = Überspringen (Step Over)</li>
+</ul>
+</li>
+</ol>
+<h3 id="variable-inspizieren"><a class="header" href="#variable-inspizieren">Variable inspizieren</a></h3>
+<ol>
+<li><strong>Werte anzeigen</strong>:
+<ul>
+<li>Fahre mit der Maus über eine Variable und bleibe stehen</li>
+<li>Der Wert wird direkt angezeigt</li>
+<li>Zusätzlich gibt es <strong>oben links eine Übersicht</strong> aller Variablen
+<img src="javascript/./images/VsCodeDebugVariablenValues.png" alt="Values" /></li>
+</ul>
+</li>
+<li><strong>Werte ändern</strong>:
+<ul>
+<li><strong>Doppelklick</strong> auf eine Variable in der Übersicht</li>
+<li>Ändere den Wert und bestätige mit <code>Enter</code>
+<img src="javascript/./images/VsCodeDebugChangeValue.png" alt="Change values" /></li>
+</ul>
+</li>
+<li><strong>Simulation</strong>:
+<ul>
+<li>Hilfreich zum Testen: "Wie würde sich der Code verhalten, wenn...?"</li>
+<li>Ändere Werte temporär zur Simulation verschiedener Szenarien</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="-weiterführende-informationen"><a class="header" href="#-weiterführende-informationen">🔗 Weiterführende Informationen</a></h2>
+<p>Detaillierte Informationen findest du in der <a href="https://code.visualstudio.com/docs/debugtest/debugging">offiziellen VS Code Debugging-Dokumentation</a>.</p>
+<hr />
+<h2 id="-tipps"><a class="header" href="#-tipps">💡 Tipps</a></h2>
+<ul>
+<li><strong>LiveServer</strong> erleichtert das Debugging erheblich</li>
+<li><strong>Breakpoints</strong> können jederzeit gesetzt/entfernt werden</li>
+<li><strong>Variablen-Werte</strong> können zur Laufzeit geändert werden</li>
+<li><strong>Step Into vs. Step Over</strong> je nach gewünschtem Detailgrad verwenden</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript-und-aynchronität"><a class="header" href="#javascript-und-aynchronität">JavaScript und Aynchronität</a></h1>
 <p>Weil ein Browser bereits auf dem Betriebssystem als Applikation läuft, steht den Teilen in JavaScript nur ein Thread zur Verfügung. Ein Thread ist eine Ressource, welche das Betriebssystem einer Applikation für die Ausführung von Rechenoperationen bereit stellt. Hat man nur 1 solchen Thread, können keine Rechenoperationen gleichzeitig behandelt werden. Der Browser kümmert sich aber nebst dem Ausführen von JavaScript auch noch um die Darstellung der Seite mit HTML oder CSS. Wenn du jetzt also bspw. die ersten 100 Zahlen der Fibonacci Folge berechnen willst, würde die Webseite während dieser Zeit "einfrieren" und keine Interaktionen vom Benutzer mehr entgegen nehmen. Dieses "Problem"wird so gelöst, dass der Browser angewiesen wird (mit JavaScript), dass er aufwändigere Operationen nachlagert ausführt. Du weisst dann nicht genau, wann dein Stück Code effektiv ausgeführt wird. Dieses "asynchrone" Verhalten führt im Umgang mit JavaScript zu einer höheren Komplexität.</p>
 <p>Du kannst dir so vorstellen, wie wenn du jemanden bittest, dir einen Kaffee zu besorgen. Während der Kaffee "hoffentlich" organisiert wird, arbeitest du weiter. Wenn er dann da ist, wirst du den Kaffee trinken wollen. Die Aktion "Kaffee trinken" definierst du zwar schon bei der Bestellung des Kaffees (das ist deine Absicht), führst sie aber erst aus, wenn der Kaffee da ist.</p>
 <p>In JavaScript wird dies so gelöst, indem eine Funktion eine andere Funktion entgegen nimmt. Die Funktion "Kaffee trinken" wird der Funktion "Kaffee bestellen" mitgegeben. Wenn der Kaffee dann da ist, wird er getrunken. Zeitpunkt und Detail der Ausführung wird in der Methode "Kaffee bestellen" definiert, der konkrete Ablauf von "Kaffee trinken" in der Funktion, die übergeben wird.</p>
 <p>Unter <a href="https://www.w3schools.com/js/js_callback.asp">w3schools Callbacks</a> findest du ebenfalls ein Code Beispiel dazu. Sicher findest du auch auf YouTube Erklär-Videos zu Callbacks.</p>
 <p>Die Syntax sieht wie folgt aus:</p>
-<pre><code>function functionWithCallback(callback) {
-    console.log("Funktion mit Callback wird ausgeführt");
-    callback();
+<pre><code class="language-javascript">function functionWithCallback(callback) {
+  console.log("Funktion mit Callback wird ausgeführt");
+  callback();
 }
 
 function callbackFunction() {
-    console.log("Callback-Funktion wird ausgeführt");
+  console.log("Callback-Funktion wird ausgeführt");
 }
 
 functionWithCallback(callbackFunction);
 </code></pre>
 <p>Die Funktion <code>functionWithCallback</code> nimmt als Parameter eine Funktion entgegen, welche dann ausgeführt wird. Mittels <code>()</code> siehst du, dass es eine Funktion ist. Inhaltlich weiss die Methode nicht, was sie ausführt, bestimmt aber den Zeitpunkt.</p>
 <p>Die Funktion <code>callbackFunction</code> ist die Funktion selbst. Ein Beispiel mit dem Kaffee trinken können wir erweitern, dass die Funktion "Kaffee bestellen" der Funktion "Kaffee trinken" auch noch mitgibt, welchen Kaffee genau eigentlich bestellt wurde.</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    console.log("Kaffee ist da!");
-    callback("Milchkaffee");
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  console.log("Kaffee ist da!");
+  callback("Milchkaffee");
 }
 
 function drinkCoffee(coffeeType) {
-    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+  console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
 }
 
 orderCoffee(drinkCoffee);
 </code></pre>
 <p>Die Funktion "drinkCoffee" verlangt also ebenfalls einen Parameter, den sie nutzen will. Sie weiss nicht "was" dort mitkommt. Die "orderCoffee" Funktion muss sich nun also darum kümmern und übergibt den Typ beim Aufruf des Callbacks.</p>
 <p>Wieso macht das so nicht viel Sinn? Der Aufruf von "callback" ist aktuell relativ synchron, da Zeile für Zeile abgearbeitet wird. Stell dir vor, es braucht lange bis die Aktion durch ist. In einem technischen Sinne beispielsweise, weil die Aufgabe über einen entfernten Server erfolgt oder eine lang dauernde Datebankabfrage erfolgt. Du kannst so was mit einem "setTimeout()" simulieren.</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    setTimeout(() =&gt; {
-        console.log("Kaffee ist da!");
-        callback("Milchkaffee");
-     }, 2000);
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  setTimeout(() =&gt; {
+    console.log("Kaffee ist da!");
+    callback("Milchkaffee");
+  }, 2000);
 }
 </code></pre>
 <p>Wir warten nun 2 Sekunden, bis es weiter geht.</p>
@@ -441,26 +552,1361 @@ orderCoffee(drinkCoffee);
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a></p>
 <p>Anstelle von</p>
 <p><code>orderCoffee(drinkCoffee)</code> übergeben wir den Inhalt von "drinkCoffee" direkt mit der Arrow Syntax</p>
-<pre><code>function orderCoffee(callback) {
-    console.log("Kaffee wird bestellt...");
-    setTimeout(() =&gt; {
-        console.log("Kaffee ist da!");
-        callback("Milchkaffee");
-    }, 2000);
+<pre><code class="language-javascript">function orderCoffee(callback) {
+  console.log("Kaffee wird bestellt...");
+  setTimeout(() =&gt; {
+    console.log("Kaffee ist da!");
+    callback("Milchkaffee");
+  }, 2000);
 }
 
 orderCoffee((coffeeType) =&gt; {
-    console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
+  console.log(`Kaffee wird getrunken: ${coffeeType} ☕️`);
 });
 </code></pre>
-<p>die ganze <code>drinkCoffee</code> Funktion ist nicht mehr nötig und wird direkt geschrieben.  Du musst das nicht und kannst immer noch innerhalb des Arrow Bodys {} eine andere Funktion aufrufen.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="blog-page-intelligence"><a class="header" href="#blog-page-intelligence">Blog Page Intelligence</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-table-auto-design"><a class="header" href="#-table-auto-design">🤖 Table auto design</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-push-the-button"><a class="header" href="#-push-the-button">🛎️ Push the button</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-connect-the-backend"><a class="header" href="#-connect-the-backend">⛓️‍💥 connect the backend</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-like-funktion-wiederherstellen"><a class="header" href="#-like-funktion-wiederherstellen">❤️‍🩹 like Funktion wiederherstellen</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-follow-funktion-wiederherstellen"><a class="header" href="#-follow-funktion-wiederherstellen">🚓 follow Funktion wiederherstellen</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up"><a class="header" href="#-wrap-it-up">💝 wrap it up</a></h1>
+<p>die ganze <code>drinkCoffee</code> Funktion ist nicht mehr nötig und wird direkt geschrieben. Du musst das nicht und kannst immer noch innerhalb des Arrow Bodys {} eine andere Funktion aufrufen.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-blog-page-intelligence"><a class="header" href="#-blog-page-intelligence">🧠 Blog Page Intelligence</a></h1>
+<p><img src="javascript/blogPageIntelligence/./images/BPI_welcome.png" alt="Intro" /></p>
+<h2 id="-von-statisch-zu-dynamisch"><a class="header" href="#-von-statisch-zu-dynamisch">🎯 Von statisch zu dynamisch</a></h2>
+<p>Bisher ist unsere Blog Page <strong>statisch</strong> - sie kann aufgerufen werden, aber nichts passiert bei Interaktionen. Buttons haben keine Wirkung. <strong>Hier kommt JavaScript ins Spiel!</strong></p>
+<p>Mittels JavaScript geben wir der Blog Page mehr <strong>Intelligenz</strong>:</p>
+<ul>
+<li><strong>Design-Anforderungen</strong> eleganter lösen</li>
+<li><strong>Buttons mit Aktionen</strong> ausstatten</li>
+<li><strong>Datenladung und -speicherung</strong> optimieren</li>
+</ul>
+<hr />
+<h2 id="-hauptziele"><a class="header" href="#-hauptziele">🎯 Hauptziele</a></h2>
+<h3 id="kern-features-must-have"><a class="header" href="#kern-features-must-have">Kern-Features (Must-have)</a></h3>
+<ol>
+<li>
+<p><strong>📊 Diagramm/Tabelle dynamischer gestalten</strong></p>
+<ul>
+<li>Interaktive Elemente</li>
+<li>Responsive Verhalten</li>
+<li>Bessere Benutzererfahrung</li>
+</ul>
+</li>
+<li>
+<p><strong>🔘 Alle Buttons mit Wirkung ausstatten</strong></p>
+<ul>
+<li>Like-Funktionalität</li>
+<li>Follow-Buttons</li>
+<li>Feedback für Benutzeraktionen</li>
+</ul>
+</li>
+<li>
+<p><strong>🌐 Backend-Kommunikation</strong></p>
+<ul>
+<li>Daten remote laden</li>
+<li>Daten persistent speichern</li>
+<li>API-Integration</li>
+</ul>
+</li>
+</ol>
+<h3 id="erweiterte-features-nice-to-have"><a class="header" href="#erweiterte-features-nice-to-have">Erweiterte Features (Nice-to-have)</a></h3>
+<p>Wenn die Zeit gut reicht:</p>
+<ol start="4">
+<li>
+<p><strong>👤 Simples Login-System</strong></p>
+<ul>
+<li>Benutzer-Differenzierung</li>
+<li>Personalisierte Like/Follow-Zustände</li>
+<li>Session-Management</li>
+</ul>
+</li>
+<li>
+<p><strong>📝 Einfaches CMS über Backend</strong></p>
+<ul>
+<li>Content direkt editieren</li>
+<li>WYSIWYG-Editor</li>
+<li>Content-Management-Interface</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="-lernziele"><a class="header" href="#-lernziele">🚀 Lernziele</a></h2>
+<p>Nach diesem Kapitel wirst du:</p>
+<ul>
+<li><strong>JavaScript</strong> für UI-Interaktionen einsetzen können</li>
+<li><strong>API-Kommunikation</strong> verstehen und implementieren</li>
+<li><strong>State Management</strong> in Frontend-Anwendungen beherrschen</li>
+<li><strong>Event-driven Programming</strong> anwenden können</li>
+<li>Den <strong>kompletten Entwicklungszyklus</strong> von Frontend zu Backend verstehen</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-table-auto-design"><a class="header" href="#-table-auto-design">🤖 Table Auto Design</a></h1>
+<h2 id="-das-problem"><a class="header" href="#-das-problem">🎯 Das Problem</a></h2>
+<p>Wenn du den letzten Stand aus dem <a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/02_html_css/09_blog_page_completed">GitHub Repository</a> nimmst, findest du eine Tabelle für die Benchmark-Übersicht.</p>
+<p>Die Tabelle startet hier: <a href="https://github.com/rekoch/webEngineerDgEditors/blob/780c327390f81ab9a61810681ac9baeac2ba58d1/public/02_html_css/09_blog_page_completed/index.html#L202">index.html#L202</a></p>
+<h3 id="-design-herausforderung"><a class="header" href="#-design-herausforderung">🚨 Design-Herausforderung</a></h3>
+<p>Obwohl die Tabelle funktioniert, hat sie ein <strong>fundamentales Problem</strong>: Die Breite der Diagramm-Säulen ist fest im HTML hinterlegt.</p>
+<pre><code class="language-html">&lt;p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+   style="width: 24%"&gt;
+</code></pre>
+<p><strong>CSS hat hier seine Grenzen</strong> - Breiten und Höhen basierend auf "anderen" Elementen zu definieren, kann CSS nicht.</p>
+<h3 id="-ziele-der-dynamischen-tabelle"><a class="header" href="#-ziele-der-dynamischen-tabelle">🎯 Ziele der dynamischen Tabelle</a></h3>
+<p>Wir möchten eine Tabelle, die folgendes kann:</p>
+<ol>
+<li><strong>Automatische Berechnung</strong>: 100% Breite = höchster Wert, alle anderen prozentual abgeleitet</li>
+<li><strong>Dynamische Anpassung</strong>: Ändern sich Werte, passt sich das Design automatisch an</li>
+<li><strong>Wiederverwendbarkeit</strong>: Tabelle kann kopiert und mit neuen Werten verwendet werden</li>
+</ol>
+<hr />
+<h2 id="-javascript-setup"><a class="header" href="#-javascript-setup">🛠️ JavaScript Setup</a></h2>
+<h3 id="-grundlagen-javascript-einbinden"><a class="header" href="#-grundlagen-javascript-einbinden">📚 Grundlagen JavaScript einbinden</a></h3>
+<p>Informationen zum Einbinden findest du auf <a href="https://wiki.selfhtml.org/wiki/JavaScript_in_HTML_einbinden">SelfHTML</a>.</p>
+<p><strong>Unser Ansatz:</strong></p>
+<ul>
+<li>Script am <strong>Ende der Seite</strong> laden (bessere Performance - First Contentful Paint)</li>
+<li><strong>Module-System</strong> für strukturierte Code-Organisation</li>
+</ul>
+<h3 id="-ordnerstruktur-erstellen"><a class="header" href="#-ordnerstruktur-erstellen">📁 Ordnerstruktur erstellen</a></h3>
+<p>Erstelle einen <code>javascript</code> Ordner mit folgenden Dateien:</p>
+<pre><code>javascript/
+├── main.js
+└── tables.js
+</code></pre>
+<h3 id="-javascript-verknüpfen"><a class="header" href="#-javascript-verknüpfen">🔗 JavaScript verknüpfen</a></h3>
+<p><strong>1. In <code>main.js</code> das tables.js importieren:</strong></p>
+<pre><code class="language-javascript">import './tables.js';
+</code></pre>
+<p><strong>2. Am Ende von <code>index.html</code> (vor <code>&lt;/body&gt;</code>):</strong></p>
+<pre><code class="language-html">&lt;script src="javascript/main.js" type="module"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<blockquote>
+<p>💡 <strong>Wichtig</strong>: <code>type="module"</code> ermöglicht das Importieren anderer Scripts</p>
+</blockquote>
+<h3 id="-test-der-einbindung"><a class="header" href="#-test-der-einbindung">✅ Test der Einbindung</a></h3>
+<p><strong>In <code>tables.js</code> einfügen:</strong></p>
+<pre><code class="language-javascript">console.log("tables.js loaded");
+</code></pre>
+<p><strong>Testen:</strong></p>
+<ol>
+<li><code>index.html</code> über LiveServer öffnen</li>
+<li>Chrome DevTools → <strong>Console</strong></li>
+<li>Seite neu laden</li>
+</ol>
+<p>Du solltest den Text sehen! 🥳 Klick rechts auf das Script-Link - es führt direkt zur Datei.
+<img src="javascript/blogPageIntelligence/./images/ChromeWebTool.png" alt="Console log" /></p>
+<hr />
+<h2 id="-dom-manipulation"><a class="header" href="#-dom-manipulation">🎛️ DOM-Manipulation</a></h2>
+<h3 id="-das-document-object-model-dom"><a class="header" href="#-das-document-object-model-dom">🌐 Das Document Object Model (DOM)</a></h3>
+<p>Der Browser stellt JavaScript das <strong>DOM</strong> zur Verfügung - eine JavaScript-Repräsentation des gesamten HTML. Über diese Schnittstelle lassen sich Inhalte auslesen und manipulieren.</p>
+<h3 id="-elemente-finden-mit-queryselectorall"><a class="header" href="#-elemente-finden-mit-queryselectorall">🔍 Elemente finden mit <code>querySelectorAll</code></a></h3>
+<pre><code class="language-javascript">document.querySelectorAll("[selector]")
+</code></pre>
+<p>Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: <a href="https://developer.mozilla.org/de/docs/Web/API/Document/querySelectorAll">MDN querySelectorAll</a></p>
+<hr />
+<h2 id="-data-attribute-for-the-win"><a class="header" href="#-data-attribute-for-the-win">🏷️ Data-Attribute for the Win</a></h2>
+<h3 id="-das-problem-lösen"><a class="header" href="#-das-problem-lösen">🎯 Das Problem lösen</a></h3>
+<p><strong>Problem</strong>: Suche nach <code>div</code> findet zu viele unnötige Elemente.<br />
+<strong>Lösung</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes">Data-Attribute</a></p>
+<p><strong>Vorteile von Data-Attributen:</strong></p>
+<ul>
+<li>Werden von Screenreadern ignoriert</li>
+<li>Stören HTML-Struktur minimal</li>
+<li>Geben JavaScript mehr "Wissen"</li>
+</ul>
+<h3 id="-tabelle-markieren"><a class="header" href="#-tabelle-markieren">🏷️ Tabelle markieren</a></h3>
+<p><strong>Tabellen-Container markieren:</strong></p>
+<pre><code class="language-html">&lt;div data-table-name="benchmark"&gt;
+  &lt;h4 class="font-20 mb-s"&gt;XP-Pen Magic Notepad - CPU Benchmark&lt;/h4&gt;
+  &lt;!-- ... --&gt;
+</code></pre>
+<p><strong>Jede Column markieren:</strong></p>
+<pre><code class="language-html">&lt;p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+   data-table-column&gt;
+  720
+&lt;/p&gt;
+</code></pre>
+<blockquote>
+<p>💡 <strong>Alternative</strong>: <code>data-table-type</code> statt <code>data-table-name</code> für verschiedene Tabellentypen</p>
+</blockquote>
+<hr />
+<h2 id="-javascript-implementierung"><a class="header" href="#-javascript-implementierung">🔧 JavaScript-Implementierung</a></h2>
+<h3 id="1-tabellen-finden"><a class="header" href="#1-tabellen-finden">1️⃣ Tabellen finden</a></h3>
+<pre><code class="language-javascript">document.querySelectorAll("[data-table-name]").forEach((table) =&gt; {
+  // Code für jede Tabelle
+});
+</code></pre>
+<h3 id="2-spalten-finden-und-höchsten-wert-ermitteln"><a class="header" href="#2-spalten-finden-und-höchsten-wert-ermitteln">2️⃣ Spalten finden und höchsten Wert ermitteln</a></h3>
+<pre><code class="language-javascript">const columns = table.querySelectorAll("[data-table-column]");
+
+let columnWidest = 0;
+columns.forEach((col) =&gt; {
+  const colWidth = Number(col.innerText);
+  if (colWidth &gt; columnWidest) {
+    columnWidest = colWidth;
+  }
+});
+</code></pre>
+<p><strong>Erklärung:</strong></p>
+<ul>
+<li><code>col.innerText</code>: Nur Text, keine HTML-Tags oder Leerzeichen</li>
+<li><code>Number()</code>: Konvertiert Text zu Zahl für Vergleiche</li>
+<li>Optional: <code>trim()</code> für Leerzeichen entfernen</li>
+</ul>
+<h3 id="3-breiten-berechnen-und-setzen"><a class="header" href="#3-breiten-berechnen-und-setzen">3️⃣ Breiten berechnen und setzen</a></h3>
+<pre><code class="language-javascript">columns.forEach((col) =&gt; {
+  const colWidth = col.innerText;
+  const width = (100 / columnWidest) * colWidth;
+  col.style.width = `${width}%`;
+});
+</code></pre>
+<h3 id="4-html-style-entfernen"><a class="header" href="#4-html-style-entfernen">4️⃣ HTML-Style entfernen</a></h3>
+<p>Da JavaScript die Breite berechnet, kannst du das <code>style="width: 24%"</code> im HTML entfernen:</p>
+<pre><code class="language-html">&lt;p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+   data-table-column&gt;
+</code></pre>
+<hr />
+<h2 id="-erweiterte-version-kürzer-aber-komplexer"><a class="header" href="#-erweiterte-version-kürzer-aber-komplexer">🎯 Erweiterte Version (Kürzer aber komplexer)</a></h2>
+<h3 id="-kompakte-lösung"><a class="header" href="#-kompakte-lösung">🔥 Kompakte Lösung</a></h3>
+<pre><code class="language-javascript">const maxWidth = Math.max(
+  ...Array.from(columns, (col) =&gt; Number(col.innerText))
+);
+columns.forEach((col) =&gt; {
+  col.style.width = `${(100 * Number(col.innerText)) / maxWidth}%`;
+});
+</code></pre>
+<h3 id="-erklärung-der-neuen-konzepte"><a class="header" href="#-erklärung-der-neuen-konzepte">🤔 Erklärung der neuen Konzepte</a></h3>
+<h4 id="mathmax"><a class="header" href="#mathmax"><code>Math.max()</code></a></h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max">MDN Math.max</a> - Gibt den höchsten Wert zurück.</p>
+<h4 id="arrayfrom"><a class="header" href="#arrayfrom"><code>Array.from()</code></a></h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">MDN Array.from</a> - Erstellt Array aus Columns und deren innerText-Werten: <code>[720, 789, 1023]</code></p>
+<h4 id="spread-operator-"><a class="header" href="#spread-operator-">Spread Operator <code>...</code></a></h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Spread Syntax</a> - "Spreaded" Array-Elemente als einzelne Parameter:</p>
+<ul>
+<li><code>Math.max([1,2,3])</code> ❌ funktioniert nicht</li>
+<li><code>Math.max(...[1,2,3])</code> ✅ funktioniert → <code>Math.max(1,2,3)</code></li>
+</ul>
+<h4 id="template-literals"><a class="header" href="#template-literals">Template Literals</a></h4>
+<pre><code class="language-javascript">`${(100 * Number(col.innerText)) / maxWidth}%`
+</code></pre>
+<p>Mit <code>${}</code> können Variablen und Berechnungen direkt im String verwendet werden.</p>
+<hr />
+<h2 id="-fazit"><a class="header" href="#-fazit">📊 Fazit</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Ansatz</th><th>Vorteile</th><th>Nachteile</th></tr></thead><tbody>
+<tr><td><strong>Ausführlich</strong></td><td>Gut verständlich, lernfreundlich</td><td>Mehr Code</td></tr>
+<tr><td><strong>Kompakt</strong></td><td>Weniger Code, eleganter</td><td>Erfordert mehr JS-Wissen</td></tr>
+</tbody></table>
+</div>
+<h3 id="-lernempfehlung"><a class="header" href="#-lernempfehlung">🎓 Lernempfehlung</a></h3>
+<ol>
+<li><strong>Beginne</strong> mit der ausführlichen Version</li>
+<li><strong>Verstehe</strong> jeden Schritt</li>
+<li><strong>Erweitere</strong> Wissen schrittweise zu kompakteren Lösungen</li>
+</ol>
+<blockquote>
+<p>💡 <strong>AI &amp; Google</strong>: Du wirst oft auf kompakte Varianten stoßen - je mehr du lernst, desto verständlicher werden sie!</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-push-the-button"><a class="header" href="#-push-the-button">🛎️ Push the Button</a></h1>
+<h2 id="-ziele"><a class="header" href="#-ziele">🎯 Ziele</a></h2>
+<p>Unsere Buttons sehen zwar aus wie Buttons, aber sie machen noch nichts. Wir wollen folgende Funktionen erreichen:</p>
+<ol>
+<li><strong>📝 Artikel Like Button</strong> - mit Unlike und Zähler</li>
+<li><strong>👤 Autor:in Folgen Button</strong> - mit Unfollow</li>
+<li><strong>�️ Thema Folgen Button</strong> - mit Unfollow</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Frontend-Focus</strong>: In dieser Umsetzung konzentrieren wir uns auf Frontend-Logik. Daten werden nur im Frontend gespeichert - bei einem Page-Reload werden alle Status zurückgesetzt.</p>
+</blockquote>
+<hr />
+<h2 id="-skript-setup"><a class="header" href="#-skript-setup">🛠️ Skript Setup</a></h2>
+<h3 id="-button-script-erstellen"><a class="header" href="#-button-script-erstellen">📁 Button-Script erstellen</a></h3>
+<ol>
+<li><strong>Neue Datei erstellen</strong>: <code>buttons.js</code> im <code>javascript</code> Ordner</li>
+<li><strong>Import in <code>main.js</code></strong> hinzufügen</li>
+<li><strong>Test mit Console-Output</strong> (siehe Kapitel "Table Auto Design")</li>
+</ol>
+<h3 id="-debugging-optionen"><a class="header" href="#-debugging-optionen">🐛 Debugging-Optionen</a></h3>
+<p>Für lokales Debugging siehe:</p>
+<ul>
+<li><a href="javascript/blogPageIntelligence/../debugVsCode.html">Debug JavaScript mit Browser (Chrome)</a></li>
+<li><a href="javascript/blogPageIntelligence/../debugVsCode.html">Debug JavaScript mit Visual Code</a></li>
+</ul>
+<hr />
+<h2 id="-event-listener-verstehen"><a class="header" href="#-event-listener-verstehen">👂 Event Listener verstehen</a></h2>
+<h3 id="-events-grundlagen"><a class="header" href="#-events-grundlagen">🎯 Events Grundlagen</a></h3>
+<p>Ein <strong>Event</strong> ist eine Nachricht wenn eine Aktion stattfindet - wie "Button XY wurde gedrückt". Der Browser kennt Standard-Reaktionen auf Events (z.B. Checkbox an/aus).</p>
+<p>Mehr dazu: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">MDN Event.preventDefault</a></p>
+<h3 id="-events-finden"><a class="header" href="#-events-finden">� Events finden</a></h3>
+<p><strong>Herausforderung</strong>: Nicht jedes Element bietet die selben Events an:</p>
+<ul>
+<li><strong>Button</strong> kann geklickt werden</li>
+<li><strong>Textfeld</strong> kann beschrieben werden</li>
+<li><strong>Maus</strong> kann bewegt werden</li>
+</ul>
+<p><strong>Aber wie finde ich heraus, welche Events verfügbar sind?</strong></p>
+<h4 id="-mdn-dokumentation-durchsuchen"><a class="header" href="#-mdn-dokumentation-durchsuchen">📚 MDN-Dokumentation durchsuchen</a></h4>
+<ol>
+<li><strong>Button-spezifische API</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement">HTMLButtonElement</a></li>
+<li><strong>Instance Methods</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#instance_methods">HTMLButtonElement#instance_methods</a></li>
+<li><strong>Problem</strong>: Der "click" Event ist hier nicht direkt zu finden!</li>
+</ol>
+<h4 id="-vererbungskette-verstehen"><a class="header" href="#-vererbungskette-verstehen">🔗 Vererbungskette verstehen</a></h4>
+<p><strong>Wichtiger Hinweis</strong>: Button erbt Methoden vom Eltern-Element:</p>
+<blockquote>
+<p><strong>"inherits methods from its parent, HTMLElement"</strong></p>
+</blockquote>
+<p><strong>Lösungsweg</strong>: Durch die Vererbungskette navigieren:</p>
+<ul>
+<li><code>HTMLButtonElement</code> → <code>HTMLElement</code> → <code>Element</code></li>
+<li><strong>Ziel</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element API</a> - hier finden sich die meisten Events!</li>
+</ul>
+<h4 id="-praktische-tipps"><a class="header" href="#-praktische-tipps">💡 Praktische Tipps</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Methode</th><th>Beschreibung</th><th>Effektivität</th></tr></thead><tbody>
+<tr><td><strong>📖 Dokumentation</strong></td><td>MDN systematisch durchsuchen</td><td>Vollständig aber zeitaufwändig</td></tr>
+<tr><td><strong>🧪 Trial &amp; Error</strong></td><td>Events ausprobieren und testen</td><td>Schnell für bekannte Events</td></tr>
+<tr><td><strong>🔧 IDE-Support</strong></td><td>Autocomplete und IntelliSense nutzen</td><td>Sehr praktisch während Entwicklung</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>💡 <strong>Praxis-Tipp</strong>: Die Devise <strong>"trial and error"</strong> ist oft effizienter als stundenlanges Dokumentation-Studium!</p>
+</blockquote>
+<h3 id="-event-listener-erstellen"><a class="header" href="#-event-listener-erstellen">�🔊 Event Listener erstellen</a></h3>
+<p><strong>Schritt 1</strong>: Alle Buttons finden und Event Listener registrieren</p>
+<pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
+  // Für jeden Button einen Click-Listener erstellen
+});
+</code></pre>
+<p><strong>Event Listener hinzufügen</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">MDN addEventListener</a></p>
+<pre><code class="language-javascript">button.addEventListener("click", () =&gt; {
+  // Handle button click
+});
+</code></pre>
+<h3 id="-erster-test"><a class="header" href="#-erster-test">🧪 Erster Test</a></h3>
+<pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
+  button.addEventListener("click", () =&gt; {
+    // Handle button click
+    alert(`Button "${button.textContent.trim()}" wurde geklickt!`);
+  });
+});
+</code></pre>
+<p>Teste im Browser - bei jedem Button-Klick sollte ein Alert erscheinen!</p>
+<hr />
+<h2 id="-html-mit-data-attributen-erweitern"><a class="header" href="#-html-mit-data-attributen-erweitern">🏷️ HTML mit Data-Attributen erweitern</a></h2>
+<h3 id="-button-unterscheidung"><a class="header" href="#-button-unterscheidung">🎯 Button-Unterscheidung</a></h3>
+<p>Wir haben 3 verschiedene Button-Typen. Für bessere JavaScript-Kontrolle erweitern wir das HTML:</p>
+<p><strong>Data-Attribute hinzufügen:</strong></p>
+<ul>
+<li><code>data-button-state</code>: "active" oder "inactive"</li>
+<li><code>data-button</code>: Button-Name zur Identifikation</li>
+</ul>
+<h3 id="-html-updates"><a class="header" href="#-html-updates">🔧 HTML-Updates</a></h3>
+<h4 id="like-button"><a class="header" href="#like-button">Like Button</a></h4>
+<pre><code class="language-html">&lt;button
+  data-button-state="inactive"
+  data-button="like_article"
+  class="primary mb-s font-small align-items-center text-center"&gt;
+</code></pre>
+<h4 id="autorin-folgen"><a class="header" href="#autorin-folgen">Autor:in folgen</a></h4>
+<pre><code class="language-html">&lt;button
+  data-button-state="inactive"
+  data-button="follow_author"
+  class="primary"&gt;
+</code></pre>
+<h4 id="thema-folgen"><a class="header" href="#thema-folgen">Thema folgen</a></h4>
+<pre><code class="language-html">&lt;button
+  data-button-state="inactive"
+  data-button="follow_topic"
+  class="primary"&gt;
+</code></pre>
+<h3 id="-spezifische-button-auswahl"><a class="header" href="#-spezifische-button-auswahl">🎯 Spezifische Button-Auswahl</a></h3>
+<pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
+  // Nur Buttons mit data-button Attribut
+});
+</code></pre>
+<hr />
+<h2 id="-button-states-management"><a class="header" href="#-button-states-management">🔄 Button States Management</a></h2>
+<h3 id="-switch-statement-für-button-typen"><a class="header" href="#-switch-statement-für-button-typen">⚡ Switch-Statement für Button-Typen</a></h3>
+<pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
+  button.addEventListener("click", () =&gt; {
+    switch (button.dataset.button) {
+      case "like_article":
+        break;
+      case "follow_author":
+        break;
+      case "follow_topic":
+        break;
+      default:
+        console.warn(`Unbekannter Button-Typ: ${button.dataset.button}`);
+    }
+  });
+});
+</code></pre>
+<h3 id="-toggle-funktionalität"><a class="header" href="#-toggle-funktionalität">🔄 Toggle-Funktionalität</a></h3>
+<p><strong>Toggle-Funktion erstellen:</strong></p>
+<pre><code class="language-javascript">function toggleButtonState(button) {
+  const currentState = button.dataset.buttonState;
+  
+  if (currentState == "active") {
+    button.classList.add("primary");
+    button.dataset.buttonState = "inactive";
+  } else {
+    button.classList.remove("primary");
+    button.dataset.buttonState = "active";
+  }
+}
+</code></pre>
+<p><strong>Funktionsaufruf in Switch-Statement:</strong></p>
+<pre><code class="language-javascript">switch (button.dataset.button) {
+  case "like_article":
+    toggleButtonState(button);
+    break;
+  case "follow_author":
+    toggleButtonState(button);
+    break;
+  case "follow_topic":
+    toggleButtonState(button);
+    break;
+}
+</code></pre>
+<h3 id="-css-klassen-automatisch-togglen"><a class="header" href="#-css-klassen-automatisch-togglen">🎨 CSS-Klassen automatisch togglen</a></h3>
+<p>Mit <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList.toggle</a> wird das noch einfacher:</p>
+<pre><code class="language-javascript">function toggleButtonState(button) {
+  const currentState = button.dataset.buttonState;
+  button.classList.toggle("primary");
+  
+  if (currentState == "active") {
+    button.dataset.buttonState = "inactive";
+  } else {
+    button.dataset.buttonState = "active";
+  }
+}
+</code></pre>
+<hr />
+<h2 id="-button-texte-dynamisch-ändern"><a class="header" href="#-button-texte-dynamisch-ändern">📝 Button-Texte dynamisch ändern</a></h2>
+<h3 id="-text-parameter-hinzufügen"><a class="header" href="#-text-parameter-hinzufügen">🔤 Text-Parameter hinzufügen</a></h3>
+<pre><code class="language-javascript">function toggleButtonState(button, activationText, inactivatingText) {
+  const currentState = button.dataset.buttonState;
+  button.classList.toggle("primary");
+
+  if (currentState == "active") {
+    button.textContent = activationText;
+    button.dataset.buttonState = "inactive";
+  } else {
+    button.textContent = inactivatingText;
+    button.dataset.buttonState = "active";
+  }
+}
+</code></pre>
+<h3 id="-text-konstanten-definieren"><a class="header" href="#-text-konstanten-definieren">📚 Text-Konstanten definieren</a></h3>
+<pre><code class="language-javascript">const likePageText = "Dieser Artikel gefällt mir!";
+const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
+const followAuthorText = "Autor:in folgen";
+const unfollowAuthorText = "Autor:in nicht mehr folgen";
+const followTopicText = "Thema folgen";
+const unfollowTopicText = "Thema entfolgen";
+</code></pre>
+<h3 id="-switch-statement-mit-texten"><a class="header" href="#-switch-statement-mit-texten">🔧 Switch-Statement mit Texten</a></h3>
+<pre><code class="language-javascript">switch (button.dataset.button) {
+  case "like_article":
+    toggleButtonState(button, likePageText, unlikePageText);
+    break;
+  case "follow_author":
+    toggleButtonState(button, followAuthorText, unfollowAuthorText);
+    break;
+  case "follow_topic":
+    toggleButtonState(button, followTopicText, unfollowTopicText);
+    break;
+}
+</code></pre>
+<hr />
+<h2 id="-like-button-erweitern"><a class="header" href="#-like-button-erweitern">❤️ Like Button erweitern</a></h2>
+<h3 id="-like-counter-implementieren"><a class="header" href="#-like-counter-implementieren">📊 Like Counter implementieren</a></h3>
+<p>Der Like Button braucht zusätzliche Features:</p>
+<ul>
+<li><strong>Zähler</strong> für Likes</li>
+<li><strong>Icon</strong> mit Herz/gebrochenem Herz</li>
+</ul>
+<h3 id="-html-für-counter-markieren"><a class="header" href="#-html-für-counter-markieren">🏷️ HTML für Counter markieren</a></h3>
+<p><strong>Zahl mit span und ID markieren:</strong></p>
+<pre><code class="language-html">&lt;span id="data-like-counter"&gt;59&lt;/span&gt; Personen gefällt dieser Artikel
+</code></pre>
+<blockquote>
+<p>💡 <strong>Wichtig</strong>: IDs dürfen nur einmal pro HTML existieren!</p>
+</blockquote>
+<h3 id="-like-spezifische-toggle-funktion"><a class="header" href="#-like-spezifische-toggle-funktion">🔢 Like-spezifische Toggle-Funktion</a></h3>
+<pre><code class="language-javascript">function toggleLikeButtonState(button) {
+  const currentState = button.dataset.buttonState;
+  const likeCounter = document.querySelector("#data-like-counter");
+  // Alternative: document.getElementById("data-like-counter");
+  
+  let currentCount = parseInt(likeCounter.textContent);
+  
+  if (currentState == "inactive") {
+    currentCount++;
+  } else {
+    currentCount--;
+  }
+  
+  likeCounter.textContent = currentCount;
+}
+</code></pre>
+<h3 id="-integration-mit-bestehender-toggle-logik"><a class="header" href="#-integration-mit-bestehender-toggle-logik">🔄 Integration mit bestehender Toggle-Logik</a></h3>
+<pre><code class="language-javascript">function toggleLikeButtonState(button, activationText, inactivatingText) {
+  const currentState = button.dataset.buttonState;
+  const likeCounter = document.getElementById("data-like-counter");
+  let currentCount = parseInt(likeCounter.textContent);
+
+  toggleButtonState(button, activationText, inactivatingText);
+
+  if (currentState == "inactive") {
+    currentCount++;
+  } else {
+    currentCount--;
+  }
+  likeCounter.textContent = currentCount;
+}
+</code></pre>
+<h3 id="-switch-statement-anpassen"><a class="header" href="#-switch-statement-anpassen">🔧 Switch-Statement anpassen</a></h3>
+<pre><code class="language-javascript">case "like_article":
+  toggleLikeButtonState(button, likePageText, unlikePageText);
+  break;
+</code></pre>
+<hr />
+<h2 id="-icon-integration"><a class="header" href="#-icon-integration">💝 Icon-Integration</a></h2>
+<h3 id="-svg-icons-vorbereiten"><a class="header" href="#-svg-icons-vorbereiten">🎨 SVG-Icons vorbereiten</a></h3>
+<pre><code class="language-javascript">const filledHeart = document.createElement("span");
+const brokenHeart = document.createElement("span");
+
+filledHeart.innerHTML = `&lt;svg
+  fill="none" viewBox="0 0 16 16" width="16" height="16"
+  class="svg-icon"&gt;
+  &lt;path fill="#fff" fill-rule="evenodd" 
+    d="M13.971 3.029a3.53 3.53 0 0 0-4.983 0L8 4.018l-.988-.989a3.53 3.53 0 0 0-4.983 0 3.54 3.54 0 0 0 0 4.991L8 14l5.972-5.98a3.54 3.54 0 0 0 0-4.991" 
+    clip-rule="evenodd"&gt;&lt;/path&gt;
+&lt;/svg&gt;`;
+
+brokenHeart.innerHTML = `&lt;svg
+  fill="none" viewBox="0 0 16 16" width="16" height="16"
+  class="svg-icon"&gt;
+  &lt;path fill="#000" fill-rule="evenodd" 
+    d="M13.971 3.029a3.53 3.53 0 0 0-4.983 0L8 4.018l-.988-.989a3.53 3.53 0 0 0-4.983 0 3.54 3.54 0 0 0 0 4.991L8 14l5.972-5.98a3.54 3.54 0 0 0 0-4.991" 
+    clip-rule="evenodd"&gt;&lt;/path&gt;
+  &lt;polyline points="6,4 8,8 7,10 9,12" stroke="#fff" stroke-width="1" fill="none"/&gt;
+&lt;/svg&gt;`;
+
+// Abstand zwischen Icon und Text
+filledHeart.classList.add("mr-s");
+brokenHeart.classList.add("mr-s");
+</code></pre>
+<h3 id="-icons-in-toggle-funktion-integrieren"><a class="header" href="#-icons-in-toggle-funktion-integrieren">🔄 Icons in Toggle-Funktion integrieren</a></h3>
+<pre><code class="language-javascript">if (currentState == "inactive") {
+  button.prepend(filledHeart);
+  currentCount++;
+} else {
+  button.prepend(brokenHeart);
+  currentCount--;
+}
+</code></pre>
+<hr />
+<h2 id="-ergebnis"><a class="header" href="#-ergebnis">🎉 Ergebnis</a></h2>
+<p><strong>Alle Buttons sind jetzt voll funktionsfähig:</strong></p>
+<p>✅ <strong>Like Button</strong>: Toggle mit Counter und Icon<br />
+✅ <strong>Follow Author</strong>: Toggle mit Text-Änderung<br />
+✅ <strong>Follow Topic</strong>: Toggle mit Text-Änderung</p>
+<h3 id="-nächste-schritte"><a class="header" href="#-nächste-schritte">🔗 Nächste Schritte</a></h3>
+<p>Im nächsten Kapitel verbinden wir die Buttons mit einem <strong>Backend</strong> für persistente Datenspeicherung!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-backend-verbinden"><a class="header" href="#-backend-verbinden">⛓️‍💥 Backend verbinden</a></h1>
+<h2 id="-frontend-trifft-backend"><a class="header" href="#-frontend-trifft-backend">🎯 Frontend trifft Backend</a></h2>
+<h3 id="-situation-verstehen"><a class="header" href="#-situation-verstehen">📊 Situation verstehen</a></h3>
+<p><strong>Frontend-Only</strong>: Alles ist einfach - nur <strong>ein Datenzustand</strong> im Browser:</p>
+<ul>
+<li>Button gedrückt? ✅ HTML/Cookie</li>
+<li>Seite geliked? ✅ Lokaler Speicher</li>
+</ul>
+<p><strong>Mit Backend</strong>: <strong>Zwei Datenzustände</strong> synchronisieren:</p>
+<ul>
+<li>🖥️ <strong>Frontend-State</strong> (Browser)</li>
+<li>🗄️ <strong>Backend-State</strong> (Datenbank)</li>
+</ul>
+<h3 id="-erste-implementierung-ziele"><a class="header" href="#-erste-implementierung-ziele">🎯 Erste Implementierung-Ziele</a></h3>
+<ol>
+<li><strong>📊 Like Count</strong> vom Backend laden und korrekt anzeigen</li>
+<li><strong>🔄 Blog-Page-ID-Wechsel</strong> mit Backend-Daten synchronisieren</li>
+</ol>
+<hr />
+<h2 id="-code-setup"><a class="header" href="#-code-setup">📁 Code-Setup</a></h2>
+<h3 id="-projekt-code-holen"><a class="header" href="#-projekt-code-holen">🔗 Projekt-Code holen</a></h3>
+<p><strong>Frontend herunterladen:</strong></p>
+<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection
+</code></pre>
+<p><strong>Backend herunterladen:</strong></p>
+<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
+</code></pre>
+<p><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
+<img src="javascript/blogPageIntelligence/./images/githubClone.png" alt="Github Download" /></p>
+<h3 id="-vs-code-settings-anpassen"><a class="header" href="#-vs-code-settings-anpassen">⚙️ VS Code Settings anpassen</a></h3>
+<p><strong>LiveServer-Konfiguration erweitern:</strong></p>
+<ol>
+<li><strong>Settings öffnen</strong>: Button unten links → Settings</li>
+</ol>
+<p><img src="javascript/blogPageIntelligence/./images/VsCodeSettings.png" alt="Settings öffnen" /></p>
+<ol start="2">
+<li><strong>LiveServer suchen</strong>: "liveServer" eingeben → "In settings.json öffnen"</li>
+</ol>
+<p><img src="javascript/blogPageIntelligence/./images/LiveServerSettings.png" alt="Settings öffnen" />
+3. <strong>JSON erweitern</strong>:</p>
+<pre><code class="language-json">"liveServer.settings.ignoreFiles": [
+  ".vscode/**",
+  "public/00_backend/**"
+]
+</code></pre>
+<p>Achte darauf, dass bei der Zeile davor ein Komma am Schluss ist.
+<img src="javascript/blogPageIntelligence/./images/LiveServerAddExclusion.png" alt="JSON edit" /></p>
+<ol start="4">
+<li><strong>Speichern</strong> und schließen</li>
+</ol>
+<h3 id="-optional-sqlite-editor"><a class="header" href="#-optional-sqlite-editor">🔧 Optional: SQLite-Editor</a></h3>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor">SQLite3 Editor Extension</a> installieren für direkten Datenbank-Zugriff.</p>
+<hr />
+<h2 id="-projekt-struktur-verstehen"><a class="header" href="#-projekt-struktur-verstehen">📂 Projekt-Struktur verstehen</a></h2>
+<h3 id="-backend-struktur-00_backend"><a class="header" href="#-backend-struktur-00_backend">🗄️ Backend-Struktur (<code>00_backend/</code>)</a></h3>
+<pre><code>00_backend/
+├── 📄 app.js                    # Express-Hauptanwendung
+├── 📄 package.json              # Dependencies &amp; Scripts
+├── 📄 .env                      # Umgebungsvariablen
+├── 📄 editorialContent.db       # SQLite-Datenbank
+├── 📄 readme.md                 # Setup-Anweisungen
+├── 📁 routes/                   # API-Endpunkte
+│   ├── likes.js                 # Like-Funktionalität
+│   ├── authorFollow.js          # Autor-Follow
+│   └── topicFollow.js           # Topic-Follow
+├── 📁 db/                       # Datenbank-Layer
+│   ├── blogPageLikesRepo.js     # Like-Operationen
+│   ├── authorFollowRepo.js      # Autor-Follow-Ops
+│   └── topicFollowRepo.js       # Topic-Follow-Ops
+└── 📁 utils/                    # Middleware &amp; Tools
+    ├── corsMiddleware.js        # CORS-Konfiguration
+    └── swagger.js               # API-Dokumentation
+</code></pre>
+<h3 id="-backend-starten"><a class="header" href="#-backend-starten">🚀 Backend starten</a></h3>
+<pre><code class="language-bash"># Terminal öffnen
+cd public/00_backend
+
+# Dependencies installieren  
+npm install
+
+# Development-Server starten
+npm run dev
+
+# ✅ Backend läuft auf Port 3000
+# 📚 API-Docs: http://localhost:3000/api-docs/
+</code></pre>
+<h3 id="-frontend-struktur-04_01_backendbaseconnection"><a class="header" href="#-frontend-struktur-04_01_backendbaseconnection">🎨 Frontend-Struktur (<code>04_01_backendBaseConnection/</code>)</a></h3>
+<pre><code>04_01_backendBaseConnection/
+├── 📄 index.html                # Haupt-HTML
+├── 📁 css/                      # Styling
+├── 📁 javascript/
+│   ├── 📄 main.js               # Entry Point
+│   ├── 📁 services/             # Backend-Services
+│   │   ├── 📄 observer.js       # Event-System (Singleton)
+│   │   ├── 📄 httpClient.js     # HTTP-Wrapper
+│   │   ├── 📄 blogPageLikes.js  # Like-API-Calls
+│   │   ├── 📄 authorFollow.js   # Autor-Follow-APIs
+│   │   └── 📄 topicFollow.js    # Topic-Follow-APIs
+│   └── 📁 pages/blogPage/       # Blog-spezifische Logik
+│       ├── 📄 blogPageMain.js   # Koordination
+│       ├── 📄 buttons.js        # Button-Events
+│       ├── 📄 likeStateHandler.js    # Like-State
+│       ├── 📄 followStateHandler.js  # Follow-State
+│       └── 📄 tables.js         # Tabellen-Management
+</code></pre>
+<h3 id="-architektur-highlights"><a class="header" href="#-architektur-highlights">🏗️ Architektur-Highlights</a></h3>
+<h4 id="services-layer"><a class="header" href="#services-layer"><strong>Services Layer</strong></a></h4>
+<ul>
+<li><strong>Backend-Integration</strong>: Alle API-Calls (erfordert laufenden Backend-Server)</li>
+<li><strong>Observer Pattern</strong>: Event-System für applikationsweite Zustandssynchronisation</li>
+<li><strong>Vorteil</strong>: Keine Page-Reloads bei Datenänderungen</li>
+</ul>
+<h4 id="event-driven-architecture"><a class="header" href="#event-driven-architecture"><strong>Event-Driven Architecture</strong></a></h4>
+<ul>
+<li><strong>Observer.js</strong>: Singleton-Pattern für typsafe Events</li>
+<li><strong>Auto UI-Updates</strong>: Änderungen reflektiert überall</li>
+<li><strong>Performance</strong>: Minimale API-Calls durch intelligente Zustandsverwaltung</li>
+</ul>
+<h4 id="moderne-javascript-patterns"><a class="header" href="#moderne-javascript-patterns"><strong>Moderne JavaScript-Patterns</strong></a></h4>
+<ul>
+<li><strong>ES6-Module</strong>: Import/Export-System</li>
+<li><strong>Async/Await</strong>: Statt Promise-Chains</li>
+<li><strong>Event Prevention</strong>: Verhindert Page-Reloads</li>
+</ul>
+<h3 id="-frontend--backend-workflow"><a class="header" href="#-frontend--backend-workflow">🔄 Frontend ↔ Backend Workflow</a></h3>
+<ol>
+<li><strong>Frontend</strong> → API-Calls über Services</li>
+<li><strong>Backend</strong> → JSON-Response</li>
+<li><strong>Observer</strong> → Änderungen an UI-Komponenten verteilen</li>
+<li><strong>UI</strong> → Automatische Updates ohne Page-Reload</li>
+</ol>
+<hr />
+<h2 id="-like-count-implementation"><a class="header" href="#-like-count-implementation">📊 Like Count Implementation</a></h2>
+<h3 id="-schritt-1-setlikecounter-funktion-erstellen"><a class="header" href="#-schritt-1-setlikecounter-funktion-erstellen">🎯 Schritt 1: setLikeCounter-Funktion erstellen</a></h3>
+<p><strong>In <code>likeStateHandler.js</code> - am Ende der Datei:</strong></p>
+<pre><code class="language-javascript">function setLikeCounter() {
+  // Logik kommt hier rein
+}
+</code></pre>
+<h3 id="-schritt-2-blogpageid-validierung"><a class="header" href="#-schritt-2-blogpageid-validierung">🔒 Schritt 2: BlogPageId-Validierung</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    // Nur weiter wenn gültige BlogPageId vorhanden
+  }
+}
+</code></pre>
+<h3 id="-schritt-3-html-element-finden-und-test-wert-setzen"><a class="header" href="#-schritt-3-html-element-finden-und-test-wert-setzen">🎨 Schritt 3: HTML-Element finden und Test-Wert setzen</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    document.getElementById("data-like-counter").textContent = 99;
+  }
+}
+</code></pre>
+<h3 id="-schritt-4-funktion-integrieren"><a class="header" href="#-schritt-4-funktion-integrieren">🔗 Schritt 4: Funktion integrieren</a></h3>
+<p><strong><code>blogPageMain.js</code> erweitern:</strong></p>
+<pre><code class="language-javascript">// Importiere die notwendigen Module
+import "./buttons.js";
+import "./tables.js";
+import "./likeStateHandler.js";
+</code></pre>
+<p><strong><code>likeStateHandler.js</code> - am Ende:</strong></p>
+<pre><code class="language-javascript">observeUserIdChange();
+observeBlogPageIdChange();
+observeLikeEvents();
+setLikeCounter();
+</code></pre>
+<h3 id="-schritt-5-blogpageid-setzen--sichtbarkeit"><a class="header" href="#-schritt-5-blogpageid-setzen--sichtbarkeit">⚡ Schritt 5: BlogPageId setzen &amp; Sichtbarkeit</a></h3>
+<p><strong>Test-BlogPageId setzen:</strong></p>
+<pre><code class="language-javascript">let blogPageId = 37832;  // Statt 0
+</code></pre>
+<p><strong>Invisible-Klasse entfernen:</strong></p>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    document.getElementById("data-like-counter").textContent = 99;
+    document.getElementById("like-counter").classList.remove("invisible");
+  }
+}
+</code></pre>
+<p><strong>✅ Test</strong>: Du solltest jetzt "99" und den Text sehen!</p>
+<hr />
+<h2 id="-backend-integration"><a class="header" href="#-backend-integration">🌐 Backend-Integration</a></h2>
+<h3 id="-schritt-1-service-importieren"><a class="header" href="#-schritt-1-service-importieren">📡 Schritt 1: Service importieren</a></h3>
+<pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
+import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
+</code></pre>
+<h3 id="-schritt-2-backend-call-implementieren"><a class="header" href="#-schritt-2-backend-call-implementieren">🔄 Schritt 2: Backend-Call implementieren</a></h3>
+<pre><code class="language-javascript">function setLikeCounter() {
+  if (blogPageId) {
+    try {
+      const response = getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent = response.likeCount;
+      document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
+  }
+}
+</code></pre>
+<p><strong>🚨 Problem</strong>: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong></p>
+<h3 id="-schritt-3-asyncawait-pattern"><a class="header" href="#-schritt-3-asyncawait-pattern">⚡ Schritt 3: Async/Await Pattern</a></h3>
+<p><strong>Problem</strong>: Code wartet nicht auf Backend-Response.<br />
+<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen.</p>
+<pre><code class="language-javascript">async function setLikeCounter() {
+  if (blogPageId) {
+    try {
+      const response = await getLikesPerBlogPage(blogPageId);
+      document.getElementById("data-like-counter").textContent = response.likeCount;
+      document.getElementById("like-counter").classList.remove("invisible");
+    } catch (error) {
+      console.error("Error loading likes:", error);
+    }
+  }
+}
+</code></pre>
+<p><strong>✅ Test</strong>: Echte Backend-Daten werden geladen!</p>
+<hr />
+<h2 id="-event-driven-counter-updates"><a class="header" href="#-event-driven-counter-updates">🔄 Event-Driven Counter Updates</a></h2>
+<h3 id="-blogpageid-change-event-nutzen"><a class="header" href="#-blogpageid-change-event-nutzen">🎯 BlogPageId-Change-Event nutzen</a></h3>
+<p><strong>Direkten Funktionsaufruf entfernen:</strong></p>
+<pre><code class="language-javascript">// observeUserIdChange();
+// observeBlogPageIdChange();
+// observeLikeEvents();
+// setLikeCounter(); ← Diese Zeile entfernen
+</code></pre>
+<h3 id="-observer-integration"><a class="header" href="#-observer-integration">📡 Observer-Integration</a></h3>
+<p><strong>In <code>observeBlogPageIdChange()</code>:</strong></p>
+<pre><code class="language-javascript">function observeBlogPageIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.BLOG_PAGE_ID_CHANGED,
+    async (data) =&gt; {
+      blogPageId = data.blogPageId;
+      console.log("Current Blog Page ID in likeStateHandler:", blogPageId);
+      
+      setLikeCounter(); // ← Hier aufrufen
+    },
+    true  // Replay-Funktion für Initial-State
+  );
+}
+</code></pre>
+<h3 id="-event-flow-verstehen"><a class="header" href="#-event-flow-verstehen">🔄 Event-Flow verstehen</a></h3>
+<ol>
+<li><strong><code>main.js</code></strong> → BlogPageId = 2 setzen</li>
+<li><strong><code>main.js</code></strong> → <code>appObserver.emit()</code> Event versenden</li>
+<li><strong>Observer</strong> → Alle Subscriber informieren</li>
+<li><strong><code>likeStateHandler</code></strong> → <code>subscribe()</code> mit <code>true</code> = Replay-Funktion</li>
+<li><strong>Replay</strong> → Auch nachträglich registrierte Subscriber erhalten letzten Wert</li>
+</ol>
+<h3 id="-blogpageid-zurücksetzen"><a class="header" href="#-blogpageid-zurücksetzen">🔄 BlogPageId zurücksetzen</a></h3>
+<pre><code class="language-javascript">let blogPageId = 0;  // Wieder auf 0, da Wert von Observer kommt
+</code></pre>
+<p><strong>✅ Test</strong>: Likes werden weiterhin geladen, aber jetzt event-driven!</p>
+<p>Du kannst dies auch im Console.log überprüfen.
+<img src="javascript/blogPageIntelligence/./images/ConsoleLogLikeStateHandler.png" alt="LikeStateHandler Ausgabe" /></p>
+<hr />
+<h2 id="-testing--experimentation"><a class="header" href="#-testing--experimentation">🧪 Testing &amp; Experimentation</a></h2>
+<h3 id="-blogpageid-dynamisch-ändern"><a class="header" href="#-blogpageid-dynamisch-ändern">🔧 BlogPageId dynamisch ändern</a></h3>
+<p><strong>In <code>main.js</code> experimentieren:</strong></p>
+<pre><code class="language-javascript">// Verschiedene Blog-Page-IDs testen
+appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
+</code></pre>
+<h3 id="-development-workflow"><a class="header" href="#-development-workflow">📊 Development Workflow</a></h3>
+<ol>
+<li><strong>Backend starten</strong>: <code>cd 00_backend &amp;&amp; npm run dev</code></li>
+<li><strong>Frontend öffnen</strong>: <code>index.html</code> über LiveServer</li>
+<li><strong>API testen</strong>: http://localhost:3000/api-docs/</li>
+<li><strong>Console-Logs beobachten</strong> für Event-Flow-Debugging</li>
+</ol>
+<hr />
+<h2 id="-meilenstein-erreicht"><a class="header" href="#-meilenstein-erreicht">🎉 Meilenstein erreicht!</a></h2>
+<h3 id="-was-funktioniert-jetzt"><a class="header" href="#-was-funktioniert-jetzt">✅ Was funktioniert jetzt:</a></h3>
+<ol>
+<li><strong>📊 Backend-Integration</strong> - Like-Count aus Datenbank</li>
+<li><strong>🔄 Event-Driven Updates</strong> - Observer-Pattern implementiert</li>
+<li><strong>⚡ Async/Await</strong> - Moderne JavaScript-Patterns</li>
+<li><strong>🎛️ Dynamic BlogPageId</strong> - Reaktion auf ID-Änderungen</li>
+</ol>
+<h3 id="-nächste-schritte-1"><a class="header" href="#-nächste-schritte-1">🚀 Nächste Schritte:</a></h3>
+<p>Im nächsten Kapitel machen wir die <strong>Like-Buttons funktional</strong> und synchronisieren Backend-State mit Frontend-Interaktionen!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-like-funktion-wiederherstellen"><a class="header" href="#-like-funktion-wiederherstellen">❤️‍🩹 Like-Funktion wiederherstellen</a></h1>
+<h2 id="-Überblick"><a class="header" href="#-Überblick">🎯 Überblick</a></h2>
+<p>Mit "Backend Connection" hast du dafür gesorgt, dass Like-Counter-Daten aus dem Backend stammen. Der Button selbst funktioniert aber noch nicht korrekt. Wir implementieren die Like-Verwaltung in zwei Schritten:</p>
+<h3 id="ziele"><a class="header" href="#ziele">Ziele:</a></h3>
+<ol>
+<li><strong>📝 Blog-Page liken</strong> - mit korrekter UI und Backend-Verbindung</li>
+<li><strong>💔 Blog-Page entliken</strong> - mit korrekter UI und Backend-Verbindung</li>
+<li><strong>👤 User-ID-Wechsel</strong> - korrekte Reaktion auf Benutzer-Änderungen</li>
+</ol>
+<hr />
+<h2 id="-like--dislike-implementation"><a class="header" href="#-like--dislike-implementation">💝 Like &amp; Dislike Implementation</a></h2>
+<h3 id="-toggle-logik-verstehen"><a class="header" href="#-toggle-logik-verstehen">🔄 Toggle-Logik verstehen</a></h3>
+<p>Like und Dislike sind sehr ähnlich - wir <strong>togglen</strong> zwischen den Zuständen:</p>
+<ol>
+<li><strong>Aktuellen Zustand abfragen</strong> (geliked oder nicht?)</li>
+<li><strong>Zustand umkehren</strong> (like → unlike, unlike → like)</li>
+<li><strong>UI entsprechend aktualisieren</strong></li>
+</ol>
+<h3 id="-architektur-entscheidung"><a class="header" href="#-architektur-entscheidung">🏗️ Architektur-Entscheidung</a></h3>
+<p><strong>File-Aufgabenverteilung:</strong></p>
+<ul>
+<li><code>buttons.js</code> - <strong>Nur</strong> Button-Klick erkennen und Event versenden</li>
+<li><code>likeStateHandler.js</code> - <strong>Komplette</strong> Like-Logik verwalten</li>
+</ul>
+<p><strong>Event-basierte Kommunikation:</strong></p>
+<ul>
+<li>✅ <strong>Option 2</strong>: Event versenden (flexibler, entkoppelter)</li>
+<li>❌ Option 1: Direkte Funktionsaufrufe (enger gekoppelt)</li>
+</ul>
+<hr />
+<h2 id="-like-event-versenden"><a class="header" href="#-like-event-versenden">📡 Like Event versenden</a></h2>
+<h3 id="-buttonjs-erweitern"><a class="header" href="#-buttonjs-erweitern">🔧 Button.js erweitern</a></h3>
+<p><strong>Observer und Events importieren:</strong></p>
+<pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
+</code></pre>
+<p><strong>Event bei Button-Klick versenden:</strong></p>
+<pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
+  button.addEventListener("click", () =&gt; {
+    switch (button.dataset.button) {
+      case "like_article":
+        appObserver.emit(ObserverEvents.LIKE_BUTTON_CLICKED);
+        break;
+      // ... andere Cases
+    }
+  });
+});
+</code></pre>
+<h3 id="-test-der-event-Übertragung"><a class="header" href="#-test-der-event-Übertragung">✅ Test der Event-Übertragung</a></h3>
+<ol>
+<li><strong>Seite mit LiveServer starten</strong></li>
+<li><strong>Like Button klicken</strong></li>
+<li><strong>Console beobachten</strong> - Zahlen-Output sollte sich erhöhen</li>
+</ol>
+<blockquote>
+<p>🎉 <strong>Erfolg</strong>: LikeStateHandler empfängt und verarbeitet dein Event!</p>
+</blockquote>
+<hr />
+<h2 id="-like-event-verarbeiten"><a class="header" href="#-like-event-verarbeiten">🎛️ Like Event verarbeiten</a></h2>
+<h3 id="-toggle-state-funktion-erstellen"><a class="header" href="#-toggle-state-funktion-erstellen">🔄 Toggle-State-Funktion erstellen</a></h3>
+<p><strong>Observer-Funktion erweitern:</strong></p>
+<pre><code class="language-javascript">function observeLikeEvents() {
+  appObserver.subscribe(ObserverEvents.LIKE_BUTTON_CLICKED, async () =&gt; {
+    toggleLikeState();
+  });
+}
+
+async function toggleLikeState() {
+  // Logik kommt hier rein
+}
+</code></pre>
+<h3 id="-aktuellen-like-status-abfragen"><a class="header" href="#-aktuellen-like-status-abfragen">📊 Aktuellen Like-Status abfragen</a></h3>
+<p><strong>Import der benötigten Services:</strong></p>
+<pre><code class="language-javascript">import { getLikesPerBlogPage, getIsLikingBlogPage, likeBlogPage, unlikeBlogPage } from "../../services/blogPageLikes.js";
+</code></pre>
+<p><strong>Like-Status für User abfragen:</strong></p>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
+  
+  if (doesUserLikeBlogPageResponse.liked) {
+    // User hat bereits geliked → Unlike
+  } else {
+    // User hat noch nicht geliked → Like
+  }
+}
+</code></pre>
+<h3 id="-backend-status-ändern"><a class="header" href="#-backend-status-ändern">🔄 Backend-Status ändern</a></h3>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
+  
+  if (doesUserLikeBlogPageResponse.liked) {
+    await unlikeBlogPage(blogPageId, currentUserId);
+  } else {
+    await likeBlogPage(blogPageId, currentUserId);
+  }
+}
+</code></pre>
+<hr />
+<h2 id="-ui-updates-implementieren"><a class="header" href="#-ui-updates-implementieren">🎨 UI-Updates implementieren</a></h2>
+<h3 id="-button-ui-update-funktion"><a class="header" href="#-button-ui-update-funktion">🖱️ Button-UI-Update-Funktion</a></h3>
+<pre><code class="language-javascript">function updateLikeButtonUi(isLiked) {
+  const likeButton = document.querySelector("button[data-button='like_article']");
+  
+  if (isLiked) {
+    likeButton.classList.remove("primary");
+    likeButton.innerHTML = unlikePageText;
+    likeButton.prepend(brokenHeart.cloneNode(true));
+  } else {
+    likeButton.classList.add("primary");
+    likeButton.innerHTML = likePageText;
+    likeButton.prepend(filledHeart.cloneNode(true));
+  }
+}
+</code></pre>
+<h3 id="-toggle-funktion-komplettieren"><a class="header" href="#-toggle-funktion-komplettieren">🔄 Toggle-Funktion komplettieren</a></h3>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
+  
+  if (doesUserLikeBlogPageResponse.liked) {
+    await unlikeBlogPage(blogPageId, currentUserId);
+    updateLikeButtonUi(false);
+  } else {
+    await likeBlogPage(blogPageId, currentUserId);
+    updateLikeButtonUi(true);
+  }
+  
+  setLikeCounter(); // Counter aktualisieren
+}
+</code></pre>
+<h3 id="-funktionstest"><a class="header" href="#-funktionstest">✅ Funktionstest</a></h3>
+<p><strong>Backend und Frontend starten</strong> und Like-Button testen!</p>
+<hr />
+<h2 id="-error-handling-implementieren"><a class="header" href="#-error-handling-implementieren">🛡️ Error Handling implementieren</a></h2>
+<h3 id="-try-catch-für-robustheit"><a class="header" href="#-try-catch-für-robustheit">🔒 Try-Catch für Robustheit</a></h3>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  try {
+    const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+      blogPageId,
+      currentUserId
+    );
+    
+    if (!doesUserLikeBlogPageResponse) {
+      return; // Keine Response erhalten
+    }
+    
+    if (doesUserLikeBlogPageResponse.liked) {
+      await unlikeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(false);
+    } else {
+      await likeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(true);
+    }
+    
+    setLikeCounter();
+  } catch (error) {
+    console.error("Error toggling like state:", error);
+  }
+}
+</code></pre>
+<hr />
+<h2 id="-user-id-wechsel-handhaben"><a class="header" href="#-user-id-wechsel-handhaben">👤 User-ID-Wechsel handhaben</a></h2>
+<h3 id="-user-change-observer-erweitern"><a class="header" href="#-user-change-observer-erweitern">🔄 User-Change Observer erweitern</a></h3>
+<p><strong>Bestehende Observer-Funktion finden:</strong></p>
+<pre><code class="language-javascript">function observeUserIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.USER_ID_CHANGED,
+    async (data) =&gt; {
+      currentUserId = data.userId;
+      console.log("Current User ID in likeStateHandler:", currentUserId);
+      // Hier Like-Status für neuen User laden
+    },
+    true // Replay-Funktion für Initial-State
+  );
+}
+</code></pre>
+<h3 id="-like-status-check-funktion-erstellen"><a class="header" href="#-like-status-check-funktion-erstellen">🔍 Like-Status-Check-Funktion erstellen</a></h3>
+<p><strong>Wiederverwendbare Status-Check-Funktion:</strong></p>
+<pre><code class="language-javascript">async function checkUserLikeStatus() {
+  try {
+    const response = await getIsLikingBlogPage(blogPageId, currentUserId);
+    
+    if (response === undefined || response === null) {
+      return { success: false, liked: false, error: "No response received" };
+    }
+    
+    return { success: true, liked: response.liked, error: null };
+  } catch (error) {
+    return { success: false, liked: false, error: error.message };
+  }
+}
+</code></pre>
+<h3 id="-toggle-funktion-refactoren"><a class="header" href="#-toggle-funktion-refactoren">🔄 Toggle-Funktion refactoren</a></h3>
+<p><strong>Status-Check-Funktion verwenden:</strong></p>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  try {
+    const likeStatus = await checkUserLikeStatus();
+    
+    if (!likeStatus.success) {
+      console.error("Could not determine like status:", likeStatus.error);
+      return;
+    }
+    
+    if (likeStatus.liked) {
+      await unlikeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(false);
+    } else {
+      await likeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(true);
+    }
+    
+    setLikeCounter();
+  } catch (error) {
+    console.error("Error toggling like state:", error);
+  }
+}
+</code></pre>
+<h3 id="-init-like-state-funktion"><a class="header" href="#-init-like-state-funktion">🎯 Init-Like-State-Funktion</a></h3>
+<p><strong>DRY-Prinzip - Wiederverwendbare Init-Funktion:</strong></p>
+<pre><code class="language-javascript">async function initLikeState() {
+  const likeStatus = await checkUserLikeStatus();
+  
+  if (likeStatus.success) {
+    updateLikeButtonUi(likeStatus.liked);
+    setLikeCounter();
+  } else {
+    console.error("Could not fetch like status:", likeStatus.error);
+  }
+}
+</code></pre>
+<h3 id="-observer-funktionen-finalisieren"><a class="header" href="#-observer-funktionen-finalisieren">🔄 Observer-Funktionen finalisieren</a></h3>
+<p><strong>User-ID-Change Observer:</strong></p>
+<pre><code class="language-javascript">function observeUserIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.USER_ID_CHANGED,
+    async (data) =&gt; {
+      currentUserId = data.userId;
+      await initLikeState();
+    },
+    true
+  );
+}
+</code></pre>
+<p><strong>Blog-Page-ID-Change Observer:</strong></p>
+<pre><code class="language-javascript">function observeBlogPageIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.BLOG_PAGE_ID_CHANGED,
+    async (data) =&gt; {
+      blogPageId = data.blogPageId;
+      await initLikeState();
+    },
+    true
+  );
+}
+</code></pre>
+<hr />
+<h2 id="-endergebnis"><a class="header" href="#-endergebnis">🎉 Endergebnis</a></h2>
+<h3 id="-implementierte-features"><a class="header" href="#-implementierte-features">✅ Implementierte Features</a></h3>
+<ol>
+<li><strong>🔄 Like/Unlike Toggle</strong> - Backend-synchronisiert</li>
+<li><strong>🎨 UI-Updates</strong> - Button-Text und Icon-Änderungen</li>
+<li><strong>📊 Counter-Updates</strong> - Automatische Zähler-Aktualisierung</li>
+<li><strong>👤 User-Switching</strong> - Korrekte Like-Status-Anzeige pro User</li>
+<li><strong>🛡️ Error Handling</strong> - Robuste Fehlerbehandlung</li>
+<li><strong>🔄 DRY Code</strong> - Wiederverwendbare Funktionen</li>
+</ol>
+<h3 id="-vollständiger-test"><a class="header" href="#-vollständiger-test">🧪 Vollständiger Test</a></h3>
+<p><strong>Test-Szenarios:</strong></p>
+<ol>
+<li>✅ Like/Unlike mit verschiedenen Users</li>
+<li>✅ User-ID-Wechsel oben rechts</li>
+<li>✅ Backend-Verbindung aktiv</li>
+<li>✅ Counter-Updates in Echtzeit</li>
+</ol>
+<p><strong>Die Like-Funktionalität ist jetzt vollständig implementiert!</strong> 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-follow-funktion-wiederherstellen"><a class="header" href="#-follow-funktion-wiederherstellen">🚓 Follow-Funktion wiederherstellen</a></h1>
+<h2 id="-aufgabe"><a class="header" href="#-aufgabe">🎯 Aufgabe</a></h2>
+<p>Du hast gelernt, wie du das Backend für State-Management nutzt - mit Services wie Observer und blogPageLikes. Jetzt fehlt die <strong>Follow-Funktionalität</strong> für <strong>Author</strong> und <strong>Topic</strong>. Nutze dein erworbenes Wissen!</p>
+<blockquote>
+<p>💪 <strong>Challenge</strong>: Wissen ist Macht, und mit Macht kommt... noch mehr Code! 😄</p>
+</blockquote>
+<hr />
+<h2 id="-author-follow-implementieren"><a class="header" href="#-author-follow-implementieren">👤 Author Follow implementieren</a></h2>
+<h3 id="-vorbereitung-followstatehandlerjs"><a class="header" href="#-vorbereitung-followstatehandlerjs">📁 Vorbereitung: followStateHandler.js</a></h3>
+<p>Das File <code>followStateHandler.js</code> ist bereits vorbereitet:</p>
+<pre><code class="language-javascript">const followAuthorText = "Autor:in folgen";
+const unfollowAuthorText = "Autor:in nicht mehr folgen";
+const followTopicText = "Thema folgen";
+const unfollowTopicText = "Thema entfolgen";
+
+import { appObserver, ObserverEvents } from "../../services/observer.js";
+
+let currentUserId = 0;
+let blogPageId = 0;
+
+function observeUserIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.USER_ID_CHANGED,
+    async (data) =&gt; {
+      currentUserId = data.userId;
+      console.log("Current User ID in followStateHandler:", currentUserId);
+      // Weitere Aktionen bei User-ID-Änderung
+    },
+    true
+  );
+}
+
+function observeBlogPageIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.BLOG_PAGE_ID_CHANGED,
+    async (data) =&gt; {
+      blogPageId = data.blogPageId;
+      console.log("Current Blog Page ID in followStateHandler:", blogPageId);
+      // Weitere Aktionen bei Blog-Page-ID-Änderung
+    },
+    true
+  );
+}
+
+observeUserIdChange();
+observeBlogPageIdChange();
+</code></pre>
+<h3 id="-integration-aktivieren"><a class="header" href="#-integration-aktivieren">🔗 Integration aktivieren</a></h3>
+<p><strong>Das File wird noch nicht geladen!</strong> Import in <code>blogPageMain.js</code> hinzufügen:</p>
+<pre><code class="language-javascript">import "./followStateHandler.js";
+</code></pre>
+<hr />
+<h2 id="-implementation-aufgaben"><a class="header" href="#-implementation-aufgaben">🛠️ Implementation-Aufgaben</a></h2>
+<h3 id="1-button-event-system-erweitern"><a class="header" href="#1-button-event-system-erweitern">1️⃣ Button Event-System erweitern</a></h3>
+<p><strong>In <code>buttons.js</code></strong>: Follow-Button-Klicks via Observer weiterleiten</p>
+<p><strong>Beispiel für Author-Follow:</strong></p>
+<pre><code class="language-javascript">case "follow_author":
+  appObserver.emit(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, {
+    button: button
+  });
+  break;
+</code></pre>
+<h3 id="2-follow-state-handler-implementieren"><a class="header" href="#2-follow-state-handler-implementieren">2️⃣ Follow State Handler implementieren</a></h3>
+<p><strong>Event empfangen und verarbeiten:</strong></p>
+<pre><code class="language-javascript">appObserver.subscribe(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, async (data) =&gt; {
+  const button = data.button;
+  // Toggle-Logik implementieren
+});
+</code></pre>
+<h3 id="3-ui-korrekt-aktualisieren"><a class="header" href="#3-ui-korrekt-aktualisieren">3️⃣ UI korrekt aktualisieren</a></h3>
+<ul>
+<li><strong>Text</strong> zwischen follow/unfollow wechseln</li>
+<li><strong>CSS-Klasse</strong> <code>primary</code> richtig setzen/entfernen</li>
+<li><strong>Backend-State</strong> synchronisieren</li>
+</ul>
+<h3 id="4-userblogpage-id-changes-handhaben"><a class="header" href="#4-userblogpage-id-changes-handhaben">4️⃣ User/BlogPage-ID-Changes handhaben</a></h3>
+<p>Bei Änderungen der User-ID oder Blog-Page-ID korrekten Follow-Status laden und UI aktualisieren.</p>
+<hr />
+<h2 id="-hilfreiche-code-snippets"><a class="header" href="#-hilfreiche-code-snippets">💡 Hilfreiche Code-Snippets</a></h2>
+<h3 id="-author-email-aus-button-extrahieren"><a class="header" href="#-author-email-aus-button-extrahieren">📧 Author Email aus Button extrahieren</a></h3>
+<pre><code class="language-javascript">const authorEmail = button.dataset.authorEmail;
+</code></pre>
+<h3 id="-event-mit-button-daten-versenden"><a class="header" href="#-event-mit-button-daten-versenden">📡 Event mit Button-Daten versenden</a></h3>
+<pre><code class="language-javascript">appObserver.emit(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, {
+  button: button
+});
+</code></pre>
+<h3 id="-event-mit-button-daten-empfangen"><a class="header" href="#-event-mit-button-daten-empfangen">👂 Event mit Button-Daten empfangen</a></h3>
+<pre><code class="language-javascript">appObserver.subscribe(ObserverEvents.AUTHOR_FOLLOW_BUTTON_CLICKED, async (data) =&gt; {
+  const button = data.button;
+  const authorEmail = button.dataset.authorEmail;
+  // Toggle-Logik hier
+});
+</code></pre>
+<h3 id="-ui-update-pattern"><a class="header" href="#-ui-update-pattern">🎨 UI-Update-Pattern</a></h3>
+<pre><code class="language-javascript">function updateAuthorFollowButtonUi(isFollowing, button) {
+  if (isFollowing) {
+    button.classList.remove("primary");
+    button.textContent = unfollowAuthorText;
+  } else {
+    button.classList.add("primary");
+    button.textContent = followAuthorText;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="-topic-follow-implementieren"><a class="header" href="#-topic-follow-implementieren">🏷️ Topic Follow implementieren</a></h2>
+<h3 id="-Ähnlich-aber-mit-unterschieden"><a class="header" href="#-Ähnlich-aber-mit-unterschieden">🔄 Ähnlich, aber mit Unterschieden</a></h3>
+<p><strong>Topic Follow</strong> ist fast identisch zu Author Follow, mit diesen <strong>wichtigen Unterschieden</strong>:</p>
+<h4 id="1-neuer-event-typ-benötigt"><a class="header" href="#1-neuer-event-typ-benötigt">1️⃣ Neuer Event-Typ benötigt</a></h4>
+<pre><code class="language-javascript">ObserverEvents.TOPIC_FOLLOW_BUTTON_CLICKED
+</code></pre>
+<h4 id="2-multiple-button-support"><a class="header" href="#2-multiple-button-support">2️⃣ Multiple Button Support</a></h4>
+<p>Topics können <strong>mehrfach pro Blog-Page</strong> vorkommen. Alle Topic-Buttons berücksichtigen:</p>
+<pre><code class="language-javascript">const buttons = document.querySelectorAll("button[data-button='follow_topic']");
+
+for (const btn of buttons) {
+  // UI für jeden Button aktualisieren
+}
+</code></pre>
+<h4 id="3-topic-name-extrahieren"><a class="header" href="#3-topic-name-extrahieren">3️⃣ Topic-Name extrahieren</a></h4>
+<pre><code class="language-javascript">const topicName = button.dataset.topicName;
+</code></pre>
+<hr />
+<h2 id="-implementation-checkliste"><a class="header" href="#-implementation-checkliste">🎯 Implementation-Checkliste</a></h2>
+<h3 id="-author-follow"><a class="header" href="#-author-follow">✅ Author Follow</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"/>
+<strong>Observer Events</strong> für Author-Follow erstellt</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Button-Click-Events</strong> in buttons.js implementiert</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Toggle-Logik</strong> in followStateHandler.js</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Backend-Integration</strong> (follow/unfollow API-Calls)</li>
+<li><input disabled="" type="checkbox"/>
+<strong>UI-Updates</strong> (Text + CSS-Klassen)</li>
+<li><input disabled="" type="checkbox"/>
+<strong>User-ID-Change</strong> Handling</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Blog-Page-ID-Change</strong> Handling</li>
+</ul>
+<h3 id="-topic-follow"><a class="header" href="#-topic-follow">✅ Topic Follow</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"/>
+<strong>Observer Events</strong> für Topic-Follow erstellt</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Multiple Button Support</strong> implementiert</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Topic-Name-Extraktion</strong> aus Button-Data</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Alle Topic-Buttons</strong> bei Status-Änderung aktualisieren</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Backend-Integration</strong> vervollständigt</li>
+</ul>
+<hr />
+<h2 id="-testing-szenarios"><a class="header" href="#-testing-szenarios">🧪 Testing-Szenarios</a></h2>
+<h3 id="-ausgiebige-tests-durchführen"><a class="header" href="#-ausgiebige-tests-durchführen">🔬 Ausgiebige Tests durchführen</a></h3>
+<ol>
+<li><strong>👤 User-ID wechseln</strong> - Follow-Status sollte sich entsprechend ändern</li>
+<li><strong>🔘 Button-Klicks</strong> - Follow/Unfollow funktioniert</li>
+<li><strong>📄 Blog-Page-ID ändern</strong> - Neue Follow-Status werden geladen</li>
+<li><strong>🏷️ Multiple Topic-Buttons</strong> - Alle werden synchron aktualisiert</li>
+<li><strong>🔄 Backend-Persistenz</strong> - Status bleibt nach Page-Reload erhalten</li>
+</ol>
+<hr />
+<h2 id="-thats-it-folks"><a class="header" href="#-thats-it-folks">🎉 That's it folks!</a></h2>
+<p>Wenn alle Tests erfolgreich sind: <strong>Gratulation!</strong> 🥂</p>
+<h3 id="-debugging-hilfe"><a class="header" href="#-debugging-hilfe">🐛 Debugging-Hilfe</a></h3>
+<p>Falls etwas nicht funktioniert:</p>
+<ol>
+<li><strong>Console-Logs</strong> überprüfen</li>
+<li><strong>Network-Tab</strong> für API-Calls kontrollieren</li>
+<li><strong>Event-Flow</strong> durch Observer verfolgen</li>
+</ol>
+<h3 id="-endlösung-verfügbar"><a class="header" href="#-endlösung-verfügbar">🔗 Endlösung verfügbar</a></h3>
+<p>Bei völliger Verzweiflung kannst du die <strong>komplette Lösung</strong> auf GitHub einsehen:</p>
+<p><a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/06_followButtonsWithBackendIntegration">GitHub: Follow Buttons mit Backend Integration</a></p>
+<hr />
+<h2 id="-lernziele-erreicht"><a class="header" href="#-lernziele-erreicht">🏆 Lernziele erreicht</a></h2>
+<p>Nach erfolgreicher Implementation beherrschst du:</p>
+<p>✅ <strong>Event-driven Architecture</strong> mit Observer Pattern<br />
+✅ <strong>Multi-Button State Management</strong><br />
+✅ <strong>Backend-Frontend-Synchronisation</strong><br />
+✅ <strong>Dynamic UI Updates</strong><br />
+✅ <strong>Error Handling &amp; Robustness</strong></p>
+<p><strong>Du bist bereit für komplexere Frontend-Herausforderungen!</strong> 🚀</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-wrap-it-up"><a class="header" href="#-wrap-it-up">💝 Wrap it up</a></h1>
+<h2 id="-so-long-and-thanks-for-all-the-fish"><a class="header" href="#-so-long-and-thanks-for-all-the-fish">🎉 So long and thanks for all the fish</a></h2>
+<p>Du hast in diesem JavaScript-Teil grundlegende Funktionen umgesetzt wie:</p>
+<ul>
+<li><strong>Styling einer Tabelle</strong></li>
+<li><strong>Reagieren auf Button-Klicks</strong></li>
+<li><strong>Backend-Anbindung</strong></li>
+<li><strong>Komplette Neugestaltung</strong> für eine flüssigere Benutzererfahrung</li>
+</ul>
+<h3 id="-refactoring---der-engineering-alltag"><a class="header" href="#-refactoring---der-engineering-alltag">🔄 Refactoring - Der Engineering-Alltag</a></h3>
+<p>Und ja, <strong>ganz viel Refactoring</strong>! Das ist tägliche Arbeit im Engineering-Leben:</p>
+<ol>
+<li>Etwas implementieren</li>
+<li>Weiterentwickeln</li>
+<li>Feststellen: "Oh, das geht ja jetzt einfacher!"</li>
+</ol>
+<h3 id="-komplexe-konzepte-gemeistert"><a class="header" href="#-komplexe-konzepte-gemeistert">🏗️ Komplexe Konzepte gemeistert</a></h3>
+<p>Du hast fortgeschrittene Konzepte erfolgreich umgesetzt:</p>
+<ul>
+<li><strong>Observer Pattern</strong></li>
+<li><strong>State Management</strong></li>
+<li><strong>Event-driven Architecture</strong></li>
+<li><strong>API-Integration</strong></li>
+</ul>
+<hr />
+<h2 id="-wie-weiter"><a class="header" href="#-wie-weiter">🚀 Wie weiter?</a></h2>
+<p>Du hast jetzt ein <strong>solides Verständnis für JavaScript</strong> und kannst darauf aufbauen.</p>
+<h3 id="option-1-bestehende-anwendung-erweitern"><a class="header" href="#option-1-bestehende-anwendung-erweitern">Option 1: Bestehende Anwendung erweitern</a></h3>
+<p>Erweitere das aktuelle Beispiel um weitere Funktionen:</p>
+<ul>
+<li><strong>Komplette Blog-Page</strong> aus dem Backend laden</li>
+<li><strong>Zusätzliche Features</strong> implementieren</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Backend ist bereit</strong>: Datenbank, statische Routen etc. sind bereits eingerichtet!</p>
+</blockquote>
+<h3 id="option-2-framework-verwenden"><a class="header" href="#option-2-framework-verwenden">Option 2: Framework verwenden</a></h3>
+<p>Nimm dir ein modernes Framework zur Hand und baue die Page damit nach:</p>
+<div class="table-wrapper"><table><thead><tr><th>Framework</th><th>Beschreibung</th><th>Tutorial-Link</th></tr></thead><tbody>
+<tr><td><strong>Angular</strong></td><td>Vollständiges Framework von Google</td><td><a href="https://angular.dev/tutorials/learn-angular">Angular Tutorial</a></td></tr>
+<tr><td><strong>React</strong></td><td>Komponenten-basierte Library von Meta</td><td><a href="https://react-tutorial.app">React Tutorial</a></td></tr>
+</tbody></table>
+</div>
+<h3 id="-framework-vorteile"><a class="header" href="#-framework-vorteile">🎯 Framework-Vorteile</a></h3>
+<p>Vieles, was wir <strong>aufwändig manuell</strong> gebaut haben, nehmen dir Angular/React ab:</p>
+<ul>
+<li><strong>Automatisches State Management</strong></li>
+<li><strong>Komponenten-System</strong></li>
+<li><strong>Routing</strong></li>
+<li><strong>Form-Handling</strong></li>
+</ul>
+<p><strong>Trade-off</strong>: Du musst mehr Zeit investieren, um zu verstehen, wie diese Frameworks funktionieren.</p>
+<hr />
+<h2 id="-erreichte-meilensteine"><a class="header" href="#-erreichte-meilensteine">🏆 Erreichte Meilensteine</a></h2>
+<p>✅ <strong>JavaScript-Grundlagen</strong> gemeistert<br />
+✅ <strong>DOM-Manipulation</strong> verstanden<br />
+✅ <strong>API-Integration</strong> erfolgreich<br />
+✅ <strong>Moderne Patterns</strong> angewendet<br />
+✅ <strong>Full-Stack Development</strong> erlebt</p>
+<p><strong>Congratulations!</strong> 🎊 Du bist bereit für den nächsten Schritt in deiner Development-Journey!</p>
 
                     </main>
 

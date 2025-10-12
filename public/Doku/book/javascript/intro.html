@@ -196,52 +196,63 @@ Dies ist zwar nicht ganz korrekt. Wenn du die Geschichte auf Wikipedia nachliest
 <h3 id="-und-"><a class="header" href="#-und-">== und ===</a></h3>
 <p>Time to code. Juhuu. Starte auf deinem Windows oder Mac "node".
 Gib auf der Konsole nun folgendes ein:</p>
-<pre><code>0 == 0
+<pre><code class="language-javascript">0 == 0;
 </code></pre>
 <p>Überlege dir nun, was das Resultat ist. Mache nun jeweils das selbe, mit allen nachfolgenden Beispielen. Überlege dir immer VOR der Eingabe, was wohl das Resultat sein könnte:</p>
-<pre><code>0 == new String("0")
+<pre><code class="language-javascript">0 == new String("0");
 
-0 == "0"
+0 == "0";
 
-new String ("0") == "0"
+new String("0") == "0";
 
-null == undefined
+null == undefined;
 
-"" == false
+"" == false;
 
-1 == true
+1 == true;
 
-"1" == true
+"1" == true;
 
 new String("66") == true;
 </code></pre>
 <p>Jetzt wiederhole die Schritte und benutze anstelle von <code>==</code> jeweils <code>===</code></p>
 <h3 id="objekte-und-funktionen"><a class="header" href="#objekte-und-funktionen">Objekte und Funktionen</a></h3>
 <p>Verwende weiterhin jeweils node, um die Beispiele zu programmieren.</p>
-<pre><code>var person = {}; eingeben
-this.person; eingeben
+<pre><code class="language-javascript">var person = {};
+//eingeben;
+this.person;
+//eingeben;
 </code></pre>
 <p>Was lernst du daraus? Mit {} konntest du einfach so ein Objekt erstellen.</p>
 <p>JavaScript erstellt aus allem direkt ein Objekt. Damit lässt sich wunderbar ein Objekt auch erweitern. Entgegen bspw. Java, muss dieses Objekt nicht auf einer Klasse definieren.</p>
 <p>Gib folgendes ein:</p>
-<pre><code>this.person.name = 'urs';
+<pre><code class="language-javascript">this.person.name = "urs";
 this.person;
 </code></pre>
 <p>Genau. Es hat funktioniert. Jetzt hast du einfach so deinem leeren Objekt kurzerhand ein neues Property angefügt und abgefüllt. Auch hier. Keine Klasse sagt, wie dein Objekt auszusehen hat. Ausserdem ist jedes Objekt immer komplett unabhängig von einem anderen.
 Du hast eine Variable deklariert, jedoch keinen Wert vergeben. Solche Variablen sind in JavaScript zwar vorhanden, aber sind "undefined". Du darfst also nicht versuchen, auf ein weiteres Property zuzugreifen. Du wirst wohl noch oft den Fehler antreffen, dass du auf eine undefined Variable zugreifen willst.</p>
 <h3 id="funktionen"><a class="header" href="#funktionen">Funktionen</a></h3>
 <p>In JavaScript kannst du dir jedes Objekt wie eine Art HashMap in Java vorstellen. Du hast also eine Art Katalog, welcher definiert, welche Werte existieren und was dort abgespeichert ist. Die Werte können dabei andere Objekte oder auch Funktionen sein. Versuche folgendes:</p>
-<pre><code>var person = {};
-person.adress = {strasse: 'ume egge', nummer: 2, ort: 'hie'};
-this.person
-person.sayHello = function() {return 'hallo du'};
+<pre><code class="language-javascript">var person = {};
+person.adress = { strasse: "ume egge", nummer: 2, ort: "hie" };
+this.person;
+person.sayHello = function () {
+  return "hallo du";
+};
 this.person;
 this.person.sayHello();
 </code></pre>
 <p>Funktionen können auf verschiedene Arten erstellt werden.</p>
-<p>function doIt() { return 'no';}
-var doItMaybe = function () { return 'still no';}
-var doItDefiniv = function stillBlocking() { return 'I give up';}</p>
+<pre><code class="language-javascript">function doIt() {
+  return "no";
+}
+var doItMaybe = function () {
+  return "still no";
+};
+var doItDefiniv = function stillBlocking() {
+  return "I give up";
+};
+</code></pre>
 <p>Erste Variante wird gehoistet und kann vorher schon benutzt werden. Andere Varianten nicht. Named hat Vorteile beim Debuggen. Führe alle Varianten mit () aus -&gt;</p>
 <ul>
 <li>Kein grosser Unterschied</li>
@@ -249,30 +260,30 @@ var doItDefiniv = function stillBlocking() { return 'I give up';}</p>
 <li>Der Name wird bei Variante 3 entsprechend angezeigt</li>
 </ul>
 <p>In JavaScript ist wirklich ALLES ein Objekt. Sogar Funktionen. Lass es uns beweisen und gib folgendes ein:</p>
-<pre><code>doItMaybe instanceOf Object
-doItMaybe.candidate = 'nid ig'
+<pre><code class="language-javascript">doItMaybe instanceOf Object
+    doItMaybe.candidate = 'nid ig'
 </code></pre>
 <p>das erste wird <code>true</code> zurückgeben.</p>
 <p>Was denkst, du was nun in doItMaybe drin ist wenn du es ausführst?
 Auch ein Array verhält sich eigentlich genau gleich wie ein Objekt:</p>
-<pre><code>var a = [];
-a[0] = 1;
-a; -&gt; Ausgabe prüfen
-a[100] = 100;
--&gt; denkst du das geht?
-a; -&gt; Ausgabe prüfen
+<pre><code class="language-javascript">var a = [];
+    a[0] = 1;
+    a; //-&gt; Ausgabe prüfen
+    a[100] = 100;
+    //-&gt; denkst du das geht?
+    a; //-&gt; Ausgabe prüfen
 </code></pre>
 <p>Hier musst du immer sehr darauf achten, wenn du bspw. einen Loop hast mit einer Schleifenvariable. Ein Fehler und deine Schleife läuft endlos.</p>
 <h3 id="higher-order-function"><a class="header" href="#higher-order-function">Higher Order Function</a></h3>
 <p>Eine Funktion kann eine Funktion enthalten. Ist dies der Fall, nennt man dieses Konstrukt eine "higher Order function". In Frameworks wie Angular oder React wirst du sehr häufig solche Konstrukte vorfinden.</p>
-<pre><code>var higherOrderFunction = function (justANumber, func) {
-justANumber = justANumber * 1000;
-func(justANumber);
-}
-this.higherOrderFunction(10, function(answer){console.log(answer)};
+<pre><code class="language-javascript">var higherOrderFunction = function (justANumber, func) {
+    justANumber = justANumber * 1000;
+    func(justANumber);
+    }
+    this.higherOrderFunction(10, function(answer){console.log(answer)};
 </code></pre>
 <p>Das ganze kann auch mit einer Arrow functions ausgeführt werden:</p>
-<pre><code>this.higherOrderFunction(10, answer =&gt; console.log(answer) )
+<pre><code class="language-javascript">this.higherOrderFunction(10, (answer) =&gt; console.log(answer));
 </code></pre>
 <h3 id="let-and-const"><a class="header" href="#let-and-const">Let and const</a></h3>
 <p>In einem modernen JavasScript Umfeld soll immer <code>let</code> und <code>const</code> verwendet werden. Man kann Variablen auch mit dem Keyword <code>var</code> erstellen. Dies verursacht jedoch ungewünschte Effekte und soll nicht mehr gemacht werden);</p>
