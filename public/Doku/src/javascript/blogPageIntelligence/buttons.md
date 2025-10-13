@@ -37,6 +37,8 @@ Ein **Event** ist eine Nachricht wenn eine Aktion stattfindet - wie "Button XY w
 Mehr dazu: [MDN Event.preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
 
 ### Events finden
+<details>
+<summary>Öffne für mehr Infos</summary>
 
 **Herausforderung**: Nicht jedes Element bietet die selben Events an:
 - **Button** kann geklickt werden
@@ -69,6 +71,7 @@ Mehr dazu: [MDN Event.preventDefault](https://developer.mozilla.org/en-US/docs/W
 | **IDE-Support** | Autocomplete und IntelliSense nutzen | Sehr praktisch während Entwicklung |
 
 >  **Praxis-Tipp**: Die Devise **"trial and error"** ist oft effizienter als stundenlanges Dokumentation-Studium!
+</details>
 
 ### Event Listener erstellen
 
@@ -87,6 +90,8 @@ button.addEventListener("click", () => {
   // Handle button click
 });
 ```
+
+Der erste Parameter ist der Event Type, der zweite (nach dem `,`) nimmt eine Funktion entgegen, welche ausgeführt werden soll, wenn der Listener greift. Nun wird es etwas kompliziert, wenn du dies im Detail verstehen möchtest… Lies dazu [JavaScript und Callbacks](../callbacks.html) oder übernimmt einfach mal nachfolgende Code Snippets.
 
 ### Erster Test
 
@@ -152,7 +157,7 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 ## Button States Management
 
 ### ⚡ Switch-Statement für Button-Typen
-
+Siehe auch [JavaScript Switch Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
 ```javascript
 document.querySelectorAll("button[data-button]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -172,7 +177,21 @@ document.querySelectorAll("button[data-button]").forEach((button) => {
 
 ### Toggle-Funktionalität
 
+Im nächsten Schritt wollen wir ein einfaches "toggle" einbauen. Das ist der Begriff, wenn zwischen Zuständen gewechselt wird. Meistens zwischen 2 wie bei uns. Von inaktiv auf aktiv und zurück.
+
 **Toggle-Funktion erstellen:**
+
+Damit der Button tatsächlich "toggled" wollen wir die Funktion toggleButtonState so erweitern, dass sie den nun aktiven State ausliest und ihn "umdreht". Zusätzlich setzen bzw. entfernen wir den primary-button als CSS Klasse. So wird bereits optisch was passieren.
+
+Lies also als erstes den state aus dem Button und speichere ihn als lokale Variable in der Funktion ab.
+
+```javascript
+function toggleButtonState(button) {
+  const currentState = button.dataset.buttonState;
+```
+
+Nun kannst du mit einem "if" unterscheiden was basierend auf dem aktuellen State passieren soll. Nebst der CSS Klasse setzen wir auch den State zurück.
+
 ```javascript
 function toggleButtonState(button) {
   const currentState = button.dataset.buttonState;
@@ -188,6 +207,8 @@ function toggleButtonState(button) {
 ```
 
 **Funktionsaufruf in Switch-Statement:**
+
+Nun muss die Funktion noch aufgerufen werden.
 ```javascript
 switch (button.dataset.button) {
   case "like_article":
@@ -204,7 +225,7 @@ switch (button.dataset.button) {
 
 ### CSS-Klassen automatisch togglen
 
-Mit [classList.toggle](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) wird das noch einfacher:
+Mit [classList.toggle](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) wird das setzen/entfernen der CSS Klasse noch einfacher:
 
 ```javascript
 function toggleButtonState(button) {
@@ -240,7 +261,14 @@ function toggleButtonState(button, activationText, inactivatingText) {
 }
 ```
 
+#### Erklärungen
+- mit `.textContent` erhalten wir direkt den Text ohne inneres HTML
+- `activationText` und `inactivatingText` sind zwei neue Funktions Parameter
+- Die Texte müssen übergeben werden, damit sie was tun
+
 ### Text-Konstanten definieren
+
+Diese werden am Anfang des Files definiert und erlauben einfaches lesen der Texte.
 
 ```javascript
 const likePageText = "Dieser Artikel gefällt mir!";
@@ -252,6 +280,8 @@ const unfollowTopicText = "Thema entfolgen";
 ```
 
 ### Switch-Statement mit Texten
+
+Damit die Texte stimmen, übergibst du sie aus der Switch Funktion an die Toggle Funktion.
 
 ```javascript
 switch (button.dataset.button) {
@@ -275,11 +305,17 @@ switch (button.dataset.button) {
 
 Der Like Button braucht zusätzliche Features:
 - **Zähler** für Likes
-- **Icon** mit Herz/gebrochenem Herz
+- **Icon** mit Herz/gebrochenem Herz (Kosmetik)
 
 ### HTML für Counter markieren
 
 **Zahl mit span und ID markieren:**
+
+Den counter legen wir lokal im JavaScript an, mit dem Bewusstsein, dass die Daten später von einem Server kommen sollten. Dazu müssen wir zudem im HTML die Stelle markieren, wo der Counter steht.
+
+Gehe zur Stelle im HTML wo steht "59 Personen gefällt dieser Artikel". 
+Wir wollen nur die Zahl steuern können. Dafür ist ein `<span>` Element perfekt geeignet, da es keine Zeile erstellt. Füge ein span Element um die Zahl ein und vergib die id "data-like-counter".
+
 ```html
 <span id="data-like-counter">59</span> Personen gefällt dieser Artikel
 ```
@@ -287,6 +323,8 @@ Der Like Button braucht zusätzliche Features:
 > 💡 **Wichtig**: IDs dürfen nur einmal pro HTML existieren!
 
 ### Like-spezifische Toggle-Funktion
+
+Der Like Button wird nun eine Sonderbehandlung brauchen. Lege eine neue Function an im JavaScript und nenne sie `toggleLikeButtonState`. Als Parameter brauchen wir den Button.
 
 ```javascript
 function toggleLikeButtonState(button) {
@@ -306,26 +344,16 @@ function toggleLikeButtonState(button) {
 }
 ```
 
+#### Erklärungen
+- `currentCount`dient als Zwischenspeicher des aktuellen Count
+- `parseInt`konvertiert den Text zu einer Zahl, damit das Rechnen sauber klappt
+- `button.dataset.buttonState`holt den Wert des Data Attributes mit Namen `button-state`
+- der `currentState` dient für die Unterscheidung, ob plus oder minus gezählt wird
+- mit `likeCounter.textContent = ` wird der neue Wert gesetzt
+
 ### Integration mit bestehender Toggle-Logik
 
-```javascript
-function toggleLikeButtonState(button, activationText, inactivatingText) {
-  const currentState = button.dataset.buttonState;
-  const likeCounter = document.getElementById("data-like-counter");
-  let currentCount = parseInt(likeCounter.textContent);
-
-  toggleButtonState(button, activationText, inactivatingText);
-
-  if (currentState == "inactive") {
-    currentCount++;
-  } else {
-    currentCount--;
-  }
-  likeCounter.textContent = currentCount;
-}
-```
-
-### Switch-Statement anpassen
+Handelt es sich um den Like Button, soll die neue Logik aufgerufen werden.
 
 ```javascript
 case "like_article":
@@ -333,9 +361,51 @@ case "like_article":
   break;
 ```
 
+#### Text und Aussehen korrigieren
+Wenn du jetzt ausprobierst, was passiert, wirst du bemerken, dass zwar der Zähler funktioniert, dafür aber der Text und Aussehen nicht mehr stimmen. Das gute ist, die Logik haben wir ja bereits im "toggleButtonState" geschrieben und können sie einfach nochmals aufrufen, bevor wir den Counter setzen.
+
+```javascript
+function toggleLikeButtonState(button) {
+  const currentState = button.dataset.buttonState;
+  const likeCounter = document.querySelector("#data-like-counter");
+  // Alternative: document.getElementById("data-like-counter");
+  
+  let currentCount = parseInt(likeCounter.textContent);
+  
+  // bestehende Logik wiederverwenden
+  toggleButtonState(button, likePageText, unlikePageText);
+
+  if (currentState == "inactive") {
+    currentCount++;
+  } else {
+    currentCount--;
+  }
+  
+  likeCounter.textContent = currentCount;
+}
+```
+
+#### Refactoring
+
+An der Lösung ist noch etwas unsauber, dass sich die Methode `toggleLikeButtonState` ums direkte setzten der Texte kümmert. Wir möchten auch hier die Texte als Parameter entgegen nehmen, auch wenn wir hier grundsätzlich "wissen" um welche Texte es sich handelt. Lagerst du die Verantwortung jedoch an den Aufrufer aus, dann ist die Methode "unabhängig" und könnte einfacher umgezogen werden. Erweitere also die Methode genau gleich wie `toggleButtonState` um die zwei Parameter, übergib dieses an die toggleButtonState Methode und übergib die Werte wieder bei der Switch Methode.
+
+```javascript
+case "like_article":
+        toggleLikeButtonState(button, likePageText, unlikePageText);
+        break;
+
+function toggleLikeButtonState(button, activationText, inactivatingText) {
+  const currentState = button.dataset.buttonState;
+  const likeCounter = document.getElementById("data-like-counter");
+  let currentCount = parseInt(likeCounter.textContent);
+  toggleButtonState(button, activationText, inactivatingText);
+```
+
+
 ---
 
 ## Icon-Integration
+Das Icon wird aktuell gelöscht, sobald du den Button drückst. Eigentlich möchten wir auch das Icon korrekt setzen. Dafür erstellen wir zuerst einmal das nötige HTML, dass wir dann einsetzen können. Erstelle am Anfang des Scripts je eine Variable für das "filledHeart" und das "brokenHeart".
 
 ### SVG-Icons vorbereiten
 
@@ -364,6 +434,11 @@ brokenHeart.innerHTML = `<svg
 filledHeart.classList.add("mr-s");
 brokenHeart.classList.add("mr-s");
 ```
+
+#### Erklärungen
+- `createElement`erstellt ein HTML Element vom Typ, den du mitgibst
+- mit `innerHtml`kann HTML angefügt werden
+- der SVG Code selbst ist eher kommpliziert. Im Prinzip gibt es die Linien vor, die gezeichnet werden
 
 ### Icons in Toggle-Funktion integrieren
 

@@ -271,7 +271,10 @@
   // Code für jede Tabelle
 });
 </code></pre>
+<p>Foreach siehe <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">foreach Erklärung</a></p>
 <h3 id="2-spalten-finden-und-höchsten-wert-ermitteln"><a class="header" href="#2-spalten-finden-und-höchsten-wert-ermitteln">2️⃣ Spalten finden und höchsten Wert ermitteln</a></h3>
+<p>Jetzt haben wir das Tabellen Element und können innerhalb wiederum all unsere Spalten finden. Wieso brauchen wir das? Damit die Breite der Spalten stimmt, müssen wir zuerst den höchsten Wert finden. Denn dieser bestimmt 100%. Davon abgeleitet können wir dann berechnen, wie viel % Breit die Spalte sein sollte.</p>
+<p>Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch und merken uns den höchsten Wert. Dass kannst du mit einer lokalen Variable machen. Diese muss mit <code>let</code> definiert sein, wenn du den Werte anpassen willst. Ist der Wert Schreibgeschützt kannst du <code>const</code> nutzen. In unserem Fall brauchen wir <code>let</code> da wir den Wert neu schreiben, wenn er grösser als der vorherige ist.</p>
 <pre><code class="language-javascript">const columns = table.querySelectorAll("[data-table-column]");
 
 let columnWidest = 0;
@@ -300,6 +303,7 @@ columns.forEach((col) =&gt; {
 <pre><code class="language-html">&lt;p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
    data-table-column&gt;
 </code></pre>
+<p>Im Prinzip kannst du es als Rückfall drin lassen, sollte das JavaScript nicht geladen werden.</p>
 <hr />
 <h2 id="erweiterte-version-kürzer-aber-komplexer"><a class="header" href="#erweiterte-version-kürzer-aber-komplexer">Erweiterte Version (Kürzer aber komplexer)</a></h2>
 <h3 id="kompakte-lösung"><a class="header" href="#kompakte-lösung">Kompakte Lösung</a></h3>

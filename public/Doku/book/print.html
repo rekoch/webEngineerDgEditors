@@ -2910,7 +2910,10 @@ orderCoffee((coffeeType) =&gt; {
   // Code für jede Tabelle
 });
 </code></pre>
+<p>Foreach siehe <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">foreach Erklärung</a></p>
 <h3 id="2-spalten-finden-und-höchsten-wert-ermitteln"><a class="header" href="#2-spalten-finden-und-höchsten-wert-ermitteln">2️⃣ Spalten finden und höchsten Wert ermitteln</a></h3>
+<p>Jetzt haben wir das Tabellen Element und können innerhalb wiederum all unsere Spalten finden. Wieso brauchen wir das? Damit die Breite der Spalten stimmt, müssen wir zuerst den höchsten Wert finden. Denn dieser bestimmt 100%. Davon abgeleitet können wir dann berechnen, wie viel % Breit die Spalte sein sollte.</p>
+<p>Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch und merken uns den höchsten Wert. Dass kannst du mit einer lokalen Variable machen. Diese muss mit <code>let</code> definiert sein, wenn du den Werte anpassen willst. Ist der Wert Schreibgeschützt kannst du <code>const</code> nutzen. In unserem Fall brauchen wir <code>let</code> da wir den Wert neu schreiben, wenn er grösser als der vorherige ist.</p>
 <pre><code class="language-javascript">const columns = table.querySelectorAll("[data-table-column]");
 
 let columnWidest = 0;
@@ -2939,6 +2942,7 @@ columns.forEach((col) =&gt; {
 <pre><code class="language-html">&lt;p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
    data-table-column&gt;
 </code></pre>
+<p>Im Prinzip kannst du es als Rückfall drin lassen, sollte das JavaScript nicht geladen werden.</p>
 <hr />
 <h2 id="erweiterte-version-kürzer-aber-komplexer"><a class="header" href="#erweiterte-version-kürzer-aber-komplexer">Erweiterte Version (Kürzer aber komplexer)</a></h2>
 <h3 id="kompakte-lösung"><a class="header" href="#kompakte-lösung">Kompakte Lösung</a></h3>
@@ -3011,6 +3015,8 @@ columns.forEach((col) =&gt; {
 <p>Ein <strong>Event</strong> ist eine Nachricht wenn eine Aktion stattfindet - wie "Button XY wurde gedrückt". Der Browser kennt Standard-Reaktionen auf Events (z.B. Checkbox an/aus).</p>
 <p>Mehr dazu: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">MDN Event.preventDefault</a></p>
 <h3 id="events-finden"><a class="header" href="#events-finden">Events finden</a></h3>
+<details>
+<summary>Öffne für mehr Infos</summary>
 <p><strong>Herausforderung</strong>: Nicht jedes Element bietet die selben Events an:</p>
 <ul>
 <li><strong>Button</strong> kann geklickt werden</li>
@@ -3044,6 +3050,7 @@ columns.forEach((col) =&gt; {
 <blockquote>
 <p><strong>Praxis-Tipp</strong>: Die Devise <strong>"trial and error"</strong> ist oft effizienter als stundenlanges Dokumentation-Studium!</p>
 </blockquote>
+</details>
 <h3 id="event-listener-erstellen"><a class="header" href="#event-listener-erstellen">Event Listener erstellen</a></h3>
 <p><strong>Schritt 1</strong>: Alle Buttons finden und Event Listener registrieren</p>
 <pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
@@ -3055,6 +3062,7 @@ columns.forEach((col) =&gt; {
   // Handle button click
 });
 </code></pre>
+<p>Der erste Parameter ist der Event Type, der zweite (nach dem <code>,</code>) nimmt eine Funktion entgegen, welche ausgeführt werden soll, wenn der Listener greift. Nun wird es etwas kompliziert, wenn du dies im Detail verstehen möchtest… Lies dazu <a href="javascript/blogPageIntelligence/../callbacks.html">JavaScript und Callbacks</a> oder übernimmt einfach mal nachfolgende Code Snippets.</p>
 <h3 id="erster-test"><a class="header" href="#erster-test">Erster Test</a></h3>
 <pre><code class="language-javascript">document.querySelectorAll("button").forEach((button) =&gt; {
   button.addEventListener("click", () =&gt; {
@@ -3100,6 +3108,7 @@ columns.forEach((col) =&gt; {
 <hr />
 <h2 id="button-states-management"><a class="header" href="#button-states-management">Button States Management</a></h2>
 <h3 id="-switch-statement-für-button-typen"><a class="header" href="#-switch-statement-für-button-typen">⚡ Switch-Statement für Button-Typen</a></h3>
+<p>Siehe auch <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch">JavaScript Switch Statement</a></p>
 <pre><code class="language-javascript">document.querySelectorAll("button[data-button]").forEach((button) =&gt; {
   button.addEventListener("click", () =&gt; {
     switch (button.dataset.button) {
@@ -3116,7 +3125,14 @@ columns.forEach((col) =&gt; {
 });
 </code></pre>
 <h3 id="toggle-funktionalität"><a class="header" href="#toggle-funktionalität">Toggle-Funktionalität</a></h3>
+<p>Im nächsten Schritt wollen wir ein einfaches "toggle" einbauen. Das ist der Begriff, wenn zwischen Zuständen gewechselt wird. Meistens zwischen 2 wie bei uns. Von inaktiv auf aktiv und zurück.</p>
 <p><strong>Toggle-Funktion erstellen:</strong></p>
+<p>Damit der Button tatsächlich "toggled" wollen wir die Funktion toggleButtonState so erweitern, dass sie den nun aktiven State ausliest und ihn "umdreht". Zusätzlich setzen bzw. entfernen wir den primary-button als CSS Klasse. So wird bereits optisch was passieren.</p>
+<p>Lies also als erstes den state aus dem Button und speichere ihn als lokale Variable in der Funktion ab.</p>
+<pre><code class="language-javascript">function toggleButtonState(button) {
+  const currentState = button.dataset.buttonState;
+</code></pre>
+<p>Nun kannst du mit einem "if" unterscheiden was basierend auf dem aktuellen State passieren soll. Nebst der CSS Klasse setzen wir auch den State zurück.</p>
 <pre><code class="language-javascript">function toggleButtonState(button) {
   const currentState = button.dataset.buttonState;
   
@@ -3130,6 +3146,7 @@ columns.forEach((col) =&gt; {
 }
 </code></pre>
 <p><strong>Funktionsaufruf in Switch-Statement:</strong></p>
+<p>Nun muss die Funktion noch aufgerufen werden.</p>
 <pre><code class="language-javascript">switch (button.dataset.button) {
   case "like_article":
     toggleButtonState(button);
@@ -3143,7 +3160,7 @@ columns.forEach((col) =&gt; {
 }
 </code></pre>
 <h3 id="css-klassen-automatisch-togglen"><a class="header" href="#css-klassen-automatisch-togglen">CSS-Klassen automatisch togglen</a></h3>
-<p>Mit <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList.toggle</a> wird das noch einfacher:</p>
+<p>Mit <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList.toggle</a> wird das setzen/entfernen der CSS Klasse noch einfacher:</p>
 <pre><code class="language-javascript">function toggleButtonState(button) {
   const currentState = button.dataset.buttonState;
   button.classList.toggle("primary");
@@ -3171,7 +3188,14 @@ columns.forEach((col) =&gt; {
   }
 }
 </code></pre>
+<h4 id="erklärungen"><a class="header" href="#erklärungen">Erklärungen</a></h4>
+<ul>
+<li>mit <code>.textContent</code> erhalten wir direkt den Text ohne inneres HTML</li>
+<li><code>activationText</code> und <code>inactivatingText</code> sind zwei neue Funktions Parameter</li>
+<li>Die Texte müssen übergeben werden, damit sie was tun</li>
+</ul>
 <h3 id="text-konstanten-definieren"><a class="header" href="#text-konstanten-definieren">Text-Konstanten definieren</a></h3>
+<p>Diese werden am Anfang des Files definiert und erlauben einfaches lesen der Texte.</p>
 <pre><code class="language-javascript">const likePageText = "Dieser Artikel gefällt mir!";
 const unlikePageText = "Dieser Artikel gefällt mir nicht mehr";
 const followAuthorText = "Autor:in folgen";
@@ -3180,6 +3204,7 @@ const followTopicText = "Thema folgen";
 const unfollowTopicText = "Thema entfolgen";
 </code></pre>
 <h3 id="switch-statement-mit-texten"><a class="header" href="#switch-statement-mit-texten">Switch-Statement mit Texten</a></h3>
+<p>Damit die Texte stimmen, übergibst du sie aus der Switch Funktion an die Toggle Funktion.</p>
 <pre><code class="language-javascript">switch (button.dataset.button) {
   case "like_article":
     toggleButtonState(button, likePageText, unlikePageText);
@@ -3198,16 +3223,20 @@ const unfollowTopicText = "Thema entfolgen";
 <p>Der Like Button braucht zusätzliche Features:</p>
 <ul>
 <li><strong>Zähler</strong> für Likes</li>
-<li><strong>Icon</strong> mit Herz/gebrochenem Herz</li>
+<li><strong>Icon</strong> mit Herz/gebrochenem Herz (Kosmetik)</li>
 </ul>
 <h3 id="html-für-counter-markieren"><a class="header" href="#html-für-counter-markieren">HTML für Counter markieren</a></h3>
 <p><strong>Zahl mit span und ID markieren:</strong></p>
+<p>Den counter legen wir lokal im JavaScript an, mit dem Bewusstsein, dass die Daten später von einem Server kommen sollten. Dazu müssen wir zudem im HTML die Stelle markieren, wo der Counter steht.</p>
+<p>Gehe zur Stelle im HTML wo steht "59 Personen gefällt dieser Artikel".
+Wir wollen nur die Zahl steuern können. Dafür ist ein <code>&lt;span&gt;</code> Element perfekt geeignet, da es keine Zeile erstellt. Füge ein span Element um die Zahl ein und vergib die id "data-like-counter".</p>
 <pre><code class="language-html">&lt;span id="data-like-counter"&gt;59&lt;/span&gt; Personen gefällt dieser Artikel
 </code></pre>
 <blockquote>
 <p>💡 <strong>Wichtig</strong>: IDs dürfen nur einmal pro HTML existieren!</p>
 </blockquote>
 <h3 id="like-spezifische-toggle-funktion"><a class="header" href="#like-spezifische-toggle-funktion">Like-spezifische Toggle-Funktion</a></h3>
+<p>Der Like Button wird nun eine Sonderbehandlung brauchen. Lege eine neue Function an im JavaScript und nenne sie <code>toggleLikeButtonState</code>. Als Parameter brauchen wir den Button.</p>
 <pre><code class="language-javascript">function toggleLikeButtonState(button) {
   const currentState = button.dataset.buttonState;
   const likeCounter = document.querySelector("#data-like-counter");
@@ -3224,29 +3253,56 @@ const unfollowTopicText = "Thema entfolgen";
   likeCounter.textContent = currentCount;
 }
 </code></pre>
+<h4 id="erklärungen-1"><a class="header" href="#erklärungen-1">Erklärungen</a></h4>
+<ul>
+<li><code>currentCount</code>dient als Zwischenspeicher des aktuellen Count</li>
+<li><code>parseInt</code>konvertiert den Text zu einer Zahl, damit das Rechnen sauber klappt</li>
+<li><code>button.dataset.buttonState</code>holt den Wert des Data Attributes mit Namen <code>button-state</code></li>
+<li>der <code>currentState</code> dient für die Unterscheidung, ob plus oder minus gezählt wird</li>
+<li>mit <code>likeCounter.textContent = </code> wird der neue Wert gesetzt</li>
+</ul>
 <h3 id="integration-mit-bestehender-toggle-logik"><a class="header" href="#integration-mit-bestehender-toggle-logik">Integration mit bestehender Toggle-Logik</a></h3>
-<pre><code class="language-javascript">function toggleLikeButtonState(button, activationText, inactivatingText) {
+<p>Handelt es sich um den Like Button, soll die neue Logik aufgerufen werden.</p>
+<pre><code class="language-javascript">case "like_article":
+  toggleLikeButtonState(button, likePageText, unlikePageText);
+  break;
+</code></pre>
+<h4 id="text-und-aussehen-korrigieren"><a class="header" href="#text-und-aussehen-korrigieren">Text und Aussehen korrigieren</a></h4>
+<p>Wenn du jetzt ausprobierst, was passiert, wirst du bemerken, dass zwar der Zähler funktioniert, dafür aber der Text und Aussehen nicht mehr stimmen. Das gute ist, die Logik haben wir ja bereits im "toggleButtonState" geschrieben und können sie einfach nochmals aufrufen, bevor wir den Counter setzen.</p>
+<pre><code class="language-javascript">function toggleLikeButtonState(button) {
   const currentState = button.dataset.buttonState;
-  const likeCounter = document.getElementById("data-like-counter");
+  const likeCounter = document.querySelector("#data-like-counter");
+  // Alternative: document.getElementById("data-like-counter");
+  
   let currentCount = parseInt(likeCounter.textContent);
-
-  toggleButtonState(button, activationText, inactivatingText);
+  
+  // bestehende Logik wiederverwenden
+  toggleButtonState(button, likePageText, unlikePageText);
 
   if (currentState == "inactive") {
     currentCount++;
   } else {
     currentCount--;
   }
+  
   likeCounter.textContent = currentCount;
 }
 </code></pre>
-<h3 id="switch-statement-anpassen"><a class="header" href="#switch-statement-anpassen">Switch-Statement anpassen</a></h3>
+<h4 id="refactoring"><a class="header" href="#refactoring">Refactoring</a></h4>
+<p>An der Lösung ist noch etwas unsauber, dass sich die Methode <code>toggleLikeButtonState</code> ums direkte setzten der Texte kümmert. Wir möchten auch hier die Texte als Parameter entgegen nehmen, auch wenn wir hier grundsätzlich "wissen" um welche Texte es sich handelt. Lagerst du die Verantwortung jedoch an den Aufrufer aus, dann ist die Methode "unabhängig" und könnte einfacher umgezogen werden. Erweitere also die Methode genau gleich wie <code>toggleButtonState</code> um die zwei Parameter, übergib dieses an die toggleButtonState Methode und übergib die Werte wieder bei der Switch Methode.</p>
 <pre><code class="language-javascript">case "like_article":
-  toggleLikeButtonState(button, likePageText, unlikePageText);
-  break;
+        toggleLikeButtonState(button, likePageText, unlikePageText);
+        break;
+
+function toggleLikeButtonState(button, activationText, inactivatingText) {
+  const currentState = button.dataset.buttonState;
+  const likeCounter = document.getElementById("data-like-counter");
+  let currentCount = parseInt(likeCounter.textContent);
+  toggleButtonState(button, activationText, inactivatingText);
 </code></pre>
 <hr />
 <h2 id="icon-integration"><a class="header" href="#icon-integration">Icon-Integration</a></h2>
+<p>Das Icon wird aktuell gelöscht, sobald du den Button drückst. Eigentlich möchten wir auch das Icon korrekt setzen. Dafür erstellen wir zuerst einmal das nötige HTML, dass wir dann einsetzen können. Erstelle am Anfang des Scripts je eine Variable für das "filledHeart" und das "brokenHeart".</p>
 <h3 id="svg-icons-vorbereiten"><a class="header" href="#svg-icons-vorbereiten">SVG-Icons vorbereiten</a></h3>
 <pre><code class="language-javascript">const filledHeart = document.createElement("span");
 const brokenHeart = document.createElement("span");
@@ -3272,6 +3328,12 @@ brokenHeart.innerHTML = `&lt;svg
 filledHeart.classList.add("mr-s");
 brokenHeart.classList.add("mr-s");
 </code></pre>
+<h4 id="erklärungen-2"><a class="header" href="#erklärungen-2">Erklärungen</a></h4>
+<ul>
+<li><code>createElement</code>erstellt ein HTML Element vom Typ, den du mitgibst</li>
+<li>mit <code>innerHtml</code>kann HTML angefügt werden</li>
+<li>der SVG Code selbst ist eher kommpliziert. Im Prinzip gibt es die Linien vor, die gezeichnet werden</li>
+</ul>
 <h3 id="icons-in-toggle-funktion-integrieren"><a class="header" href="#icons-in-toggle-funktion-integrieren">Icons in Toggle-Funktion integrieren</a></h3>
 <pre><code class="language-javascript">if (currentState == "inactive") {
   button.prepend(filledHeart);

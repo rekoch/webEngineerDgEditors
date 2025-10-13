@@ -135,8 +135,13 @@ document.querySelectorAll("[data-table-name]").forEach((table) => {
   // Code für jede Tabelle
 });
 ```
+Foreach siehe [foreach Erklärung](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+
 
 ### 2️⃣ Spalten finden und höchsten Wert ermitteln
+Jetzt haben wir das Tabellen Element und können innerhalb wiederum all unsere Spalten finden. Wieso brauchen wir das? Damit die Breite der Spalten stimmt, müssen wir zuerst den höchsten Wert finden. Denn dieser bestimmt 100%. Davon abgeleitet können wir dann berechnen, wie viel % Breit die Spalte sein sollte.
+
+Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch und merken uns den höchsten Wert. Dass kannst du mit einer lokalen Variable machen. Diese muss mit `let` definiert sein, wenn du den Werte anpassen willst. Ist der Wert Schreibgeschützt kannst du `const` nutzen. In unserem Fall brauchen wir `let` da wir den Wert neu schreiben, wenn er grösser als der vorherige ist.
 
 ```javascript
 const columns = table.querySelectorAll("[data-table-column]");
@@ -173,6 +178,7 @@ Da JavaScript die Breite berechnet, kannst du das `style="width: 24%"` im HTML e
 <p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
    data-table-column>
 ```
+Im Prinzip kannst du es als Rückfall drin lassen, sollte das JavaScript nicht geladen werden.
 
 ---
 
