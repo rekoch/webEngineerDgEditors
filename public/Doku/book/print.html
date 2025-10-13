@@ -3372,14 +3372,14 @@ brokenHeart.classList.add("mr-s");
 <hr />
 <h2 id="code-setup"><a class="header" href="#code-setup">Code-Setup</a></h2>
 <h3 id="projekt-code-holen"><a class="header" href="#projekt-code-holen">Projekt-Code holen</a></h3>
-<p><strong>Frontend herunterladen:</strong></p>
-<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection
-</code></pre>
-<p><strong>Backend herunterladen:</strong></p>
-<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
-</code></pre>
-<p><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
-<img src="javascript/blogPageIntelligence/./images/githubClone.png" alt="Github Download" /></p>
+<ul>
+<li><strong>Frontend herunterladen:</strong>
+<a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection">github Frontend</a></li>
+<li><strong>Backend herunterladen:</strong>
+<a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend">github Backend</a></li>
+<li><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
+<img src="javascript/blogPageIntelligence/./images/githubClone.png" alt="Github Download" /></li>
+</ul>
 <h3 id="vs-code-settings-anpassen"><a class="header" href="#vs-code-settings-anpassen">VS Code Settings anpassen</a></h3>
 <p><strong>LiveServer-Konfiguration erweitern:</strong></p>
 <ol>
@@ -3511,12 +3511,18 @@ import "./buttons.js";
 import "./tables.js";
 import "./likeStateHandler.js";
 </code></pre>
-<p><strong><code>likeStateHandler.js</code> - am Ende:</strong></p>
+<p><strong><code>likeStateHandler.js</code> - am Ende</strong>, damit die Funktion aufgerufen wird:</p>
 <pre><code class="language-javascript">observeUserIdChange();
 observeBlogPageIdChange();
 observeLikeEvents();
 setLikeCounter();
 </code></pre>
+<p>Starte die Page mit dem LiveServer und prüfe, ob du was siehst beim Button unterhalb des "Dieser Artikel gefällt mir!".</p>
+<p>Aus 2 Gründen wirst du jetzt nichts sehen:</p>
+<ol>
+<li>Die "blogPageId" ist noch 0 gesetzt, was unser if abfängt</li>
+<li>Später wollen wir sicherstellen, dass wir erst was anzeigen, wenn die Daten stimmen. Darum gibt es ein "invisible" auf dem ganzen Element. Dieses müssen wir entfernen</li>
+</ol>
 <h3 id="schritt-5-blogpageid-setzen--sichtbarkeit"><a class="header" href="#schritt-5-blogpageid-setzen--sichtbarkeit">Schritt 5: BlogPageId setzen &amp; Sichtbarkeit</a></h3>
 <p><strong>Test-BlogPageId setzen:</strong></p>
 <pre><code class="language-javascript">let blogPageId = 37832;  // Statt 0
@@ -3536,6 +3542,7 @@ setLikeCounter();
 <pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
 import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 </code></pre>
+<p>Damit kannst du die Daten vom Backend laden.</p>
 <h3 id="schritt-2-backend-call-implementieren"><a class="header" href="#schritt-2-backend-call-implementieren">Schritt 2: Backend-Call implementieren</a></h3>
 <pre><code class="language-javascript">function setLikeCounter() {
   if (blogPageId) {
@@ -3549,10 +3556,11 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
   }
 }
 </code></pre>
-<p>** Problem**: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong></p>
+<p>** Problem**: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong>
+Siehe auch <a href="javascript/blogPageIntelligence/../callbacks.html">callbacks</a></p>
 <h3 id="schritt-3-asyncawait-pattern"><a class="header" href="#schritt-3-asyncawait-pattern">Schritt 3: Async/Await Pattern</a></h3>
 <p><strong>Problem</strong>: Code wartet nicht auf Backend-Response.<br />
-<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen.</p>
+<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen. Zudem musst du die function mit <code>async</code> auszeichnen, damit ein <code>await</code>erlaubt ist.</p>
 <pre><code class="language-javascript">async function setLikeCounter() {
   if (blogPageId) {
     try {
@@ -3568,11 +3576,12 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 <p><strong>✅ Test</strong>: Echte Backend-Daten werden geladen!</p>
 <hr />
 <h2 id="event-driven-counter-updates"><a class="header" href="#event-driven-counter-updates">Event-Driven Counter Updates</a></h2>
+<p>Im Prinzip könnte sich die BlogPageId ändern. Dafür gibt es bereits einen abonnierten Event im likeStateHandler. Anstelle dass wir den Counter beim Laden setzen, nutzen wir den Event. Immer wenn sich die Id ändert laden wir den korrekten Wert aus dem Backend.</p>
 <h3 id="blogpageid-change-event-nutzen"><a class="header" href="#blogpageid-change-event-nutzen">BlogPageId-Change-Event nutzen</a></h3>
 <p><strong>Direkten Funktionsaufruf entfernen:</strong></p>
-<pre><code class="language-javascript">// observeUserIdChange();
-// observeBlogPageIdChange();
-// observeLikeEvents();
+<pre><code class="language-javascript">observeUserIdChange();
+observeBlogPageIdChange();
+observeLikeEvents();
 // setLikeCounter(); ← Diese Zeile entfernen
 </code></pre>
 <h3 id="observer-integration"><a class="header" href="#observer-integration">Observer-Integration</a></h3>
@@ -3609,7 +3618,7 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 <h3 id="blogpageid-dynamisch-ändern"><a class="header" href="#blogpageid-dynamisch-ändern">BlogPageId dynamisch ändern</a></h3>
 <p><strong>In <code>main.js</code> experimentieren:</strong></p>
 <pre><code class="language-javascript">// Verschiedene Blog-Page-IDs testen
-appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
+appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 37832 });
 </code></pre>
 <h3 id="development-workflow"><a class="header" href="#development-workflow">Development Workflow</a></h3>
 <ol>
@@ -3631,7 +3640,7 @@ appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 <p>Im nächsten Kapitel machen wir die <strong>Like-Buttons funktional</strong> und synchronisieren Backend-State mit Frontend-Interaktionen!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-like-funktion-wiederherstellen"><a class="header" href="#-like-funktion-wiederherstellen">❤️‍🩹 Like-Funktion wiederherstellen</a></h1>
 <h2 id="-Überblick"><a class="header" href="#-Überblick">🎯 Überblick</a></h2>
-<p>Mit "Backend Connection" hast du dafür gesorgt, dass Like-Counter-Daten aus dem Backend stammen. Der Button selbst funktioniert aber noch nicht korrekt. Wir implementieren die Like-Verwaltung in zwei Schritten:</p>
+<p>Mit <a href="javascript/blogPageIntelligence/./backendConnect.html">connect the backend</a> hast du dafür gesorgt, dass Like-Counter-Daten aus dem Backend stammen. Der Button selbst funktioniert aber noch nicht korrekt. Wir implementieren die Like-Verwaltung in zwei Schritten:</p>
 <h3 id="ziele"><a class="header" href="#ziele">Ziele:</a></h3>
 <ol>
 <li><strong>Blog-Page liken</strong> - mit korrekter UI und Backend-Verbindung</li>
@@ -3648,18 +3657,26 @@ appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 <li><strong>UI entsprechend aktualisieren</strong></li>
 </ol>
 <h3 id="architektur-entscheidung"><a class="header" href="#architektur-entscheidung">Architektur-Entscheidung</a></h3>
+<p>Das File <code>likeStateHandler.js</code> soll erneut die Haupt Verantwortung dafür übernehmen. Wir haben auch ein File <code>button.js</code>. Dies soll einzig und alleine feststellen, dass der Button gedrückt wurde und danach alles weitere dem <code>likeStateHandler.js</code> überlassen.</p>
 <p><strong>File-Aufgabenverteilung:</strong></p>
 <ul>
 <li><code>buttons.js</code> - <strong>Nur</strong> Button-Klick erkennen und Event versenden</li>
 <li><code>likeStateHandler.js</code> - <strong>Komplette</strong> Like-Logik verwalten</li>
 </ul>
+<p>Um so eine Aufgabe zu delegieren, gibt es grundsätzlich verschiedene Möglichkeiten.</p>
+<ol>
+<li>Wir stellen eine Funktion bereit über "export" die danach von anderen direkt genutzt werden kann</li>
+<li>Wir versenden einen Event und kümmern uns nicht darum, welches File sich der Aufgabe animmt.</li>
+</ol>
+<p>Da wir bereits ein Event System zur Verfügung haben, setzen wir Variante 2 um. Diese lässt mehr Spielraum zu.</p>
 <p><strong>Event-basierte Kommunikation:</strong></p>
 <ul>
-<li>✅ <strong>Option 2</strong>: Event versenden (flexibler, entkoppelter)</li>
 <li>❌ Option 1: Direkte Funktionsaufrufe (enger gekoppelt)</li>
+<li>✅ <strong>Option 2</strong>: Event versenden (flexibler, entkoppelter)</li>
 </ul>
 <hr />
 <h2 id="like-event-versenden"><a class="header" href="#like-event-versenden">Like Event versenden</a></h2>
+<p>Im <code>button.js</code> File überwachen wir bereits, ob ein Button geklickt wird. Was uns dort noch fehlt ist der Versand unseres Events, damit wir danach im <code>likeStateHandler.js</code> darauf reagieren können.</p>
 <h3 id="buttonjs-erweitern"><a class="header" href="#buttonjs-erweitern">Button.js erweitern</a></h3>
 <p><strong>Observer und Events importieren:</strong></p>
 <pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
@@ -3687,6 +3704,8 @@ appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
 </blockquote>
 <hr />
 <h2 id="like-event-verarbeiten"><a class="header" href="#like-event-verarbeiten">Like Event verarbeiten</a></h2>
+<p>Du siehst im Console.log wo der Event bereits empfangen wird. Im <code>likeStateHandler.js</code> um Zeile 70 rum. Jetzt müssen wir noch die Logik erweitern, damit es auch das macht, was wir uns erhoffen. Nämlich von dislike auf like und zurück ändern, je nach aktuellem Zustand.</p>
+<p>Gehe zur function <code>observeLikeEvents()</code> und ersetze die zuvor implementiere Code Stelle durch den Aufruf einer neuen Funktion die wir <code>toggleLikeState()</code> nennen und im Observer aufrufen.</p>
 <h3 id="toggle-state-funktion-erstellen"><a class="header" href="#toggle-state-funktion-erstellen">Toggle-State-Funktion erstellen</a></h3>
 <p><strong>Observer-Funktion erweitern:</strong></p>
 <pre><code class="language-javascript">function observeLikeEvents() {
@@ -3700,13 +3719,22 @@ async function toggleLikeState() {
 }
 </code></pre>
 <h3 id="aktuellen-like-status-abfragen"><a class="header" href="#aktuellen-like-status-abfragen">Aktuellen Like-Status abfragen</a></h3>
+<p>Damit wir nun wissen, was wir tun müssen, brauchen wir den aktuellen Zustand des Likes (hat die Userin die Page geliked oder nicht)? Wir machen so was ähnliches schon im <code>observeBlogPageIdChange</code> bzw. im <code>setLikeCounter</code>. Als erstes holen wir uns den Zustand aus dem Backend. Denke daran, dass wir wieder alles asynchron haben. Erweitere die Funktion wo nötig mit <code>async</code></p>
 <p><strong>Import der benötigten Services:</strong></p>
-<pre><code class="language-javascript">import { getLikesPerBlogPage, getIsLikingBlogPage, likeBlogPage, unlikeBlogPage } from "../../services/blogPageLikes.js";
+<pre><code class="language-javascript">import {
+  getLikesPerBlogPage,
+  getIsLikingBlogPage,
+  likeBlogPage,
+  unlikeBlogPage,
+} from "../../services/blogPageLikes.js";
 </code></pre>
 <p><strong>Like-Status für User abfragen:</strong></p>
 <pre><code class="language-javascript">async function toggleLikeState() {
-  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
-  
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+    blogPageId,
+    currentUserId
+  );
+
   if (doesUserLikeBlogPageResponse.liked) {
     // User hat bereits geliked → Unlike
   } else {
@@ -3715,9 +3743,13 @@ async function toggleLikeState() {
 }
 </code></pre>
 <h3 id="backend-status-ändern"><a class="header" href="#backend-status-ändern">Backend-Status ändern</a></h3>
+<p>Jetzt können wir direkt dem Backend mitteilen, dass sich der Zustand geändert hat.</p>
 <pre><code class="language-javascript">async function toggleLikeState() {
-  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
-  
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+    blogPageId,
+    currentUserId
+  );
+
   if (doesUserLikeBlogPageResponse.liked) {
     await unlikeBlogPage(blogPageId, currentUserId);
   } else {
@@ -3727,10 +3759,13 @@ async function toggleLikeState() {
 </code></pre>
 <hr />
 <h2 id="ui-updates-implementieren"><a class="header" href="#ui-updates-implementieren">UI-Updates implementieren</a></h2>
+<p>Das UI braucht noch etwas mehr, damit es jeweils korrekt ist.</p>
 <h3 id="button-ui-update-funktion"><a class="header" href="#button-ui-update-funktion">Button-UI-Update-Funktion</a></h3>
 <pre><code class="language-javascript">function updateLikeButtonUi(isLiked) {
-  const likeButton = document.querySelector("button[data-button='like_article']");
-  
+  const likeButton = document.querySelector(
+    "button[data-button='like_article']"
+  );
+
   if (isLiked) {
     likeButton.classList.remove("primary");
     likeButton.innerHTML = unlikePageText;
@@ -3742,10 +3777,21 @@ async function toggleLikeState() {
   }
 }
 </code></pre>
+<h4 id="erklärungen-3"><a class="header" href="#erklärungen-3">Erklärungen</a></h4>
+<ul>
+<li>damit die Funktion weiss, was zu tun ist, nimmt sie ein Boolean Argument <code>isLiked</code>entgegen</li>
+<li>basierend auf dem Wert, wird entweder der like oder der dislike Zustand angeschrieben</li>
+<li>die Texte sind bereits als <code>const</code>im File vorhanden</li>
+<li>die CSS Klasse <code>primary</code> muss entfernt oder hinzugefügt werden</li>
+</ul>
 <h3 id="toggle-funktion-komplettieren"><a class="header" href="#toggle-funktion-komplettieren">Toggle-Funktion komplettieren</a></h3>
+<p>Zuletzt passe den Aufruf im <code>toggleLikeState()</code>an. Am Schluss ergänze den <code>setLikeCounter()</code> Aufruf, der unabhängig des Zustands genutzt werden kann.</p>
 <pre><code class="language-javascript">async function toggleLikeState() {
-  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(blogPageId, currentUserId);
-  
+  const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+    blogPageId,
+    currentUserId
+  );
+
   if (doesUserLikeBlogPageResponse.liked) {
     await unlikeBlogPage(blogPageId, currentUserId);
     updateLikeButtonUi(false);
@@ -3753,7 +3799,7 @@ async function toggleLikeState() {
     await likeBlogPage(blogPageId, currentUserId);
     updateLikeButtonUi(true);
   }
-  
+
   setLikeCounter(); // Counter aktualisieren
 }
 </code></pre>
@@ -3761,6 +3807,8 @@ async function toggleLikeState() {
 <p><strong>Backend und Frontend starten</strong> und Like-Button testen!</p>
 <hr />
 <h2 id="error-handling-implementieren"><a class="header" href="#error-handling-implementieren">Error Handling implementieren</a></h2>
+<p>Obwohl der Code funktioniert, könnten Fehler im Backend dazu führen, dass wir nicht sauber darauf reagieren. Ein try-catch um die potentiell problematischen Stellen hilft uns hier. Zudem wollen wir sicher gehen, dass wir mit <code>.liked</code> nicht auf ein allfällig nicht vorhandenes Objekt zugreifen.</p>
+<p>Dafür umschliessen wir den ganzen Code oben mit einem try und fangen Errors im Catch und geben sie in der Console aus.</p>
 <h3 id="try-catch-für-robustheit"><a class="header" href="#try-catch-für-robustheit">Try-Catch für Robustheit</a></h3>
 <pre><code class="language-javascript">async function toggleLikeState() {
   try {
@@ -3768,11 +3816,7 @@ async function toggleLikeState() {
       blogPageId,
       currentUserId
     );
-    
-    if (!doesUserLikeBlogPageResponse) {
-      return; // Keine Response erhalten
-    }
-    
+
     if (doesUserLikeBlogPageResponse.liked) {
       await unlikeBlogPage(blogPageId, currentUserId);
       updateLikeButtonUi(false);
@@ -3780,7 +3824,34 @@ async function toggleLikeState() {
       await likeBlogPage(blogPageId, currentUserId);
       updateLikeButtonUi(true);
     }
-    
+
+    setLikeCounter();
+  } catch (error) {
+    console.error("Error toggling like state:", error);
+  }
+}
+</code></pre>
+<h3 id="prüfen-auf-undefined"><a class="header" href="#prüfen-auf-undefined">prüfen auf undefined</a></h3>
+<p>Für den Fall, dass die response komplett leer / undefined ist, machen wir nichts. Nutzen wir den ? Operator bspw. <code>if (doesUserLikeBlogPageResponse.?liked)</code> würde das technisch funktionieren und keinen Fehler mehr geben. In Kombination mit einem if hat es aber zur Folge, dass sowohl bei (nicht vorhanden) wie auch (not liked) ein false ergibt und unsere Logik damit unsauber wäre. Wir prüfen also separat ob es vorhanden ist und stoppen alle weiteren Arbeiten, falls nicht. Das kannst du direkt nach dem abwarten der response machen.</p>
+<pre><code class="language-javascript">async function toggleLikeState() {
+  try {
+    const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+      blogPageId,
+      currentUserId
+    );
+
+    if (!doesUserLikeBlogPageResponse) {
+      return; // Keine Response erhalten
+    }
+
+    if (doesUserLikeBlogPageResponse.liked) {
+      await unlikeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(false);
+    } else {
+      await likeBlogPage(blogPageId, currentUserId);
+      updateLikeButtonUi(true);
+    }
+
     setLikeCounter();
   } catch (error) {
     console.error("Error toggling like state:", error);
@@ -3789,6 +3860,7 @@ async function toggleLikeState() {
 </code></pre>
 <hr />
 <h2 id="user-id-wechsel-handhaben"><a class="header" href="#user-id-wechsel-handhaben">User-ID-Wechsel handhaben</a></h2>
+<p>Aktuell berücksichtigt die Logik nur eine statische UserId aus dem <code>likeStateHandler.js</code>, die mit 0 gesetzt ist. Ein Wechsel der UserId wird nicht berücksichtigt. Zudem ist der initiale Stand beim Laden der Page potentiell falsch, da dies noch nicht korrekt geladen wird.</p>
 <h3 id="user-change-observer-erweitern"><a class="header" href="#user-change-observer-erweitern">User-Change Observer erweitern</a></h3>
 <p><strong>Bestehende Observer-Funktion finden:</strong></p>
 <pre><code class="language-javascript">function observeUserIdChange() {
@@ -3804,16 +3876,60 @@ async function toggleLikeState() {
 }
 </code></pre>
 <h3 id="like-status-check-funktion-erstellen"><a class="header" href="#like-status-check-funktion-erstellen">Like-Status-Check-Funktion erstellen</a></h3>
+<p>Auch hier ist es ähnlich wie mit der Blog Page Id. Die UserId wird initial schon im <code>main.js</code> gesetzt. Weil das Abo mit "true" am schluss auch Daten erhält, wenn es erst nachträglich das Abo bezieht, kriegen wir ganz sicher auch einen Initial-State und können darauf reagieren.</p>
+<p>Jetzt müssen wir im Prinzip nur herausfinden, welches der aktuelle State ist und das UI entsprechend korrekt darstellen.</p>
+<p>Diesen Teil aus der vorherigen Methode macht genau das was wir erneut brauchen:</p>
+<pre><code class="language-javascript">const doesUserLikeBlogPageResponse = await getIsLikingBlogPage(
+  blogPageId,
+  currentUserId
+);
+if (!doesUserLikeBlogPageResponse) {
+  return;
+}
+</code></pre>
+<p>Wie so oft… wenn es nach "ich kann das nochmals brauchen" klingt, dann schreit es danach, die Funktionalität in eine separate Funktion auszulagern.</p>
 <p><strong>Wiederverwendbare Status-Check-Funktion:</strong></p>
+<p>Damit wir "von aussen" wissen, ob es einen Fehler gab oder ob die Antwort "true / false" ist, müssen wir unsere neue Funktion etwas smarter gestalten. Da wir im JavaScript ohne weiteres und jederzeit ein Objekt erstellen können, machen wir genau das. Wir erweitern die Antwort der Funktion um:
+<code>{success: boolean, liked: boolean, error: string}</code></p>
+<p>Als erstes nutzen wir das, wenn die "response" undefined / null ist. Dann hat irgendwie was nicht geklappt und wir können nicht sagen, ob eine Userin die Page liked oder nicht.</p>
 <pre><code class="language-javascript">async function checkUserLikeStatus() {
   try {
     const response = await getIsLikingBlogPage(blogPageId, currentUserId);
-    
+
     if (response === undefined || response === null) {
       return { success: false, liked: false, error: "No response received" };
     }
-    
+  } catch (error) {
+    return { success: false, liked: false, error: error.message };
+  }
+}
+</code></pre>
+<p>Mit return <code>{}</code> erstellen wir ein Objekt, füllen es mit den Properties ab und geben dies zurück. Das ist das coole an JavaScript. Kein "boilerplate" nötig wo wir zuerst mal den definieren müssen, wie das Objekt aussieht. Auf der anderen Seite haben wir auf der "aufrufenden" Seite keine Ahnung, was wir eigentlich als Antwort kriegen…</p>
+<p>Das selbe gilt wenn wir in den "catch" laufen. Wir wissen es hat was nicht geklappt und können die Antwort aus dem error direkt weitergeben.</p>
+<pre><code class="language-javascript">async function checkUserLikeStatus() {
+  try {
+    const response = await getIsLikingBlogPage(blogPageId, currentUserId);
+
+    if (response === undefined || response === null) {
+      return { success: false, liked: false, error: "No response received" };
+    }
+
+  } catch (error) {
+    return { success: false, liked: false, error: error.message };
+  }
+}
+</code></pre>
+<p>Wenn es weder "catch" noch undefined / null gewesen ist, hat es wohl funktioniert. Also geben wir ein <code>sucess:true</code>, den like state aus der response sowie keine Fehlermeldung == null zurück.</p>
+<pre><code class="language-javascript">async function checkUserLikeStatus() {
+  try {
+    const response = await getIsLikingBlogPage(blogPageId, currentUserId);
+
+    if (response === undefined || response === null) {
+      return { success: false, liked: false, error: "No response received" };
+    }
+
     return { success: true, liked: response.liked, error: null };
+
   } catch (error) {
     return { success: false, liked: false, error: error.message };
   }
@@ -3824,12 +3940,12 @@ async function toggleLikeState() {
 <pre><code class="language-javascript">async function toggleLikeState() {
   try {
     const likeStatus = await checkUserLikeStatus();
-    
+
     if (!likeStatus.success) {
       console.error("Could not determine like status:", likeStatus.error);
       return;
     }
-    
+
     if (likeStatus.liked) {
       await unlikeBlogPage(blogPageId, currentUserId);
       updateLikeButtonUi(false);
@@ -3837,18 +3953,51 @@ async function toggleLikeState() {
       await likeBlogPage(blogPageId, currentUserId);
       updateLikeButtonUi(true);
     }
-    
+
     setLikeCounter();
   } catch (error) {
     console.error("Error toggling like state:", error);
   }
 }
 </code></pre>
-<h3 id="init-like-state-funktion"><a class="header" href="#init-like-state-funktion">Init-Like-State-Funktion</a></h3>
+<h4 id="erklärungen-4"><a class="header" href="#erklärungen-4">Erklärungen</a></h4>
+<ul>
+<li>wir nutzen neu den <code>likeStatus</code>um zu wissen, ob wir abbrechen oder nicht</li>
+<li>mit dem <code>.</code>kannst du auf die Properties eines Objekts zugreifen. Hier für den status <code>likeStatus.success</code>, den like zustand <code>likeStatus.liked</code> und fehlermeldung <code>likeStatus.error</code></li>
+</ul>
+<h3 id="like-state-updaten-und-initialiseren"><a class="header" href="#like-state-updaten-und-initialiseren">Like State updaten und initialiseren</a></h3>
+<p>Jetzt haben wir die Basis erarbeitet, um die Logik in unserer Changed User ID Logik wieder zu verwenden. Gehe zur Funktion <code>observeUserIdChange()</code> wo wir nun als erstes unsere neue Funktion <code>checkUserLikeStatus</code> aufrufen und analog zu vorher weiter verarbeiten.</p>
+<pre><code class="language-javascript">const likeStatus = await checkUserLikeStatus();
+</code></pre>
+<p>Wenn der Status success ist, können wir direkt das UI updaten und wenn nicht, machen wir nichts bzw. können noch eine Meldung in der Console ausgeben. Zudem rufe noch die <code>setLikeCounter</code> auf. Damit haben wir bereits alles gemacht, um bei einem change der userID alles korrekt zu machen. Starte alles inklusive Backend und teste etwas. Du kannst nun oben rechts die userID anpassen und schauen was passiert.</p>
+<p>Dein Code im <code>observeUserIdChange()</code> sollte ungefähr so aussehen.</p>
+<pre><code class="language-javascript">function observeUserIdChange() {
+  appObserver.subscribe(
+    ObserverEvents.USER_ID_CHANGED,
+    async (data) =&gt; {
+      currentUserId = data.userId;
+      const likeStatus = await checkUserLikeStatus();
+      if (likeStatus.success) {
+        updateLikeButtonUi(likeStatus.liked);
+        setLikeCounter();
+      } else {
+        console.error("Could not fetch like status:", likeStatus.error);
+      }
+    },
+    true
+  );
+}
+</code></pre>
+<p>Was noch fehlt ist das selbe, wenn die blog page id ändert. Dies ist in unserem Fall eigentlich nicht möglich, aber wir wollen den Init über das Main.js nutzen, wo die Blog Page ID gesetzt wird. So ist beim Laden sichergestellt, dass der Like State stimmt.</p>
+<p>Ergänze daher auch die Funktion <code>observeBlogPageIdChange()</code> mit dem Setzen des likeStatus und des counters.</p>
+<blockquote>
+<p>💡 Dir fällt sicher auf, dass wir wiederum Code in zwei Methoden haben, der deckungsgleich ist. Das Laden des States und das Setzen.</p>
+</blockquote>
 <p><strong>DRY-Prinzip - Wiederverwendbare Init-Funktion:</strong></p>
+<p>Don't repeat yourself. Legen wir dies so zusammen, dass wir es wieder verwenden können. Mittels einer neuen Funktion <code>initLikeState()</code> fassen wir die gemeinsame Logik zusammen und nutzen danach diese.</p>
 <pre><code class="language-javascript">async function initLikeState() {
   const likeStatus = await checkUserLikeStatus();
-  
+
   if (likeStatus.success) {
     updateLikeButtonUi(likeStatus.liked);
     setLikeCounter();

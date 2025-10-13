@@ -23,17 +23,11 @@
 
 ### Projekt-Code holen
 
-**Frontend herunterladen:**
-```
-https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection
-```
-
-**Backend herunterladen:**
-```
-https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
-```
-
-**Alternative:** Komplettes [GitHub Projekt klonen](https://github.com/rekoch/webEngineerDgEditors) oder als ZIP herunterladen.
+- **Frontend herunterladen:**
+[github Frontend](https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection)
+- **Backend herunterladen:**
+[github Backend](https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend)
+- **Alternative:** Komplettes [GitHub Projekt klonen](https://github.com/rekoch/webEngineerDgEditors) oder als ZIP herunterladen.
 ![Github Download](./images/githubClone.png)
 
 ### VS Code Settings anpassen
@@ -196,13 +190,19 @@ import "./tables.js";
 import "./likeStateHandler.js";
 ```
 
-**`likeStateHandler.js` - am Ende:**
+**`likeStateHandler.js` - am Ende**, damit die Funktion aufgerufen wird:
 ```javascript
 observeUserIdChange();
 observeBlogPageIdChange();
 observeLikeEvents();
 setLikeCounter();
 ```
+
+Starte die Page mit dem LiveServer und prüfe, ob du was siehst beim Button unterhalb des "Dieser Artikel gefällt mir!". 
+
+Aus 2 Gründen wirst du jetzt nichts sehen:
+1. Die "blogPageId" ist noch 0 gesetzt, was unser if abfängt
+1. Später wollen wir sicherstellen, dass wir erst was anzeigen, wenn die Daten stimmen. Darum gibt es ein "invisible" auf dem ganzen Element. Dieses müssen wir entfernen
 
 ### Schritt 5: BlogPageId setzen & Sichtbarkeit
 
@@ -233,6 +233,7 @@ function setLikeCounter() {
 import { appObserver, ObserverEvents } from "../../services/observer.js";
 import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 ```
+Damit kannst du die Daten vom Backend laden.
 
 ### Schritt 2: Backend-Call implementieren
 
@@ -251,11 +252,12 @@ function setLikeCounter() {
 ```
 
 ** Problem**: Keine Zahl wird angezeigt? **Async-Problem!**
+Siehe auch [callbacks](../callbacks.html)
 
 ### Schritt 3: Async/Await Pattern
 
 **Problem**: Code wartet nicht auf Backend-Response.  
-**Lösung**: `await` für asynchrone Operationen.
+**Lösung**: `await` für asynchrone Operationen. Zudem musst du die function mit `async` auszeichnen, damit ein `await`erlaubt ist.
 
 ```javascript
 async function setLikeCounter() {
@@ -276,14 +278,15 @@ async function setLikeCounter() {
 ---
 
 ## Event-Driven Counter Updates
+Im Prinzip könnte sich die BlogPageId ändern. Dafür gibt es bereits einen abonnierten Event im likeStateHandler. Anstelle dass wir den Counter beim Laden setzen, nutzen wir den Event. Immer wenn sich die Id ändert laden wir den korrekten Wert aus dem Backend.
 
 ### BlogPageId-Change-Event nutzen
 
 **Direkten Funktionsaufruf entfernen:**
 ```javascript
-// observeUserIdChange();
-// observeBlogPageIdChange();
-// observeLikeEvents();
+observeUserIdChange();
+observeBlogPageIdChange();
+observeLikeEvents();
 // setLikeCounter(); ← Diese Zeile entfernen
 ```
 
@@ -333,7 +336,7 @@ Du kannst dies auch im Console.log überprüfen.
 **In `main.js` experimentieren:**
 ```javascript
 // Verschiedene Blog-Page-IDs testen
-appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
+appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 37832 });
 ```
 
 ### Development Workflow

@@ -196,14 +196,14 @@
 <hr />
 <h2 id="code-setup"><a class="header" href="#code-setup">Code-Setup</a></h2>
 <h3 id="projekt-code-holen"><a class="header" href="#projekt-code-holen">Projekt-Code holen</a></h3>
-<p><strong>Frontend herunterladen:</strong></p>
-<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection
-</code></pre>
-<p><strong>Backend herunterladen:</strong></p>
-<pre><code>https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend
-</code></pre>
-<p><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
-<img src="./images/githubClone.png" alt="Github Download" /></p>
+<ul>
+<li><strong>Frontend herunterladen:</strong>
+<a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/03_javascript/04_01_backendBaseConnection">github Frontend</a></li>
+<li><strong>Backend herunterladen:</strong>
+<a href="https://github.com/rekoch/webEngineerDgEditors/tree/main/public/00_backend">github Backend</a></li>
+<li><strong>Alternative:</strong> Komplettes <a href="https://github.com/rekoch/webEngineerDgEditors">GitHub Projekt klonen</a> oder als ZIP herunterladen.
+<img src="./images/githubClone.png" alt="Github Download" /></li>
+</ul>
 <h3 id="vs-code-settings-anpassen"><a class="header" href="#vs-code-settings-anpassen">VS Code Settings anpassen</a></h3>
 <p><strong>LiveServer-Konfiguration erweitern:</strong></p>
 <ol>
@@ -335,12 +335,18 @@ import "./buttons.js";
 import "./tables.js";
 import "./likeStateHandler.js";
 </code></pre>
-<p><strong><code>likeStateHandler.js</code> - am Ende:</strong></p>
+<p><strong><code>likeStateHandler.js</code> - am Ende</strong>, damit die Funktion aufgerufen wird:</p>
 <pre><code class="language-javascript">observeUserIdChange();
 observeBlogPageIdChange();
 observeLikeEvents();
 setLikeCounter();
 </code></pre>
+<p>Starte die Page mit dem LiveServer und prüfe, ob du was siehst beim Button unterhalb des "Dieser Artikel gefällt mir!".</p>
+<p>Aus 2 Gründen wirst du jetzt nichts sehen:</p>
+<ol>
+<li>Die "blogPageId" ist noch 0 gesetzt, was unser if abfängt</li>
+<li>Später wollen wir sicherstellen, dass wir erst was anzeigen, wenn die Daten stimmen. Darum gibt es ein "invisible" auf dem ganzen Element. Dieses müssen wir entfernen</li>
+</ol>
 <h3 id="schritt-5-blogpageid-setzen--sichtbarkeit"><a class="header" href="#schritt-5-blogpageid-setzen--sichtbarkeit">Schritt 5: BlogPageId setzen &amp; Sichtbarkeit</a></h3>
 <p><strong>Test-BlogPageId setzen:</strong></p>
 <pre><code class="language-javascript">let blogPageId = 37832;  // Statt 0
@@ -360,6 +366,7 @@ setLikeCounter();
 <pre><code class="language-javascript">import { appObserver, ObserverEvents } from "../../services/observer.js";
 import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 </code></pre>
+<p>Damit kannst du die Daten vom Backend laden.</p>
 <h3 id="schritt-2-backend-call-implementieren"><a class="header" href="#schritt-2-backend-call-implementieren">Schritt 2: Backend-Call implementieren</a></h3>
 <pre><code class="language-javascript">function setLikeCounter() {
   if (blogPageId) {
@@ -373,10 +380,11 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
   }
 }
 </code></pre>
-<p>** Problem**: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong></p>
+<p>** Problem**: Keine Zahl wird angezeigt? <strong>Async-Problem!</strong>
+Siehe auch <a href="../callbacks.html">callbacks</a></p>
 <h3 id="schritt-3-asyncawait-pattern"><a class="header" href="#schritt-3-asyncawait-pattern">Schritt 3: Async/Await Pattern</a></h3>
 <p><strong>Problem</strong>: Code wartet nicht auf Backend-Response.<br />
-<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen.</p>
+<strong>Lösung</strong>: <code>await</code> für asynchrone Operationen. Zudem musst du die function mit <code>async</code> auszeichnen, damit ein <code>await</code>erlaubt ist.</p>
 <pre><code class="language-javascript">async function setLikeCounter() {
   if (blogPageId) {
     try {
@@ -392,11 +400,12 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 <p><strong>✅ Test</strong>: Echte Backend-Daten werden geladen!</p>
 <hr />
 <h2 id="event-driven-counter-updates"><a class="header" href="#event-driven-counter-updates">Event-Driven Counter Updates</a></h2>
+<p>Im Prinzip könnte sich die BlogPageId ändern. Dafür gibt es bereits einen abonnierten Event im likeStateHandler. Anstelle dass wir den Counter beim Laden setzen, nutzen wir den Event. Immer wenn sich die Id ändert laden wir den korrekten Wert aus dem Backend.</p>
 <h3 id="blogpageid-change-event-nutzen"><a class="header" href="#blogpageid-change-event-nutzen">BlogPageId-Change-Event nutzen</a></h3>
 <p><strong>Direkten Funktionsaufruf entfernen:</strong></p>
-<pre><code class="language-javascript">// observeUserIdChange();
-// observeBlogPageIdChange();
-// observeLikeEvents();
+<pre><code class="language-javascript">observeUserIdChange();
+observeBlogPageIdChange();
+observeLikeEvents();
 // setLikeCounter(); ← Diese Zeile entfernen
 </code></pre>
 <h3 id="observer-integration"><a class="header" href="#observer-integration">Observer-Integration</a></h3>
@@ -433,7 +442,7 @@ import { getLikesPerBlogPage } from "../../services/blogPageLikes.js";
 <h3 id="blogpageid-dynamisch-ändern"><a class="header" href="#blogpageid-dynamisch-ändern">BlogPageId dynamisch ändern</a></h3>
 <p><strong>In <code>main.js</code> experimentieren:</strong></p>
 <pre><code class="language-javascript">// Verschiedene Blog-Page-IDs testen
-appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 12345 });
+appObserver.emit(ObserverEvents.BLOG_PAGE_ID_CHANGED, { blogPageId: 37832 });
 </code></pre>
 <h3 id="development-workflow"><a class="header" href="#development-workflow">Development Workflow</a></h3>
 <ol>
