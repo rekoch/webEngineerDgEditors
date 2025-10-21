@@ -11,8 +11,10 @@ Die Tabelle startet hier: [index.html#L202](https://github.com/rekoch/webEnginee
 Obwohl die Tabelle funktioniert, hat sie ein **fundamentales Problem**: Die Breite der Diagramm-Säulen ist fest im HTML hinterlegt.
 
 ```html
-<p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
-   style="width: 24%">
+<p
+  class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+  style="width: 24%"
+></p>
 ```
 
 **CSS hat hier seine Grenzen** - Breiten und Höhen basierend auf "anderen" Elementen zu definieren, kann CSS nicht.
@@ -20,6 +22,7 @@ Obwohl die Tabelle funktioniert, hat sie ein **fundamentales Problem**: Die Brei
 ### 🎯 Ziele der dynamischen Tabelle
 
 Wir möchten eine Tabelle, die folgendes kann:
+
 1. **Automatische Berechnung**: 100% Breite = höchster Wert, alle anderen prozentual abgeleitet
 2. **Dynamische Anpassung**: Ändern sich Werte, passt sich das Design automatisch an
 3. **Wiederverwendbarkeit**: Tabelle kann kopiert und mit neuen Werten verwendet werden
@@ -33,12 +36,14 @@ Wir möchten eine Tabelle, die folgendes kann:
 Informationen zum Einbinden findest du auf [SelfHTML](https://wiki.selfhtml.org/wiki/JavaScript_in_HTML_einbinden).
 
 **Unser Ansatz:**
+
 - Script am **Ende der Seite** laden (bessere Performance - First Contentful Paint)
 - **Module-System** für strukturierte Code-Organisation
 
 ### Ordnerstruktur erstellen
 
 Erstelle einen `javascript` Ordner mit folgenden Dateien:
+
 ```
 javascript/
 ├── main.js
@@ -48,11 +53,13 @@ javascript/
 ### JavaScript verknüpfen
 
 **1. In `main.js` das tables.js importieren:**
+
 ```javascript
-import './tables.js';
+import "./tables.js";
 ```
 
 **2. Am Ende von `index.html` (vor `</body>`):**
+
 ```html
 <script src="javascript/main.js" type="module"></script>
 </body>
@@ -63,11 +70,13 @@ import './tables.js';
 ### ✅ Test der Einbindung
 
 **In `tables.js` einfügen:**
+
 ```javascript
 console.log("tables.js loaded");
 ```
 
 **Testen:**
+
 1. `index.html` über LiveServer öffnen
 2. Chrome DevTools → **Console**
 3. Seite neu laden
@@ -86,7 +95,7 @@ Der Browser stellt JavaScript das **DOM** zur Verfügung - eine JavaScript-Repr�
 ### Elemente finden mit `querySelectorAll`
 
 ```javascript
-document.querySelectorAll("[selector]")
+document.querySelectorAll("[selector]");
 ```
 
 Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll](https://developer.mozilla.org/de/docs/Web/API/Document/querySelectorAll)
@@ -101,6 +110,7 @@ Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll
 **Lösung**: [Data-Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes)
 
 **Vorteile von Data-Attributen:**
+
 - Werden von Screenreadern ignoriert
 - Stören HTML-Struktur minimal
 - Geben JavaScript mehr "Wissen"
@@ -108,16 +118,23 @@ Findet alle Nodes mit dem angegebenen Selektor. Mehr dazu: [MDN querySelectorAll
 ### Tabelle markieren
 
 **Tabellen-Container markieren:**
+Dies ist ein neues `div` Element welches um die bestehende Tabelle erweitert werden muss. Achte darauf, dass du das `</div>` nach der Tabelle schliesst.
+
 ```html
 <div data-table-name="benchmark">
   <h4 class="font-20 mb-s">XP-Pen Magic Notepad - CPU Benchmark</h4>
-  <!-- ... -->
+  <!-- ... restliches HTML ... -->
+  <p class="font-13 font-color-light">Score (higher is better)</p>
+</div>
 ```
 
 **Jede Column markieren:**
+
 ```html
-<p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
-   data-table-column>
+<p
+  class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+  data-table-column
+>
   720
 </p>
 ```
@@ -135,27 +152,33 @@ document.querySelectorAll("[data-table-name]").forEach((table) => {
   // Code für jede Tabelle
 });
 ```
+
 Foreach siehe [foreach Erklärung](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
-
 ### 2️⃣ Spalten finden und höchsten Wert ermitteln
+
 Jetzt haben wir das Tabellen Element und können innerhalb wiederum all unsere Spalten finden. Wieso brauchen wir das? Damit die Breite der Spalten stimmt, müssen wir zuerst den höchsten Wert finden. Denn dieser bestimmt 100%. Davon abgeleitet können wir dann berechnen, wie viel % Breit die Spalte sein sollte.
 
 Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch und merken uns den höchsten Wert. Dass kannst du mit einer lokalen Variable machen. Diese muss mit `let` definiert sein, wenn du den Werte anpassen willst. Ist der Wert Schreibgeschützt kannst du `const` nutzen. In unserem Fall brauchen wir `let` da wir den Wert neu schreiben, wenn er grösser als der vorherige ist.
 
 ```javascript
-const columns = table.querySelectorAll("[data-table-column]");
+document.querySelectorAll("[data-table-name]").forEach((table) => {
+  const columns = table.querySelectorAll("[data-table-column]");
 
-let columnWidest = 0;
-columns.forEach((col) => {
-  const colWidth = Number(col.innerText);
-  if (colWidth > columnWidest) {
-    columnWidest = colWidth;
-  }
+  // neuer Code
+  let columnWidest = 0;
+  columns.forEach((col) => {
+    const colWidth = Number(col.innerText);
+    if (colWidth > columnWidest) {
+      columnWidest = colWidth;
+    }
+  });
+  // neuer Code
 });
 ```
 
 **Erklärung:**
+
 - `col.innerText`: Nur Text, keine HTML-Tags oder Leerzeichen
 - `Number()`: Konvertiert Text zu Zahl für Vergleiche
 - Optional: `trim()` für Leerzeichen entfernen
@@ -163,10 +186,23 @@ columns.forEach((col) => {
 ### 3️⃣ Breiten berechnen und setzen
 
 ```javascript
-columns.forEach((col) => {
-  const colWidth = col.innerText;
-  const width = (100 / columnWidest) * colWidth;
-  col.style.width = `${width}%`;
+document.querySelectorAll("[data-table-name]").forEach((table) => {
+  const columns = table.querySelectorAll("[data-table-column]");
+
+  let columnWidest = 0;
+  columns.forEach((col) => {
+    const colWidth = Number(col.innerText);
+    if (colWidth > columnWidest) {
+      columnWidest = colWidth;
+    }
+  });
+  // neuer Code
+  columns.forEach((col) => {
+    const colWidth = col.innerText;
+    const width = (100 / columnWidest) * colWidth;
+    col.style.width = `${width}%`;
+  });
+  // neuer Code
 });
 ```
 
@@ -175,9 +211,12 @@ columns.forEach((col) => {
 Da JavaScript die Breite berechnet, kannst du das `style="width: 24%"` im HTML entfernen:
 
 ```html
-<p class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
-   data-table-column>
+<p
+  class="table-background-brown text-right mt-xxs mb-xxs pr-s py-xxs"
+  data-table-column
+></p>
 ```
+
 Im Prinzip kannst du es als Rückfall drin lassen, sollte das JavaScript nicht geladen werden.
 
 ---
@@ -198,30 +237,36 @@ columns.forEach((col) => {
 ### Erklärung der neuen Konzepte
 
 #### `Math.max()`
+
 [MDN Math.max](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max) - Gibt den höchsten Wert zurück.
 
 #### `Array.from()`
+
 [MDN Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) - Erstellt Array aus Columns und deren innerText-Werten: `[720, 789, 1023]`
 
 #### Spread Operator `...`
+
 [MDN Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) - "Spreaded" Array-Elemente als einzelne Parameter:
+
 - `Math.max([1,2,3])` ❌ funktioniert nicht
 - `Math.max(...[1,2,3])` ✅ funktioniert → `Math.max(1,2,3)`
 
 #### Template Literals
+
 ```javascript
-`${(100 * Number(col.innerText)) / maxWidth}%`
+`${(100 * Number(col.innerText)) / maxWidth}%`;
 ```
+
 Mit `${}` können Variablen und Berechnungen direkt im String verwendet werden.
 
 ---
 
 ## Fazit
 
-| Ansatz | Vorteile | Nachteile |
-|--------|----------|-----------|
-| **Ausführlich** | Gut verständlich, lernfreundlich | Mehr Code |
-| **Kompakt** | Weniger Code, eleganter | Erfordert mehr JS-Wissen |
+| Ansatz          | Vorteile                         | Nachteile                |
+| --------------- | -------------------------------- | ------------------------ |
+| **Ausführlich** | Gut verständlich, lernfreundlich | Mehr Code                |
+| **Kompakt**     | Weniger Code, eleganter          | Erfordert mehr JS-Wissen |
 
 ### Lernempfehlung
 
