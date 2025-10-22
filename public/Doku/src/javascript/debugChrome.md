@@ -70,4 +70,4 @@ Aber Achtung! Du darfst das "debugger" statement natürlich nicht produkiv ausli
 
 
 ### Weitere Infos zum Chrome Debug Tool
-Noch viel umfassender findest du die Debug Tools Erklärungen hier https://developer.chrome.com/docs/devtools/javascript?hl=de
+Noch viel umfassender findest du die Debug Tools Erklärungen hier [Chrome Debug Tool](https://developer.chrome.com/docs/devtools/javascript?hl=de)
