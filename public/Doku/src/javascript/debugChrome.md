@@ -53,7 +53,7 @@ Auch da hilft dir Chrome…
 
 
 ## Und wenn ich aus meinen Code heraus genau sagen will, wo es stoppen soll?
-Es kann sein, dass du Zugang zum Code hast, weil du gerade entwickelst. Dann weisst du ev. genau welchen Teil des Skripts du genauer untersuchen möchtest. Alternativ kannst du auch mit VS Code debuggen Debug JavaScript mit Visual Code
+Es kann sein, dass du Zugang zum Code hast, weil du gerade entwickelst. Dann weisst du ev. genau welchen Teil des Skripts du genauer untersuchen möchtest. Alternativ kannst du auch mit [VS Code debuggen](./debugVsCode.html)
 
 Öffne bei dir im VS Code einen Stand mit JavaScript. Entweder das gleiche Beispiel wie oben oder sonst irgendwas anderes. Öffne das JavaScript im VS Code. Gehe beispielsweise zum Buttons.js
 
