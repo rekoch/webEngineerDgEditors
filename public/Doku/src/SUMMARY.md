@@ -33,6 +33,7 @@
 
 # JavaScript
 - [Einstieg](./javascript/intro.md)
+    - [Basics](./javascript/basics.md)
     - [🐛 Debuggen von JavaScript](./javascript/debugJs.md)
         - [Debug JS mit Chrome](./javascript/debugChrome.md)
         - [Debug JS mit VsCode](./javascript/debugVsCode.md)
