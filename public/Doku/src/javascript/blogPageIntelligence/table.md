@@ -163,9 +163,10 @@ Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch un
 
 ```javascript
 document.querySelectorAll("[data-table-name]").forEach((table) => {
+  
+  // neuer Code
   const columns = table.querySelectorAll("[data-table-column]");
 
-  // neuer Code
   let columnWidest = 0;
   columns.forEach((col) => {
     const colWidth = Number(col.innerText);
@@ -174,6 +175,7 @@ document.querySelectorAll("[data-table-name]").forEach((table) => {
     }
   });
   // neuer Code
+  
 });
 ```
 

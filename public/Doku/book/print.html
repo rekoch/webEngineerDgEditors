@@ -2941,9 +2941,10 @@ Dies ist ein neues <code>div</code> Element welches um die bestehende Tabelle er
 <p>Jetzt haben wir das Tabellen Element und können innerhalb wiederum all unsere Spalten finden. Wieso brauchen wir das? Damit die Breite der Spalten stimmt, müssen wir zuerst den höchsten Wert finden. Denn dieser bestimmt 100%. Davon abgeleitet können wir dann berechnen, wie viel % Breit die Spalte sein sollte.</p>
 <p>Zuerst suchen wir uns alle columns. Danach gehen wir durch alle Spalten durch und merken uns den höchsten Wert. Dass kannst du mit einer lokalen Variable machen. Diese muss mit <code>let</code> definiert sein, wenn du den Werte anpassen willst. Ist der Wert Schreibgeschützt kannst du <code>const</code> nutzen. In unserem Fall brauchen wir <code>let</code> da wir den Wert neu schreiben, wenn er grösser als der vorherige ist.</p>
 <pre><code class="language-javascript">document.querySelectorAll("[data-table-name]").forEach((table) =&gt; {
+  
+  // neuer Code
   const columns = table.querySelectorAll("[data-table-column]");
 
-  // neuer Code
   let columnWidest = 0;
   columns.forEach((col) =&gt; {
     const colWidth = Number(col.innerText);
@@ -2952,6 +2953,7 @@ Dies ist ein neues <code>div</code> Element welches um die bestehende Tabelle er
     }
   });
   // neuer Code
+  
 });
 </code></pre>
 <p><strong>Erklärung:</strong></p>
